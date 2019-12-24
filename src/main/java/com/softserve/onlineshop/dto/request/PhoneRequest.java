@@ -1,5 +1,10 @@
 package com.softserve.onlineshop.dto.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class PhoneRequest {
 
     private Integer year;

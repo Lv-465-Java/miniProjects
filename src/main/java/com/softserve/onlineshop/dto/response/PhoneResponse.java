@@ -1,7 +1,11 @@
 package com.softserve.onlineshop.dto.response;
 
 import com.softserve.onlineshop.entity.Phone;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class PhoneResponse {
 
     private Long id;
