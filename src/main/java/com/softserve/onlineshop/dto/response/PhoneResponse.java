@@ -15,6 +15,7 @@ public class PhoneResponse {
     private String color;
     private Double screenDiagonal;
     private Integer internalMemory;
+    private ModelResponse modelResponse;
 
     public PhoneResponse(Phone phone) {
         id = phone.getId();
@@ -24,5 +25,6 @@ public class PhoneResponse {
         color = phone.getColor();
         screenDiagonal = phone.getScreenDiagonal();
         internalMemory = phone.getInternalMemory();
+        modelResponse = new ModelResponse(phone.getModel());
     }
 }

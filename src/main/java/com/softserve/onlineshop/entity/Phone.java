@@ -18,5 +18,6 @@ public class Phone {
     private String color;
     private Double screenDiagonal;
     private Integer internalMemory;
+    private Model model;
 
 }

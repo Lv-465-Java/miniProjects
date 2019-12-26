@@ -13,4 +13,5 @@ public class PhoneRequest {
     private String color;
     private Double screenDiagonal;
     private Integer internalMemory;
+    private Long modelId;
 }

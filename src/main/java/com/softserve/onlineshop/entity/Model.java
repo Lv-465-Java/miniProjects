@@ -13,4 +13,5 @@ public class Model {
 
     private Long id;
     private String name;
+    private Producer producer;
 }

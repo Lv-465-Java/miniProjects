@@ -8,4 +8,5 @@ import lombok.Setter;
 public class ModelRequest {
 
     private String name;
+    private Long producerId;
 }
