@@ -12,7 +12,7 @@ public interface Crud<T> {
 
     Optional<T> findById(long id);
 
-    List<T> findAll();
+    List<T> getAll();
 
 
 }
