@@ -3,11 +3,13 @@ package com.softserve.onlineshop.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class CartRequest {
 
-    private Integer quantity;
+    private LocalDateTime dateOfBuying;
     private Long userId;
     private Long phoneId;
 }
