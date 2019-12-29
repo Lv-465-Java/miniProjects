@@ -1,6 +1,7 @@
 package com.softserve.dao.implementation;
 
 import com.softserve.dao.CrudDAO;
+import com.softserve.dao.mapping.UserMapping;
 import com.softserve.database.DataBaseConnection;
 import com.softserve.database.JDBCQueries;
 import com.softserve.entity.User;
@@ -25,9 +26,8 @@ public class UserDAOImpl implements CrudDAO<User> {
 
     @Override
     public Optional<User> getById(Long id) {
-        JDBCQueries.
-
-        return
+        return JDBCQueries.getObject(connection, User.UserEntityQueries.GET_BY_ID.getQuery(),
+                new UserMapping(), id);
     }
 
     @Override

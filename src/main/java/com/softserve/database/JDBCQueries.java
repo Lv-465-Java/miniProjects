@@ -1,6 +1,6 @@
 package com.softserve.database;
 
-import com.softserve.dao.mapping.UserMapping;
+import com.softserve.dao.mapping.Mapping;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,13 +9,12 @@ import java.util.Optional;
 
 public class JDBCQueries {
 
-    public static <T> Optional<T> getObject(Connection connection, String query, UserMapping mapper, Object... parameters) {
+    public static <T> Optional<T> getObject(Connection connection, String query, Mapping<T> mapper, Object... parameters) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             insertParameters(statement, parameters);
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    return Optional.of(mapper.mapDataBaseRow(resultSet));
                     return Optional.of(mapper.mapDataBaseRow(resultSet));
                 }
                 return Optional.empty();
@@ -25,18 +24,18 @@ public class JDBCQueries {
         }
     }
 
-    public static <T> List<T> getListOfObjects(Connection connection, String query, RowMapper<T> mapper, Object... parameters) {
-        List<T> result = new ArrayList<>();
+    public static <T> List<T> getListOfObjects(Connection connection, String query, Mapping<T> mapper, Object... parameters) {
+        List<T> list = new ArrayList<>();
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             insertParameters(statement, parameters);
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    result.add(mapper.mapRow(resultSet));
+                    list.add(mapper.mapDataBaseRow(resultSet));
                 }
 
-                return result;
+                return list;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -49,6 +48,7 @@ public class JDBCQueries {
 
             return statement.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

@@ -4,9 +4,8 @@ import com.softserve.entity.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
 
-public class UserMapping {
+public class UserMapping implements Mapping<User>{
     public User mapDataBaseRow(ResultSet resultSet) {
         User user = new User();
 
