@@ -36,7 +36,8 @@ public class User {
     private Long recordId;
     private Long planedOutcomeId;
 
-    public User(Long id, String firstName, String lastName, String email, String password, String photo, Long categoryId, Long recordId, Long planedOutcomeId) {
+    public User(Long id, String firstName, String lastName, String email, String password, String photo, Long categoryId,
+                Long recordId, Long planedOutcomeId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +47,13 @@ public class User {
         this.categoryId = categoryId;
         this.recordId = recordId;
         this.planedOutcomeId = planedOutcomeId;
+    }
+
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
     public User() {
