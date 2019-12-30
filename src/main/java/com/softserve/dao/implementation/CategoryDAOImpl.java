@@ -18,11 +18,10 @@ public class CategoryDAOImpl implements SearchDAO<Category> {
     }
 
     @Override
-    public Long save(Category category) {
-        JDBCQueries.update(connection, Category.CategoryEntityQueries.INSERT.getQuery(),
+    public int save(Category category) {
+        return JDBCQueries.update(connection, Category.CategoryEntityQueries.INSERT.getQuery(),
                 category.getTitle(), category.getColor(), category.getDescription(), category.getUserId(),
                 category.getFinancialTypeId());
-        return 1L;
     }
 
     @Override
@@ -38,15 +37,15 @@ public class CategoryDAOImpl implements SearchDAO<Category> {
     }
 
     @Override
-    public void update(Long id, Category category) {
-        JDBCQueries.update(connection, Category.CategoryEntityQueries.UPDATE.getQuery(),
-                new CategoryMapping(), id, category.getTitle(), category.getColor(),
-                category.getDescription(), category.getUserId(), category.getFinancialTypeId());
+    public int update(Long id, Category category) {
+        return JDBCQueries.update(connection, Category.CategoryEntityQueries.UPDATE.getQuery(),
+                new CategoryMapping(),category.getTitle(), category.getColor(),
+                category.getDescription(), category.getUserId(), category.getFinancialTypeId(), id);
     }
 
     @Override
-    public void delete(Long id) {
-        JDBCQueries.update(connection, Category.CategoryEntityQueries.DELETE.getQuery(),
+    public int delete(Long id) {
+        return JDBCQueries.update(connection, Category.CategoryEntityQueries.DELETE.getQuery(),
                 new CategoryMapping(), id);
     }
 }

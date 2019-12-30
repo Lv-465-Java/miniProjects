@@ -3,12 +3,11 @@ package com.softserve.dao;
 import java.util.Optional;
 
 public interface CrudDAO<T> {
-    Long save(T object);
-    ////чи можна повертати звичайний буліан і джаваскріптом діставати айді створеного юзера.
+    int save(T object);
 
     Optional<T> getById(Long id);
 
-    void update(Long id, T object);
+    int update(Long id, T object);
 
-    void delete(Long id);
+    int delete(Long id);
 }

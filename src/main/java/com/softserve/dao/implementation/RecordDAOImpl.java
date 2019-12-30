@@ -1,39 +1,57 @@
 package com.softserve.dao.implementation;
 
 import com.softserve.dao.RecordDAO;
+import com.softserve.dao.mapping.RecordMapping;
+import com.softserve.database.DataBaseConnection;
+import com.softserve.database.JDBCQueries;
 import com.softserve.entity.Record;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 
 public class RecordDAOImpl implements RecordDAO {
-    @Override
-    public List<Record> getAllByUserIdAndFinancialTypeId(Long userId, Long typeId) {
-        return null;
+    private Connection connection;
+
+    public RecordDAOImpl() {
+        this.connection = DataBaseConnection.getInstance().getConnection();
     }
 
     @Override
-    public List<Record> getAllByUserId(Long id) {
-        return null;
-    }
-
-    @Override
-    public Long save(Record record) {
-        return null;
+    public int save(Record record) {
+        return JDBCQueries.update(connection, Record.RecordEntityQueries.INSERT.getQuery(),
+                record.getSum(), record.getDate(), record.getNote(), record.getFinancialTypeId(),
+                record.getUserId(), record.getCategoryId(), record.getPlanedOutcomeId());
     }
 
     @Override
     public Optional<Record> getById(Long id) {
-        return Optional.empty();
+        return JDBCQueries.getObject(connection, Record.RecordEntityQueries.GET_BY_ID.getQuery(),
+                new RecordMapping(), id);
     }
 
     @Override
-    public void update(Long id, Record object) {
-
+    public List<Record> getAllByUserIdAndFinancialTypeId(Long userId, Long typeId) {
+        return JDBCQueries.getListOfObjects(connection, Record.RecordEntityQueries.GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE.getQuery(),
+                new RecordMapping(), userId, typeId);
     }
 
     @Override
-    public void delete(Long id) {
+    public List<Record> getAllByUserId(Long id) {
+        return JDBCQueries.getListOfObjects(connection, Record.RecordEntityQueries.GET_ALL_BY_USER_ID.getQuery(),
+                new RecordMapping(), id);
+    }
 
+    @Override
+    public int update(Long id, Record record) {
+        return JDBCQueries.update(connection, Record.RecordEntityQueries.UPDATE.getQuery(),
+                record.getSum(), record.getDate(), record.getNote(),
+                record.getFinancialTypeId(), record.getUserId(), record.getCategoryId(),
+                record.getPlanedOutcomeId(), id);
+    }
+
+    @Override
+    public int delete(Long id) {
+        return JDBCQueries.update(connection, Record.RecordEntityQueries.DELETE.getQuery(), id);
     }
 }

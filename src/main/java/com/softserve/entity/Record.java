@@ -1,6 +1,6 @@
 package com.softserve.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Record {
@@ -8,12 +8,12 @@ public class Record {
     public static enum RecordEntityQueries {
 
         INSERT(SqlQueries.INSERT, "INSERT INTO records (sum, date, note, financial_type_id, user_id, category_id, planed_outcome_id) VALUES (?, ?, ?, ?, ?, ?, ?)"),
-        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT sum, date, note, financial_type_id, user_id, category_id, planed_outcome_id FROM records WHERE id = ?"),
+        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, sum, date, note, financial_type_id, user_id, category_id, planed_outcome_id FROM records WHERE id = ?"),
         GET_ALL_BY_USER_ID(SqlQueries.GET_ALL_BY_USER_ID, "SELECT * FROM records WHERE user_id = ?"),
         GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE(SqlQueries.GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE, "SELECT * FROM records WHERE user_id = ? AND financial_type_id = ?"),
         GET_ALL_BY_USER_ID_AND_DATE_RANGE(SqlQueries.GET_ALL_BY_USER_ID_AND_DATE_RANGE, "SELECT * FROM records WHERE user_id = ? AND date BETWEEN ? AND ?"),
         UPDATE(SqlQueries.UPDATE, "UPDATE records SET sum = ?, date = ?, note = ?, financial_type_id = ?, user_id = ?, category_id = ?, planed_outcome_id = ? WHERE id = ?"),
-        DELETE(SqlQueries.DELETE, "DELETE FROM categories WHERE id = ?");
+        DELETE(SqlQueries.DELETE, "DELETE FROM records WHERE id = ?");
 
         private SqlQueries sqlQuery;
         private String query;
@@ -34,26 +34,31 @@ public class Record {
 
     private Long id;
     private Double sum;
-    private Date date;
+    private LocalDate date;
     private String note;
     private Long financialTypeId;
     private Long userId;
     private Long categoryId;
     private Long planedOutcomeId;
 
-    public Record(Long id, Double sum, Date date, String note, Long financialTypeId, Long userId, Long categoryId, Long planedOutcomeId) {
-        this.id = id;
+    public Record(Double sum, LocalDate date, String note, Long financialTypeId, Long userId, Long categoryId) {
         this.sum = sum;
         this.date = date;
         this.note = note;
         this.financialTypeId = financialTypeId;
         this.userId = userId;
         this.categoryId = categoryId;
-        this.planedOutcomeId = planedOutcomeId;
+    }
+
+    public Record() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Double getSum() {
@@ -64,11 +69,11 @@ public class Record {
         this.sum = sum;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

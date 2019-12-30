@@ -7,7 +7,7 @@ public class User {
         INSERT(SqlQueries.INSERT, "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, first_name, last_name, email, password, photo FROM users WHERE id = ?"),
         UPDATE(SqlQueries.UPDATE, "UPDATE users SET first_name = ?, last_name = ?, email = ?, " +
-                "password = ?, photo =? WHERE id = ?;"),
+                "password = ?, photo = ? WHERE id = ?;"),
         DELETE(SqlQueries.DELETE, "DELETE FROM users WHERE id = ?");
 
         private SqlQueries sqlQuery;

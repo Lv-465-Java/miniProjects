@@ -3,6 +3,7 @@ package com.softserve.database;
 import com.softserve.dao.mapping.Mapping;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -62,10 +63,13 @@ public class JDBCQueries {
                     statement.setInt(i + 1, (Integer) parameters[i]);
                 } else if (parameters[i] instanceof Long) {
                     statement.setLong(i + 1, (Long) parameters[i]);
+                } else if (parameters[i] instanceof Double) {
+                    statement.setDouble(i + 1, (Double) parameters[i]);
                 } else if (parameters[i] instanceof String) {
                     statement.setString(i + 1, (String) parameters[i]);
-                } else if (parameters[i] instanceof Date) {
-                    statement.setTimestamp(i + 1, new Timestamp(((Date) parameters[i]).getTime()));
+                } else if (parameters[i] instanceof LocalDate) {
+
+                    statement.setTimestamp(i + 1, new Timestamp(((LocalDate) parameters[i]).toEpochDay()));
                 } else {
                     throw new RuntimeException("There are no mapping for " + parameters[i].getClass());
                 }

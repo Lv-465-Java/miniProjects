@@ -13,8 +13,8 @@ public class PlanedOutcomeDAOImpl implements SearchDAO<PlanedOutcome> {
     }
 
     @Override
-    public Long save(PlanedOutcome planedOutcome) {
-        return null;
+    public int save(PlanedOutcome planedOutcome) {
+        return 8;
     }
 
     @Override
@@ -23,12 +23,12 @@ public class PlanedOutcomeDAOImpl implements SearchDAO<PlanedOutcome> {
     }
 
     @Override
-    public void update(Long id, PlanedOutcome object) {
-
+    public int update(Long id, PlanedOutcome object) {
+        return 9;
     }
 
     @Override
-    public void delete(Long id) {
-
+    public int delete(Long id) {
+        return 9;
     }
 }

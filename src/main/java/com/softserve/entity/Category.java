@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Category {
     public static enum CategoryEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO categories (title, color, description, user_id, financial_type_id) VALUES (?, ?, ?, ?, ?)"),
-        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT title, color, description, user_id, financial_type_id FROM categories WHERE id = ?"),
+        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, title, color, description, user_id, financial_type_id FROM categories WHERE id = ?"),
         GET_ALL_BY_USER_ID(SqlQueries.GET_ALL_BY_USER_ID, "SELECT * FROM categories WHERE user_id = ?"),
         GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE(SqlQueries.GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE, "SELECT * FROM categories WHERE user_id = ? AND financial_type_id = ?"),
         UPDATE(SqlQueries.UPDATE, "UPDATE categories SET title = ?, color = ?, description = ?, financial_type_id = ? WHERE id = ?"),

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec0f44d1-05e4-4a96-aaa9-b80d6e1b406d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/CategoryMapping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/RecordMapping.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/dao/CrudDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/CrudDAO.java" afterDir="false" />
@@ -10,9 +10,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/PlanedOutcomeDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/PlanedOutcomeDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/RecordDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/RecordDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/UserDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/UserMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/UserMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/database/DataBaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/database/DataBaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/database/JDBCQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/database/JDBCQueries.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/entity/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/entity/Record.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/entity/User.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -28,25 +28,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/entity/Category.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1081">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-              <folding>
-                <element signature="class#CategoryEntityQueries#0;class#Category#0" />
-                <element signature="e#1202#1203#0" expanded="true" />
-                <element signature="e#1238#1239#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/CategoryMapping.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+            <state relative-caret-position="450">
+              <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/RecordDAOImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,10 +50,47 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/UserMapping.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/entity/Record.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="219">
+              <caret line="15" column="54" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3120#3121#0" expanded="true" />
+                <element signature="e#3158#3159#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/UserDAOImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="32" column="33" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#420#421#0" expanded="true" />
+                <element signature="e#502#503#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/SearchDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/RecordDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,10 +99,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.17/mysql-connector-java-8.0.17.jar!/com/mysql/cj/jdbc/ClientPreparedStatement.class">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/CrudDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="761" selection-start-line="761" selection-end-line="761" />
+            <state relative-caret-position="175">
+              <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -78,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/database/JDBCQueries.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="219">
+              <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,21 +120,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/Application.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/CategoryDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="30" />
+            <state relative-caret-position="400">
+              <caret line="33" column="35" lean-forward="true" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/CategoryDAOImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/PlanedOutcomeDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+            <state relative-caret-position="306">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#315#316#0" expanded="true" />
+                <element signature="e#342#343#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,7 +166,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/entity/PlanedOutcomes.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/entity/SqlQueries.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/entity/PlanedOutcome.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/softserve/entity/Record.java" />
         <option value="$PROJECT_DIR$/src/main/resorces/db_connection.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/util/DataBasePropertiesParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/constant/ErrorMessage.java" />
@@ -140,18 +176,20 @@
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/RecordDAO.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/Mapping.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/PlanedOutcomeDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/RecordDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/database/DataBaseConnection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/CrudDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/UserMapping.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/CategoryMapping.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/softserve/entity/Category.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/PlanedOutcomeDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/softserve/database/JDBCQueries.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/RecordMapping.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/UserDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/softserve/database/JDBCQueries.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/CategoryDAOImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/softserve/entity/Record.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/CrudDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/RecordDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/softserve/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/CategoryMapping.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/UserMapping.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/softserve/entity/Category.java" />
       </list>
     </option>
   </component>
@@ -165,8 +203,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="1939" />
-    <option name="height" value="1049" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -176,6 +214,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,17 +286,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="softserve" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="mapping" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="miniProjects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="miniProjects" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="softserve" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -281,12 +309,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1577723180831" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1577741241948" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Properties" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
@@ -355,14 +382,14 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.21610738" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.24026845" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
-      <window_info anchor="bottom" id="Run" order="5" weight="0.41926345" />
+      <window_info anchor="bottom" id="Run" order="5" weight="0.40084985" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -452,32 +479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/PlanedOutcomeDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#315#316#0" expanded="true" />
-            <element signature="e#342#343#0" expanded="true" />
-            <element signature="e#409#410#0" expanded="true" />
-            <element signature="e#436#437#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/RecordDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#513#514#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/entity/SqlQueries.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -499,85 +500,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/entity/Record.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/database/DataBaseConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#625#626#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#1509#1510#0" expanded="true" />
-            <element signature="e#1548#1549#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/entity/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
-          <folding>
-            <element signature="e#82#958#0" />
-            <element signature="e#1216#1506#0" />
-            <element signature="e#1512#1729#0" />
-            <element signature="e#1735#1756#0" />
-            <element signature="e#3797#3798#0" expanded="true" />
-            <element signature="e#3881#3882#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/SearchDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/CrudDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/RecordDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/Mapping.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" column="42" lean-forward="true" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/UserDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#420#421#0" expanded="true" />
-            <element signature="e#502#503#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -601,24 +527,20 @@
     <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.17/mysql-connector-java-8.0.17.jar!/com/mysql/cj/jdbc/ConnectionImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
-          <caret line="1258" selection-start-line="1258" selection-end-line="1258" />
+          <caret line="1257" selection-start-line="1257" selection-end-line="1257" />
           <folding>
             <element signature="e#6564#6565#0" expanded="true" />
             <element signature="e#6643#6644#0" expanded="true" />
-            <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#6734#6735#0" expanded="true" />
             <element signature="e#6859#6860#0" expanded="true" />
             <element signature="e#6939#6940#0" expanded="true" />
-            <element signature="e#16954#16955#0" expanded="true" />
-            <element signature="e#16996#16997#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.17/mysql-connector-java-8.0.17.jar!/com/mysql/cj/jdbc/result/ResultSetImpl.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="410" selection-start-line="410" selection-end-line="410" />
+        <state relative-caret-position="133">
+          <caret line="770" selection-start-line="770" selection-end-line="770" />
         </state>
       </provider>
     </entry>
@@ -629,10 +551,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/database/JDBCQueries.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/CategoryMapping.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="244">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/UserMapping.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/database/DataBaseConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#625#626#0" expanded="true" />
+            <element signature="e#675#676#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_212/src.zip!/java/sql/PreparedStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="478" column="12" selection-start-line="478" selection-start-column="12" selection-end-line="478" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_212/src.zip!/java/util/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1646">
+          <caret line="130" column="13" selection-start-line="130" selection-start-column="13" selection-end-line="130" selection-end-column="13" />
+          <folding>
+            <element signature="e#7577#7578#0" expanded="true" />
+            <element signature="e#7625#7626#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_212/src.zip!/java/sql/ResultSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="707" column="23" selection-start-line="707" selection-start-column="23" selection-end-line="707" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/RecordMapping.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -641,30 +620,105 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/entity/Category.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1081">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="150">
+          <caret line="6" column="137" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/entity/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
           <folding>
-            <element signature="class#CategoryEntityQueries#0;class#Category#0" />
-            <element signature="e#1202#1203#0" expanded="true" />
-            <element signature="e#1238#1239#0" expanded="true" />
+            <element signature="e#951#952#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/UserMapping.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/entity/Record.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="219">
+          <caret line="15" column="54" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3120#3121#0" expanded="true" />
+            <element signature="e#3158#3159#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/PlanedOutcomeDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#315#316#0" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/UserDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="32" column="33" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#420#421#0" expanded="true" />
+            <element signature="e#502#503#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/SearchDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/CategoryDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="33" column="35" lean-forward="true" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/CategoryDAOImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/CrudDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+        <state relative-caret-position="175">
+          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/database/JDBCQueries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/RecordDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/RecordDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -673,18 +727,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/softserve/dao/mapping/CategoryMapping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="450">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
         </state>
       </provider>
     </entry>

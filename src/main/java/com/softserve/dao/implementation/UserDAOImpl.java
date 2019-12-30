@@ -17,10 +17,9 @@ public class UserDAOImpl implements CrudDAO<User> {
     }
 
     @Override
-    public Long save(User user) {
-        JDBCQueries.update(connection, User.UserEntityQueries.INSERT.getQuery(),
+    public int save(User user) {
+        return JDBCQueries.update(connection, User.UserEntityQueries.INSERT.getQuery(),
                 user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
-        return 1L;
     }
 
     @Override
@@ -30,14 +29,14 @@ public class UserDAOImpl implements CrudDAO<User> {
     }
 
     @Override
-    public void update(Long id, User user) {
-        JDBCQueries.update(connection, User.UserEntityQueries.UPDATE.getQuery(),
-                id, user.getFirstName(), user.getLastName(),
-                user.getEmail(), user.getPassword(), user.getPhoto());
+    public int update(Long id, User user) {
+        return JDBCQueries.update(connection, User.UserEntityQueries.UPDATE.getQuery(),
+                user.getFirstName(), user.getLastName(),
+                user.getEmail(), user.getPassword(), user.getPhoto(), id);
     }
 
     @Override
-    public void delete(Long id) {
-        JDBCQueries.update(connection, User.UserEntityQueries.DELETE.getQuery(), id);
+    public int delete(Long id) {
+        return JDBCQueries.update(connection, User.UserEntityQueries.DELETE.getQuery(), id);
     }
 }
