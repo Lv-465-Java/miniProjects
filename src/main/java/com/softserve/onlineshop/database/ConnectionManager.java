@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class ConnectionManager {
+
     private static volatile ConnectionManager instance;
     private final Map<Long, Connection> connections;
 
@@ -31,7 +32,7 @@ public final class ConnectionManager {
         getAllConnections().put(Thread.currentThread().getId(), connection);
     }
 
-    private Connection getConnection() {
+    public Connection getConnection() {
         Connection connection = getAllConnections().get(Thread.currentThread().getId());
         if (connection == null) {
             try {

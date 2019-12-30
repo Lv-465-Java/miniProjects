@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Phone {
+public class Phone implements Entity {
 
     private Long id;
     private Integer year;
@@ -17,18 +17,24 @@ public class Phone {
     private String color;
     private Double screenDiagonal;
     private Integer internalMemory;
-    private Long idModel;
+    private Long modelId;
 
     public static enum PhoneEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO phones (year, price, photo, color, screenDiagonal, "
-                + "internalMemory,idModel) VALUES ('%s', '%s', %s, %s, %s, %s, %s);"),
-        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, name, description, idUser FROM items WHERE id = %s;"),
-        GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, name, description, idUser FROM items WHERE %s = '%s';"),
-        GET_ALL(SqlQueries.GET_ALL, "SELECT id, name, description, idUser FROM items;"),
-        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE items SET name = '%s', description = '%s' WHERE id = %s;"),
-        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE items SET %s = '%s' WHERE %s = '%s';"),
-        DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM items WHERE id = %s;"),
-        DELETE_BY_FIELD(SqlQueries.DELETE_BY_FIELD, "DELETE FROM items WHERE %s = '%s';");
+                + "internalMemory,modelId) VALUES ('%s', '%s', %s, %s, %s, %s, %s);"),
+        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, year, price, photo, color, screenDiagonal, \"\n" +
+                "                + \"internalMemory,modelId FROM phones WHERE id = %s;"),
+        GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, year, price, photo, color, screenDiagonal, \"\n" +
+                "                + \"internalMemory,modelId FROM phones WHERE %s = '%s';"),
+        GET_BY_FIELDS(SqlQueries.GET_BY_FIELD, "SELECT id, year, price, photo, color, screenDiagonal, \"\n" +
+                "                + \"internalMemory,modelId FROM phones WHERE %s;"),
+        GET_ALL(SqlQueries.GET_ALL, "SELECT id, year, price, photo, color, screenDiagonal, \"\n" +
+                "                + \"internalMemory,modelId FROM phones;"),
+        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE phones SET year = '%s', price = '%s', photo = '%s'," +
+                "color = '%s', screenDiagonal = '%s', internalMemory = '%s', WHERE id = %s;"),
+        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE phones SET %s = '%s' WHERE %s = '%s';"),
+        DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM phones WHERE id = %s;"),
+        DELETE_BY_FIELD(SqlQueries.DELETE_BY_FIELD, "DELETE FROM phones WHERE %s = '%s';");
 
         private SqlQueries sqlQuery;
         private String query;
