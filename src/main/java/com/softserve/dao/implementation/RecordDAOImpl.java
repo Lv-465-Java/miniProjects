@@ -28,7 +28,7 @@ public class RecordDAOImpl implements RecordDAO {
     }
 
     @Override
-    public void update(Record object, Long id) {
+    public void update(Long id, Record object) {
 
     }
 

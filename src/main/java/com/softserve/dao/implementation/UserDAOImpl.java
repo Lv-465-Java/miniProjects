@@ -11,10 +11,9 @@ import java.util.Optional;
 
 public class UserDAOImpl implements CrudDAO<User> {
     private Connection connection;
-    private DataBaseConnection dataBaseConnection = DataBaseConnection.getInstance();
 
     public UserDAOImpl() {
-        this.connection = dataBaseConnection.createConnection();
+        this.connection = DataBaseConnection.getInstance().getConnection();
     }
 
     @Override
@@ -31,12 +30,14 @@ public class UserDAOImpl implements CrudDAO<User> {
     }
 
     @Override
-    public void update(User object, Long id) {
-
+    public void update(Long id, User user) {
+        JDBCQueries.update(connection, User.UserEntityQueries.UPDATE.getQuery(),
+                id, user.getFirstName(), user.getLastName(),
+                user.getEmail(), user.getPassword(), user.getPhoto());
     }
 
     @Override
     public void delete(Long id) {
-
+        JDBCQueries.update(connection, User.UserEntityQueries.DELETE.getQuery(), id);
     }
 }

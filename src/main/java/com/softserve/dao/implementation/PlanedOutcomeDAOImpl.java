@@ -23,7 +23,7 @@ public class PlanedOutcomeDAOImpl implements SearchDAO<PlanedOutcome> {
     }
 
     @Override
-    public void update(PlanedOutcome object, Long id) {
+    public void update(Long id, PlanedOutcome object) {
 
     }
 

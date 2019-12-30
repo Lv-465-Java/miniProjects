@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Category {
     public static enum CategoryEntityQueries {
-        INSERT(SqlQueries.INSERT, "INSERT INTO categories (title, color, description, financial_typeId) VALUES (?, ?, ?, ?)"),
-        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT title, color, description, financial_typeId, user_id FROM categories WHERE id = ?"),
+        INSERT(SqlQueries.INSERT, "INSERT INTO categories (title, color, description, user_id, financial_type_id) VALUES (?, ?, ?, ?, ?)"),
+        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT title, color, description, user_id, financial_type_id FROM categories WHERE id = ?"),
         GET_ALL_BY_USER_ID(SqlQueries.GET_ALL_BY_USER_ID, "SELECT * FROM categories WHERE user_id = ?"),
         GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE(SqlQueries.GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE, "SELECT * FROM categories WHERE user_id = ? AND financial_type_id = ?"),
-        UPDATE(SqlQueries.UPDATE, "UPDATE categories SET title = ?, color = ?, description = ?, financial_typeId = ? WHERE id = ?"),
+        UPDATE(SqlQueries.UPDATE, "UPDATE categories SET title = ?, color = ?, description = ?, financial_type_id = ? WHERE id = ?"),
         DELETE(SqlQueries.DELETE, "DELETE FROM categories WHERE id = ?");
 
         private SqlQueries sqlQuery;
@@ -34,6 +34,17 @@ public class Category {
     private String description;
     private Long userId;
     private Long financialTypeId;
+
+    public Category(String title, String color, String description, Long userId, Long financialTypeId) {
+        this.title = title;
+        this.color = color;
+        this.description = description;
+        this.userId = userId;
+        this.financialTypeId = financialTypeId;
+    }
+
+    public Category(){
+    }
 
     public Long getId() {
         return id;

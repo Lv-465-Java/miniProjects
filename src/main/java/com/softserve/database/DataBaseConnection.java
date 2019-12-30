@@ -21,7 +21,7 @@ public class DataBaseConnection implements AutoCloseable {
         this.connections = new HashMap<>();
     }
 
-    public Connection createConnection() {
+    public Connection getConnection() {
         Connection connection = getAllConnections().get(Thread.currentThread().getId());
         if (connection == null) {
             LOG.info("Create connection to database");

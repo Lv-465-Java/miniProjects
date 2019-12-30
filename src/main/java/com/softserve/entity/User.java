@@ -6,8 +6,9 @@ public class User {
     public static enum UserEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, first_name, last_name, email, password, photo FROM users WHERE id = ?"),
-        UDPATE(SqlQueries.UPDATE, "UPDATE users SET first_name = ?, last_name = ?, email = ?, " +
-                "password = ?, photo =? WHERE id = %s;");
+        UPDATE(SqlQueries.UPDATE, "UPDATE users SET first_name = ?, last_name = ?, email = ?, " +
+                "password = ?, photo =? WHERE id = ?;"),
+        DELETE(SqlQueries.DELETE, "DELETE FROM users WHERE id = ?");
 
         private SqlQueries sqlQuery;
         private String query;
@@ -32,21 +33,13 @@ public class User {
     private String email;
     private String password;
     private String photo;
-    private Long categoryId;
-    private Long recordId;
-    private Long planedOutcomeId;
 
-    public User(Long id, String firstName, String lastName, String email, String password, String photo, Long categoryId,
-                Long recordId, Long planedOutcomeId) {
-        this.id = id;
+    public User(String firstName, String lastName, String email, String password, String photo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.photo = photo;
-        this.categoryId = categoryId;
-        this.recordId = recordId;
-        this.planedOutcomeId = planedOutcomeId;
     }
 
     public User(String firstName, String lastName, String email, String password) {
@@ -107,30 +100,6 @@ public class User {
         this.photo = photo;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Long getRecordId() {
-        return recordId;
-    }
-
-    public void setRecordId(Long recordId) {
-        this.recordId = recordId;
-    }
-
-    public Long getPlanedOutcomeId() {
-        return planedOutcomeId;
-    }
-
-    public void setPlanedOutcomeId(Long planedOutcomeId) {
-        this.planedOutcomeId = planedOutcomeId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -141,15 +110,12 @@ public class User {
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(password, user.password) &&
-                Objects.equals(photo, user.photo) &&
-                Objects.equals(categoryId, user.categoryId) &&
-                Objects.equals(recordId, user.recordId) &&
-                Objects.equals(planedOutcomeId, user.planedOutcomeId);
+                Objects.equals(photo, user.photo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password, photo, categoryId, recordId, planedOutcomeId);
+        return Objects.hash(id, firstName, lastName, email, password, photo);
     }
 
     @Override
@@ -161,9 +127,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", photo='" + photo + '\'' +
-                ", categoryId=" + categoryId +
-                ", recordId=" + recordId +
-                ", planedOutcomeId=" + planedOutcomeId +
                 '}';
     }
 }

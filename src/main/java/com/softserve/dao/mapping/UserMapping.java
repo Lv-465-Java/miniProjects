@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserMapping implements Mapping<User>{
+    @Override
     public User mapDataBaseRow(ResultSet resultSet) {
         User user = new User();
 
