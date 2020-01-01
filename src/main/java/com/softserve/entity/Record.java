@@ -12,6 +12,7 @@ public class Record {
         GET_ALL_BY_USER_ID(SqlQueries.GET_ALL_BY_USER_ID, "SELECT * FROM records WHERE user_id = ?"),
         GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE(SqlQueries.GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE, "SELECT * FROM records WHERE user_id = ? AND financial_type_id = ?"),
         GET_ALL_BY_USER_ID_AND_DATE_RANGE(SqlQueries.GET_ALL_BY_USER_ID_AND_DATE_RANGE, "SELECT * FROM records WHERE user_id = ? AND date BETWEEN ? AND ?"),
+       // GET_ALL_BY_SELECTED_FILTERS(SqlQueries.GET_ALL_BY_SELECTED_FILTERS, "")
         UPDATE(SqlQueries.UPDATE, "UPDATE records SET sum = ?, date = ?, note = ?, financial_type_id = ?, user_id = ?, category_id = ?, planed_outcome_id = ? WHERE id = ?"),
         DELETE(SqlQueries.DELETE, "DELETE FROM records WHERE id = ?");
 

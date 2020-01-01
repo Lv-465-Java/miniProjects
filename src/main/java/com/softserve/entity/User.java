@@ -6,6 +6,7 @@ public class User {
     public static enum UserEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, first_name, last_name, email, password, photo FROM users WHERE id = ?"),
+        GET_USER_BY_EMAIL(SqlQueries.GET_USER_BY_EMAIL, "SELECT id, first_name, last_name, email, password, photo FROM users WHERE email = ?"),
         UPDATE(SqlQueries.UPDATE, "UPDATE users SET first_name = ?, last_name = ?, email = ?, " +
                 "password = ?, photo = ? WHERE id = ?;"),
         DELETE(SqlQueries.DELETE, "DELETE FROM users WHERE id = ?");

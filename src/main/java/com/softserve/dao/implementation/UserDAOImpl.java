@@ -28,6 +28,11 @@ public class UserDAOImpl implements CrudDAO<User> {
                 new UserMapping(), id);
     }
 
+    public Optional<User> getByEmail(String email) {
+        return JDBCQueries.getObject(connection, User.UserEntityQueries.GET_USER_BY_EMAIL.getQuery(),
+                new UserMapping(), email);
+    }
+
     @Override
     public int update(Long id, User user) {
         return JDBCQueries.update(connection, User.UserEntityQueries.UPDATE.getQuery(),

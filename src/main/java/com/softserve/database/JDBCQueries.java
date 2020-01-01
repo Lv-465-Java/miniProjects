@@ -54,22 +54,25 @@ public class JDBCQueries {
         }
     }
 
-    private static void insertParameters(PreparedStatement statement, Object... parameters) {
+    private static void insertParameters(PreparedStatement preparedStatement, Object... parameters) {
         try {
             for (int i = 0; i < parameters.length; i++) {
                 if (parameters[i] == null) {
-                    statement.setNull(i + 1, Types.NULL);
+                    preparedStatement.setNull(i + 1, Types.NULL);
                 } else if (parameters[i] instanceof Integer) {
-                    statement.setInt(i + 1, (Integer) parameters[i]);
+                    preparedStatement.setInt(i + 1, (Integer) parameters[i]);
                 } else if (parameters[i] instanceof Long) {
-                    statement.setLong(i + 1, (Long) parameters[i]);
+                    preparedStatement.setLong(i + 1, (Long) parameters[i]);
                 } else if (parameters[i] instanceof Double) {
-                    statement.setDouble(i + 1, (Double) parameters[i]);
+                    preparedStatement.setDouble(i + 1, (Double) parameters[i]);
                 } else if (parameters[i] instanceof String) {
-                    statement.setString(i + 1, (String) parameters[i]);
+                    preparedStatement.setString(i + 1, (String) parameters[i]);
                 } else if (parameters[i] instanceof LocalDate) {
-
-                    statement.setTimestamp(i + 1, new Timestamp(((LocalDate) parameters[i]).toEpochDay()));
+////debug here
+                    LocalDate ld = LocalDate.parse(parameters[i].toString());
+                    Date date = Date.valueOf(ld);
+//                    Timestamp timestamp = Timestamp.valueOf(parameters[i].toString());
+                    preparedStatement.setDate(i + 1, date);
                 } else {
                     throw new RuntimeException("There are no mapping for " + parameters[i].getClass());
                 }
