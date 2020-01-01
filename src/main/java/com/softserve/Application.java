@@ -4,6 +4,7 @@ package com.softserve;
 import com.softserve.dao.implementation.RecordDAOImpl;
 import com.softserve.dao.implementation.UserDAOImpl;
 import com.softserve.entity.User;
+import com.softserve.service.implementation.UserServiceImpl;
 
 import java.sql.SQLException;
 
@@ -14,9 +15,13 @@ public class Application {
 
         RecordDAOImpl recordDAO = new RecordDAOImpl();
         UserDAOImpl userDAO = new UserDAOImpl();
+        UserServiceImpl userService = new UserServiceImpl();
 
-        System.out.println(userDAO.save(new User("jhk", "Hoper",
-                "markhoper@gmail.com", "mjdsafio86sd")));
+
+       // System.out.println(userService.create(new User("Mike", "Hanigan", "mikeh@gmail.com", "kdjoisfj")));
+        //System.out.println(userService.login("mikeh@gmail.com", "kdjoisfj"));
+//        System.out.println(userDAO.save(new User("jhk", "Hoper",
+//                "markhoper@gmail.com", "mjdsafio86sd")));
 
 
 

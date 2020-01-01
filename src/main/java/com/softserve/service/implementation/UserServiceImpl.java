@@ -1,7 +1,9 @@
 package com.softserve.service.implementation;
 
+import com.softserve.constant.ErrorMessage;
 import com.softserve.dao.implementation.UserDAOImpl;
 import com.softserve.entity.User;
+import com.softserve.exception.UserException;
 import com.softserve.service.CrudService;
 
 import java.util.Optional;
@@ -17,7 +19,7 @@ public class UserServiceImpl implements CrudService<User> {
     @Override
     public boolean create(User user) {
         if (userDAOImpl.getByEmail(user.getEmail()).isPresent()) {
-            throw new RuntimeException("Such email is already used");
+            throw new UserException(ErrorMessage.FAIL_TO_REGISTER_A_USER.getErrorMessage());
         } else {
             return userDAOImpl.save(user) == 1;
         }
