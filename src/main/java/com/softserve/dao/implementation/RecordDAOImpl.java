@@ -7,6 +7,7 @@ import com.softserve.database.JDBCQueries;
 import com.softserve.entity.Record;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -56,9 +57,9 @@ public class RecordDAOImpl implements RecordDAO {
         return JDBCQueries.update(connection, Record.RecordEntityQueries.DELETE.getQuery(), id);
     }
 
-//    public List<Record> getAllBySelectedFilters(Long userId, Map<String, String> map){
-//        return JDBCQueries.getListOfObjects(connection, generateSearchQuery(userId, map), new RecordMapping(), userId, map);
-//    }
+    public List<Record> getAllBySelectedFilters(Long userId, Map<String, String> map){
+        return JDBCQueries.getListOfObjects(connection, generateSearchQuery(userId, map), new RecordMapping());
+    }
 
     public String generateSearchQuery(Long userId, Map<String, String> parameters) {
         StringBuilder stringBuilder = new StringBuilder("SELECT * FROM records WHERE user_id = " + userId);
@@ -72,6 +73,7 @@ public class RecordDAOImpl implements RecordDAO {
                 } else if (parameter.getKey().equals("financial_type_id")) {
                     stringBuilder.append(" AND financial_type_id = ".concat(parameter.getValue()));
                 }
+               // LocalDate localDate = LocalDate.now().compareTo()
             }
             return stringBuilder.append(';').toString();
         } catch (RuntimeException e) {

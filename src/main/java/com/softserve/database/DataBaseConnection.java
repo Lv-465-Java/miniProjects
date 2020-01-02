@@ -1,5 +1,6 @@
 package com.softserve.database;
 
+import com.mysql.cj.jdbc.Driver;
 import com.softserve.constant.ErrorMessage;
 import com.softserve.util.DataBasePropertiesParser;
 import org.slf4j.Logger;
@@ -25,7 +26,10 @@ public class DataBaseConnection implements AutoCloseable {
         Connection connection = getAllConnections().get(Thread.currentThread().getId());
         if (connection == null) {
             LOG.info("Create connection to database");
+
             try {
+                Driver driver = new Driver();
+                DriverManager.registerDriver(driver);
                 connection = DriverManager.getConnection(
                         DataBasePropertiesParser.getDataBaseProps("db_url"),
                         DataBasePropertiesParser.getDataBaseProps("db_login"),

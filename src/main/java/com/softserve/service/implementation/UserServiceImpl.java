@@ -38,10 +38,9 @@ public class UserServiceImpl implements CrudService<User> {
         }
     }
 
-
     @Override
     public Optional<User> getById(Long id) {
-        return Optional.empty();
+        return userDAOImpl.getById(id);
     }
 
     @Override
