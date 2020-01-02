@@ -1,0 +1,124 @@
+body {
+	background-color: #676486;
+	font-family: Palatino Linotype;
+	font: 1.7em;
+	font-style: normal;
+	font-variant: normal;
+}
+
+#container {
+	width: 1000px;
+	margin: 25px auto;
+}
+
+.whySignUp, .whySignIn {
+	float: left;
+	background-color: white;
+	width: 600px;
+	border-radius: 0 5px 5px 0;
+	padding-top: 20px;
+	padding-right: 40px;
+	font-size: 14px;
+}
+
+.whySignUp {
+height: 444px;
+}
+
+.whySignIn {
+	height: 354px;
+}
+
+.signUp, .signIn {
+	float: left;
+	width: 300px;
+	padding: 20px 20px;
+	background-color: white;
+	text-align: center;
+	border-radius: 5px 0 0 5px;
+}
+
+.signIn {
+padding: 49px 20px;
+}
+
+#pointer:hover {
+	cursor: pointer;
+	background-color:#2e47d1;
+}
+
+[type="text"],
+[type="password"],
+[type="email"] {
+	display: block;
+	margin: 0 auto;
+	width: 80%;
+	border: 0;
+	border-bottom: 1px solid rgba(0, 0, 0, .2);
+	height: 30px;
+	line-height: 45px;
+	margin-bottom: 10px;
+	font-size: 1em;
+	color: rgba(0, 0, 0, .4);
+}
+
+.floatLabel {
+	display: inline-flex;
+	margin: 0 auto;
+	width: 80%;
+	height: 15px;
+	line-height: 45px;
+	margin-bottom: 10px;
+	font-size: 1.2em;
+	color: rgba(0, 0, 0, .5);
+}
+
+[type="submit"] {
+	margin-top: 25px;
+	width: 80%;
+	border: 0;
+	background-color: #2038bd;
+	border-radius: 5px;
+	height: 50px;
+	color: white;
+	font-weight: 400;
+	font-size: 1em;
+}
+
+input[type=password]:focus, [type=email]:focus, [type=email]:focus, [type=text]:focus {
+ 	outline: none;
+ 	border-color: #2038bd;
+}
+
+h1 {
+	color: rgba(0, 0, 0, .7);
+	font-weight: 800;
+	font-size: 2.5em;
+	text-align:center;
+	margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+p {
+	color: rgba(0, 0, 0, .6);
+	font-size: 1.2em;
+	margin: 15px 0 15px 0;
+	text-align: justify;
+}
+
+.reference {
+	color: rgba(0, 0, 0, .6);
+	font-size: 1em;
+	margin: 14px 0 0px 27px;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	color:#2038bd;
+}
+
+.asterisk{
+    color: #db3c30;
+    margin-left: 3px;
+}

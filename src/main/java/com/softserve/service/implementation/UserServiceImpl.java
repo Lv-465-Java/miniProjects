@@ -25,16 +25,16 @@ public class UserServiceImpl implements CrudService<User> {
         }
     }
 
-    public boolean login(String email, String password) {
+    public boolean login(String email, String password) throws RuntimeException{
         if (userDAOImpl.getByEmail(email).isPresent()) {
             Optional<User> user = userDAOImpl.getByEmail(email);
             if (user.get().getPassword().equals(password)) {
                 return true;
             } else {
-                throw new RuntimeException("Entered password isn't correct");
+                throw new RuntimeException(ErrorMessage.FAIL_TO_LOGIN_WITH_WRONG_EMAIL.getErrorMessage());
             }
         } else {
-            throw new RuntimeException("User with entered email isn't created yet");
+            throw new RuntimeException(ErrorMessage.FAIL_TO_LOGIN_WITH_WRONG_PASSWORD.getErrorMessage());
         }
     }
 

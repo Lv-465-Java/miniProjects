@@ -10,4 +10,8 @@ public enum ServletURL {
     ServletURL(String servletURL) {
         this.servletURL = servletURL;
     }
+
+    public String getServletURL() {
+        return servletURL;
+    }
 }

@@ -11,4 +11,8 @@ public enum ServletResponseParameter {
     ServletResponseParameter(String servletParameter) {
         this.servletParameter = servletParameter;
     }
+
+    public String getServletParameter() {
+        return servletParameter;
+    }
 }

@@ -10,4 +10,10 @@ public enum ViewURL {
     ViewURL(String viewUrl) {
         this.viewUrl = viewUrl;
     }
+
+    public String getViewUrl() {
+        return viewUrl;
+    }
+
+
 }

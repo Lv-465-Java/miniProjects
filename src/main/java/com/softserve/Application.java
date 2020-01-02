@@ -29,12 +29,12 @@ public class Application {
 //        System.out.println(userDAO.save(new User("jhk", "Hoper",
 //                "markhoper@gmail.com", "mjdsafio86sd")));
 
-        Map<String, String> map = new TreeMap<>();
-        map.put("begin_date", "2000-12-12");
-        map.put("end_date", "2022-12-12");
-
-        System.out.println(recordDAO.generateSearchQuery(1L, map));
-        System.out.println(recordDAO.getAllBySelectedFilters(1L, map));
+//        Map<String, String> map = new TreeMap<>();
+//        map.put("begin_date", "2000-12-12");
+//        map.put("end_date", "2022-12-12");
+//
+//        System.out.println(recordDAO.generateSearchQuery(1L, map));
+//        System.out.println(recordDAO.getAllBySelectedFilters(1L, map));
 
     }
 }
