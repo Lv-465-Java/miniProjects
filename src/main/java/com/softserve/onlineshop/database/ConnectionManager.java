@@ -36,7 +36,7 @@ public final class ConnectionManager {
         Connection connection = getAllConnections().get(Thread.currentThread().getId());
         if (connection == null) {
             try {
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lv465", "lv465", "andrii5");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/phoneshop", "lv465", "andrii5");
             } catch (SQLException ex) {
                 throw new RuntimeException("Failed to create the database connection.");
             }

@@ -15,12 +15,9 @@ public abstract class ACrudDao<TEntity extends Entity> extends AReadDao<TEntity>
         super();
     }
 
-    // TODO Use Builder
-    // TODO Use List<String>
-    abstract String[] getFields(TEntity entity);
+    protected abstract String[] getFields(TEntity entity);
 
-    // TODO Use List<String>
-    abstract String[] getUpdateFields(TEntity entity);
+    protected abstract String[] getUpdateFields(TEntity entity);
 
     private boolean executeQuery(String query, SqlQueries sqlQueries) {
         boolean result;
@@ -28,13 +25,10 @@ public abstract class ACrudDao<TEntity extends Entity> extends AReadDao<TEntity>
             throw new RuntimeException(String.format(QUERY_NOT_FOUND, sqlQueries.name()));
         }
         try (Statement statement = ConnectionManager.getInstance().getConnection().createStatement()) {
-            // TODO CHECK!
             result = statement.execute(query);
         } catch (SQLException e) {
             throw new RuntimeException(DATABASE_INPUT_ERROR, e);
         }
-        // TODO Warning
-        // TODO result must be return if delete Ok
         return result;
     }
 
@@ -46,7 +40,7 @@ public abstract class ACrudDao<TEntity extends Entity> extends AReadDao<TEntity>
     }
 
     // Update
-    public boolean updateByEntity(TEntity entity) {
+    public boolean updateById(TEntity entity) {
         String query = String.format(sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(),
                 (Object[]) getUpdateFields(entity));
         return executeQuery(query, SqlQueries.UPDATE_BY_FIELD);

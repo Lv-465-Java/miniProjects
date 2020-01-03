@@ -18,7 +18,7 @@ public class User {
     private String phone;
     private Long cartId;
 
-    public static enum PhoneEntityQueries {
+    public static enum UserEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO users (nickname, password, email, phone, cartId) VALUES ('%s', '%s', '%s', '%s', %s);"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, nickname, password, email, phone, cartId FROM users WHERE id = %s;"),
         GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, nickname, password, email, phone, cartId FROM users WHERE %s = '%s';"),
@@ -31,7 +31,7 @@ public class User {
         private SqlQueries sqlQuery;
         private String query;
 
-        PhoneEntityQueries(SqlQueries sqlQuery, String query) {
+        UserEntityQueries(SqlQueries sqlQuery, String query) {
             this.sqlQuery = sqlQuery;
             this.query = query;
         }

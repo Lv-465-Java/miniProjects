@@ -20,25 +20,26 @@ public abstract class AReadDao<TEntity> implements ReadDao<TEntity> {
     final Map<Enum<?>, Enum<?>> sqlQueries;
 
     AReadDao() {
-        this.sqlQueries = new HashMap<Enum<?>, Enum<?>>();
+        this.sqlQueries = new HashMap<>();
         // TODO Call init();
     }
 
     // TODO Use Builder
     // TODO Use List<String>
-    abstract TEntity createInstance(String[] args);
+    protected abstract TEntity createInstance(String[] args);
 
     // TODO Create abstract method init
     protected abstract void init();
 
     // Read
-    private List<TEntity> getQueryResult(String query, SqlQueries sqlQueries) {
-        List<TEntity> all = new ArrayList<TEntity>();
+    protected List<TEntity> getQueryResult(String query, SqlQueries sqlQueries) {
+        List<TEntity> all = new ArrayList<>();
         String[] queryResult;
         if (query == null) {
             throw new RuntimeException(String.format(QUERY_NOT_FOUND, sqlQueries.name()));
         }
-        try (Statement statement = ConnectionManager.getInstance().getConnection().createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+        try (Statement statement = ConnectionManager.getInstance().getConnection().createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
             queryResult = new String[resultSet.getMetaData().getColumnCount()];
             while (resultSet.next()) {
                 for (int i = 0; i < queryResult.length; i++) {
