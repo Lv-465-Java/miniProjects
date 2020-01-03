@@ -3,6 +3,7 @@ package com.softserve.onlineshop.dao;
 import com.softserve.onlineshop.database.ConnectionManager;
 import com.softserve.onlineshop.entity.SqlQueries;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,8 +39,8 @@ public abstract class AReadDao<TEntity> implements ReadDao<TEntity> {
         if (query == null) {
             throw new RuntimeException(String.format(QUERY_NOT_FOUND, sqlQueries.name()));
         }
-        try (Statement statement = ConnectionManager.getInstance().getConnection().createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
+        try (PreparedStatement statement = ConnectionManager.getInstance().getConnection().prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
             queryResult = new String[resultSet.getMetaData().getColumnCount()];
             while (resultSet.next()) {
                 for (int i = 0; i < queryResult.length; i++) {

@@ -30,7 +30,7 @@ public class Phone implements Entity {
                 "screenDiagonal, internalMemory, modelId FROM phones WHERE %s;"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, year, price, photo, color," +
                 "screenDiagonal, internalMemory, modelId FROM phones;"),
-        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE phones SET year = '%s', price = '%s', photo = '%s', " +
+        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE phones SET year = ?, price = '%s', photo = '%s', " +
                 "color = '%s', screenDiagonal = '%s', internalMemory = '%s', modelId = '%s' WHERE id = '%s';"),
         UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE phones SET %s = '%s' WHERE %s = '%s';"),
         DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM phones WHERE id = %s;"),

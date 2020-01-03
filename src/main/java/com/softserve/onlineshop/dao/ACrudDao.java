@@ -4,6 +4,7 @@ import com.softserve.onlineshop.database.ConnectionManager;
 import com.softserve.onlineshop.entity.Entity;
 import com.softserve.onlineshop.entity.SqlQueries;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
@@ -24,8 +25,8 @@ public abstract class ACrudDao<TEntity extends Entity> extends AReadDao<TEntity>
         if (query == null) {
             throw new RuntimeException(String.format(QUERY_NOT_FOUND, sqlQueries.name()));
         }
-        try (Statement statement = ConnectionManager.getInstance().getConnection().createStatement()) {
-            result = statement.execute(query);
+        try (PreparedStatement statement = ConnectionManager.getInstance().getConnection().prepareStatement(query)) {
+            result = statement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(DATABASE_INPUT_ERROR, e);
         }

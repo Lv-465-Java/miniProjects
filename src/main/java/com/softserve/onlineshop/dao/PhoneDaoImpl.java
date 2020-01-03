@@ -2,16 +2,10 @@ package com.softserve.onlineshop.dao;
 
 import com.softserve.onlineshop.entity.Phone;
 import com.softserve.onlineshop.entity.Phone.PhoneEntityQueries;
-import com.softserve.onlineshop.entity.SqlQueries;
-
 import java.util.List;
 
 
 public class PhoneDaoImpl extends ACrudDao<Phone> {
-    private final static String URL = "jdbc:mysql://localhost:3306/phoneshop";
-    private final static String USER = "lv465";
-    private final static String PASS = "andrii5";
-
     private final static String ID_MODEL_FIELDNAME = "modelId";
 
     public PhoneDaoImpl() {
@@ -67,5 +61,18 @@ public class PhoneDaoImpl extends ACrudDao<Phone> {
 
     public List<Phone> getPhonesByModelId(Long modelId) {
         return getByFieldName(ID_MODEL_FIELDNAME, modelId.toString());
+    }
+
+//    public List<Phone> getPhonesByFilter(String query) {
+//        return getQueryResult(String.format(sqlQueries.get(SqlQueries.GET_BY_FIELD).toString(),
+//                query), SqlQueries.GET_BY_FIELD);
+//    }
+//
+    public static void main(String[] args) {
+
+        PhoneDaoImpl phoneDao = new PhoneDaoImpl();
+        Phone phone = new Phone(3L, 2006, 10316, "133", "green", 1.5, 128, 1L);
+//        System.out.println(phoneDao.updateByFieldName("year", "2015", "year", "2012"));
+        System.out.println(phoneDao.updateById(phone));
     }
 }
