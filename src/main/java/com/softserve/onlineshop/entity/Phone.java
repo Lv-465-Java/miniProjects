@@ -19,22 +19,25 @@ public class Phone implements Entity {
     private Integer internalMemory;
     private Long modelId;
 
-    public static enum PhoneEntityQueries {
+    public enum PhoneEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO phones (year, price, photo, color, screenDiagonal, "
-                + "internalMemory, modelId) VALUES ('%s', '%s', %s, '%s', %s, %s, %s);"),
+                + "internalMemory, modelId) VALUES (? , ?, ?, ?, ?, ?, ?);"),
+//        INSERT(SqlQueries.INSERT, "INSERT INTO phones (year, price, photo, color, screenDiagonal, "
+//                + "internalMemory, modelId) VALUES ('%s', '%s', %s, '%s', %s, %s, %s);"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, year, price, photo, color, " +
-                "screenDiagonal, internalMemory, modelId FROM phones WHERE id = %s;"),
+                "screenDiagonal, internalMemory, modelId FROM phones WHERE id = ?;"),
+//        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, year, price, photo, color, " +
+//                "screenDiagonal, internalMemory, modelId FROM phones WHERE id = %s;"),
         GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, year, price, photo, color, " +
-                "screenDiagonal, internalMemory, modelId FROM phones WHERE %s = '%s';"),
-        GET_BY_FIELDS(SqlQueries.GET_BY_FIELD, "SELECT id, year, price, photo, color, " +
-                "screenDiagonal, internalMemory, modelId FROM phones WHERE %s;"),
+                "screenDiagonal, internalMemory, modelId FROM phones WHERE %s = %s;"),
+//        GET_BY_FIELDS(SqlQueries.GET_BY_FIELD, "SELECT id, year, price, photo, color, " +
+//                "screenDiagonal, internalMemory, modelId FROM phones WHERE %s;"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, year, price, photo, color," +
                 "screenDiagonal, internalMemory, modelId FROM phones;"),
-        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE phones SET year = ?, price = '%s', photo = '%s', " +
-                "color = '%s', screenDiagonal = '%s', internalMemory = '%s', modelId = '%s' WHERE id = '%s';"),
-        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE phones SET %s = '%s' WHERE %s = '%s';"),
-        DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM phones WHERE id = %s;"),
-        DELETE_BY_FIELD(SqlQueries.DELETE_BY_FIELD, "DELETE FROM phones WHERE %s = '%s';");
+        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE phones SET year = ?, price = ?, photo = ?, " +
+                "color = ?, screenDiagonal = ?, internalMemory = ?, modelId = ? WHERE id = ?;"),
+        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE phones SET %s = %s WHERE %s = %s;"),
+        DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM phones WHERE id = ?;");
 
         private SqlQueries sqlQuery;
         private String query;

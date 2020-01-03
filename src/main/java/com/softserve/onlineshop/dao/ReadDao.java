@@ -1,10 +1,11 @@
 package com.softserve.onlineshop.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ReadDao<TEntity>  {
 
-    TEntity getById(Long id);
+    Optional<TEntity> getById(Long id);
 
     List<TEntity> getByFieldName(String fieldName, String text);
 
