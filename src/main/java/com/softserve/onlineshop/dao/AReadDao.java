@@ -15,7 +15,7 @@ public abstract class AReadDao<TEntity> implements ReadDao<TEntity> {
     private final static String EMPTY_RESULTSET = "Empty ResultSet by Query %s";
     private final static String DATABASE_READING_ERROR = "Database Reading Error";
 
-    final Map<Enum<?>, Enum<?>> sqlQueries;
+    protected final Map<Enum<?>, Enum<?>> sqlQueries;
 
     AReadDao() {
         this.sqlQueries = new HashMap<>();

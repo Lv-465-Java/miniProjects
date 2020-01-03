@@ -1,11 +1,12 @@
-package com.softserve.onlineshop.dao;
+package com.softserve.onlineshop.dao.impl;
 
+import com.softserve.onlineshop.dao.ACrudDao;
 import com.softserve.onlineshop.dao.mapper.PhoneRowMapper;
 import com.softserve.onlineshop.dao.mapper.RowMapper;
 import com.softserve.onlineshop.entity.Phone;
 import com.softserve.onlineshop.entity.Phone.PhoneEntityQueries;
 
-import java.util.LinkedList;
+
 import java.util.List;
 
 
