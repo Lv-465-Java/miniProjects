@@ -20,7 +20,7 @@ public class RecordDAOImpl implements RecordDAO {
     }
 
     @Override
-    public int save(Record record) {
+    public boolean save(Record record) {
         return JDBCQueries.update(connection, Record.RecordEntityQueries.INSERT.getQuery(),
                 record.getSum(), record.getDate(), record.getNote(), record.getFinancialTypeId(),
                 record.getUserId(), record.getCategoryId(), record.getPlanedOutcomeId());
@@ -45,7 +45,7 @@ public class RecordDAOImpl implements RecordDAO {
     }
 
     @Override
-    public int update(Long id, Record record) {
+    public boolean update(Long id, Record record) {
         return JDBCQueries.update(connection, Record.RecordEntityQueries.UPDATE.getQuery(),
                 record.getSum(), record.getDate(), record.getNote(),
                 record.getFinancialTypeId(), record.getUserId(), record.getCategoryId(),
@@ -53,7 +53,7 @@ public class RecordDAOImpl implements RecordDAO {
     }
 
     @Override
-    public int delete(Long id) {
+    public boolean delete(Long id) {
         return JDBCQueries.update(connection, Record.RecordEntityQueries.DELETE.getQuery(), id);
     }
 

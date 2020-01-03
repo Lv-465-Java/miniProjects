@@ -1,4 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -12,21 +13,19 @@
 
 <body>
     <div id="container">
-           <div class="signIn">
-            <form method="post">
+           <div action= "/profile" class="signIn">
+            <form autocomplete="on" method="post">
                  <label for="email" class="floatLabel">Email<span class="asterisk">*</span></label>
                  <input id="Email" name="email" type="email" required>
                  <label for="password" class="floatLabel">Password<span class="asterisk">*</span></label>
                  <input id="Password" name="password" type="password" required>
-
-
-
-
-
+             <c:if test="${not empty error}">
+                   <p class="reference" id="error">${error}</p>
+             </c:if>
                  <input type="submit" class="btn btn-primary" id="pointer" value="Sign In">
             </form>
 
-           <p class="reference">Do not have an account? <a href="signUp.jsp">Sign up</a></p>
+           <p class="reference">Do not have an account? <a href="/register">Sign up</a></p>
         </div>
 
         <div class="whySignIn">

@@ -2,7 +2,7 @@ package com.softserve.constant;
 
 public enum ServletURL {
     LOGIN_SERVLET("/login"),
-    REGISTRATION_SERVLET("/sign_up"),
+    REGISTRATION_SERVLET("/register"),
     USER_PROFILE("/profile");
 
     String servletURL;
@@ -13,5 +13,12 @@ public enum ServletURL {
 
     public String getServletURL() {
         return servletURL;
+    }
+
+    @Override
+    public String toString() {
+        return "ServletURL{" +
+                "servletURL='" + servletURL + '\'' +
+                '}';
     }
 }

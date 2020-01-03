@@ -1,8 +1,8 @@
 package com.softserve.servlet;
 
 import com.softserve.constant.ServletResponseParameter;
-import com.softserve.constant.ViewURL;
-import com.softserve.entity.User;
+import com.softserve.constant.ServletURL;
+import com.softserve.constant.View;
 import com.softserve.service.implementation.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
-@WebServlet(value = {""})
+@WebServlet(value = {"/login"})
 public class LoginServlet extends HttpServlet {
 
     private UserServiceImpl userService;
@@ -26,30 +25,22 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.jsp").include(req, resp);
+        req.getRequestDispatcher(View.USER_LOGIN_PAGE.getViewUrl()).include(req, resp);
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        try{
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
             String email = req.getParameter(ServletResponseParameter.USER_EMAIL.getServletParameter());
             String password = req.getParameter(ServletResponseParameter.USER_PASSWORD.getServletParameter());
-           if (userService.login(email, password)){
-                resp.sendRedirect(ViewURL.USER_REGISTRATION_URL.getViewUrl());
-            } else {
-               resp.sendRedirect("home.jsp");
-//               req.setAttribute("error", "Unknown user, please try again");
-//               req.getRequestDispatcher("home.jsp").forward(req, resp);
-////               resp.sendRedirect(req.getContextPath() + "home.jsp");
-           }
+            userService.login(email, password);
+            resp.sendRedirect("/profile");
         } catch (RuntimeException e) {
-            String error = e.getMessage();
-
-//            <c:if test="$error!=null">
-//                 <p id="loginError"> <c:out value="${error}"/></p>
-           // out.write("<p id='errMsg' style='color: red; font-size: larger;'>Please Enter Both Us </p>");
-            //resp.sendRedirect(e.getMessage());
+            req.setAttribute("error", e.getMessage());
+            getServletConfig()
+                    .getServletContext()
+                    .getRequestDispatcher(View.USER_LOGIN_PAGE.getViewUrl())
+                    .forward(req, resp);
         }
-
     }
 }

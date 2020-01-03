@@ -13,18 +13,23 @@
 <body>
     <div id="container">
            <div class="signUp">
-            <form>
+            <form autocomplete="on" method="post">
                 <label for="Firstname" class="floatLabel">First name<span class="asterisk">*</span></label>
-                 <input id="Firstname" name="Firstname" type="text" required>
+                 <input id="Firstname" name="first_name" type="text" required>
                  <label for="Lastname" class="floatLabel">Last name<span class="asterisk">*</span></label>
-                 <input id="Lastname" name="Lastname" type="text" required>
+                 <input id="Lastname" name="last_name" type="text" required>
                  <label for="Email" class="floatLabel">Email<span class="asterisk">*</span></label>
-                 <input id="Email" name="Email" type="email" required>
+                 <input id="Email" name="email" type="email" required>
                  <label for="Password" class="floatLabel">Password<span class="asterisk">*</span></label>
-                 <input id="Password" name="Password" type="password" required>
-                 <button type="submit" class="btn btn-primary" id="pointer">Sign Up</button>
+                 <input id="Password" name="password" type="password" required>
+
+                 <c:if test="${not empty error}">
+                    <p class="reference" id="error">${error}</p>
+                 </c:if>
+
+                 <input type="submit" class="btn btn-primary" id="pointer">Sign Up</button>
                 </form>
-           <p class="reference">Already existing user? <a href="login.jsp">Sign in</a></p>
+           <p class="reference">Already existing user? <a href="login">Sign in</a></p>
         </div>
 
         <div class="whySignUp">

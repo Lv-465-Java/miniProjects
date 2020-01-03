@@ -2,13 +2,16 @@ package com.softserve.service.implementation;
 
 import com.softserve.constant.ErrorMessage;
 import com.softserve.dao.implementation.UserDAOImpl;
+import com.softserve.dto.UserDTO;
 import com.softserve.entity.User;
-import com.softserve.exception.UserException;
+import com.softserve.exception.NoSuchEntityException;
+import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.CrudService;
+import com.softserve.service.mapper.UserEntityToUserDtoMapper;
 
 import java.util.Optional;
 
-public class UserServiceImpl implements CrudService<User> {
+public class UserServiceImpl implements CrudService<UserDTO> {
 
     private UserDAOImpl userDAOImpl;
 
@@ -17,34 +20,41 @@ public class UserServiceImpl implements CrudService<User> {
     }
 
     @Override
-    public boolean create(User user) {
-        if (userDAOImpl.getByEmail(user.getEmail()).isPresent()) {
-            throw new UserException(ErrorMessage.FAIL_TO_REGISTER_A_USER.getErrorMessage());
+    public boolean create(UserDTO userDTO) {
+        if (userDAOImpl.getByEmail(userDTO.getEmail()).isPresent()) {
+            throw new NotCompletedActionException(ErrorMessage.FAIL_TO_REGISTER_A_USER.getErrorMessage());
         } else {
-            return userDAOImpl.save(user) == 1;
+            User user = new User(userDTO.getFirstName(), userDTO.getLastName(),
+                    userDTO.getEmail(), userDTO.getPassword());
+            return userDAOImpl.save(user);
         }
     }
 
-    public boolean login(String email, String password) throws RuntimeException{
-        if (userDAOImpl.getByEmail(email).isPresent()) {
-            Optional<User> user = userDAOImpl.getByEmail(email);
+    public boolean login(String email, String password) throws RuntimeException {
+        Optional<User> user = userDAOImpl.getByEmail(email);
+        if (user.isPresent()) {
             if (user.get().getPassword().equals(password)) {
                 return true;
             } else {
-                throw new RuntimeException(ErrorMessage.FAIL_TO_LOGIN_WITH_WRONG_EMAIL.getErrorMessage());
+                throw new NotCompletedActionException(ErrorMessage.FAIL_TO_LOGIN_WITH_WRONG_PASSWORD.getErrorMessage());
             }
         } else {
-            throw new RuntimeException(ErrorMessage.FAIL_TO_LOGIN_WITH_WRONG_PASSWORD.getErrorMessage());
+            throw new NotCompletedActionException(ErrorMessage.FAIL_TO_LOGIN_WITH_WRONG_EMAIL.getErrorMessage());
         }
     }
 
     @Override
-    public Optional<User> getById(Long id) {
-        return userDAOImpl.getById(id);
+    public UserDTO getById(Long id) {
+        Optional<User> user = userDAOImpl.getById(id);
+        if (user.isPresent()) {
+            return UserEntityToUserDtoMapper.map(user.get());
+        } else {
+            throw new NoSuchEntityException(ErrorMessage.FAIL_TO_FIND_A_USER.getErrorMessage());
+        }
     }
 
     @Override
-    public boolean update(Long id, User object) {
+    public boolean update(Long id, UserDTO userDTO) {
         return true;
     }
 

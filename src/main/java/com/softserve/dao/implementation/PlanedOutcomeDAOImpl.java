@@ -18,7 +18,7 @@ public class PlanedOutcomeDAOImpl implements SearchDAO<PlanedOutcome> {
     }
 
     @Override
-    public int save(PlanedOutcome planedOutcome) {
+    public boolean save(PlanedOutcome planedOutcome) {
         return JDBCQueries.update(connection, PlanedOutcome.PlanedOutcomeEntityQueries.INSERT.getQuery(),
                 planedOutcome.getSum(), planedOutcome.getDate(), planedOutcome.getNote(),
                 planedOutcome.getUserId(), planedOutcome.getCategoryId());
@@ -37,14 +37,14 @@ public class PlanedOutcomeDAOImpl implements SearchDAO<PlanedOutcome> {
     }
 
     @Override
-    public int update(Long id, PlanedOutcome planedOutcome) {
+    public boolean update(Long id, PlanedOutcome planedOutcome) {
         return JDBCQueries.update(connection, PlanedOutcome.PlanedOutcomeEntityQueries.UPDATE.getQuery(),
                 planedOutcome.getSum(), planedOutcome.getDate(),
                 planedOutcome.getNote(), planedOutcome.getUserId(), planedOutcome.getCategoryId(), id);
     }
 
     @Override
-    public int delete(Long id) {
+    public boolean delete(Long id) {
         return JDBCQueries.update(connection, PlanedOutcome.PlanedOutcomeEntityQueries.DELETE.getQuery(),
                 id);
     }

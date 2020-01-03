@@ -3,11 +3,11 @@ package com.softserve.dao;
 import java.util.Optional;
 
 public interface CrudDAO<T> {
-    int save(T object);
+    boolean save(T object);
 
     Optional<T> getById(Long id);
 
-    int update(Long id, T object);
+    boolean update(Long id, T object);
 
-    int delete(Long id);
+    boolean delete(Long id);
 }

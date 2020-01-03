@@ -43,11 +43,10 @@ public class JDBCQueries {
         }
     }
 
-    public static int update(Connection connection, String query, Object... parameters) {
+    public static boolean update(Connection connection, String query, Object... parameters) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             insertParameters(statement, parameters);
-
-            return statement.executeUpdate();
+            return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

@@ -18,7 +18,7 @@ public class CategoryDAOImpl implements SearchDAO<Category> {
     }
 
     @Override
-    public int save(Category category) {
+    public boolean save(Category category) {
         return JDBCQueries.update(connection, Category.CategoryEntityQueries.INSERT.getQuery(),
                 category.getTitle(), category.getColor(), category.getDescription(), category.getUserId(),
                 category.getFinancialTypeId());
@@ -37,14 +37,14 @@ public class CategoryDAOImpl implements SearchDAO<Category> {
     }
 
     @Override
-    public int update(Long id, Category category) {
+    public boolean update(Long id, Category category) {
         return JDBCQueries.update(connection, Category.CategoryEntityQueries.UPDATE.getQuery(),
                 new CategoryMapping(),category.getTitle(), category.getColor(),
                 category.getDescription(), category.getUserId(), category.getFinancialTypeId(), id);
     }
 
     @Override
-    public int delete(Long id) {
+    public boolean delete(Long id) {
         return JDBCQueries.update(connection, Category.CategoryEntityQueries.DELETE.getQuery(),
                 new CategoryMapping(), id);
     }

@@ -1,8 +1,8 @@
 package com.softserve.exception;
 
-public class NoSuchElementException extends RuntimeException {
+public class NoSuchEntityException extends RuntimeException {
 
-    public NoSuchElementException(String message) {
+    public NoSuchEntityException(String message) {
         super(message);
     }
 }
