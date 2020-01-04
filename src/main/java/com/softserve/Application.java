@@ -16,6 +16,6 @@ public class Application {
         userDTO.setPhoto("MyNewPhotoHere87687");
         //      System.out.println(userService.update(10L));
         //      System.out.println(userService.delete(10L));
-        System.out.println(userService.getById(11L));
-    }
+        //userService.login("test@example1.com", "new123password");
+        }
 }

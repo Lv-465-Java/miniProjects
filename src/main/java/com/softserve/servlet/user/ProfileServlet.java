@@ -1,7 +1,12 @@
 package com.softserve.servlet.user;
 
 import com.softserve.constant.View;
+import com.softserve.dao.implementation.UserDAOImpl;
+import com.softserve.dto.UserDTO;
+import com.softserve.entity.User;
 import com.softserve.service.implementation.UserServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,21 +19,26 @@ import java.io.IOException;
 public class ProfileServlet extends HttpServlet {
 
     private UserServiceImpl userService;
-    //CategoryServiceImpl categoryService;
+    //private CategoryServiceImpl categoryService;
 
     @Override
     public void init() {
         userService = new UserServiceImpl();
+        //categoryService = new CategoryServiceImpl();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    req.getRequestDispatcher(View.USER_PROFILE_PAGE.getViewUrl()).include(req, resp);
-   // req.setAttribute("name", );
-    }
+        UserDTO user = (UserDTO)req.getSession().getAttribute("currentSessionUser");
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        UserDTO userWithAllInfo = userService.getByEmail(user.getEmail());
+        Long id = userWithAllInfo.getId();
+
+        Logger LOG = LoggerFactory.getLogger(ProfileServlet.class);
+        LOG.info("user " + user);
+
+            req.setAttribute("user", userWithAllInfo);
+            //    req.setAttribute("categories", categoryService.getAllByUserId(id));
+            req.getRequestDispatcher(View.USER_PROFILE_PAGE.getViewUrl()).include(req, resp);
     }
 }

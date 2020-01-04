@@ -47,12 +47,20 @@ public class UserServiceImpl implements CrudService<UserDTO> {
         if (!user.isPresent()) {
             throw new NoSuchEntityException(ErrorMessage.FAIL_TO_FIND_A_USER.getErrorMessage());
         }
-        return UserMapperObjects.map(user.get());
+        return UserMapperObjects.userEntityToUserDTO(user.get());
+    }
+
+    public UserDTO getByEmail(String email) {
+        Optional<User> user = userDAOImpl.getByEmail(email);
+        if (!user.isPresent()) {
+            throw new NoSuchEntityException(ErrorMessage.FAIL_TO_FIND_A_USER.getErrorMessage());
+        }
+        return UserMapperObjects.userEntityToUserDTO(user.get());
     }
 
     @Override
     public boolean update(Long id, UserDTO userDTO) {
-        User user = UserMapperObjects.mapper(userDAOImpl.getById(id));
+        User user = UserMapperObjects.verifyIfUserIsPresent(userDAOImpl.getById(id));
         if (userDTO.getFirstName() != null) {
             user.setFirstName(userDTO.getFirstName());
         }
@@ -67,7 +75,7 @@ public class UserServiceImpl implements CrudService<UserDTO> {
 
     public boolean changePassword(Long id, String oldPassword, String newPassword, String confirmNewPassword)
             throws NoSuchEntityException, NotCompletedActionException {
-        User user = UserMapperObjects.mapper(userDAOImpl.getById(id));
+        User user = UserMapperObjects.verifyIfUserIsPresent(userDAOImpl.getById(id));
         if (checkCurrentPassword(user, oldPassword)
                 && confirmNewPassword(newPassword, confirmNewPassword)) {
             user.setPassword(newPassword);
