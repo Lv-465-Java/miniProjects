@@ -1,7 +1,6 @@
 package com.softserve.servlet;
 
 import com.softserve.constant.ServletResponseParameter;
-import com.softserve.constant.ServletURL;
 import com.softserve.constant.View;
 import com.softserve.service.implementation.UserServiceImpl;
 

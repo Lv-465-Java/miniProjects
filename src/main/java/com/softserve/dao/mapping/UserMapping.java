@@ -16,6 +16,7 @@ public class UserMapping implements Mapping<User>{
             user.setLastName(resultSet.getString("last_name"));
             user.setEmail(resultSet.getString("email"));
             user.setPassword(resultSet.getString("password"));
+            user.setPhoto(resultSet.getString("photo"));
             return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);

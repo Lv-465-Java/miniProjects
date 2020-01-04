@@ -1,41 +1,21 @@
 package com.softserve;
 
-
-import com.softserve.dao.implementation.RecordDAOImpl;
 import com.softserve.dao.implementation.UserDAOImpl;
 import com.softserve.dto.UserDTO;
-import com.softserve.entity.User;
 import com.softserve.service.implementation.UserServiceImpl;
-import com.softserve.servlet.LoginServlet;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import java.sql.SQLException;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class Application {
 
     public static void main(String[] args) throws SQLException {
 
-        RecordDAOImpl recordDAO = new RecordDAOImpl();
         UserDAOImpl userDAO = new UserDAOImpl();
         UserServiceImpl userService = new UserServiceImpl();
 
-            UserDTO userDTO = new UserDTO("Stepan", "Baran",
-                    "baran@stepan.com", "12345");
-        ///System.out.println(userService.create(userDTO));
-       // System.out.println(userService.create(new RegistrationServlet("Mike", "Hanigan", "mikeh@gmail.com", "kdjoisfj")));
-        //System.out.println(userService.login("mikeh@gmail.com", "kdjoisfj"));
-//        System.out.println(userDAO.save(new RegistrationServlet("jhk", "Hoper",
-//                "markhoper@gmail.com", "mjdsafio86sd")));
-
-//        Map<String, String> map = new TreeMap<>();
-//        map.put("begin_date", "2000-12-12");
-//        map.put("end_date", "2022-12-12");
-//
-//        System.out.println(recordDAO.generateSearchQuery(1L, map));
-//        System.out.println(recordDAO.getAllBySelectedFilters(1L, map));
-
+        UserDTO userDTO = new UserDTO("MyFirstName22", "MyLastName1", "MyEmail", "MyPassword");
+        userDTO.setPhoto("MyNewPhotoHere87687");
+        //      System.out.println(userService.update(10L));
+        //      System.out.println(userService.delete(10L));
+        System.out.println(userService.getById(11L));
     }
 }

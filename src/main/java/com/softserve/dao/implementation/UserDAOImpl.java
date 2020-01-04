@@ -28,11 +28,6 @@ public class UserDAOImpl implements CrudDAO<User> {
                 new UserMapping(), id);
     }
 
-    public Optional<User> getByEmail(String email) {
-        return JDBCQueries.getObject(connection, User.UserEntityQueries.GET_USER_BY_EMAIL.getQuery(),
-                new UserMapping(), email);
-    }
-
     @Override
     public boolean update(Long id, User user) {
         return JDBCQueries.update(connection, User.UserEntityQueries.UPDATE.getQuery(),
@@ -44,4 +39,11 @@ public class UserDAOImpl implements CrudDAO<User> {
     public boolean delete(Long id) {
         return JDBCQueries.update(connection, User.UserEntityQueries.DELETE.getQuery(), id);
     }
+
+    public Optional<User> getByEmail(String email) {
+        return JDBCQueries.getObject(connection, User.UserEntityQueries.GET_USER_BY_EMAIL.getQuery(),
+                new UserMapping(), email);
+    }
+
+
 }

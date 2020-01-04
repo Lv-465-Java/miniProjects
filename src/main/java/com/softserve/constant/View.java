@@ -3,7 +3,7 @@ package com.softserve.constant;
 public enum View {
     USER_LOGIN_PAGE("/login.jsp"),
     USER_REGISTRATION_PAGE("/signUp.jsp"),
-    USER_PROFILE_PAGE("home.jsp");
+    USER_PROFILE_PAGE("/profile.jsp");
 
     String viewUrl;
 
