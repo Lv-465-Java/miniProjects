@@ -43,11 +43,8 @@ public class UserServiceImpl implements CrudService<UserDTO> {
 
     @Override
     public UserDTO getById(Long id) {
-        Optional<User> user = userDAOImpl.getById(id);
-        if (!user.isPresent()) {
-            throw new NoSuchEntityException(ErrorMessage.FAIL_TO_FIND_A_USER.getErrorMessage());
-        }
-        return UserMapperObjects.userEntityToUserDTO(user.get());
+        User user = UserMapperObjects.verifyIfUserIsPresent(userDAOImpl.getById(id));
+        return UserMapperObjects.userEntityToUserDTO(user);
     }
 
     public UserDTO getByEmail(String email) {
@@ -58,6 +55,8 @@ public class UserServiceImpl implements CrudService<UserDTO> {
         return UserMapperObjects.userEntityToUserDTO(user.get());
     }
 
+
+    //test on web!
     @Override
     public boolean update(Long id, UserDTO userDTO) {
         User user = UserMapperObjects.verifyIfUserIsPresent(userDAOImpl.getById(id));

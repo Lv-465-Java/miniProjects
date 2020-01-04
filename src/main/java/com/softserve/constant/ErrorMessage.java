@@ -9,7 +9,9 @@ public enum ErrorMessage {
     FAIL_TO_LOGIN_WITH_WRONG_PASSWORD("Entered password isn't correct"),
     FAIL_TO_FIND_A_USER("There is no such a user"),
     INCORRECT_CURRENT_PASSWORD("Entered current password is incorrect"),
-    PASSWORDS_DO_NOT_MATCH("Entered new and confirm passwords do not match");
+    PASSWORDS_DO_NOT_MATCH("Entered new and confirm passwords do not match"),
+    FAIL_TO_COMPLETE_ACTION(""),
+    FAIL_TO_FIND_A_CATEGORY("There is no such a category");
 
     String errorMessage;
 

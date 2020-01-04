@@ -39,7 +39,7 @@ public class CategoryDAOImpl implements SearchDAO<Category> {
     @Override
     public boolean update(Long id, Category category) {
         return JDBCQueries.update(connection, Category.CategoryEntityQueries.UPDATE.getQuery(),
-                new CategoryMapping(),category.getTitle(), category.getColor(),
+                new CategoryMapping(), category.getTitle(), category.getColor(),
                 category.getDescription(), category.getUserId(), category.getFinancialTypeId(), id);
     }
 
