@@ -47,7 +47,7 @@ public class PhoneDaoImpl extends ACrudDao<Phone> {
         return getByFieldName(ID_MODEL_FIELDNAME, modelId.toString());
     }
 
-//    public List<Phone> getPhonesByFilter(String query) {
+    //    public List<Phone> getPhonesByFilter(String query) {
 //        return getQueryResult(String.format(sqlQueries.get(SqlQueries.GET_BY_FIELD).toString(),
 //                query), SqlQueries.GET_BY_FIELD);
 //    }

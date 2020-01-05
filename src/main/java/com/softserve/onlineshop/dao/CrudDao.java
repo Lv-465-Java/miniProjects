@@ -13,5 +13,4 @@ public interface CrudDao<TEntity> extends ReadDao<TEntity> {
     // Delete
     boolean deleteById(Long id);
 
-    boolean delete(TEntity entity);
 }

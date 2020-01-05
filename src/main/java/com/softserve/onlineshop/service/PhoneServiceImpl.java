@@ -4,6 +4,7 @@ import com.softserve.onlineshop.dao.impl.PhoneDaoImpl;
 import com.softserve.onlineshop.dto.PhoneDto;
 import com.softserve.onlineshop.entity.Phone;
 import com.softserve.onlineshop.exception.NotDeletedException;
+import com.softserve.onlineshop.exception.NotFoundException;
 import com.softserve.onlineshop.exception.NotInsertedException;
 
 import java.util.List;
@@ -32,7 +33,8 @@ public class PhoneServiceImpl implements PhoneService {
 
     @Override
     public Optional<Phone> getById(Long id) {
-        return Optional.empty();
+        return Optional.of(phoneDao.getById(id)
+                .orElseThrow(() -> new NotFoundException("Phone not found")));
     }
 
     @Override
@@ -42,11 +44,16 @@ public class PhoneServiceImpl implements PhoneService {
 
     @Override
     public List<Phone> getAll() {
-        return null;
+        List<Phone> phones = phoneDao.getAll();
+        if (phones.isEmpty()) {
+            throw new NotFoundException();
+        }
+        return phones;
     }
 
     @Override
     public boolean updateById(String... args) {
+
         return false;
     }
 
@@ -63,10 +70,5 @@ public class PhoneServiceImpl implements PhoneService {
         } else {
             throw new NotDeletedException();
         }
-    }
-
-    @Override
-    public boolean delete(PhoneDto phoneDto) {
-        return false;
     }
 }

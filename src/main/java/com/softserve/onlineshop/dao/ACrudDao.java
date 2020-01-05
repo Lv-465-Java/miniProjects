@@ -16,6 +16,7 @@ public abstract class ACrudDao<TEntity extends Entity> extends AReadDao<TEntity>
 
     protected abstract String[] getFields(TEntity entity);
 
+
     // Create
     public boolean insert(TEntity entity) {
         Connection connection = ConnectionManager.getInstance().getConnection();
@@ -24,7 +25,6 @@ public abstract class ACrudDao<TEntity extends Entity> extends AReadDao<TEntity>
         return executeQuery > 0;
     }
 
-    // Update
     public boolean updateById(String... args) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(),
@@ -46,7 +46,4 @@ public abstract class ACrudDao<TEntity extends Entity> extends AReadDao<TEntity>
         return executeQuery > 1;
     }
 
-    public boolean delete(TEntity entity) {
-        return deleteById(entity.getId());
-    }
 }

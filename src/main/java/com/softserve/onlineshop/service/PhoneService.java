@@ -23,5 +23,4 @@ public interface PhoneService {
 
     boolean deleteById(Long id);
 
-    boolean delete(PhoneDto phoneDto);
 }

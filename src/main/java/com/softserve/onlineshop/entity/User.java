@@ -17,6 +17,14 @@ public class User implements Entity {
     private String phone;
     private Long cartId;
 
+    public User(String nickname, String password, String email, String phone, Long cartId) {
+        this.nickname = nickname;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.cartId = cartId;
+    }
+
     public enum UserEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO users (nickname, password, email, phone, cartId) VALUES (?, ?, ?, ?, ?);"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, nickname, password, email, phone, cartId FROM users WHERE id = ?;"),
