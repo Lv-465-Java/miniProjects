@@ -19,6 +19,16 @@ public class Phone implements Entity {
     private Integer internalMemory;
     private Long modelId;
 
+    public Phone(Integer year, Integer price, String photo, String color, Double screenDiagonal, Integer internalMemory, Long modelId) {
+        this.year = year;
+        this.price = price;
+        this.photo = photo;
+        this.color = color;
+        this.screenDiagonal = screenDiagonal;
+        this.internalMemory = internalMemory;
+        this.modelId = modelId;
+    }
+
     public enum PhoneEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO phones (year, price, photo, color, screenDiagonal, "
                 + "internalMemory, modelId) VALUES (? , ?, ?, ?, ?, ?, ?);"),

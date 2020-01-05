@@ -6,13 +6,9 @@ import com.softserve.onlineshop.entity.SqlQueries;
 import com.softserve.onlineshop.util.JdbcUtil;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Arrays;
 
 public abstract class ACrudDao<TEntity extends Entity> extends AReadDao<TEntity> implements CrudDao<TEntity> {
-    private final static String DATABASE_INPUT_ERROR = "Database Input Error";
 
     protected ACrudDao() {
         super();

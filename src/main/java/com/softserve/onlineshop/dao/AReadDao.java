@@ -31,10 +31,10 @@ public abstract class AReadDao<TEntity> implements ReadDao<TEntity> {
                 getRowMapper(), id);
     }
 
-    public List<TEntity> getByFieldName(String fieldName, String text) {
+    public List<TEntity> getByFieldName(String fieldName, String fieldValue) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntityList(connection, String.format(sqlQueries.get(SqlQueries.GET_BY_FIELD).toString(),
-                fieldName, text), getRowMapper());
+                fieldName, fieldValue), getRowMapper());
     }
 
     public List<TEntity> getAll() {
