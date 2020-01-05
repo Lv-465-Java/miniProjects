@@ -1,7 +1,6 @@
 package com.softserve.onlineshop.dao.impl;
 
 import com.softserve.onlineshop.dao.ACrudDao;
-import com.softserve.onlineshop.dao.CrudDao;
 import com.softserve.onlineshop.dao.mapper.RowMapper;
 import com.softserve.onlineshop.dao.mapper.UserRowMapper;
 import com.softserve.onlineshop.entity.User;
@@ -36,11 +35,5 @@ public class UserDaoImpl extends ACrudDao<User> {
     @Override
     protected RowMapper<User> getRowMapper() {
         return new UserRowMapper();
-    }
-
-    public static void main(String[] args) {
-        UserDaoImpl userDao = new UserDaoImpl();
-        User user = new User(5L,"Richard","1111","ii@ua","09812",2L);
-        System.out.println(userDao.getById(4L));
     }
 }

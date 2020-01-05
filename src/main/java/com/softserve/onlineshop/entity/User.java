@@ -21,7 +21,7 @@ public class User implements Entity {
         INSERT(SqlQueries.INSERT, "INSERT INTO users (nickname, password, email, phone, cartId) VALUES (?, ?, ?, ?, ?);"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, nickname, password, email, phone, cartId FROM users WHERE id = ?;"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, nickname, password, email, phone, cartId FROM users;"),
-        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE users SET nickname = ?, password = ?, email = ?, phone = ? WHERE id = ?;"),
+        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE users SET nickname = ?, password = ?, email = ?, phone = ?, cartId = ? WHERE id = ?;"),
         DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM users WHERE id = ?;");
 
         private SqlQueries sqlQuery;
