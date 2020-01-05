@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div id="container">
+    <div class="mainContainer">
            <div action= "/profile" class="signIn">
             <form autocomplete="on" method="post">
                  <label for="email" class="floatLabel">Email<span class="asterisk">*</span></label>

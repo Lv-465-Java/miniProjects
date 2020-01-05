@@ -3,7 +3,6 @@ package com.softserve.service.mapper;
 import com.softserve.constant.ErrorMessage;
 import com.softserve.dto.CategoryDTO;
 import com.softserve.entity.Category;
-import com.softserve.entity.User;
 
 import java.util.Optional;
 

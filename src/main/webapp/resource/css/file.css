@@ -6,7 +6,8 @@ body {
 	font-variant: normal;
 }
 
-#container {
+.mainContainer {
+    background-color: white;
 	width: 1000px;
 	margin: 25px auto;
 }
@@ -125,4 +126,28 @@ a {
     color: #db3c30;
     margin-left: 3px;
 }
+
+.errorsContainer
+{
+	background-color: white;
+    width: 700px;
+    height: 300px;
+    border-radius: 5px 5px 5px 5px;
+    margin: 25px auto;
+    text-align: center;
+}
+
+#errorName
+{
+	padding-top: 30px;
+	font-size: 80px;
+}
+
+.referenceToMainPage {
+	color: rgba(0, 0, 0, .6);
+	font-size: 1.4em;
+	text-align: center;
+}
+
+
 
