@@ -1,7 +1,6 @@
 package com.softserve.dto;
 
 public class UserDTO {
-
     private Long id;
     private String firstName;
     private String lastName;
@@ -9,25 +8,7 @@ public class UserDTO {
     private String password;
     private String photo;
 
-    public UserDTO(Long id, String firstName, String lastName, String email, String password, String photo) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.photo = photo;
-    }
-
-    public UserDTO(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
-
-    public UserDTO(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public UserDTO() {
     }
 
     public Long getId() {
@@ -78,6 +59,7 @@ public class UserDTO {
         this.photo = photo;
     }
 
+
     @Override
     public String toString() {
         return "UserDTO{" +
@@ -88,5 +70,62 @@ public class UserDTO {
                 ", password='" + password + '\'' +
                 ", photo='" + photo + '\'' +
                 '}';
+    }
+
+    public static final class Builder {
+        private Long id;
+        private String firstName;
+        private String lastName;
+        private String email;
+        private String password;
+        private String photo;
+
+        private Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder withId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder withLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder withEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder withPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Builder withPhoto(String photo) {
+            this.photo = photo;
+            return this;
+        }
+
+        public UserDTO build() {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setId(id);
+            userDTO.setFirstName(firstName);
+            userDTO.setLastName(lastName);
+            userDTO.setEmail(email);
+            userDTO.setPassword(password);
+            userDTO.setPhoto(photo);
+            return userDTO;
+        }
     }
 }

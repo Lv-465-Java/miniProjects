@@ -57,7 +57,7 @@ public class CategoryServiceImpl implements CrudService<CategoryDTO> {
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws NotCompletedActionException{
         if (!categoryDAO.delete(id)) {
             throw new NotCompletedActionException(ErrorMessage.FAIL_TO_FIND_A_CATEGORY.getErrorMessage());
         }

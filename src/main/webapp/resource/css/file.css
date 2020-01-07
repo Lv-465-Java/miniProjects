@@ -1,4 +1,5 @@
-body {
+body
+{
 	background-color: #676486;
 	font-family: Palatino Linotype;
 	font: 1.7em;
@@ -6,13 +7,15 @@ body {
 	font-variant: normal;
 }
 
-.mainContainer {
+.mainContainer
+{
     background-color: white;
-	width: 1000px;
-	margin: 25px auto;
+    width: 1000px;
+    margin: 25px auto;
 }
 
-.whySignUp, .whySignIn {
+.whySignUp, .whySignIn
+{
 	float: left;
 	background-color: white;
 	width: 600px;
@@ -22,15 +25,18 @@ body {
 	font-size: 14px;
 }
 
-.whySignUp {
-height: 444px;
+.whySignUp
+{
+    height: 444px;
 }
 
-.whySignIn {
+.whySignIn
+{
 	height: 354px;
 }
 
-.signUp, .signIn {
+.signUp, .signIn
+{
 	float: left;
 	width: 300px;
 	padding: 20px 20px;
@@ -39,18 +45,21 @@ height: 444px;
 	border-radius: 5px 0 0 5px;
 }
 
-.signIn {
-padding: 49px 20px;
+.signIn
+{
+    padding: 49px 20px;
 }
 
-#pointer:hover {
+#pointer:hover
+{
 	cursor: pointer;
 	background-color:#2e47d1;
 }
 
 [type="text"],
 [type="password"],
-[type="email"] {
+[type="email"]
+{
 	display: block;
 	margin: 0 auto;
 	width: 80%;
@@ -63,7 +72,8 @@ padding: 49px 20px;
 	color: rgba(0, 0, 0, .4);
 }
 
-.floatLabel {
+.floatLabel
+{
 	display: inline-flex;
 	margin: 0 auto;
 	width: 80%;
@@ -74,7 +84,8 @@ padding: 49px 20px;
 	color: rgba(0, 0, 0, .5);
 }
 
-[type="submit"] {
+[type="submit"]
+{
 	margin-top: 25px;
 	width: 80%;
 	border: 0;
@@ -86,12 +97,17 @@ padding: 49px 20px;
 	font-size: 1em;
 }
 
-input[type=password]:focus, [type=email]:focus, [type=email]:focus, [type=text]:focus {
+input[type=password]:focus,
+[type=email]:focus,
+[type=email]:focus,
+[type=text]:focus
+{
  	outline: none;
  	border-color: #2038bd;
 }
 
-h1 {
+h1
+{
 	color: rgba(0, 0, 0, .7);
 	font-weight: 800;
 	font-size: 2.5em;
@@ -100,14 +116,16 @@ h1 {
     margin-bottom: 10px;
 }
 
-p {
+p
+{
 	color: rgba(0, 0, 0, .6);
 	font-size: 1.2em;
 	margin: 15px 0 15px 0;
 	text-align: justify;
 }
 
-.reference {
+.reference
+{
 	color: rgba(0, 0, 0, .6);
 	font-size: 1em;
 	margin: 14px 24px 0px 24px;
@@ -116,13 +134,15 @@ p {
     color: #db3c30;
 }
 
-a {
+a
+{
 	text-decoration: none;
 	font-weight: bold;
 	color:#2038bd;
 }
 
-.asterisk {
+.asterisk
+{
     color: #db3c30;
     margin-left: 3px;
 }
@@ -143,11 +163,126 @@ a {
 	font-size: 80px;
 }
 
-.referenceToMainPage {
+.referenceToMainPage
+{
 	color: rgba(0, 0, 0, .6);
 	font-size: 1.4em;
 	text-align: center;
 }
 
+.profileContainer
+{
+    background-color: white;
+    width: 1400px;
+    height: 670px;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 60px;
+}
+
+.profileInfo
+{
+    margin-left: 50px;
+    padding-top: 25px;
+}
+
+#profileName
+{
+    font-size: 1.8em;
+    font-weight: 800;
+}
+
+#profileEmail
+{
+    font-size: 1.5em;
+    font-weight: 750;
+}
+
+#profilePassword
+{
+    font-size: 1em;
+    font-weight: 500;
+}
 
 
+
+---------------------------
+/*html, body
+{
+    background-color: #676486;
+}*/
+
+header
+{
+  font-family: Raleway;
+  margin: 0 auto;
+/*
+  padding: 5em 3em;
+*/
+  text-align: center;
+}
+
+header h1
+{
+    color: #AAA;
+    font-size: 40px;
+    font-weight: lighter;
+    margin-bottom: 5px;
+}
+
+.headerContainer
+{
+    text-align: center;
+    width: 100%;
+    padding: 25px;
+}
+
+.headerContainer a
+{
+    text-decoration: none;
+    font: 20px Raleway;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+    color: #fffefe;
+}
+
+.headerContainer a:before
+{
+    position: absolute;
+    opacity: 0;
+    font-size: 35px;
+    top: 0px;
+    transition: all 0.3s;
+}
+
+.headerContainer a:after
+{
+    position: absolute;
+    opacity: 0;
+    font-size: 35px;
+    top: 0px;
+    transition: all 0.3s;
+}
+
+.headerContainer a:before
+{
+    content: '(';
+    left: 0px;
+    transform: translateX(10px);
+}
+
+.headerContainer a:after
+{
+    content: ')';
+    right: 0px;
+    transform: translateX(-10px);
+}
+
+.headerContainer a:hover:before,
+.headerContainer a:hover:after
+{
+    opacity: 1;
+    transform: translateX(0px);
+}

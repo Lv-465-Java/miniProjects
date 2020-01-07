@@ -2,12 +2,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>500</title>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="resource/css/file.css">
-<link rel="stylesheet" href="resource/css/errors.css">
+    <title>500</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resource/css/file.css">
+    <link rel="stylesheet" href="resource/css/errors.css">
 </head>
 
 <body>
@@ -17,4 +18,5 @@
         <p class="referenceToMainPage">Go to <a href="/register">Sign up</a></p>
     </div>
 </body>
+
 </html>

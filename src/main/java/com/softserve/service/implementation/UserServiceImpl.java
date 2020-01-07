@@ -30,10 +30,10 @@ public class UserServiceImpl implements CrudService<UserDTO> {
         }
     }
 
-    public void login(String email, String password) throws RuntimeException {
-        Optional<User> user = userDAOImpl.getByEmail(email);
+    public void login(UserDTO userDTO) throws RuntimeException {
+        Optional<User> user = userDAOImpl.getByEmail(userDTO.getEmail());
         if (user.isPresent()) {
-            if (!user.get().getPassword().equals(password)) {
+            if (!user.get().getPassword().equals(userDTO.getPassword())) {
                 throw new NotCompletedActionException(ErrorMessage.FAIL_TO_LOGIN_WITH_WRONG_PASSWORD.getErrorMessage());
             }
         } else {
@@ -58,7 +58,7 @@ public class UserServiceImpl implements CrudService<UserDTO> {
 
     //test on web!
     @Override
-    public boolean update(Long id, UserDTO userDTO) {
+    public boolean update(Long id, UserDTO userDTO) throws NoSuchEntityException{
         User user = UserMapperObjects.verifyIfUserIsPresent(userDAOImpl.getById(id));
         if (userDTO.getFirstName() != null) {
             user.setFirstName(userDTO.getFirstName());

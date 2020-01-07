@@ -9,9 +9,9 @@ import java.util.Optional;
 public class UserMapperObjects {
 
     public static UserDTO userEntityToUserDTO(User entity) {
-        return new UserDTO(entity.getId(), entity.getFirstName(),
-                entity.getLastName(), entity.getEmail(), entity.getPassword(),
-                entity.getPhoto());
+        return UserDTO.Builder.builder().withId(entity.getId()).withFirstName(entity.getFirstName()).withLastName(entity.getLastName())
+                .withEmail(entity.getEmail()).withPassword(entity.getPassword()).withPhoto(entity.getPhoto())
+                .build();
     }
 
     public static User verifyIfUserIsPresent(Optional<User> optionalUser) {
