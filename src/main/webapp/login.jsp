@@ -21,9 +21,11 @@
                 <input id="Email" name="email" type="email" required>
                 <label for="password" class="floatLabel">Password<span class="asterisk">*</span></label>
                 <input id="Password" name="password" type="password" required>
+
                 <c:if test="${not empty error}">
                     <p class="reference" id="error">${error}</p>
                 </c:if>
+
                 <input type="submit" class="btn btn-primary" id="pointer" value="Sign In">
             </form>
 

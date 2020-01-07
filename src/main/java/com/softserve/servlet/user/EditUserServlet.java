@@ -39,7 +39,6 @@ public class EditUserServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/profile");
 
         } catch (NoSuchEntityException e) {
-            req.setAttribute("error", e.getMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.USER_PROFILE_PAGE.getViewUrl())

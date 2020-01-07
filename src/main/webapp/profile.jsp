@@ -18,11 +18,12 @@
 
     <div class="profileContainer">
         <div class="profileInfo">
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editUserInfo">
                 <h2 id="profileName">
             <c:out value="${user.firstName}"></c:out>  <c:out value="${user.lastName}"></c:out></h2></button>
             <h3 id="profileEmail"><c:out value="${user.email}"></c:out></h3>
-            <p id="profilePassword">Change password</p>
+            <p class="reference" id="profilePassword" data-toggle="modal" data-target="#changePasswordModal">
+            <a>Change password</a></p>
 
             <div class="profileCategories">
 
@@ -52,35 +53,67 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+    <div class="modal fade" id="editUserInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit your info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
-                <div class="modal-body">
-                    <form method="post" action="<c:url value=" edit-user "/>">
-                        <label for="Firstname" class="floatLabel">First name<span class="asterisk">*</span></label>
-                        <input id="Firstname" name="first_name" type="text" required value=<c:out value="${user.firstName}">
-                        </c:out>>
-                        <label for="Lastname" class="floatLabel">Last name<span class="asterisk">*</span></label>
-                        <input id="Lastname" name="last_name" type="text" required value=<c:out value="${user.lastName}">
-                        </c:out>>
+                    <div class="modal-body">
+                        <form method="post" action="<c:url value="edit-user"/>">
+                            <label for="Firstname" class="floatLabel">First name<span class="asterisk">*</span></label>
+                            <input id="Firstname" name="first_name" type="text" required value=<c:out value="${user.firstName}">
+                            </c:out>>
+                            <label for="Lastname" class="floatLabel">Last name<span class="asterisk">*</span></label>
+                            <input id="Lastname" name="last_name" type="text" required value=<c:out value="${user.lastName}">
+                            </c:out>>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" value="Save changes">
-                        </div>
-                    </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save changes">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+            <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Change password</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form method="post" action="<c:url value="change-user-password"/>">
+                                <label for="Current Password" class="floatLabel">Current Password<span class="asterisk">*</span></label>
+                                <input id="CurrentPassword" name="current_password" type="text" required>
+                                <label for="NewPassword" class="floatLabel">New Password<span class="asterisk">*</span></label>
+                                <input id="New Password" name="new_password" type="text" required>
+                                <label for="ConfirmPassword" class="floatLabel">Confirm Password<span class="asterisk">*</span></label>
+                                <input id="Confirm Password" name="confirm_password" type="text" required>
+
+                                <c:if test="${not empty error}">
+                                    <p class="reference" id="error">${error}</p>
+                                </c:if>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary" value="Save changes">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 </body>
-
 </html>

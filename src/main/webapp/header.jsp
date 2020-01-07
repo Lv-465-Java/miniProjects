@@ -17,10 +17,10 @@
     <header>
 
         <div class="headerContainer">
-            <a>Profile</a>
+            <a href="/profile">Profile</a>
             <a>Records</a>
             <a>Planned Outcomes</a>
-            <a>Logout</a>
+            <a href="/logout">Logout</a>
         </div>
 
     </header>

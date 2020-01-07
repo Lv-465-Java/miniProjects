@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 public class UserSession {
     private UserServiceImpl userService;
 
+    public UserSession() {
+        userService = new UserServiceImpl();
+    }
+
     public static String createSession(HttpServletRequest request, UserDTO user) {
         HttpSession session = request.getSession(true);
         session.setAttribute("currentSessionUser", user);
@@ -24,7 +28,6 @@ public class UserSession {
     }
 
     public UserDTO retrieveUserIdFromSession(HttpServletRequest request) {
-        userService = new UserServiceImpl();
         UserDTO userDTO = (UserDTO) request.getSession().getAttribute("currentSessionUser");
         return userService.getByEmail(userDTO.getEmail());
     }

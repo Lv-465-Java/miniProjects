@@ -73,7 +73,7 @@ public class UserServiceImpl implements CrudService<UserDTO> {
     }
 
     public boolean changePassword(Long id, String oldPassword, String newPassword, String confirmNewPassword)
-            throws NoSuchEntityException, NotCompletedActionException {
+            throws RuntimeException {
         User user = UserMapperObjects.verifyIfUserIsPresent(userDAOImpl.getById(id));
         if (checkCurrentPassword(user, oldPassword)
                 && confirmNewPassword(newPassword, confirmNewPassword)) {
