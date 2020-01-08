@@ -1,5 +1,6 @@
 package com.softserve.onlineshop.database;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -36,8 +37,9 @@ public final class ConnectionManager {
         Connection connection = getAllConnections().get(Thread.currentThread().getId());
         if (connection == null) {
             try {
+                Class.forName("com.mysql.jdbc.Driver");
                 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/phoneshop", "lv465", "andrii5");
-            } catch (SQLException ex) {
+            } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException("Failed to create the database connection.");
             }
             addConnection(connection);

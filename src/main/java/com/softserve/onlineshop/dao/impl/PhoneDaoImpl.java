@@ -7,6 +7,7 @@ import com.softserve.onlineshop.entity.Phone;
 import com.softserve.onlineshop.entity.Phone.PhoneEntityQueries;
 
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -43,9 +44,10 @@ public class PhoneDaoImpl extends ACrudDao<Phone> {
         return fields;
     }
 
-    public List<Phone> getPhonesByModelId(Long modelId) {
-        return getByFieldName(ID_MODEL_FIELDNAME, modelId.toString());
-    }
+//    public List<Phone> getPhonesByModelId(Long modelId) {
+//        return getByFieldName(ID_MODEL_FIELDNAME, modelId.toString());
+////        return new LinkedList<>();
+//    }
 
     //    public List<Phone> getPhonesByFilter(String query) {
 //        return getQueryResult(String.format(sqlQueries.get(SqlQueries.GET_BY_FIELD).toString(),

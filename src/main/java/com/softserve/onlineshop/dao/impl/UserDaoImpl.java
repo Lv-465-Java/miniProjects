@@ -36,10 +36,4 @@ public class UserDaoImpl extends ACrudDao<User> {
     protected RowMapper<User> getRowMapper() {
         return new UserRowMapper();
     }
-
-    public static void main(String[] args) {
-        UserDaoImpl userDao = new UserDaoImpl();
-        User user = new User(3L,"omen","e44","mi@ua","091",3L);
-        System.out.println(userDao.updateById(user.getNickname(),user.getPassword(), user.getEmail(), user.getPhone(),user.getCartId().toString(),user.getId().toString()));
-    }
 }

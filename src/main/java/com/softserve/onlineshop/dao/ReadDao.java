@@ -7,7 +7,8 @@ public interface ReadDao<TEntity>  {
 
     Optional<TEntity> getById(Long id);
 
-    List<TEntity> getByFieldName(String fieldName, String fieldValue);
+    List<TEntity> getByFieldName(String fieldValue);
+//    List<TEntity> getByFieldName(String fieldName, String fieldValue);
 
     List<TEntity> getAll();
 }

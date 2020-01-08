@@ -58,4 +58,14 @@ public class UserServiceImpl implements UserService {
             throw new NotDeletedException();
         }
     }
+
+    public boolean isValid(UserDto userDto) {
+        User user = userDao.getByFieldName(userDto.getNickname()).get(0);
+        if (user != null) {
+            return user.getNickname().equals(userDto.getNickname())
+                    && user.getPassword().equals(userDto.getPassword());
+        } else {
+            throw new NotFoundException("User not found");
+        }
+    }
 }
