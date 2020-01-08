@@ -7,7 +7,12 @@ public enum ServletResponseParameter {
     USER_PASSWORD("password"),
     USER_CURRENT_PASSWORD("current_password"),
     USER_NEW_PASSWORD("new_password"),
-    USER_CONFIRM_PASSWORD("confirm_password");
+    USER_CONFIRM_PASSWORD("confirm_password"),
+    CATEGORY_TITLE("title"),
+    GATEGORY_COLOR("color"),
+    GATEGORY_DESCRIPTION("description"),
+    GATEGORY_FINANCIAL_TYPE("financial_type"),
+    GATEGORY_USER_ID("user_id");
 
     String servletParameter;
 

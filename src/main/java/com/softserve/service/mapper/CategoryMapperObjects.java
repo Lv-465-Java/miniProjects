@@ -9,7 +9,7 @@ import java.util.Optional;
 public class CategoryMapperObjects {
 
     public static CategoryDTO categoryEntityToCategoryDTO(Category entity) {
-        return new CategoryDTO(entity.getId(), entity.getTitle(), entity.getColor(), entity.getDescription(),
+        return new CategoryDTO(entity.getTitle(), entity.getColor(), entity.getDescription(),
                 entity.getUserId(), entity.getFinancialTypeId());
     }
 

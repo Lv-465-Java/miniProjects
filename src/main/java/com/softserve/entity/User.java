@@ -9,7 +9,8 @@ public class User {
         GET_USER_BY_EMAIL(SqlQueries.GET_USER_BY_EMAIL, "SELECT id, first_name, last_name, email, password, photo FROM users WHERE email = ?"),
         UPDATE(SqlQueries.UPDATE, "UPDATE users SET first_name = ?, last_name = ?, email = ?, " +
                 "password = ?, photo = ? WHERE id = ?;"),
-        DELETE(SqlQueries.DELETE, "DELETE FROM users WHERE id = ?");
+        DELETE(SqlQueries.DELETE, "DELETE FROM users WHERE id = ?"),
+        GET_FINANCIAL_TYPE(SqlQueries.GET_FINANCIAL_TYPE, "SELECT id, type FROM financial_types WHERE type = ?");
 
         private SqlQueries sqlQuery;
         private String query;

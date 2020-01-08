@@ -25,20 +25,23 @@ public class ChangePasswordServlet extends HttpServlet {
 
     @Override
     public void init() {
-        this.userService = new UserServiceImpl();
-        this.userSession = new UserSession();
+        userService = new UserServiceImpl();
+        userSession = new UserSession();
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Logger LOG = LoggerFactory.getLogger(ChangePasswordServlet.class);
+
+
         UserDTO userDTO = userSession.retrieveUserIdFromSession(req);
 
-        Logger LOG = LoggerFactory.getLogger(ChangePasswordServlet.class);
         LOG.info("I am here");
+
         String currentPassword = req.getParameter(ServletResponseParameter.USER_CURRENT_PASSWORD.getServletParameter());
         String newPassword = req.getParameter(ServletResponseParameter.USER_NEW_PASSWORD.getServletParameter());
         String confirmPassword = req.getParameter(ServletResponseParameter.USER_CONFIRM_PASSWORD.getServletParameter());
-        LOG.info("CURRENT " + currentPassword + " new " + newPassword + " confirm " +confirmPassword);
+        LOG.info("CURRENT " + currentPassword + " new " + newPassword + " confirm " + confirmPassword);
         try {
             userService.changePassword(userDTO.getId(), currentPassword, newPassword, confirmPassword);
             resp.sendRedirect(req.getContextPath() + "/profile");
@@ -46,11 +49,13 @@ public class ChangePasswordServlet extends HttpServlet {
         } catch (RuntimeException e) {
             LOG.info("error is :" + e);
 
-            req.setAttribute("error", e.getMessage());
+            req.setAttribute("errors", e.getMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.USER_PROFILE_PAGE.getViewUrl())
                     .forward(req, resp);
+
+            LOG.info("error is !!!!!!!!!!!!!!!!!!!!! :" + e);
         }
     }
 }

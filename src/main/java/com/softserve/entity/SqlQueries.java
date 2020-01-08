@@ -10,5 +10,6 @@ public enum SqlQueries {
     GET_ALL_BY_USER_ID_AND_DATE_RANGE,
     GET_ALL_BY_SELECTED_FILTERS,
     UPDATE,
+    GET_FINANCIAL_TYPE,
     DELETE
 }

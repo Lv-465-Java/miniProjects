@@ -26,8 +26,10 @@
             <a>Change password</a></p>
 
             <div class="profileCategories">
+            <p class="reference" id="profileAddCategory" data-toggle="modal" data-target="#addCategory">
+            <a>Add new category</a></p>
 
-                <table class="categoriesTable">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -80,9 +82,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
 
-            <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -93,17 +95,60 @@
                         </div>
 
                         <div class="modal-body">
-                            <form method="post" action="<c:url value="change-user-password"/>">
+                            <form action="change-user-password" method="post">
                                 <label for="Current Password" class="floatLabel">Current Password<span class="asterisk">*</span></label>
-                                <input id="CurrentPassword" name="current_password" type="text" required>
+                                <input id="CurrentPassword" name="current_password" type="password" required>
                                 <label for="NewPassword" class="floatLabel">New Password<span class="asterisk">*</span></label>
-                                <input id="New Password" name="new_password" type="text" required>
+                                <input id="New Password" name="new_password" type="password" required>
                                 <label for="ConfirmPassword" class="floatLabel">Confirm Password<span class="asterisk">*</span></label>
-                                <input id="Confirm Password" name="confirm_password" type="text" required>
+                                <input id="Confirm Password" name="confirm_password" type="password" required>
 
-                                <c:if test="${not empty error}">
-                                    <p class="reference" id="error">${error}</p>
+                                <c:if test="${not empty errors}">
+                                    <p class="reference" id="errorChangePassword">${errors}</p>
                                 </c:if>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary" value="Save changes">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Add new category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form method="post" action="<c:url value="add-category"/>">
+                                <label for="Title" class="floatLabel">Title<span class="asterisk">*</span></label>
+                                <input id="title" name="title" type="text" required>
+                                <label for="Color" class="floatLabel">Color</label>
+                                <input id="color" name="color" type="text">
+                                <label for="Description" class="floatLabel">Description</label>
+                                <input id="description" name="description" type="text">
+
+                        <label for="financial-type">Financial Type<span class="asterisk">*</span></label>
+                        <select class="browser-default custom-select" id="financial-type" name="type">
+                            <c:forEach var="type" items="${types}">
+                                <option value="${type}">${type.id}</option>
+                            </c:forEach>
+                        </select>
+
+                        <label for="financial-type">Financial Type</label>
+                          <select class="browser-default custom-select" id="financial-type" name="type">
+                            <option id="option-0" value="NONE" selected>Financial type...</option>
+                            <option id="option-1" value="INCOME">Income</option>
+                            <option id="option-2" value="OUTCOME">Outcome</option>
+                          </select>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

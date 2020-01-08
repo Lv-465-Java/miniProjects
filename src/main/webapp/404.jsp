@@ -17,6 +17,17 @@
         <h2>Incorrectly typed address,<br>or page no longer exists on site</h2>
         <p class="referenceToMainPage">Go to <a href="/login">Sign in</a></p>
     </div>
+
+    <div class="dropdown">
+                                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Financial Type
+                                      </a>
+
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Income</a>
+                                        <a class="dropdown-item" href="#">Outcome</a>
+                                      </div>
+                                    </div>
 </body>
 
 </html>

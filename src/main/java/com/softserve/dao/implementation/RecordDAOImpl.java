@@ -27,7 +27,7 @@ public class RecordDAOImpl implements RecordDAO {
     }
 
     @Override
-    public Optional<Record> getById(Long id) {
+    public Optional<Record> getById(Long id) throws RuntimeException{
         return JDBCQueries.getObject(connection, Record.RecordEntityQueries.GET_BY_ID.getQuery(),
                 new RecordMapping(), id);
     }

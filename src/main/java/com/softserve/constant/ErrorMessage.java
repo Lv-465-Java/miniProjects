@@ -10,8 +10,11 @@ public enum ErrorMessage {
     FAIL_TO_FIND_A_USER("There is no such a user"),
     INCORRECT_CURRENT_PASSWORD("Entered current password is incorrect"),
     PASSWORDS_DO_NOT_MATCH("Entered new and confirm passwords do not match"),
-    FAIL_TO_COMPLETE_ACTION(""),
-    FAIL_TO_FIND_A_CATEGORY("There is no such a category");
+    FAIL_TO_FIND_A_CATEGORY("There is no such a category"),
+    FAIL_TO_SAVE_A_RECORD("Fail to save a record"),
+    FAIL_TO_FIND_A_RECORD("There is no such a record"),
+    FAIL_TO_UPDATE_A_RECORD("Fail to update a record"),
+    FAIL_TO_DELETE_A_RECORD("Fail to delete a record");
 
     String errorMessage;
 

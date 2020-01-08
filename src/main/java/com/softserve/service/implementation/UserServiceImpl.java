@@ -30,7 +30,7 @@ public class UserServiceImpl implements CrudService<UserDTO> {
         }
     }
 
-    public void login(UserDTO userDTO) throws RuntimeException {
+    public void login(UserDTO userDTO) throws NotCompletedActionException {
         Optional<User> user = userDAOImpl.getByEmail(userDTO.getEmail());
         if (user.isPresent()) {
             if (!user.get().getPassword().equals(userDTO.getPassword())) {
@@ -72,15 +72,13 @@ public class UserServiceImpl implements CrudService<UserDTO> {
         return userDAOImpl.update(id, user);
     }
 
-    public boolean changePassword(Long id, String oldPassword, String newPassword, String confirmNewPassword)
-            throws RuntimeException {
+    public void changePassword(Long id, String oldPassword, String newPassword, String confirmNewPassword)
+            throws NotCompletedActionException, NoSuchEntityException {
         User user = UserMapperObjects.verifyIfUserIsPresent(userDAOImpl.getById(id));
         if (checkCurrentPassword(user, oldPassword)
                 && confirmNewPassword(newPassword, confirmNewPassword)) {
             user.setPassword(newPassword);
-            return userDAOImpl.update(id, user);
-        } else {
-            return false;
+            userDAOImpl.update(id, user);
         }
     }
 
@@ -97,6 +95,8 @@ public class UserServiceImpl implements CrudService<UserDTO> {
         }
         return true;
     }
+
+
 
     @Override
     public boolean delete(Long id) {

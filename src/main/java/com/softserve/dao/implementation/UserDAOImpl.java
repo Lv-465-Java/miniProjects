@@ -4,6 +4,7 @@ import com.softserve.dao.CrudDAO;
 import com.softserve.dao.mapping.UserMapping;
 import com.softserve.database.DataBaseConnection;
 import com.softserve.database.JDBCQueries;
+import com.softserve.entity.FinancialType;
 import com.softserve.entity.User;
 
 import java.sql.Connection;
@@ -43,6 +44,11 @@ public class UserDAOImpl implements CrudDAO<User> {
     public Optional<User> getByEmail(String email) {
         return JDBCQueries.getObject(connection, User.UserEntityQueries.GET_USER_BY_EMAIL.getQuery(),
                 new UserMapping(), email);
+    }
+
+    public boolean getByType(String type){
+        return JDBCQueries.update(connection, User.UserEntityQueries.GET_FINANCIAL_TYPE.getQuery(),
+                type);
     }
 
 

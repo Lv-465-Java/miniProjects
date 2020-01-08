@@ -18,6 +18,14 @@ public class CategoryDTO {
         this.financialTypeId = financialTypeId;
     }
 
+    public CategoryDTO(String title, String color, String description, Long userId, Long financialTypeId) {
+        this.title = title;
+        this.color = color;
+        this.description = description;
+        this.userId = userId;
+        this.financialTypeId = financialTypeId;
+    }
+
     public CategoryDTO() {
     }
 

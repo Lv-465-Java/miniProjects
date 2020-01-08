@@ -3,6 +3,7 @@ package com.softserve.servlet;
 import com.softserve.constant.ServletResponseParameter;
 import com.softserve.constant.View;
 import com.softserve.dto.UserDTO;
+import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.implementation.UserServiceImpl;
 import com.softserve.util.UserSession;
 
@@ -42,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             String sessionId = UserSession.createSession(req, userDTO);
             UserSession.createCookie(sessionId, resp);
             resp.sendRedirect(req.getContextPath() + "/profile");
-        } catch (RuntimeException e) {
+        } catch (NotCompletedActionException e) {
             req.setAttribute("error", e.getMessage());
             getServletConfig()
                     .getServletContext()

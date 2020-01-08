@@ -5,13 +5,13 @@ import com.softserve.dao.implementation.CategoryDAOImpl;
 import com.softserve.dto.CategoryDTO;
 import com.softserve.entity.Category;
 import com.softserve.exception.NotCompletedActionException;
-import com.softserve.service.CrudService;
+import com.softserve.service.ReadAllService;
 import com.softserve.service.mapper.CategoryMapperObjects;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryServiceImpl implements CrudService<CategoryDTO> {
+public class CategoryServiceImpl implements ReadAllService<CategoryDTO> {
 
     private CategoryDAOImpl categoryDAO;
 
@@ -26,6 +26,7 @@ public class CategoryServiceImpl implements CrudService<CategoryDTO> {
         return categoryDAO.save(category);
     }
 
+    @Override
     public List<CategoryDTO> getAllByUserId(Long id) {
         List<CategoryDTO> listDTO = new ArrayList<>();
         List<Category> list = categoryDAO.getAllByUserId(id);
