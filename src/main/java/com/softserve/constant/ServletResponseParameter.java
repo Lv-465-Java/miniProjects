@@ -9,10 +9,9 @@ public enum ServletResponseParameter {
     USER_NEW_PASSWORD("new_password"),
     USER_CONFIRM_PASSWORD("confirm_password"),
     CATEGORY_TITLE("title"),
-    GATEGORY_COLOR("color"),
-    GATEGORY_DESCRIPTION("description"),
-    GATEGORY_FINANCIAL_TYPE("financial_type"),
-    GATEGORY_USER_ID("user_id");
+    CATEGORY_COLOR("color"),
+    CATEGORY_DESCRIPTION("description"),
+    CATEGORY_FINANCIAL_TYPE("financial_type");
 
     String servletParameter;
 

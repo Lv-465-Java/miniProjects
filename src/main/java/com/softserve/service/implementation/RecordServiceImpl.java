@@ -16,8 +16,8 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
 
     private RecordDAOImpl recordDAO;
 
-    public RecordServiceImpl(RecordDAOImpl recordDAO) {
-        recordDAO = new RecordDAOImpl();
+    public RecordServiceImpl() {
+        this.recordDAO = new RecordDAOImpl();
     }
 
     @Override
