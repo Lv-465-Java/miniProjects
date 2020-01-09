@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Model {
+public class Model implements Entity {
 
     private Long id;
     private String name;
