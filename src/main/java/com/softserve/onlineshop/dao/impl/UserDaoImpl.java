@@ -1,6 +1,6 @@
 package com.softserve.onlineshop.dao.impl;
 
-import com.softserve.onlineshop.dao.ACrudDao;
+import com.softserve.onlineshop.dao.CrudDaoImpl;
 import com.softserve.onlineshop.dao.mapper.UserRowMapper;
 import com.softserve.onlineshop.database.ConnectionManager;
 import com.softserve.onlineshop.entity.SqlQueries;
@@ -9,9 +9,8 @@ import com.softserve.onlineshop.entity.User.UserEntityQueries;
 import com.softserve.onlineshop.util.JdbcUtil;
 
 import java.sql.Connection;
-import java.util.List;
 
-public class UserDaoImpl extends ACrudDao<User> {
+public class UserDaoImpl extends CrudDaoImpl<User> {
 
     public UserDaoImpl() {
         super();

@@ -8,9 +8,9 @@ import com.softserve.onlineshop.util.JdbcUtil;
 import java.sql.Connection;
 import java.util.Arrays;
 
-public abstract class ACrudDao<TEntity extends Entity> extends AReadDao<TEntity> implements CrudDao<TEntity> {
+public abstract class CrudDaoImpl<TEntity extends Entity> extends ReadDaoImpl<TEntity> implements CrudDao<TEntity> {
 
-    protected ACrudDao() {
+    protected CrudDaoImpl() {
         super();
     }
 

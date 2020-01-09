@@ -9,7 +9,7 @@ import com.softserve.onlineshop.util.JdbcUtil;
 import java.sql.*;
 import java.util.*;
 
-public abstract class AReadDao<TEntity> implements ReadDao<TEntity> {
+public abstract class ReadDaoImpl<TEntity> implements ReadDao<TEntity> {
 
     protected final static String QUERY_NOT_FOUND = "Query not found %s";
     private final static String EMPTY_RESULTSET = "Empty ResultSet by Query %s";
@@ -17,7 +17,7 @@ public abstract class AReadDao<TEntity> implements ReadDao<TEntity> {
 
     protected final Map<Enum<?>, Enum<?>> sqlQueries;
 
-    AReadDao() {
+    ReadDaoImpl() {
         this.sqlQueries = new HashMap<>();
     }
 

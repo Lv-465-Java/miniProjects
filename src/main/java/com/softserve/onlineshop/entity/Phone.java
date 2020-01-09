@@ -18,6 +18,7 @@ public class Phone implements Entity {
     private Double screenDiagonal;
     private Integer internalMemory;
     private Long modelId;
+    private Long cartId;
 
     public Phone(Integer year, Integer price, String photo, String color, Double screenDiagonal, Integer internalMemory, Long modelId) {
         this.year = year;
