@@ -31,15 +31,12 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Logger LOG = LoggerFactory.getLogger(ProfileServlet.class);
         UserDTO currentSessionUser = userSession.retrieveUserIdFromSession(req);
         UserDTO userWithAllInfo = userService.getByEmail(currentSessionUser.getEmail());
         Long id = userWithAllInfo.getId();
         req.setAttribute("user", userWithAllInfo);
         req.setAttribute("categories", categoryService.getAllByUserId(id));
-
-        Logger LOG = LoggerFactory.getLogger(ProfileServlet.class);
-        LOG.info("ALL CAT " + categoryService.getAllByUserId(id));
-        req.setAttribute("financialTypes", categoryService.getTypes());
         req.getRequestDispatcher(View.USER_PROFILE_PAGE.getViewUrl()).include(req, resp);
     }
 }

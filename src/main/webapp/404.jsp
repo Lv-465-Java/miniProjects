@@ -1,33 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <title>404</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="resource/css/file.css">
+    <head>
+        <title>404</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resource/css/file.css">
 
-</head>
+    </head>
 
-<body>
-    <div class="errorsContainer">
-        <h1 id="errorName">404</h1>
-        <h2>Incorrectly typed address,<br>or page no longer exists on site</h2>
-        <p class="referenceToMainPage">Go to <a href="/login">Sign in</a></p>
-    </div>
+    <body>
+        <div class="errorsContainer">
+            <h1 id="errorName">404</h1>
+            <h2>Incorrectly typed address,<br>or page no longer exists on site</h2>
+            <p class="referenceToMainPage">Go to <a href="/login">Sign in</a></p>
+        </div>
+    </body>
 
-    <div class="dropdown">
-                                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Financial Type
-                                      </a>
-
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Income</a>
-                                        <a class="dropdown-item" href="#">Outcome</a>
-                                      </div>
-                                    </div>
-</body>
-
-</html>
+    </html>
