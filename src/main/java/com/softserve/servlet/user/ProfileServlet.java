@@ -5,6 +5,8 @@ import com.softserve.dto.UserDTO;
 import com.softserve.service.implementation.CategoryServiceImpl;
 import com.softserve.service.implementation.UserServiceImpl;
 import com.softserve.util.UserSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import javax.servlet.ServletException;
@@ -34,6 +36,10 @@ public class ProfileServlet extends HttpServlet {
         Long id = userWithAllInfo.getId();
         req.setAttribute("user", userWithAllInfo);
         req.setAttribute("categories", categoryService.getAllByUserId(id));
+
+        Logger LOG = LoggerFactory.getLogger(ProfileServlet.class);
+        LOG.info("ALL CAT " + categoryService.getAllByUserId(id));
+        req.setAttribute("financialTypes", categoryService.getTypes());
         req.getRequestDispatcher(View.USER_PROFILE_PAGE.getViewUrl()).include(req, resp);
     }
 }

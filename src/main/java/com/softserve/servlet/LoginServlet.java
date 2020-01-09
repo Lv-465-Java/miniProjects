@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(View.USER_LOGIN_PAGE.getViewUrl()).include(req, resp);
+        req.getRequestDispatcher(View.LOGIN_PAGE.getViewUrl()).include(req, resp);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
             req.setAttribute("error", e.getMessage());
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher(View.USER_LOGIN_PAGE.getViewUrl())
+                    .getRequestDispatcher(View.LOGIN_PAGE.getViewUrl())
                     .forward(req, resp);
         }
     }

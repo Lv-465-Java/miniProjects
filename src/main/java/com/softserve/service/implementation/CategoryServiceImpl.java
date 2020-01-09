@@ -4,11 +4,14 @@ import com.softserve.constant.ErrorMessage;
 import com.softserve.dao.implementation.CategoryDAOImpl;
 import com.softserve.dto.CategoryDTO;
 import com.softserve.entity.Category;
+import com.softserve.entity.FinancialType;
+import com.softserve.exception.NoSuchEntityException;
 import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.ReadAllService;
 import com.softserve.service.mapper.CategoryMapperObjects;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CategoryServiceImpl implements ReadAllService<CategoryDTO> {
@@ -44,8 +47,9 @@ public class CategoryServiceImpl implements ReadAllService<CategoryDTO> {
 
     //test on web!!! test if you really need if-s
     @Override
-    public boolean update(Long id, CategoryDTO categoryDTO) {
-        Category category = new Category();
+    public boolean update(Long id, CategoryDTO categoryDTO) throws NoSuchEntityException {
+
+        Category category = CategoryMapperObjects.verifyIfCategoryIsPresent(categoryDAO.getById(categoryDTO.getId()));
         if (categoryDTO.getTitle() != null) {
             category.setTitle(categoryDTO.getTitle());
         }
@@ -63,5 +67,9 @@ public class CategoryServiceImpl implements ReadAllService<CategoryDTO> {
             throw new NotCompletedActionException(ErrorMessage.FAIL_TO_FIND_A_CATEGORY.getErrorMessage());
         }
         return true;
+    }
+
+    public List<FinancialType> getTypes() {
+        return Arrays.asList(FinancialType.values());
     }
 }

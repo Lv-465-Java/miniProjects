@@ -2,9 +2,8 @@ package com.softserve.servlet.user;
 
 import com.softserve.constant.ServletResponseParameter;
 import com.softserve.constant.View;
+import com.softserve.constant.WebServletURL;
 import com.softserve.dto.UserDTO;
-import com.softserve.exception.NoSuchEntityException;
-import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.implementation.UserServiceImpl;
 import com.softserve.util.UserSession;
 import org.slf4j.Logger;
@@ -30,6 +29,11 @@ public class ChangePasswordServlet extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher(View.USER_CHANGE_PASSWORD.getViewUrl()).include(req, resp);
+    }
+
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Logger LOG = LoggerFactory.getLogger(ChangePasswordServlet.class);
 
@@ -52,7 +56,7 @@ public class ChangePasswordServlet extends HttpServlet {
             req.setAttribute("errors", e.getMessage());
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher(View.USER_PROFILE_PAGE.getViewUrl())
+                    .getRequestDispatcher(View.USER_CHANGE_PASSWORD.getViewUrl())
                     .forward(req, resp);
 
             LOG.info("error is !!!!!!!!!!!!!!!!!!!!! :" + e);

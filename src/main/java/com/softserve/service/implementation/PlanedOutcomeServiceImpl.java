@@ -68,4 +68,6 @@ public class PlanedOutcomeServiceImpl implements ReadAllService<PlanedOutcomeDTO
         }
         return false;
     }
+
+    //filters
 }

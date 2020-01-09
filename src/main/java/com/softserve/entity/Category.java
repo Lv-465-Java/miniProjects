@@ -35,6 +35,15 @@ public class Category {
     private Long userId;
     private Long financialTypeId;
 
+    public Category(Long id, String title, String color, String description, Long userId, Long financialTypeId) {
+        this.id = id;
+        this.title = title;
+        this.color = color;
+        this.description = description;
+        this.userId = userId;
+        this.financialTypeId = financialTypeId;
+    }
+
     public Category(String title, String color, String description, Long userId, Long financialTypeId) {
         this.title = title;
         this.color = color;

@@ -1,9 +1,14 @@
 package com.softserve.constant;
 
 public enum View {
-    USER_LOGIN_PAGE("/login.jsp"),
-    USER_REGISTRATION_PAGE("/signUp.jsp"),
-    USER_PROFILE_PAGE("/profile.jsp");
+    LOGIN_PAGE("/login.jsp"),
+    REGISTRATION_PAGE("/signUp.jsp"),
+    USER_PROFILE_PAGE("/profile.jsp"),
+    USER_EDIT_PAGE("/editUser.jsp"),
+    USER_CHANGE_PASSWORD("/changePassword.jsp"),
+    CATEGORY_ADD_PAGE("/addCategory.jsp"),
+    CATEGORY_EDIT_PAGE("/editCategory.jsp"),
+    CATEGORY_DELETE_PAGE("/deleteCategory.jsp");
 
     String viewUrl;
 

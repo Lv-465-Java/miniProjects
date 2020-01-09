@@ -9,8 +9,14 @@ import java.util.Optional;
 public class CategoryMapperObjects {
 
     public static CategoryDTO categoryEntityToCategoryDTO(Category entity) {
-        return new CategoryDTO(entity.getTitle(), entity.getColor(), entity.getDescription(),
-                entity.getUserId(), entity.getFinancialTypeId());
+        return CategoryDTO.Builder.aCategoryDTO()
+                .withId(entity.getId())
+                .withTitle(entity.getTitle())
+                .withColor(entity.getColor())
+                .withDescription(entity.getDescription())
+                .withUserId(entity.getUserId())
+                .withFinancialTypeId(entity.getFinancialTypeId())
+                .build();
     }
 
     public static Category verifyIfCategoryIsPresent(Optional<Category> optionalCategory) {

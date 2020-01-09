@@ -25,7 +25,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(View.USER_REGISTRATION_PAGE.getViewUrl()).include(req, resp);
+        req.getRequestDispatcher(View.REGISTRATION_PAGE.getViewUrl()).include(req, resp);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class RegistrationServlet extends HttpServlet {
             req.setAttribute("error", e.getMessage());
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher(View.USER_REGISTRATION_PAGE.getViewUrl())
+                    .getRequestDispatcher(View.REGISTRATION_PAGE.getViewUrl())
                     .forward(req, resp);
         }
     }
