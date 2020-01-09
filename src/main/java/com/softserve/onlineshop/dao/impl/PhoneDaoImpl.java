@@ -26,11 +26,6 @@ public class PhoneDaoImpl extends ACrudDao<Phone> {
         }
     }
 
-    @Override
-    protected RowMapper<Phone> getRowMapper() {
-        return new PhoneRowMapper();
-    }
-
     protected String[] getFields(Phone phone) {
         String[] fields = new String[8];
         fields[0] = phone.getId().toString();
@@ -44,10 +39,9 @@ public class PhoneDaoImpl extends ACrudDao<Phone> {
         return fields;
     }
 
-//    public List<Phone> getPhonesByModelId(Long modelId) {
-//        return getByFieldName(ID_MODEL_FIELDNAME, modelId.toString());
-////        return new LinkedList<>();
-//    }
+    public List<Phone> getPhonesByModelId(PhoneRowMapper mapper, Long modelId) {
+        return getByFieldName(mapper, ID_MODEL_FIELDNAME, modelId.toString());
+    }
 
     //    public List<Phone> getPhonesByFilter(String query) {
 //        return getQueryResult(String.format(sqlQueries.get(SqlQueries.GET_BY_FIELD).toString(),

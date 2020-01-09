@@ -23,22 +23,20 @@ public abstract class AReadDao<TEntity> implements ReadDao<TEntity> {
 
     protected abstract void init();
 
-    protected abstract RowMapper<TEntity> getRowMapper();
-
-    public Optional<TEntity> getById(Long id) {
+    public Optional<TEntity> getById(RowMapper<TEntity> mapper, Long id) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntity(connection, sqlQueries.get(SqlQueries.GET_BY_ID).toString(),
-                getRowMapper(), id);
+                mapper, id);
     }
 
-    public List<TEntity> getByFieldName(String fieldValue) {
+    public List<TEntity> getByFieldName(RowMapper<TEntity> mapper, String... parameters) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntityList(connection, String.format(sqlQueries.get(SqlQueries.GET_BY_FIELD).toString(),
-                fieldValue), getRowMapper());
+                (Object[]) parameters), mapper);
     }
 
-    public List<TEntity> getAll() {
+    public List<TEntity> getAll(RowMapper<TEntity> mapper) {
         Connection connection = ConnectionManager.getInstance().getConnection();
-        return JdbcUtil.getEntityList(connection, sqlQueries.get(SqlQueries.GET_ALL).toString(), getRowMapper());
+        return JdbcUtil.getEntityList(connection, sqlQueries.get(SqlQueries.GET_ALL).toString(), mapper);
     }
 }

@@ -6,6 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class UserDto {
     private Long id;
     private String nickname;
@@ -20,6 +21,13 @@ public class UserDto {
         this.email = email;
         this.phone = phone;
         this.cartId = cartId;
+    }
+
+    public UserDto(String nickname, String password, String email, String phone) {
+        this.nickname = nickname;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
     }
 
     public UserDto(String nickname, String password) {

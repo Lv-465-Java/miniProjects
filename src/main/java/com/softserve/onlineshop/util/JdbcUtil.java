@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class JdbcUtil {
+public final class JdbcUtil {
     public static <TEntity> Optional<TEntity> getEntity(Connection connection, String query, RowMapper<TEntity> mapper, Object... parameters) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             insertParameters(statement, parameters);

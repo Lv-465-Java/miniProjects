@@ -10,32 +10,35 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-//@WebServlet({"/UserLogin", "/login", "/"})
-@WebServlet("/login")
-public class UserLoginServlet extends HttpServlet {
+//@WebServlet({"/UserSignUp", "/SignUp", "/sign-up", "/register"})
+@WebServlet("/register")
+public class UserSignUpServlet extends HttpServlet {
     private UserService userService;
 
-    public UserLoginServlet() {
+    public UserSignUpServlet() {
         super();
         userService = new UserServiceImpl();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDto userDto = new UserDto(request.getParameter("nickname"),
-                request.getParameter("password"));
+        UserDto userDto = new UserDto(
+                request.getParameter("nickname"),
+                request.getParameter("password"),
+                request.getParameter("email"),
+                request.getParameter("phone"));
         try {
-            userService.isValid(userDto);
+            userService.save(userDto);
             SessionUtil.createSession(userDto, request, response);
             response.sendRedirect(request.getContextPath() + "/index");
         } catch (RuntimeException ex) {
-            request.setAttribute("error", "Bad Login or Password");
+            request.setAttribute("error", "User with this nickname or email exist");
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/login.jsp")
+                    .getRequestDispatcher("/WEB-INF/views/register.jsp")
                     .forward(request, response);
         }
     }

@@ -1,5 +1,8 @@
 package com.softserve.onlineshop.service;
 
+import com.softserve.onlineshop.dao.mapper.PhoneRowMapper;
+import com.softserve.onlineshop.dao.mapper.RowMapper;
+import com.softserve.onlineshop.dao.mapper.UserRowMapper;
 import com.softserve.onlineshop.dto.UserDto;
 import com.softserve.onlineshop.entity.User;
 
@@ -7,13 +10,19 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    boolean insert(UserDto userDto);
+    boolean save(UserDto userDto);
 
-    Optional<User> getById(Long id);
+    User getById(Long id);
+
+    UserDto getByIdDto(Long id);
+
+//    Optional<User> getById(Long id);
 
     List<User> getAll();
 
-    boolean updateById(String... args);
+    boolean updateById(Object... args);
 
     boolean deleteById(Long id);
+
+    boolean isValid(UserDto userDto);
 }

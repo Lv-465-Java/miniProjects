@@ -1,4 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -6,7 +7,8 @@
   Time: 14:35
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,15 +17,31 @@
     <title>Material Design for Bootstrap</title>
     <!-- MDB icon -->
     <!--    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<%--    <link rel="stylesheet" href=<c:url value="static/css/bootstrap.min.css">--%>
+<%--    </c:url>>--%>
+
+<%--    <link rel="stylesheet" href=<c:url value="static/css/mdb.min.css">--%>
+<%--    </c:url>>--%>
+<%--    <!-- Your custom styles (optional) -->--%>
+<%--    <link rel="stylesheet" href=<c:url value="static/css/authentication.css">--%>
+<%--    </c:url>>--%>
+
+
+<%--    <link rel="stylesheet" href=<c:url value="/static/css/register.css">--%>
+<%--    </c:url>>--%>
     <!-- Bootstrap core CSS -->
 <%--    <link rel="stylesheet" href="/static/css/bootstrap.min.css">--%>
-    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
-    <!-- Material Design Bootstrap -->
-    <link rel="stylesheet" href="<c:url value="/static/css/mdb.min.css"/>">
-    <!-- Your custom styles (optional) -->
-    <link rel="stylesheet" href="<c:url value="/static/css/style.css"/>">
+<%--    <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/bootstrap.min.css">--%>
+<%--    <!-- Material Design Bootstrap -->--%>
+<%--    <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/mdb.min.css">--%>
+<%--    <!-- Your custom styles (optional) -->--%>
+<%--    <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/authentication.css">--%>
+
+
     <style>
         html,
         body,
@@ -541,15 +559,29 @@
 <!-- End your project here-->
 
 <!-- jQuery -->
-<script type="text/javascript" src="<c:url value="/static/js/jquery.min.js"/>"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="<c:url value="/static/js/popper.min.js"/>"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="<c:url value="/static/js/mdb.min.js"/>"></script>
+<%--<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/jquery.min.js"></script>--%>
+<%--<!-- Bootstrap tooltips -->--%>
+<%--<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/popper.min.js"></script>--%>
+<%--<!-- Bootstrap core JavaScript -->--%>
+<%--<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/bootstrap.min.js"></script>--%>
+<%--<!-- MDB core JavaScript -->--%>
+<%--<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/mdb.min.js"></script>--%>
+<!-- jQuery -->
+
+<%--<script type="text/javascript" src=<c:url value="/static/js/jquery.min.js">--%>
+<%--</c:url>></script>--%>
+<%--<!-- Bootstrap tooltips -->--%>
+<%--<script type="text/javascript" src=<c:url value="/static/js/popper.min.js">--%>
+<%--</c:url>></script>--%>
+<%--<!-- Bootstrap core JavaScript -->--%>
+<%--<script type="text/javascript" src=<c:url value="/static/js/bootstrap.min.js">--%>
+<%--</c:url>></script>--%>
+<%--<!-- MDB core JavaScript -->--%>
+<%--<script type="text/javascript" src=<c:url value="/static/js/mdb.min.js">--%>
+<%--</c:url>></script>--%>
 <!-- Your custom scripts (optional) -->
 <script type="text/javascript"></script>
+
 <script>
     new WOW().init();
 </script>

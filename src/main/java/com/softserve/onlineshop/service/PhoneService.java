@@ -1,6 +1,6 @@
 package com.softserve.onlineshop.service;
 
-import com.softserve.onlineshop.dao.CrudDao;
+import com.softserve.onlineshop.dao.mapper.PhoneRowMapper;
 import com.softserve.onlineshop.dto.PhoneDto;
 import com.softserve.onlineshop.entity.Phone;
 
@@ -17,7 +17,7 @@ public interface PhoneService {
 
     List<Phone> getAll();
 
-    boolean updateById(String... args);
+    boolean updateById(Object... args);
 
     boolean updateByFieldName(String fieldName, String text, String fieldCondition, String textCondition);
 
