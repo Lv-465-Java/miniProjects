@@ -1,9 +1,9 @@
 package com.softserve.onlineshop.dao;
 
-public interface CrudDao<TEntity> extends ReadDao<TEntity> {
+public interface CrudDao<T> extends ReadDao<T> {
 
     // Create
-    boolean insert(TEntity entity);
+    boolean insert(T entity);
 
     // Update
     boolean updateById(Object... args);

@@ -9,7 +9,7 @@ import com.softserve.onlineshop.util.JdbcUtil;
 import java.sql.*;
 import java.util.*;
 
-public abstract class ReadDaoImpl<TEntity> implements ReadDao<TEntity> {
+public abstract class ReadDaoImpl<T> implements ReadDao<T> {
 
     protected final static String QUERY_NOT_FOUND = "Query not found %s";
     private final static String EMPTY_RESULTSET = "Empty ResultSet by Query %s";
@@ -23,19 +23,19 @@ public abstract class ReadDaoImpl<TEntity> implements ReadDao<TEntity> {
 
     protected abstract void init();
 
-    public Optional<TEntity> getById(RowMapper<TEntity> mapper, Long id) {
+    public Optional<T> getById(RowMapper<T> mapper, Long id) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntity(connection, sqlQueries.get(SqlQueries.GET_BY_ID).toString(),
                 mapper, id);
     }
 
-    public List<TEntity> getByFieldName(RowMapper<TEntity> mapper, String... parameters) {
+    public List<T> getByFieldName(RowMapper<T> mapper, String... parameters) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntityList(connection, String.format(sqlQueries.get(SqlQueries.GET_BY_FIELD).toString(),
                 (Object[]) parameters), mapper);
     }
 
-    public List<TEntity> getAll(RowMapper<TEntity> mapper) {
+    public List<T> getAll(RowMapper<T> mapper) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntityList(connection, sqlQueries.get(SqlQueries.GET_ALL).toString(), mapper);
     }

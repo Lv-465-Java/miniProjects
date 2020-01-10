@@ -3,6 +3,7 @@ package com.softserve.onlineshop.dao.mapper;
 import com.softserve.onlineshop.entity.Cart;
 
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -16,7 +17,11 @@ public class CartRowMapper implements RowMapper<Cart> {
         try {
             cart.setPhoneId(resultSet.getLong("phoneId"));
             cart.setUserId(resultSet.getLong("userId"));
-            cart.setDateOfBuying(LocalDateTime.parse(resultSet.getString("dateOfBuying"), formatter));
+            LocalDateTime localDateTime = (resultSet.getTimestamp("dateOfBuying").toLocalDateTime());
+//            cart.setDateOfBuying(new Date(resultSet.getTimestamp("dayOfBuying").getTime()));
+            cart.setDateOfBuying(localDateTime);
+//            cart.setDateOfBuying();
+//            cart.setDateOfBuying(LocalDateTime.parse(resultSet.getString("dateOfBuying"), formatter));
             return cart;
         } catch (SQLException e) {
             throw new RuntimeException(e);

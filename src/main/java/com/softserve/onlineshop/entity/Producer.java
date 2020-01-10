@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Producer implements Entity {
+public class Producer {
 
     private Long id;
     private String name;

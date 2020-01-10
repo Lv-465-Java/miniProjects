@@ -2,6 +2,6 @@ package com.softserve.onlineshop.dao.mapper;
 
 import java.sql.ResultSet;
 
-public interface RowMapper<TEntity> {
-    TEntity mapRow(ResultSet resultSet);
+public interface RowMapper<T> {
+    T mapRow(ResultSet resultSet);
 }

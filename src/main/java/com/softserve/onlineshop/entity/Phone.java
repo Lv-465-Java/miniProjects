@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Phone implements Entity {
+public class Phone {
 
     private Long id;
     private Integer year;

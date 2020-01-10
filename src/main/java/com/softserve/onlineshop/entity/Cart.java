@@ -1,27 +1,35 @@
 package com.softserve.onlineshop.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-public class Cart implements Entity {
+@ToString
+@EqualsAndHashCode
+public class Cart {
 
-    Long id;
     private Long phoneId;
     private Long userId;
     private LocalDateTime dateOfBuying;
 
+    public Cart(Long phoneId, Long userId, LocalDateTime dateOfBuying) {
+        this.phoneId = phoneId;
+        this.userId = userId;
+        this.dateOfBuying = dateOfBuying;
+    }
+
+    public Cart(Long phoneId, Long userId) {
+        this.phoneId = phoneId;
+        this.userId = userId;
+    }
+
     public enum CartEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO carts (phoneId, userId, dateOfBuying) VALUES (?, ?, ?);"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, name, producerId FROM models WHERE id = ?;"),
+        GET_BY_USER_ID("SELECT phoneId, userId, dateOfBuying FROM carts WHERE userId = ?;"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, name, producerId FROM models;"),
         GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, name, producerId FROM models WHERE name = '%s';"),
         GET_BY_PRODUCER_ID(SqlQueries.GET_BY_PRODUCER_ID, "SELECT id, name, producerId FROM models WHERE producerId = ?;"),
@@ -33,6 +41,10 @@ public class Cart implements Entity {
 
         CartEntityQueries(SqlQueries sqlQuery, String query) {
             this.sqlQuery = sqlQuery;
+            this.query = query;
+        }
+
+        CartEntityQueries(String query) {
             this.query = query;
         }
 

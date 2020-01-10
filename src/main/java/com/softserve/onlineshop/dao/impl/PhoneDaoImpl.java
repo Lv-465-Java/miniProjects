@@ -25,15 +25,15 @@ public class PhoneDaoImpl extends CrudDaoImpl<Phone> {
     }
 
     protected String[] getFields(Phone phone) {
-        String[] fields = new String[8];
-        fields[0] = phone.getId().toString();
-        fields[1] = phone.getYear().toString();
-        fields[2] = phone.getPrice().toString();
-        fields[3] = phone.getPhoto();
-        fields[4] = phone.getColor();
-        fields[5] = phone.getScreenDiagonal().toString();
-        fields[6] = phone.getInternalMemory().toString();
-        fields[7] = phone.getModelId().toString();
+        String[] fields = new String[7];
+//        fields[0] = phone.getId().toString();
+        fields[0] = phone.getYear().toString();
+        fields[1] = phone.getPrice().toString();
+        fields[2] = phone.getPhoto();
+        fields[3] = phone.getColor();
+        fields[4] = phone.getScreenDiagonal().toString();
+        fields[5] = phone.getInternalMemory().toString();
+        fields[6] = phone.getModelId().toString();
         return fields;
     }
 

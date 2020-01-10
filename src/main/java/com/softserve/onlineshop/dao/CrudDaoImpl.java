@@ -1,28 +1,25 @@
 package com.softserve.onlineshop.dao;
 
 import com.softserve.onlineshop.database.ConnectionManager;
-import com.softserve.onlineshop.entity.Entity;
 import com.softserve.onlineshop.entity.SqlQueries;
 import com.softserve.onlineshop.util.JdbcUtil;
 
 import java.sql.Connection;
-import java.util.Arrays;
 
-public abstract class CrudDaoImpl<TEntity extends Entity> extends ReadDaoImpl<TEntity> implements CrudDao<TEntity> {
+public abstract class CrudDaoImpl<T> extends ReadDaoImpl<T> implements CrudDao<T> {
 
     protected CrudDaoImpl() {
         super();
     }
 
-    protected abstract String[] getFields(TEntity entity);
+    protected abstract String[] getFields(T entity);
 
 
     // Create
-    public boolean insert(TEntity entity) {
+    public boolean insert(T entity) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.INSERT).toString(),
                 (Object[]) getFields(entity));
-//                (Object[]) Arrays.copyOfRange(getFields(entity), 0, getFields(entity).length));
         return executeQuery > 0;
     }
 

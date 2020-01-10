@@ -3,12 +3,13 @@ package com.softserve.onlineshop.util;
 import com.softserve.onlineshop.dao.mapper.RowMapper;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public final class JdbcUtil {
-    public static <TEntity> Optional<TEntity> getEntity(Connection connection, String query, RowMapper<TEntity> mapper, Object... parameters) {
+    public static <T> Optional<T> getEntity(Connection connection, String query, RowMapper<T> mapper, Object... parameters) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             insertParameters(statement, parameters);
 
@@ -24,8 +25,8 @@ public final class JdbcUtil {
         }
     }
 
-    public static <TEntity> List<TEntity> getEntityList(Connection connection, String query, RowMapper<TEntity> mapper, Object... parameters) {
-        List<TEntity> result = new ArrayList<>();
+    public static <T> List<T> getEntityList(Connection connection, String query, RowMapper<T> mapper, Object... parameters) {
+        List<T> result = new ArrayList<>();
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             insertParameters(statement, parameters);
@@ -63,8 +64,8 @@ public final class JdbcUtil {
                     statement.setLong(i + 1, (Long) parameters[i]);
                 } else if (parameters[i] instanceof String) {
                     statement.setString(i + 1, (String) parameters[i]);
-                } else if (parameters[i] instanceof Date) {
-                    statement.setTimestamp(i + 1, new Timestamp(((Date) parameters[i]).getTime()));
+                } else if (parameters[i] instanceof LocalDateTime) {
+                    statement.setTimestamp(i + 1, new Timestamp(Timestamp.valueOf((LocalDateTime) parameters[i]).getTime()));
                 } else {
                     throw new RuntimeException("There are no mapping for " + parameters[i].getClass());
                 }

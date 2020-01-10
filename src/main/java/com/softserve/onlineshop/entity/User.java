@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class User implements Entity {
+public class User {
 
     private Long id;
     private String nickname;
