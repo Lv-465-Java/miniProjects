@@ -27,14 +27,11 @@ public class Cart {
     }
 
     public enum CartEntityQueries {
-        INSERT(SqlQueries.INSERT, "INSERT INTO carts (phoneId, userId, dateOfBuying) VALUES (?, ?, ?);"),
-        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, name, producerId FROM models WHERE id = ?;"),
-        GET_BY_USER_ID("SELECT phoneId, userId, dateOfBuying FROM carts WHERE userId = ?;"),
-        GET_ALL(SqlQueries.GET_ALL, "SELECT id, name, producerId FROM models;"),
-        GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, name, producerId FROM models WHERE name = '%s';"),
-        GET_BY_PRODUCER_ID(SqlQueries.GET_BY_PRODUCER_ID, "SELECT id, name, producerId FROM models WHERE producerId = ?;"),
-        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE models SET name = ?, producerId = ? WHERE id = ?;"),
-        DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM models WHERE id = ?;");
+        ADD_TO_CART(SqlQueries.INSERT, "INSERT INTO carts (phoneId, userId) VALUES (?, ?);"),
+        GET_BY_PHONE_ID(SqlQueries.GET_BY_ID, "SELECT phoneId, userId, dateOfBuying FROM carts WHERE phoneId = ?;"),
+        GET_BY_USER_ID(SqlQueries.GET_BY_USER_ID, "SELECT phoneId, userId, dateOfBuying FROM carts WHERE userId = ?;"),
+        BUY_PRODUCT(SqlQueries.UPDATE_BY_ID, "UPDATE carts SET dateOfBuying = ? WHERE phoneId = ?;"),
+        DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM carts WHERE phoneId = ?;");
 
         private SqlQueries sqlQuery;
         private String query;
@@ -43,11 +40,6 @@ public class Cart {
             this.sqlQuery = sqlQuery;
             this.query = query;
         }
-
-        CartEntityQueries(String query) {
-            this.query = query;
-        }
-
 
         public SqlQueries getSqlQuery() {
             return this.sqlQuery;

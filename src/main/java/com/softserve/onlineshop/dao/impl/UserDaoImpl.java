@@ -40,5 +40,4 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
         return JdbcUtil.getEntity(connection, String.format(sqlQueries.get(SqlQueries.GET_BY_FIELD).toString(),
                 nickname), mapper).isPresent();
     }
-
 }

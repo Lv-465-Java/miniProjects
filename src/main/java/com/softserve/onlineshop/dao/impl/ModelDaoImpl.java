@@ -34,9 +34,9 @@ public class ModelDaoImpl extends CrudDaoImpl<Model> {
         return fields;
     }
 
-    public List<Model> getAllByProducerId(ModelRowMapper mapper, Long id) {
+    public List<Model> getAllByProducerId(ModelRowMapper mapper, Long producerId) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntityList(connection, sqlQueries.get(SqlQueries.GET_BY_PRODUCER_ID).toString(),
-                mapper, id);
+                mapper, producerId);
     }
 }

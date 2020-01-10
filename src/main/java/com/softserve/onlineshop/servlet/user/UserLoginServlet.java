@@ -5,6 +5,8 @@ import com.softserve.onlineshop.service.UserService;
 import com.softserve.onlineshop.service.UserServiceImpl;
 import com.softserve.onlineshop.util.SessionUtil;
 
+import javax.annotation.security.DeclareRoles;
+import javax.resource.spi.AuthenticationMechanism;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;

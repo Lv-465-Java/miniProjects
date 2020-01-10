@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Phone {
+public class Phone  {
 
     private Long id;
     private Integer year;
@@ -18,7 +18,6 @@ public class Phone {
     private Double screenDiagonal;
     private Integer internalMemory;
     private Long modelId;
-    private Long cartId;
 
     public Phone(Integer year, Integer price, String photo, String color, Double screenDiagonal, Integer internalMemory, Long modelId) {
         this.year = year;
@@ -37,10 +36,14 @@ public class Phone {
 //                + "internalMemory, modelId) VALUES ('%s', '%s', %s, '%s', %s, %s, %s);"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, year, price, photo, color, " +
                 "screenDiagonal, internalMemory, modelId FROM phones WHERE id = ?;"),
+        GET_BY_MODEL_ID(SqlQueries.GET_BY_MODEL_ID, "SELECT id, year, price, photo, color, " +
+                "screenDiagonal, internalMemory, modelId FROM phones WHERE modelId = ?;"),
 //        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, year, price, photo, color, " +
 //                "screenDiagonal, internalMemory, modelId FROM phones WHERE id = %s;"),
         GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, year, price, photo, color, " +
-                "screenDiagonal, internalMemory, modelId FROM phones WHERE year = '%s';"),
+                "screenDiagonal, internalMemory, modelId FROM phones WHERE %s = '%s';"),
+//        GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, year, price, photo, color, " +
+//                "screenDiagonal, internalMemory, modelId FROM phones WHERE year = '%s';"),
 //        GET_BY_FIELDS(SqlQueries.GET_BY_FIELD, "SELECT id, year, price, photo, color, " +
 //                "screenDiagonal, internalMemory, modelId FROM phones WHERE %s;"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, year, price, photo, color," +
