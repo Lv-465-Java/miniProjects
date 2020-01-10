@@ -1,0 +1,32 @@
+.formsContainer
+{
+    background-color: white;
+    width: 500px;
+    height: 500px;
+    border-radius: 5px 5px 5px 5px;
+    margin: 25px auto;
+    text-align: center;
+}
+
+.form-group{
+    margin-bottom: 15px;
+    padding-top: 15px;
+}
+
+#pointer:hover
+{
+  cursor: pointer;
+  background-color:#2e47d1;
+}
+.btn btn-primary
+{
+	margin-top: 25px;
+	width: 20%;
+	border: 0;
+	background-color: #2038bd;
+	border-radius: 5px;
+	height: 50px;
+	color: white;
+	font-weight: 400;
+	font-size: 1em;
+}

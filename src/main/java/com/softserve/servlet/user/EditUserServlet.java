@@ -26,6 +26,14 @@ public class EditUserServlet extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserDTO currentSessionUser = userSession.retrieveUserIdFromSession(req);
+        UserDTO userWithAllInfo = userService.getByEmail(currentSessionUser.getEmail());
+        req.setAttribute("user  ", userWithAllInfo);
+        req.getRequestDispatcher(View.USER_EDIT.getViewUrl()).include(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDTO currentSessionUser = userSession.retrieveUserIdFromSession(req);
         String firstName = req.getParameter(ServletResponseParameter.USER_FIRST_NAME.getServletParameter());

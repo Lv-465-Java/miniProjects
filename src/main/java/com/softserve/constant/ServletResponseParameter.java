@@ -8,6 +8,7 @@ public enum ServletResponseParameter {
     USER_CURRENT_PASSWORD("current_password"),
     USER_NEW_PASSWORD("new_password"),
     USER_CONFIRM_PASSWORD("confirm_password"),
+    CATEGORY_ID("category_id"),
     CATEGORY_TITLE("title"),
     CATEGORY_COLOR("color"),
     CATEGORY_DESCRIPTION("description"),

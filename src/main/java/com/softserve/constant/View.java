@@ -8,6 +8,7 @@ public enum View {
     USER_CHANGE_PASSWORD("/changePassword.jsp"),
     CATEGORY_ADD_PAGE("/addCategory.jsp"),
     CATEGORY_EDIT_PAGE("/editCategory.jsp"),
+    USER_EDIT("/editUser.jsp"),
     CATEGORY_DELETE_PAGE("/deleteCategory.jsp");
 
     String viewUrl;

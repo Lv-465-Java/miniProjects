@@ -16,10 +16,10 @@
             <div class="mainContainer">
                 <div class="signUp">
                     <form autocomplete="on" method="post">
-                        <label for="firstName" class="floatLabel">First name<span class="asterisk">*</span></label>
-                        <input id="firstName" name="first_name" type="text" required>
-                        <label for="lastName" class="floatLabel">Last name<span class="asterisk">*</span></label>
-                        <input id="lastName" name="last_name" type="text" required>
+                        <label for="Firstname" class="floatLabel">First name<span class="asterisk">*</span></label>
+                        <input id="Firstname" name="first_name" type="text" required>
+                        <label for="Lastname" class="floatLabel">Last name<span class="asterisk">*</span></label>
+                        <input id="Lastname" name="last_name" type="text" required>
                         <label for="Email" class="floatLabel">Email<span class="asterisk">*</span></label>
                         <input id="Email" name="email" type="email" required>
                         <label for="Password" class="floatLabel">Password<span class="asterisk">*</span></label>

@@ -57,23 +57,31 @@ public class RecordDAOImpl implements RecordDAO {
         return JDBCQueries.update(connection, Record.RecordEntityQueries.DELETE.getQuery(), id);
     }
 
-    public List<Record> getAllBySelectedFilters(Long userId, Map<String, String> map){
-        return JDBCQueries.getListOfObjects(connection, generateSearchQuery(userId, map), new RecordMapping());
+    public List<Record> getAllBySelectedFilters(Long userId, Object... parameters){
+        return JDBCQueries.getListOfObjects(connection, generateSearchQuery(userId, parameters), new RecordMapping());
     }
 
-    public String generateSearchQuery(Long userId, Map<String, String> parameters) {
+    public String generateSearchQuery(Long userId, Object... parameters) {
         StringBuilder stringBuilder = new StringBuilder("SELECT * FROM records WHERE user_id = " + userId);
 
         try {
-            for (Map.Entry<String, String> parameter : parameters.entrySet()) {
-                if (parameter.getKey().equals("begin_date")) {
-                    stringBuilder.append(" AND date BETWEEN ".concat(parameter.getValue()));
-                } else if (parameter.getKey().equals("end_date")) {
-                    stringBuilder.append(" AND ".concat(parameter.getValue()));
-                } else if (parameter.getKey().equals("financial_type_id")) {
-                    stringBuilder.append(" AND financial_type_id = ".concat(parameter.getValue()));
+            for (Object parameter : parameters) {
+                if (parameter!=null) {
+                    if (parameter instanceof Long) {
+                        stringBuilder.append(" AND financial_type_id = ".concat(parameter.toString()));
+                    } if (parameter instanceof LocalDate) {
+                        // call another method
+                    }
                 }
-               // LocalDate localDate = LocalDate.now().compareTo()
+
+//                if (parameter.getKey().equals("begin_date")) {
+//                    stringBuilder.append(" AND date BETWEEN ".concat(parameter.getValue()));
+//                } else if (parameter.getKey().equals("end_date")) {
+//                    stringBuilder.append(" AND ".concat(parameter.getValue()));
+//                } else if (parameter.getKey().equals("financial_type_id")) {
+//                    stringBuilder.append(" AND financial_type_id = ".concat(parameter.getValue()));
+//                }
+               //LocalDate localDate = LocalDate.now().compareTo()
             }
             return stringBuilder.append(';').toString();
         } catch (RuntimeException e) {
@@ -81,4 +89,25 @@ public class RecordDAOImpl implements RecordDAO {
             throw new RuntimeException();
         }
     }
+
+//    public String generateSearchQuery(Long userId, Map<String, String> parameters) {
+//        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM records WHERE user_id = " + userId);
+//
+//        try {
+//            for (Map.Entry<String, String> parameter : parameters.entrySet()) {
+//                if (parameter.getKey().equals("begin_date")) {
+//                    stringBuilder.append(" AND date BETWEEN ".concat(parameter.getValue()));
+//                } else if (parameter.getKey().equals("end_date")) {
+//                    stringBuilder.append(" AND ".concat(parameter.getValue()));
+//                } else if (parameter.getKey().equals("financial_type_id")) {
+//                    stringBuilder.append(" AND financial_type_id = ".concat(parameter.getValue()));
+//                }
+//                // LocalDate localDate = LocalDate.now().compareTo()
+//            }
+//            return stringBuilder.append(';').toString();
+//        } catch (RuntimeException e) {
+//            e.getStackTrace();
+//            throw new RuntimeException();
+//        }
+//    }
 }

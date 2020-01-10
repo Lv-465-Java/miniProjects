@@ -70,7 +70,7 @@ public class JDBCQueries {
 ////debug here
                     LocalDate ld = LocalDate.parse(parameters[i].toString());
                     Date date = Date.valueOf(ld);
-//                    Timestamp timestamp = Timestamp.valueOf(parameters[i].toString());
+                    Timestamp timestamp = Timestamp.valueOf(parameters[i].toString());
                     preparedStatement.setDate(i + 1, date);
                 } else {
                     throw new RuntimeException("There are no mapping for " + parameters[i].getClass());

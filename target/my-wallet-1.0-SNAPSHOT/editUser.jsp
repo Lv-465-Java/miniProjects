@@ -23,7 +23,7 @@
         <input id="firstName" name="first_name" class="form-control" type="text" required value=<c:out
                 value="${user.firstName}"> </c:out>>
 
-        <label for="formGroupExampleInput2" class="floatLabel">Last name<span class="asterisk">*</span></label>
+        <label for="last_name" class="floatLabel">Last name<span class="asterisk">*</span></label>
         <input type="text" name="last_name" class="form-control" id="formGroupExampleInput2" required value=<c:out
                 value="${user.lastName}"></c:out>>
     </div>

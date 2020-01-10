@@ -3,6 +3,7 @@ package com.softserve.servlet.category;
 import com.softserve.constant.ServletResponseParameter;
 import com.softserve.constant.View;
 import com.softserve.dto.CategoryDTO;
+import com.softserve.dto.UserDTO;
 import com.softserve.exception.NoSuchEntityException;
 import com.softserve.service.implementation.CategoryServiceImpl;
 import com.softserve.service.implementation.UserServiceImpl;
@@ -31,8 +32,18 @@ public class EditCategoryServlet extends HttpServlet {
     }
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Long categoryId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
+        req.setAttribute("category", categoryService.getById(categoryId));
+        req.setAttribute("financialTypes", categoryService.getTypes());
+        req.getRequestDispatcher(View.CATEGORY_EDIT_PAGE.getViewUrl()).include(req, resp);
+    }
+
+
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Long id = Long.parseLong(req.getParameter("category_id"));
+        Long id = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
 
         Logger LOG = LoggerFactory.getLogger(EditCategoryServlet.class);
         LOG.info("MY ID " + id);
