@@ -25,7 +25,6 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
         fields[1] = user.getPassword();
         fields[2] = user.getEmail();
         fields[3] = user.getPhone();
-//        fields[4] = user.getCartId().toString();
         return fields;
     }
 
@@ -42,13 +41,4 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
                 nickname), mapper).isPresent();
     }
 
-//}
-
-
-    public static void main(String[] args) {
-        UserDaoImpl userDao = new UserDaoImpl();
-//        User user = userDao.getById(new UserRowMapper(), )
-//        System.out.println(userDao.insert(new User("amper", "aa", "v@", "212", 3L)));
-//        System.out.println(userDao.getByFieldName(new UserRowMapper(), "omen"));
-    }
 }

@@ -559,13 +559,13 @@
 <!-- End your project here-->
 
 <!-- jQuery -->
-<%--<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/jquery.min.js"></script>--%>
-<%--<!-- Bootstrap tooltips -->--%>
-<%--<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/popper.min.js"></script>--%>
-<%--<!-- Bootstrap core JavaScript -->--%>
-<%--<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/bootstrap.min.js"></script>--%>
-<%--<!-- MDB core JavaScript -->--%>
-<%--<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/mdb.min.js"></script>--%>
+<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/static/js/mdb.min.js"></script>
 <!-- jQuery -->
 
 <%--<script type="text/javascript" src=<c:url value="/static/js/jquery.min.js">--%>

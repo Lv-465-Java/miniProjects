@@ -1,8 +1,6 @@
 package com.softserve.onlineshop.dao.impl;
 
-import com.softserve.onlineshop.dao.CrudDao;
 import com.softserve.onlineshop.dao.CrudDaoImpl;
-import com.softserve.onlineshop.dao.mapper.ProducerRowMapper;
 import com.softserve.onlineshop.entity.Producer;
 
 public class ProducerDaoImpl extends CrudDaoImpl<Producer> {
@@ -24,10 +22,5 @@ public class ProducerDaoImpl extends CrudDaoImpl<Producer> {
         for (Producer.ProducerEntityQueries producerEntityQueries : Producer.ProducerEntityQueries.values()) {
             sqlQueries.put(producerEntityQueries.getSqlQuery(), producerEntityQueries);
         }
-    }
-
-    public static void main(String[] args) {
-        ProducerDaoImpl producerDao = new ProducerDaoImpl();
-//        System.out.println(producerDao.getById(new ProducerRowMapper(), 1L));
     }
 }

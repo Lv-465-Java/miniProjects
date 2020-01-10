@@ -13,15 +13,6 @@ public class UserDto {
     private String password;
     private String email;
     private String phone;
-    private Long cartId;
-
-    public UserDto(String nickname, String password, String email, String phone, Long cartId) {
-        this.nickname = nickname;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.cartId = cartId;
-    }
 
     public UserDto(String nickname, String password, String email, String phone) {
         this.nickname = nickname;

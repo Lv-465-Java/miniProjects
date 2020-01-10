@@ -9,6 +9,6 @@ public class UserDtoMapper implements DtoMapper<UserDto> {
     public UserDto mapToDto(Entity entity) {
         User user = (User) entity;
         return new UserDto(user.getId(), user.getNickname(),user.getPassword(),
-                user.getEmail(),user.getPhone(),user.getCartId());
+                user.getEmail(),user.getPhone());
     }
 }

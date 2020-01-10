@@ -21,7 +21,8 @@ public abstract class CrudDaoImpl<TEntity extends Entity> extends ReadDaoImpl<TE
     public boolean insert(TEntity entity) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.INSERT).toString(),
-                (Object[]) Arrays.copyOfRange(getFields(entity), 0, getFields(entity).length));
+                (Object[]) getFields(entity));
+//                (Object[]) Arrays.copyOfRange(getFields(entity), 0, getFields(entity).length));
         return executeQuery > 0;
     }
 

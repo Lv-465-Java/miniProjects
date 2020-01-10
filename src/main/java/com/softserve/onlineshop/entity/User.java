@@ -15,15 +15,6 @@ public class User implements Entity {
     private String password;
     private String email;
     private String phone;
-    private Long cartId;
-
-    public User(String nickname, String password, String email, String phone, Long cartId) {
-        this.nickname = nickname;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.cartId = cartId;
-    }
 
     public User(String nickname, String password, String email, String phone) {
         this.nickname = nickname;
@@ -31,6 +22,7 @@ public class User implements Entity {
         this.email = email;
         this.phone = phone;
     }
+
 
     public enum UserEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO users (nickname, password, email, phone) VALUES (?, ?, ?, ?);"),
