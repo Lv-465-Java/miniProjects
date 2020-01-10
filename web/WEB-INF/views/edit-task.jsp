@@ -22,9 +22,9 @@
     <div class="col-12 col-md-10 col-lg-8">
         <form action="${pageContext.request.contextPath}/edit-task" method="post">
             <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label">Old description</label>
+                <label for="staticDescription" class="col-sm-2 col-form-label">Old description</label>
                 <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                    <input type="text" readonly class="form-control-plaintext" id="staticDescription"
                            value="${pageContext.request.getParameter("description")}">
                 </div>
             </div>

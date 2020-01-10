@@ -1,6 +1,9 @@
 package com.itacademy.softserve.util;
 
+import com.itacademy.softserve.dao.UserDao;
+import com.itacademy.softserve.dao.builder.UserBuilder;
 import com.itacademy.softserve.dto.UserDto;
+import com.itacademy.softserve.dto.mapper.UserDtoMapper;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +18,7 @@ public class SessionManager {
     }
 
     public static SessionManager getManager() {
-        if(sessionManager == null) {
+        if (sessionManager == null) {
             sessionManager = new SessionManager();
         }
         return sessionManager;
@@ -52,19 +55,28 @@ public class SessionManager {
 
     public static void destroySession(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
-        if(session != null) {
+        if (session != null) {
             session.removeAttribute("userDto");
             session.invalidate();
         }
         Cookie cookie;
-        for(Cookie cook : request.getCookies()) {
-            if(cook.getName().equals("id_session")) {
+        for (Cookie cook : request.getCookies()) {
+            if (cook.getName().equals("id_session")) {
                 cookie = cook;
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
                 break;
             }
         }
+    }
 
+    public static void changeSessionAttribute(HttpServletRequest request) {
+        UserDao userDao = new UserDao();
+        UserBuilder userBuilder = new UserBuilder();
+        UserDtoMapper userDtoMapper = new UserDtoMapper();
+        UserDto userDto = userDtoMapper.mapFromEntityToDto(userDao
+                .getByFields(userBuilder, request.getParameter("newUsername")).get(0));
+        HttpSession session = request.getSession(false);
+        session.setAttribute("userDto", userDto);
     }
 }

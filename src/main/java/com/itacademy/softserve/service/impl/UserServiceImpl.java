@@ -1,5 +1,6 @@
 package com.itacademy.softserve.service.impl;
 
+import com.itacademy.softserve.constant.param.UpdateUserParam;
 import com.itacademy.softserve.dao.UserDao;
 import com.itacademy.softserve.dao.builder.UserBuilder;
 import com.itacademy.softserve.dto.UserDto;
@@ -8,7 +9,10 @@ import com.itacademy.softserve.entity.User;
 import com.itacademy.softserve.exception.NotFoundException;
 import com.itacademy.softserve.exception.NotSaveException;
 import com.itacademy.softserve.service.UserService;
+import com.itacademy.softserve.util.SessionManager;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -42,6 +46,22 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new NotSaveException("Don`t save");
         }
+    }
+
+    @Override
+    public boolean changePassword(HttpServletRequest request) {
+        return false;
+    }
+
+    @Override
+    public boolean changeUsername(HttpServletRequest request) {
+        if(SessionManager.isActiveSession(request)) {
+            HttpSession session = request.getSession(false);
+            String name = ((UserDto) session.getAttribute("userDto")).getName();
+            String newName = request.getParameter("newUsername");
+            return userDao.updateByField(UpdateUserParam.USERNAME, newName, name);
+        }
+        return false;
     }
 
     @Override

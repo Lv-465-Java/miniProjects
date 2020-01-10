@@ -9,7 +9,7 @@ public class User extends Entity {
         GET_ALL(SqlQueries.GET_ALL, "SELECT * FROM users;"),
         INSERT(SqlQueries.INSERT, "INSERT INTO users (Name, Password) VALUES (?, ?);"),
         UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE users SET Name = ?, Password = ? WHERE UserID = ?;"),
-        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE users SET Name = ?, Password = ? WHERE Name = ?;");
+        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE users SET %s = '%s' WHERE Name = '%s';");
 
         private SqlQueries sqlQueries;
         private String query;
