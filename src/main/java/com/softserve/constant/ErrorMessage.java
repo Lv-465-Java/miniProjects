@@ -20,6 +20,8 @@ public enum ErrorMessage {
     FAIL_TO_FIND_A_RECORD("There is no such a record"),
     FAIL_TO_UPDATE_A_RECORD("Fail to update a record"),
     FAIL_TO_DELETE_A_RECORD("Fail to delete a record"),
+    FINANCIAL_TYPE_DO_NOT_MATCH("Financial type should be outcome because you have linked the current record to the planned outcome"),
+    CATEGORY_ID_DO_NOT_MATCH("Selected category don't match with category of selected planned outcome"),
 
     FAIL_TO_SAVE_A_PLANED_OUTCOME("Fail to save a planed outcome"),
     FAIL_TO_FIND_A_PLANED_OUTCOME("Fail to find a planed outcome"),

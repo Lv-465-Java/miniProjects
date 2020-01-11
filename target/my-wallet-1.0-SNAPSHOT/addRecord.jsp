@@ -62,6 +62,10 @@
                 </c:forEach>
             </select>
 
+            <c:if test="${not empty error}">
+                <p class="reference" id="error">${error}</p>
+            </c:if>
+
             <div class="form-footer">
                 <button type="submit" class="btn btn-primary" id="mainPageButton4">Save changes</button>
             </div>

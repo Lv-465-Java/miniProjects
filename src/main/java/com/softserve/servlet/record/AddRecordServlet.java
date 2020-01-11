@@ -80,9 +80,11 @@ public class AddRecordServlet extends HttpServlet {
             LOG.info("New Record is created. User is redirected to 'Record Dashboard' Page");
         } catch (NotCompletedActionException e) {
             LOG.info("Error: " + e.getMessage());
+            req.setAttribute("error", e.getMessage());
+            resp.sendRedirect(req.getContextPath() + "/edit-record");
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher(View.RECORD_DASHBOARD_PAGE.getViewUrl())
+                    .getRequestDispatcher(View.ADD_RECORD_PAGE.getViewUrl())
                     .forward(req, resp);
         }
     }

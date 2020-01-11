@@ -9,8 +9,14 @@ import java.util.Optional;
 public class PlanedOutcomeMapperObjects {
 
     public static PlanedOutcomeDTO planedOutcomeEntityToPlanedOutcomeDTO(PlanedOutcome entity) {
-        return new PlanedOutcomeDTO(entity.getSum(), entity.getDate(), entity.getNote(),
-                entity.getUserId(), entity.getCategoryId());
+        return PlanedOutcomeDTO.Builder.aPlanedOutcomeDTO()
+                .withId(entity.getId())
+                .withSum(entity.getSum())
+                .withDate(entity.getDate())
+                .withNote(entity.getNote())
+                .withUserId(entity.getUserId())
+                .withCategoryId(entity.getCategoryId())
+                .build();
     }
 
     public static PlanedOutcome verifyIfPlanedOutcomeIsPresent(Optional<PlanedOutcome> optionalPlanedOutcome) {
