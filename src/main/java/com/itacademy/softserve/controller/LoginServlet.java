@@ -1,5 +1,6 @@
 package com.itacademy.softserve.controller;
 
+import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
 import com.itacademy.softserve.dto.UserDto;
@@ -39,10 +40,10 @@ public class LoginServlet extends HttpServlet {
             SessionManager.createSession(userDto, request, response);
             response.sendRedirect(request.getContextPath() + ServletUrl.HOME_URL);
         } catch (RuntimeException e) {
-            request.setAttribute("error", "Bad Login or Password");
+            request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.BAD_LOGIN_OR_PASSWORD.toString());
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/login.jsp")
+                    .getRequestDispatcher(JspUrl.LOGIN_JSP)
                     .forward(request, response);
         }
     }

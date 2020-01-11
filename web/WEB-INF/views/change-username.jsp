@@ -36,7 +36,7 @@
             <div class="row justify-content-center">
                 <button type="submit" name="confirm" class="btn btn-success btn-lg">Confirm</button>
                 <button type="button" class="btn btn-light btn-lg" disabled></button>
-                <button type="submit" class="btn btn-primary btn-lg" name="cancel" value="cancel">Cancel</button>
+                <a href="home" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Cancel</a>
             </div>
         </form>
     </div>

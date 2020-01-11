@@ -1,5 +1,6 @@
 package com.itacademy.softserve.controller;
 
+import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
 import com.itacademy.softserve.dto.UserDto;
@@ -39,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
             SessionManager.createSession(userDto, request, response);
             response.sendRedirect(request.getContextPath() + ServletUrl.HOME_URL);
         } catch (RuntimeException e) {
-            request.setAttribute("error", "Such user already exist");
+            request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.SUCH_USER_EXIST.toString());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(JspUrl.REGISTER_JSP)

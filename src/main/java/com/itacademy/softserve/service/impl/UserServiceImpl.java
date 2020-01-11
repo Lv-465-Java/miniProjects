@@ -1,5 +1,6 @@
 package com.itacademy.softserve.service.impl;
 
+import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.param.UpdateUserParam;
 import com.itacademy.softserve.dao.UserDao;
 import com.itacademy.softserve.dao.builder.UserBuilder;
@@ -50,7 +51,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean changePassword(HttpServletRequest request) {
-        return false;
+        String oldPassword = request.getParameter("oldPassword");
+        String newPassword = request.getParameter("newPassword");
+        String repeatPassword = request.getParameter("repeatPassword");
+        UserDto userDto = (UserDto) request.getSession(false).getAttribute("userDto");
+        if(!oldPassword.equals(userDto.getPassword())
+           || !newPassword.equals(repeatPassword)) {
+            throw new NotSaveException(ErrorMessage.INCORRECT_DATA.toString());
+        }
+        return userDao.updateByField(UpdateUserParam.PASSWORD, newPassword, userDto.getName());
     }
 
     @Override
@@ -59,6 +68,9 @@ public class UserServiceImpl implements UserService {
             HttpSession session = request.getSession(false);
             String name = ((UserDto) session.getAttribute("userDto")).getName();
             String newName = request.getParameter("newUsername");
+            if(newName.isEmpty()) {
+                return false;
+            }
             return userDao.updateByField(UpdateUserParam.USERNAME, newName, name);
         }
         return false;

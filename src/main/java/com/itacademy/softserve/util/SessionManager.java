@@ -70,13 +70,23 @@ public class SessionManager {
         }
     }
 
-    public static void changeSessionAttribute(HttpServletRequest request) {
+    public static void changeSessionAttributeNewUserName(HttpServletRequest request) {
         UserDao userDao = new UserDao();
         UserBuilder userBuilder = new UserBuilder();
         UserDtoMapper userDtoMapper = new UserDtoMapper();
         UserDto userDto = userDtoMapper.mapFromEntityToDto(userDao
                 .getByFields(userBuilder, request.getParameter("newUsername")).get(0));
         HttpSession session = request.getSession(false);
+        session.setAttribute("userDto", userDto);
+    }
+
+    public static void changeSessionAttributeNewPassword(HttpServletRequest request) {
+        UserDao userDao = new UserDao();
+        UserBuilder userBuilder = new UserBuilder();
+        UserDtoMapper userDtoMapper = new UserDtoMapper();
+        HttpSession session = request.getSession(false);
+        String name = ((UserDto)session.getAttribute("userDto")).getName();
+        UserDto userDto = userDtoMapper.mapFromEntityToDto(userDao.getByFields(userBuilder, name).get(0));
         session.setAttribute("userDto", userDto);
     }
 }

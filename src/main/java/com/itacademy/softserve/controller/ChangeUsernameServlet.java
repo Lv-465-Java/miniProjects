@@ -2,12 +2,10 @@ package com.itacademy.softserve.controller;
 
 import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
-import com.itacademy.softserve.entity.User;
 import com.itacademy.softserve.service.UserService;
 import com.itacademy.softserve.service.impl.UserServiceImpl;
 import com.itacademy.softserve.util.SessionManager;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +32,7 @@ public class ChangeUsernameServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(userService.changeUsername(request)) {
-            SessionManager.changeSessionAttribute(request);
+            SessionManager.changeSessionAttributeNewUserName(request);
             response.sendRedirect(request.getContextPath() + ServletUrl.HOME_URL);
         }
     }

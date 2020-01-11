@@ -18,6 +18,12 @@
 <jsp:include page="fragments/header.jsp"/>
 <div class="row justify-content-center">
     <div class="col-12 col-md-10 col-lg-8">
+        <c:if test="${error ne null}">
+            <p class="text-center">
+                <br><br>
+                <font color="red">${error}</font>
+            </p>
+        </c:if>
         <form action="${pageContext.request.contextPath}/change-password" method="post">
             <div class="form-group row">
                 <label for="oldPassword" class="col-sm-2 col-form-label">Old password</label>
@@ -43,7 +49,7 @@
             <div class="row justify-content-center">
                 <button type="submit" name="confirm" class="btn btn-success btn-lg">Confirm</button>
                 <button type="button" class="btn btn-light btn-lg" disabled></button>
-                <button type="submit" class="btn btn-primary btn-lg" name="cancel" value="cancel">Cancel</button>
+                <a href="home" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Cancel</a>
             </div>
         </form>
     </div>
