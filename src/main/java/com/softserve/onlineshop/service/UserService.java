@@ -20,7 +20,7 @@ public interface UserService {
 
     List<User> getAll();
 
-    boolean updateById(Object... args);
+    boolean updateById(Long id);
 
     boolean deleteById(Long id);
 

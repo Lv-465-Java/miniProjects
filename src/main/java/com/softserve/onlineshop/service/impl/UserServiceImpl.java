@@ -1,4 +1,4 @@
-package com.softserve.onlineshop.service;
+package com.softserve.onlineshop.service.impl;
 
 import com.softserve.onlineshop.dao.impl.UserDaoImpl;
 import com.softserve.onlineshop.dao.mapper.UserRowMapper;
@@ -10,10 +10,12 @@ import com.softserve.onlineshop.exception.NotDeletedException;
 import com.softserve.onlineshop.exception.NotFoundException;
 import com.softserve.onlineshop.exception.NotInsertedException;
 import com.softserve.onlineshop.exception.NotValidException;
+import com.softserve.onlineshop.service.UserService;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+
     private UserDaoImpl userDao;
 
     public UserServiceImpl() {
@@ -54,9 +56,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateById(Object... args) {
+    public boolean updateById(Long id) {
         return false;
     }
+
 
     @Override
     public boolean deleteById(Long id) {

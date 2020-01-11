@@ -23,19 +23,21 @@
         <form action="${pageContext.request.contextPath}/register" method="post">
             <h2 class="text-center"><strong>Create</strong> an account</h2>
             <c:if test="${not empty error}">
-                <div>
-
-                    <p>
-                        <span style="color: red;" >${error}</span>
-                    </p>
+                <div class="alert alert-danger">
+                        ${error}
+                </div>
+            </c:if>
+            <c:if test="${not empty success}">
+                <div class="alert alert-success">
+                        ${success}
                 </div>
             </c:if>
             <div class="form-group">
-                <input class="form-control" type="text" name="nickname" placeholder="Nickname">
+                <input class="form-control" type="text" name="nickname" placeholder="Nickname" required>
             </div>
 
             <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password">
+                <input class="form-control" type="password" name="password" placeholder="Password" required>
             </div>
 
             <div class="form-group">

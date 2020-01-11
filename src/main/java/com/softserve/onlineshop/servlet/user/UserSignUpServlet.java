@@ -2,7 +2,7 @@ package com.softserve.onlineshop.servlet.user;
 
 import com.softserve.onlineshop.dto.UserDto;
 import com.softserve.onlineshop.service.UserService;
-import com.softserve.onlineshop.service.UserServiceImpl;
+import com.softserve.onlineshop.service.impl.UserServiceImpl;
 import com.softserve.onlineshop.util.SessionUtil;
 
 import javax.servlet.ServletException;
@@ -33,6 +33,7 @@ public class UserSignUpServlet extends HttpServlet {
         try {
             userService.save(userDto);
             SessionUtil.createSession(userDto, request, response);
+            request.setAttribute("success", "Registration Successful");
             response.sendRedirect(request.getContextPath() + "/index");
 
         } catch (RuntimeException ex) {

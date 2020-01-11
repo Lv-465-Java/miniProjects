@@ -25,10 +25,13 @@
         <form action="${pageContext.request.contextPath}/login" method="post">
             <h2 class="text-center"><strong>Login</strong> an account</h2>
             <c:if test="${not empty error}">
-                <div>
-                    <p>
-                        <span style="color: red">${error}</span>
-                    </p>
+                <div class="alert alert-danger">
+                   ${error}
+                </div>
+            </c:if>
+            <c:if test="${not empty success}">
+                <div class="alert alert-success">
+                        ${success}
                 </div>
             </c:if>
             <div class="form-group">

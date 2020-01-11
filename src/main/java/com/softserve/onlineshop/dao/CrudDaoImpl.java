@@ -42,5 +42,4 @@ public abstract class CrudDaoImpl<T> extends ReadDaoImpl<T> implements CrudDao<T
         int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.DELETE_BY_ID).toString(), id);
         return executeQuery > 0;
     }
-
 }

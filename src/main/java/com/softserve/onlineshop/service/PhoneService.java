@@ -9,15 +9,15 @@ import java.util.Optional;
 
 public interface PhoneService {
 
-    boolean insert(PhoneDto phoneDto);
+    boolean save(PhoneDto phoneDto);
 
     Optional<Phone> getById(Long id);
 
-    List<Phone> getByFieldName(String fieldName, String fieldValue);
+    List<PhoneDto> getByFieldName(String fieldName, String fieldValue);
 
-    List<Phone> getAll();
+    List<PhoneDto> getAll();
 
-    boolean updateById(Object... args);
+    boolean updateById(Long id);
 
     boolean updateByFieldName(String fieldName, String text, String fieldCondition, String textCondition);
 

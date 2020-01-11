@@ -2,11 +2,9 @@ package com.softserve.onlineshop.servlet.user;
 
 import com.softserve.onlineshop.dto.UserDto;
 import com.softserve.onlineshop.service.UserService;
-import com.softserve.onlineshop.service.UserServiceImpl;
+import com.softserve.onlineshop.service.impl.UserServiceImpl;
 import com.softserve.onlineshop.util.SessionUtil;
 
-import javax.annotation.security.DeclareRoles;
-import javax.resource.spi.AuthenticationMechanism;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -32,6 +30,7 @@ public class UserLoginServlet extends HttpServlet {
         try {
             userService.isValid(userDto);
             SessionUtil.createSession(userDto, request, response);
+            request.setAttribute("success", "Login Successful");
             response.sendRedirect(request.getContextPath() + "/index");
         } catch (RuntimeException ex) {
             request.setAttribute("error", "Bad Login or Password");

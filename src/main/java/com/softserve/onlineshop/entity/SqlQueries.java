@@ -10,8 +10,7 @@ public enum SqlQueries {
     GET_ALL,
     UPDATE_BY_ID,
     UPDATE_BY_FIELD,
-    DELETE_BY_ID,
-    DELETE_BY_FIELD;
+    DELETE_BY_ID;
 
     private SqlQueries() {
     }

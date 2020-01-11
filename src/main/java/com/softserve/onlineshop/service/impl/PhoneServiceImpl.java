@@ -3,13 +3,16 @@
 //import com.softserve.onlineshop.dao.impl.PhoneDaoImpl;
 //import com.softserve.onlineshop.dao.mapper.PhoneRowMapper;
 //import com.softserve.onlineshop.dto.PhoneDto;
+//import com.softserve.onlineshop.dto.mapper.UserDtoMapper;
 //import com.softserve.onlineshop.entity.Phone;
 //import com.softserve.onlineshop.exception.NotDeletedException;
 //import com.softserve.onlineshop.exception.NotFoundException;
 //import com.softserve.onlineshop.exception.NotInsertedException;
 //
+//import java.util.LinkedList;
 //import java.util.List;
 //import java.util.Optional;
+//import java.util.stream.Collectors;
 //
 //public class PhoneServiceImpl implements PhoneService {
 //
@@ -39,17 +42,19 @@
 //    }
 //
 //    @Override
-//    public List<Phone> getByFieldName(String fieldName, String fieldValue) {
+//    public List<PhoneDto> getByFieldName(String fieldName, String fieldValue) {
 //        return null;
 //    }
 //
 //    @Override
-//    public List<Phone> getAll() {
-//        List<Phone> phones = phoneDao.getAll();
-//        if (phones.isEmpty()) {
-//            throw new NotFoundException();
-//        }
-//        return phones;
+//    public List<PhoneDto> getAll() {
+//        return new LinkedList<>();
+////        return phoneDao.getAll(new UserDtoMapper());
+////        List<Phone> phones = phoneDao.getAll();
+////        if (phones.isEmpty()) {
+////            throw new NotFoundException();
+////        }
+////        return phones;
 //    }
 //
 //    @Override
