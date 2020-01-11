@@ -15,8 +15,8 @@
 
 <body>
 <div class="mainContainer">
-    <div class="signIn">
-        <form action="${pageContext.request.contextPath}/profile" autocomplete="on" method="post">
+    <div action="${pageContext.request.contextPath}/profile" class="signIn">
+        <form autocomplete="on" method="post">
             <label for="Email" class="floatLabel">Email<span class="asterisk">*</span></label>
             <input id="Email" name="email" type="email" required>
             <label for="Password" class="floatLabel">Password<span class="asterisk">*</span></label>

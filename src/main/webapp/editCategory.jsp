@@ -10,48 +10,49 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href=<c:url value="resource/css/file.css"></c:url>>
-    <link rel="stylesheet" href=<c:url value="resource/css/forms.css"></c:url>>
+    <link rel="stylesheet" href=<c:url value="resource/css/file.css"> </c:url>>
+    <link rel="stylesheet" href=<c:url value="resource/css/forms.css"> </c:url>>
 </head>
 
 <body>
+<jsp:include page="/header.jsp"/>
 
-<input action="edit-category" method="post">
+<div class="formsContainer">
+    <div class="form-group">
+        <form action="${pageContext.request.contextPath}/edit-category" method="post">
+            <input type="hidden" name="category_id" value="${category.id}"/>
+            <label for="categoryTitle" class="floatLabel">Title<span class="asterisk">*</span></label>
+            <input id="categoryTitle" name="title" type="text" required
+                   value=<c:out value="${category.title}"> </c:out>>
+            <%--@elvariable id="category" type="com.softserve.entity.Category"--%>
 
-<div class="form-header">
-    <h5 class="form-title" id="editCategoryTitle">Edit your category</h5>
-    <button type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span></button>
-</div>
 
-<div class="form-group">
-    <label for="CategoryTitle" class="floatLabel">Title<span class="asterisk">*</span></label>
-    <input id="CategoryTitle" name="title" type="text" required
-           value="${pageContext.request.getParameter("category")}">
-</div>
-<label for="CategoryColor" class="floatLabel">Color</label>
-<input id="CategoryColor" name="color" type="color">
-<div class="form-group">
-    <label for="CategoryDescription" class="floatLabel">Description</label>
-    <input id="CategoryDescription" name="description" type="text">${category.title}
-</div>
+            <label for="categoryColor" class="floatLabel">Color</label>
+            <input id="categoryColor" name="color" type="color" value=<c:out value="${category.color}"> </c:out>>
 
-<div class="form-group" id="all-forms">
-    <label for="financial-type">Financial Type</label>
-    <select class="form-select" id="financial-type" name="financial_type"
-            value=<c:out value="${category.financialTypeId}">
-    </c:out>>
-        <option selected disabled>Select type</option>
-        <c:forEach var="financialType" items="${financialTypes}">
-            <option id="option" value="${financialType.id}">${financialType.typeName}</option>
-        </c:forEach>
-    </select>
+            <label for="categoryDescription" class="floatLabel">Description</label>
+            <input id="categoryDescription" name="description" type="text"
+                   value=<c:out value="${category.description}"> </c:out>>
+
+            <label for="financialType">Financial Type<span class="asterisk">*</span></label>
+            <select class="form-select" id="financialType" name="financial_type" required
+                    value=<c:out value="${category.financialTypeId}"> </c:out>>
+                <%--@elvariable id="financialTypes" type="java.util.List"--%>
+                <c:forEach var="financialType" items="${financialTypes}">
+                    <option id="option" value="${financialType.id}">${financialType.typeName}</option>
+                </c:forEach>
+            </select>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary" id="mainPageButton4">Save changes</button>
+            </div>
+        </form>
+        <form action="${pageContext.request.contextPath}/profile" method="get">
+            <button type="submit" class="btn btn-primary" id="mainPageButton">Cancel
+            </button>
+        </form>
+    </div>
 </div>
-<div class="form-footer">
-<label for="close-button">Close button</label>
-<input type="button" class="btn btn-secondary" id="close-button">
-<input type="submit" class="btn btn-primary">Save changes</input>
-</div>
-</form>
 </body>
+
+
 </html>

@@ -1,8 +1,8 @@
 body
 {
 	background-color: #676486;
-	font-family: Palatino Linotype;
-	font: 1.7em;
+	font-family: Palatino Linotype, monospace;
+	/*font: 1.7em;*/
 	font-style: normal;
 	font-variant: normal;
 }

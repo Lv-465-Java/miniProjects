@@ -8,7 +8,7 @@ public class Category {
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, title, color, description, user_id, financial_type_id FROM categories WHERE id = ?"),
         GET_ALL_BY_USER_ID(SqlQueries.GET_ALL_BY_USER_ID, "SELECT * FROM categories WHERE user_id = ?"),
         GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE(SqlQueries.GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE, "SELECT * FROM categories WHERE user_id = ? AND financial_type_id = ?"),
-        UPDATE(SqlQueries.UPDATE, "UPDATE categories SET title = ?, color = ?, description = ?, financial_type_id = ? WHERE id = ?"),
+        UPDATE(SqlQueries.UPDATE, "UPDATE categories SET title = ?, color = ?, description = ?, user_id = ?, financial_type_id = ? WHERE id = ?"),
         DELETE(SqlQueries.DELETE, "DELETE FROM categories WHERE id = ?");
 
         private SqlQueries sqlQuery;

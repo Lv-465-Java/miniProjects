@@ -18,19 +18,27 @@
 <jsp:include page="/header.jsp"/>
 
 <div class="formsContainer">
-    <div action="/edit-user" method="post" class="form-group">
-        <label for="first_name" class="floatLabel">First name<span class="asterisk">*</span></label>
-        <input id="firstName" name="first_name" class="form-control" type="text" required value=<c:out
-                value="${user.firstName}"> </c:out>>
+    <div class="form-group">
+        <form action="${pageContext.request.contextPath}/edit-user" method="post">
+            <label for="firstName" class="floatLabel">First name<span class="asterisk">*</span></label>
+            <input id="firstName" name="first_name" type="text" required
+                   value=
+                   <%--@elvariable id="user" type="com.softserve.entity.User"--%>
+                   <c:out value="${user.firstName}"> </c:out>>
 
-        <label for="formGroupExampleInput2" class="floatLabel">Last name<span class="asterisk">*</span></label>
-        <input type="text" name="last_name" class="form-control" id="formGroupExampleInput2" required value=<c:out
-                value="${user.lastName}"></c:out>>
+            <label for="lastName" class="floatLabel">Last name<span class="asterisk">*</span></label>
+            <input type="text" name="last_name" id="lastName" required
+                   value=<c:out value="${user.lastName}"> </c:out>>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary" id="mainPageButton2">Save changes</button>
+            </div>
+        </form>
+        </form>
+        <form action="${pageContext.request.contextPath}/profile" method="get">
+            <button type="submit" class="btn btn-primary" id="mainPageButton">Cancel</button>
+        </form>
     </div>
-    <div class="form-footer">
-        <button type="submit" class="btn btn-primary" id="mainPageButton"><a href="/profile"></a>Cancel</button>
-        <button type="submit" class="btn btn-primary" id="mainPageButton">Save changes</button>
-    </div>
+
 </div>
 
 </body>

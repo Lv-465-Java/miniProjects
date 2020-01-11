@@ -19,16 +19,16 @@
 
 <div class="formsContainer">
     <div action="/edit-user" method="post" class="form-group">
-        <label for="first_name" class="floatLabel">First name<span class="asterisk">*</span></label>
+        <label for="firstName" class="floatLabel">First name<span class="asterisk">*</span></label>
         <input id="firstName" name="first_name" class="form-control" type="text" required value=<c:out
                 value="${user.firstName}"> </c:out>>
 
-        <label for="last_name" class="floatLabel">Last name<span class="asterisk">*</span></label>
+        <label for="formGroupExampleInput2" class="floatLabel">Last name<span class="asterisk">*</span></label>
         <input type="text" name="last_name" class="form-control" id="formGroupExampleInput2" required value=<c:out
-                value="${user.lastName}"></c:out>>
+                value="${user.lastName}"> </c:out>>
     </div>
     <div class="form-footer">
-        <button type="submit" class="btn btn-primary" id="mainPageButton"><a href="/profile"></a>Cancel</button>
+        <button type="submit" class="btn btn-primary" id="mainPageButton1"><a href="/profile"></a>Cancel</button>
         <button type="submit" class="btn btn-primary" id="mainPageButton">Save changes</button>
     </div>
 </div>

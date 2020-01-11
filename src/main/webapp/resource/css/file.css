@@ -1,17 +1,17 @@
 body
 {
 	background-color: #676486;
-	font-family: Palatino Linotype;
-	font: 1.7em;
+	font-family: Palatino Linotype, serif;
+	/*font: 1.7em;*/
 	font-style: normal;
 	font-variant: normal;
 }
 
 .mainContainer
 {
-    background-color: white;
-    width: 1000px;
-    margin: 25px auto;
+	background-color: white;
+	width: 1000px;
+	margin: 25px auto;
 }
 
 .whySignUp, .whySignIn
@@ -27,7 +27,7 @@ body
 
 .whySignUp
 {
-    height: 444px;
+	height: 444px;
 }
 
 .whySignIn
@@ -47,7 +47,7 @@ body
 
 .signIn
 {
-    padding: 49px 20px;
+	padding: 49px 20px;
 }
 
 #mainPageButton:hover
@@ -61,13 +61,12 @@ body
 [type="email"]
 {
 	display: block;
-	margin: 0 auto;
 	width: 80%;
 	border: 0;
 	border-bottom: 1px solid rgba(0, 0, 0, .2);
 	height: 30px;
 	line-height: 45px;
-	margin-bottom: 10px;
+	margin: 0 auto 10px;
 	font-size: 1em;
 	color: rgba(0, 0, 0, .4);
 }
@@ -75,11 +74,10 @@ body
 .floatLabel
 {
 	display: inline-flex;
-	margin: 0 auto;
 	width: 80%;
 	height: 15px;
 	line-height: 45px;
-	margin-bottom: 10px;
+	margin: 0 auto 10px;
 	font-size: 1.2em;
 	color: rgba(0, 0, 0, .5);
 }
@@ -102,10 +100,10 @@ input[type=password]:focus,
 [type=email]:focus,
 [type=text]:focus
 {
- 	outline: none;
- 	border-color: #2038bd;
- 	box-shadow: none;
-    border-radius: unset;
+	outline: none;
+	border-color: #2038bd;
+	box-shadow: none;
+	border-radius: unset;
 }
 
 h1
@@ -115,7 +113,7 @@ h1
 	font-size: 2.5em;
 	text-align:center;
 	margin-top: 10px;
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 p
@@ -133,7 +131,7 @@ p
 	margin: 14px 24px 0px 24px;
 }
 #error {
-    color: #db3c30;
+	color: #db3c30;
 }
 
 a
@@ -145,18 +143,18 @@ a
 
 .asterisk
 {
-    color: #db3c30;
-    margin-left: 3px;
+	color: #db3c30;
+	margin-left: 3px;
 }
 
 .errorsContainer
 {
 	background-color: white;
-    width: 700px;
-    height: 300px;
-    border-radius: 5px 5px 5px 5px;
-    margin: 25px auto;
-    text-align: center;
+	width: 700px;
+	height: 300px;
+	border-radius: 5px 5px 5px 5px;
+	margin: 25px auto;
+	text-align: center;
 }
 
 #errorName
@@ -174,117 +172,122 @@ a
 
 .profileContainer
 {
-    background-color: white;
-    width: 1400px;
-    height: 670px;
-    border-radius: 5px 5px 5px 5px;
-    margin-left: 60px;
+	background-color: white;
+	width: 1400px;
+	height: 670px;
+	border-radius: 5px 5px 5px 5px;
+	margin-left: 60px;
 }
 
 .profileInfo
 {
-    margin-left: 50px;
-    padding-top: 25px;
+	margin-left: 50px;
+	padding-top: 25px;
 }
 
 #profileName
 {
-    font-size: 1.8em;
-    font-weight: 800;
+	font-size: 1.8em;
+	font-weight: 800;
 }
 
 #profileEmail
 {
-    font-size: 1.5em;
-    font-weight: 750;
+	font-size: 1.5em;
+	font-weight: 800;
 }
 
 #profilePassword
 {
-    font-size: 1em;
-    font-weight: 500;
+	font-size: 1em;
+	font-weight: 500;
 }
 
 
 
 ---------------------------
-/*html, body
-{
-    background-color: #676486;
-}*/
+	/*html, body
+    {
+        background-color: #676486;
+    }*/
 
 header
 {
-  font-family: Raleway;
-  margin: 0 auto;
-/*
-  padding: 5em 3em;
-*/
-  text-align: center;
+	font-family: Raleway;
+	margin: 0 auto;
+	/*
+      padding: 5em 3em;
+    */
+	text-align: center;
 }
 
 header h1
 {
-    color: #AAA;
-    font-size: 40px;
-    font-weight: lighter;
-    margin-bottom: 5px;
+	color: #AAA;
+	font-size: 40px;
+	font-weight: lighter;
+	margin-bottom: 5px;
 }
 
 .headerContainer
 {
-    text-align: center;
-    width: 100%;
-    padding: 25px;
+	text-align: center;
+	width: 100%;
+	padding: 25px;
 }
 
 .headerContainer a
 {
-    text-decoration: none;
-    font: 20px Raleway;
-    margin: 0px 10px;
-    padding: 10px 10px;
-    position: relative;
-    z-index: 0;
-    cursor: pointer;
-    color: #fffefe;
+	text-decoration: none;
+	font: 20px Raleway;
+	margin: 0px 10px;
+	padding: 10px 10px;
+	position: relative;
+	z-index: 0;
+	cursor: pointer;
+	color: #fffefe;
 }
 
 .headerContainer a:before
 {
-    position: absolute;
-    opacity: 0;
-    font-size: 35px;
-    top: 0px;
-    transition: all 0.3s;
+	position: absolute;
+	opacity: 0;
+	font-size: 35px;
+	top: 0px;
+	transition: all 0.3s;
 }
 
 .headerContainer a:after
 {
-    position: absolute;
-    opacity: 0;
-    font-size: 35px;
-    top: 0px;
-    transition: all 0.3s;
+	position: absolute;
+	opacity: 0;
+	font-size: 35px;
+	top: 0px;
+	transition: all 0.3s;
 }
 
 .headerContainer a:before
 {
-    content: '(';
-    left: 0px;
-    transform: translateX(10px);
+	content: '(';
+	left: 0px;
+	transform: translateX(10px);
 }
 
 .headerContainer a:after
 {
-    content: ')';
-    right: 0px;
-    transform: translateX(-10px);
+	content: ')';
+	right: 0px;
+	transform: translateX(-10px);
 }
 
 .headerContainer a:hover:before,
 .headerContainer a:hover:after
 {
-    opacity: 1;
-    transform: translateX(0px);
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.btn-primary
+{
+	width: 114px;
 }

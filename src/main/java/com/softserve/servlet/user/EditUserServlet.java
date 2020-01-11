@@ -29,7 +29,7 @@ public class EditUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDTO currentSessionUser = userSession.retrieveUserIdFromSession(req);
         UserDTO userWithAllInfo = userService.getByEmail(currentSessionUser.getEmail());
-        req.setAttribute("user  ", userWithAllInfo);
+        req.setAttribute("user", userWithAllInfo);
         req.getRequestDispatcher(View.USER_EDIT.getViewUrl()).include(req, resp);
     }
 
