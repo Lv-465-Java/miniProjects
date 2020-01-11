@@ -3,6 +3,7 @@ package com.softserve.service.implementation;
 import com.softserve.constant.ErrorMessage;
 import com.softserve.dao.implementation.RecordDAOImpl;
 import com.softserve.dto.RecordDTO;
+import com.softserve.entity.FinancialType;
 import com.softserve.entity.Record;
 import com.softserve.exception.NoSuchEntityException;
 import com.softserve.exception.NotCompletedActionException;
@@ -10,6 +11,7 @@ import com.softserve.service.ReadAllService;
 import com.softserve.service.mapper.RecordMapperObjects;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RecordServiceImpl implements ReadAllService<RecordDTO> {
@@ -69,5 +71,8 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         return true;
     }
 
+    public List<FinancialType> getTypes() {
+        return Arrays.asList(FinancialType.values());
+    }
     // filter method
 }

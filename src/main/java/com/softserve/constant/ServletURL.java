@@ -3,7 +3,13 @@ package com.softserve.constant;
 public enum ServletURL {
     LOGIN_SERVLET("/login"),
     REGISTRATION_SERVLET("/register"),
-    USER_PROFILE("/profile");
+    USER_PROFILE("/profile"),
+    EDIT_USER("/"),
+    CHANGE_USER_PASSWORD("/"),
+    ADD_CATEGORY(""),
+    EDIT_CATEGORY(""),
+    DELETE_CATEGORY(""),
+    RECORD_DASHBOARD("/record-dashboard");
 
     String servletURL;
 

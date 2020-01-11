@@ -19,7 +19,7 @@
 
                 <div class="headerContainer">
                     <a href="/profile">Profile</a>
-                    <a>Records</a>
+                    <a href="/record-dashboard">Records</a>
                     <a>Planned Outcomes</a>
                     <a href="/logout">Logout</a>
                 </div>

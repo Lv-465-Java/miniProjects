@@ -9,7 +9,11 @@ public enum View {
     CATEGORY_ADD_PAGE("/addCategory.jsp"),
     CATEGORY_EDIT_PAGE("/editCategory.jsp"),
     USER_EDIT("/editUser.jsp"),
-    CATEGORY_DELETE_PAGE("/deleteCategory.jsp");
+    CATEGORY_DELETE_PAGE("/deleteCategory.jsp"),
+    RECORD_DASHBOARD_PAGE("/recordDashboard.jsp"),
+    ADD_RECORD_PAGE("/addRecord.jsp"),
+    EDIT_RECORD_PAGE(""),
+    DELETE_RECORD_PAGE("");
 
     String viewUrl;
 

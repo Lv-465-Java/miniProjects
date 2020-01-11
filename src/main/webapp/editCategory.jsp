@@ -18,7 +18,13 @@
 <jsp:include page="/header.jsp"/>
 
 <div class="formsContainer">
+
+    <div class="form-header">
+        <h5 class="form-title" name="editCategoryTitle">Edit category</h5>
+    </div>
+
     <div class="form-group">
+
         <form action="${pageContext.request.contextPath}/edit-category" method="post">
             <input type="hidden" name="category_id" value="${category.id}"/>
             <label for="categoryTitle" class="floatLabel">Title<span class="asterisk">*</span></label>

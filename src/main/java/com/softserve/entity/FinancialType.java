@@ -1,8 +1,8 @@
 package com.softserve.entity;
 
 public enum FinancialType {
-    INCOME(1L, "INCOME"),
-    OUTCOME(2L, "OUTCOME");
+    INCOME(1L, "Income"),
+    OUTCOME(2L, "Outcome");
 
     Long id;
     String typeName;

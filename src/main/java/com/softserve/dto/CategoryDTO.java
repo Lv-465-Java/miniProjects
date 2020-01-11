@@ -1,5 +1,7 @@
 package com.softserve.dto;
 
+import java.util.Objects;
+
 public class CategoryDTO {
 
     private Long id;
@@ -60,19 +62,6 @@ public class CategoryDTO {
         this.financialTypeId = financialTypeId;
     }
 
-    @Override
-    public String toString() {
-        return "CategoryDTO{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", color='" + color + '\'' +
-                ", description='" + description + '\'' +
-                ", userId=" + userId +
-                ", financialTypeId=" + financialTypeId +
-                '}';
-    }
-
-
     public static final class Builder {
         private Long id;
         private String title;
@@ -128,5 +117,35 @@ public class CategoryDTO {
             categoryDTO.setFinancialTypeId(financialTypeId);
             return categoryDTO;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CategoryDTO that = (CategoryDTO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(color, that.color) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(userId, that.userId) &&
+                Objects.equals(financialTypeId, that.financialTypeId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, color, description, userId, financialTypeId);
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryDTO{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", color='" + color + '\'' +
+                ", description='" + description + '\'' +
+                ", userId=" + userId +
+                ", financialTypeId=" + financialTypeId +
+                '}';
     }
 }

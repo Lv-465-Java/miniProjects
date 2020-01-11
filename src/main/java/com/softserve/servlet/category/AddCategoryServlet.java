@@ -18,8 +18,11 @@ import java.io.IOException;
 
 @WebServlet(value = {"/add-category"})
 public class AddCategoryServlet extends HttpServlet {
+
     private CategoryServiceImpl categoryService;
     private UserSession userSession;
+    private Logger LOG = LoggerFactory.getLogger(AddCategoryServlet.class);
+    private UserDTO currentSessionUser;
 
     @Override
     public void init() {
@@ -31,24 +34,26 @@ public class AddCategoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("financialTypes", categoryService.getTypes());
         req.getRequestDispatcher(View.CATEGORY_ADD_PAGE.getViewUrl()).include(req, resp);
+        LOG.info("'Add new Category' Page is loaded");
     }
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Logger LOG = LoggerFactory.getLogger(AddCategoryServlet.class);
-        LOG.info("start");
-        UserDTO userDTO = userSession.retrieveUserIdFromSession(req);
+        currentSessionUser = userSession.retrieveUserIdFromSession(req);
+
         String title = req.getParameter(ServletResponseParameter.CATEGORY_TITLE.getServletParameter());
         String color = req.getParameter(ServletResponseParameter.CATEGORY_COLOR.getServletParameter());
         String description = req.getParameter(ServletResponseParameter.CATEGORY_DESCRIPTION.getServletParameter());
-        Long financialType = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_FINANCIAL_TYPE.getServletParameter()));
+        Long financialType = Long.parseLong(req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()));
+
         CategoryDTO categoryDTO = CategoryDTO.Builder.aCategoryDTO()
                 .withTitle(title)
                 .withColor(color)
                 .withDescription(description)
-                .withUserId(userDTO.getId())
+                .withUserId(currentSessionUser.getId())
                 .withFinancialTypeId(financialType)
                 .build();
+
         categoryService.create(categoryDTO);
         resp.sendRedirect(req.getContextPath() + "/profile");
     }
