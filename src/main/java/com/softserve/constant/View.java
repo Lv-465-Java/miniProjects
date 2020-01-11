@@ -11,9 +11,9 @@ public enum View {
     USER_EDIT("/editUser.jsp"),
     CATEGORY_DELETE_PAGE("/deleteCategory.jsp"),
     RECORD_DASHBOARD_PAGE("/recordDashboard.jsp"),
-    ADD_RECORD_PAGE("/addRecord.jsp"),
-    EDIT_RECORD_PAGE(""),
-    DELETE_RECORD_PAGE("");
+    RECORD_ADD_PAGE("/addRecord.jsp"),
+    RECORD_EDIT_PAGE("/editRecord.jsp"),
+    RECORD_DELETE_PAGE("/deleteRecord.jsp");
 
     String viewUrl;
 

@@ -22,7 +22,6 @@ import java.time.LocalDate;
 
 @WebServlet(value = {"/add-record"})
 public class AddRecordServlet extends HttpServlet {
-
     private RecordServiceImpl recordService;
     private CategoryServiceImpl categoryService;
     private PlanedOutcomeServiceImpl planedOutcomeService;
@@ -44,7 +43,7 @@ public class AddRecordServlet extends HttpServlet {
         req.setAttribute("categories", categoryService.getAllByUserId(currentSessionUser.getId()));
         req.setAttribute("financialTypes", recordService.getTypes());
         req.setAttribute("plannedOutcomes", planedOutcomeService.getAllByUserId(currentSessionUser.getId()));
-        req.getRequestDispatcher(View.ADD_RECORD_PAGE.getViewUrl()).include(req, resp);
+        req.getRequestDispatcher(View.RECORD_ADD_PAGE.getViewUrl()).include(req, resp);
 
         LOG.info("'Add new Record' Page is loaded");
     }
@@ -59,7 +58,7 @@ public class AddRecordServlet extends HttpServlet {
         Long financialTypeId = Long.parseLong(req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()));
         Long categoryId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
         Long plannedOutcomeId = null;
-        LOG.info(date + "THIS IS DATE");
+
         if (req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()) != null) {
             plannedOutcomeId = Long.parseLong(req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()));
         }
@@ -84,7 +83,7 @@ public class AddRecordServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/edit-record");
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher(View.ADD_RECORD_PAGE.getViewUrl())
+                    .getRequestDispatcher(View.RECORD_ADD_PAGE.getViewUrl())
                     .forward(req, resp);
         }
     }
