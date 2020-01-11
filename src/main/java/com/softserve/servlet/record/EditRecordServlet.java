@@ -43,7 +43,11 @@ public class EditRecordServlet extends HttpServlet {
         //Take a look here
         recordId = Long.parseLong(req.getParameter("editRecordButton"));
         req.setAttribute("record", recordService.getById(recordId));
+        LOG.info("user id " + currentSessionUser.getId());
+
         req.setAttribute("categories", categoryService.getAllByUserId(currentSessionUser.getId()));
+
+        LOG.info("CAT " + categoryService.getAllByUserId(currentSessionUser.getId()));
         req.setAttribute("financialTypes", recordService.getTypes());
         req.setAttribute("plannedOutcomes", planedOutcomeService.getAllByUserId(currentSessionUser.getId()));
         req.getRequestDispatcher(View.RECORD_EDIT_PAGE.getViewUrl()).include(req, resp);

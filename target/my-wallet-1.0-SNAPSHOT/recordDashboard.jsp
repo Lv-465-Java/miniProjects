@@ -51,7 +51,7 @@
                     <td>${record.categoryId}</td>
                     <td>${record.planedOutcomeId}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/edit-category" method="get">
+                        <form action="${pageContext.request.contextPath}/edit-record" method="get">
                             <input type="submit" class="btn btn-outline-danger" name="editRecordButton"
                                    value="${record.id}">Edit
                         </form>
