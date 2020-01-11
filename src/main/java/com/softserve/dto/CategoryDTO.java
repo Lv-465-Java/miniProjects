@@ -3,7 +3,6 @@ package com.softserve.dto;
 import java.util.Objects;
 
 public class CategoryDTO {
-
     private Long id;
     private String title;
     private String color;

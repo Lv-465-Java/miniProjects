@@ -1,5 +1,7 @@
 package com.softserve.dto;
 
+import java.util.Objects;
+
 public class UserDTO {
     private Long id;
     private String firstName;
@@ -10,7 +12,6 @@ public class UserDTO {
 
     public UserDTO() {
     }
-
 
     public Long getId() {
         return id;
@@ -58,19 +59,6 @@ public class UserDTO {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", photo='" + photo + '\'' +
-                '}';
     }
 
     public static final class Builder {
@@ -128,5 +116,35 @@ public class UserDTO {
             userDTO.setPhoto(photo);
             return userDTO;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return Objects.equals(id, userDTO.id) &&
+                Objects.equals(firstName, userDTO.firstName) &&
+                Objects.equals(lastName, userDTO.lastName) &&
+                Objects.equals(email, userDTO.email) &&
+                Objects.equals(password, userDTO.password) &&
+                Objects.equals(photo, userDTO.photo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, password, photo);
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", photo='" + photo + '\'' +
+                '}';
     }
 }
