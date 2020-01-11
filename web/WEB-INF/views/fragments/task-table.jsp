@@ -17,8 +17,8 @@
     <tr>
         <th>Task ID</th>
         <th>Description</th>
-        <th>Status</th>
         <th>Creation date</th>
+        <th>Status</th>
         <th>Deadline</th>
         <th>Assignee</th>
         <th>Owner</th>
@@ -31,8 +31,8 @@
         <tr>
             <td>${task.taskID}</td>
             <td>${task.description}</td>
-            <td>${task.status}</td>
             <td>${task.creationDate}</td>
+            <td>${task.status}</td>
             <td>${task.deadline}</td>
             <td>${task.assignee}</td>
             <td>${task.owner}</td>

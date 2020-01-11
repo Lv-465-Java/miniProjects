@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.DataTruncation;
 import java.util.List;
 
 @WebServlet(ServletUrl.EDIT_TASK)
@@ -21,6 +22,7 @@ public class EditTaskServlet extends HttpServlet {
     private TaskService taskService;
     private UserService userService;
     private String description;
+    private String previousServlet;
 
     @Override
     public void init() {
@@ -33,7 +35,9 @@ public class EditTaskServlet extends HttpServlet {
             throws ServletException, IOException {
         description = req.getParameter("description");
         List<UserDto> users = userService.getAll();
-        req.setAttribute("users", users);        req.getRequestDispatcher(JspUrl.EDIT_TASK_JSP).forward(req, resp);
+        req.setAttribute("users", users);
+        previousServlet = req.getHeader("Referer");
+        req.getRequestDispatcher(JspUrl.EDIT_TASK_JSP).include(req, resp);
     }
 
     @Override
@@ -43,6 +47,6 @@ public class EditTaskServlet extends HttpServlet {
         if (action != null) {
             taskService.edit(request, description);
         }
-        response.sendRedirect(request.getContextPath() + ServletUrl.HOME_URL);
+        response.sendRedirect(previousServlet);
     }
 }

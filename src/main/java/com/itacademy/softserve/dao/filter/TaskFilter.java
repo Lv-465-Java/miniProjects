@@ -14,9 +14,9 @@ import java.util.List;
 public class TaskFilter {
     public static enum Filters {
         FILTER_BY_OWNER("SELECT TaskID, Assignee, Owner, Description, CreationDate," +
-                " Deadline, StatusID FROM tasks WHERE Assignee = ? AND Owner = ? AND NOT StatusID = ?;"),
+                " Deadline, StatusID FROM tasks WHERE Assignee = ? AND Owner = ?;"),
         FILTER_BY_DATE("SELECT TaskID, Assignee, Owner, Description, CreationDate," +
-                " Deadline, StatusID FROM tasks WHERE Assignee = ? AND (CreationDate BETWEEN ? AND ?) AND NOT StatusID = ?;"),
+                " Deadline, StatusID FROM tasks WHERE Assignee = ? AND CreationDate BETWEEN ? AND ?;"),
         FILTER_BY_STATUS("SELECT TaskID, Assignee, Owner, Description," +
                 " CreationDate, Deadline, StatusID FROM tasks WHERE Assignee = ?  AND StatusID = ?;");
 
@@ -31,9 +31,9 @@ public class TaskFilter {
         }
     }
 
-    public List<Task> filterByOwner(InstanceBuilder<Task> builder, Long assigneeId, Long ownerId, Integer statusId) {
+    public List<Task> filterByOwner(InstanceBuilder<Task> builder, Long assigneeId, Long ownerId) {
         Connection connection = ConnectionFactory.getConnectionFactory().getConnection();
-        return CrudUtils.getEntityList(connection, Filters.FILTER_BY_OWNER.getQuery(), builder, assigneeId, ownerId, statusId);
+        return CrudUtils.getEntityList(connection, Filters.FILTER_BY_OWNER.getQuery(), builder, assigneeId, ownerId);
     }
 
     public List<Task> filterByDate(InstanceBuilder<Task> builder, Object... dates) {

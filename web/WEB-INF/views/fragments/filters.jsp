@@ -16,16 +16,23 @@
     <title></title>
 </head>
 <body>
-<div class="container">
     <div class="row justify-content-center">
         <form action="${pageContext.request.contextPath}/home" method="post">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="filterBy" value="user">
-                <jsp:include page="drop-user.jsp"/>
+                <div class="input-group">
+                    <select name="users">
+                        <option selected disabled value="user">Owner</option>
+                        <c:forEach items="${users}" var="user">
+                            <option value="${user.name}">${user.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="filterBy" value="date">
                 <div class="input-group">
+                    <button type="button" class="btn btn-secondary" disabled>By creation date</button>
                     <input placeholder="FROM" class="form-control" type="text" name="from" onfocus="(this.type='date')"
                            onblur="(this.type='text')">
                     <input placeholder="To" class="form-control" type="text" name="to" onfocus="(this.type='date')"
@@ -46,6 +53,5 @@
             <button type="submit" class="btn btn-secondary" name="reset">Reset Filter</button>
         </form>
     </div>
-</div>
 </body>
 </html>

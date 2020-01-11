@@ -38,7 +38,14 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Assignee</label>
                 <div class="col-sm-10">
-                    <jsp:include page="fragments/drop-user.jsp"/>
+                    <div class="input-group">
+                        <select name="users">
+                            <option selected disabled value="user">Assignee</option>
+                            <c:forEach items="${users}" var="user">
+                                <option value="${user.name}">${user.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="row justify-content-center">

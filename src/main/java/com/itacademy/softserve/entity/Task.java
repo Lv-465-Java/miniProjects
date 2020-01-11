@@ -10,13 +10,14 @@ public class Task extends Entity {
         GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT * FROM tasks WHERE Assignee = ? AND Owner = ? AND Description = ?" +
                 " AND CreationDate = ? AND StatusID = ?;"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT TaskID, Assignee, Owner, Description, CreationDate," +
-                                " Deadline, StatusID FROM tasks WHERE (Assignee = ? OR Owner = ?) AND NOT StatusID = ?;"),
+                                " Deadline, StatusID FROM tasks WHERE Assignee = ? OR Owner = ?;"),
         GET_BY_REGEX(SqlQueries.GET_BY_REGEX, "SELECT TaskID, Assignee, Owner, Description," +
-                " CreationDate, Deadline, StatusID FROM tasks WHERE Assignee = ? AND NOT StatusID = ? AND Description LIKE "),
+                " CreationDate, Deadline, StatusID FROM tasks WHERE (Assignee = ? OR Owner = ?) AND Description LIKE "),
         INSERT(SqlQueries.INSERT, "INSERT INTO tasks (Assignee, Owner, Description, CreationDate, Deadline, StatusID) " +
                 "VALUES (?, ?, ?, ?, ?, ?);"),
         UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE tasks SET StatusID = ? WHERE TaskID = ?;"),
-        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE tasks SET Assignee = ?, Description = ? WHERE TaskID  = ?;");
+        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE tasks SET Assignee = ?, Description = ? WHERE TaskID  = ?;"),
+        DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM tasks WHERE TaskID = ?;");
 
         private SqlQueries sqlQueries;
         private String query;

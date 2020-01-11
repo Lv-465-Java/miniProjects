@@ -12,9 +12,7 @@ import com.itacademy.softserve.dao.filter.TaskFilter;
 import com.itacademy.softserve.dto.TaskDto;
 import com.itacademy.softserve.dto.UserDto;
 import com.itacademy.softserve.dto.mapper.TaskDtoMapper;
-import com.itacademy.softserve.entity.Status;
 import com.itacademy.softserve.entity.Task;
-import com.itacademy.softserve.entity.User;
 import com.itacademy.softserve.service.HistoryService;
 import com.itacademy.softserve.service.TaskService;
 import com.itacademy.softserve.util.SessionManager;
@@ -42,8 +40,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDto> getPageSet(UserDto userDto, int begin) {
         Long userId = userDao.getByFields(userBuilder, userDto.getName()).get(0).getId();
-        tasks = taskDao.getAll(new TaskBuilder(), userId, userId,
-                new StatusDao().getByFields(new StatusBuilder(), Statuses.DELETE).get(0).getId());
+        tasks = taskDao.getAll(new TaskBuilder(), userId, userId);
         Collections.reverse(tasks);
         return getSet(begin);
     }
@@ -84,7 +81,10 @@ public class TaskServiceImpl implements TaskService {
         historyService = new HistoryServiceImpl();
         boolean status = taskDao.updateByID(new StatusDao().getByFields(new StatusBuilder(), Statuses.DONE).get(0).getId(), taskId);
         Task task = taskDao.getByID(new TaskBuilder(), taskId);
-        historyService.addRecord(new TaskDtoMapper().mapFromEntityToDto(task));
+        try {
+            historyService.addRecord(new TaskDtoMapper().mapFromEntityToDto(task));
+        } catch (RuntimeException ignored) {
+        }
         return status;
     }
 
@@ -92,9 +92,12 @@ public class TaskServiceImpl implements TaskService {
     public boolean setDelete(Long taskId) {
         historyService = new HistoryServiceImpl();
         Task task = taskDao.getByID(new TaskBuilder(), taskId);
-        TaskDto taskDto = new TaskDto();
+        TaskDto taskDto = new TaskDtoMapper().mapFromEntityToDto(task);
         taskDto.setStatus(Statuses.DELETE);
-        historyService.addRecord(taskDto);
+        try {
+            historyService.addRecord(taskDto);
+        } catch (RuntimeException ignored) {
+        }
         return taskDao.deleteByID(taskId);
     }
 
@@ -116,8 +119,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDto> getSearchSet(UserDto userDto, String regex, int begin) {
         Long userId = userDao.getByFields(new UserBuilder(), userDto.getName()).get(0).getId();
-        tasks = taskDao.getByRegex(new TaskBuilder(), userId,
-                new StatusDao().getByFields(new StatusBuilder(), Statuses.DELETE).get(0).getId(), regex);
+        tasks = taskDao.getByRegex(new TaskBuilder(), userId, regex);
         Collections.reverse(tasks);
         return getSet(begin);
     }
@@ -126,8 +128,7 @@ public class TaskServiceImpl implements TaskService {
     public List<TaskDto> getFilteredByOwnerSet(String assignee, String owner, int begin) {
         Long assigneeId = userDao.getByFields(userBuilder, assignee).get(0).getId();
         Long ownerId = userDao.getByFields(userBuilder, owner).get(0).getId();
-        tasks = new TaskFilter().filterByOwner(new TaskBuilder(), assigneeId, ownerId,
-                new StatusDao().getByFields(new StatusBuilder(), Statuses.DELETE).get(0).getId().intValue());
+        tasks = new TaskFilter().filterByOwner(new TaskBuilder(), assigneeId, ownerId);
         Collections.reverse(tasks);
         return getSet(begin);
     }
@@ -135,8 +136,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDto> getFilteredByDateSet(String userName, String beginDate, String endDate, int begin) {
         Long userId = userDao.getByFields(userBuilder, userName).get(0).getId();
-        tasks = new TaskFilter().filterByDate(new TaskBuilder(), userId, Date.valueOf(beginDate),
-                Date.valueOf(endDate), new StatusDao().getByFields(new StatusBuilder(), Statuses.DELETE).get(0).getId());
+        tasks = new TaskFilter().filterByDate(new TaskBuilder(), userId, Date.valueOf(beginDate), Date.valueOf(endDate));
         Collections.reverse(tasks);
         return getSet(begin);
     }
@@ -164,7 +164,7 @@ public class TaskServiceImpl implements TaskService {
 
     private Long determineAssignee(HttpServletRequest request) {
         String user = request.getParameter("users");
-        if (user.equals("user")) {
+        if (user == null) {
             HttpSession session = request.getSession(false);
             UserDto userDto = (UserDto) session.getAttribute("userDto");
             return userDao.getByFields(userBuilder, userDto.getName()).get(0).getId();

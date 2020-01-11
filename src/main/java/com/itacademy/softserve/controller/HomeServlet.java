@@ -18,7 +18,6 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
     private Pagination pagination;
     private UserService userService;
-    private String description;
 
     @Override
     public void init() {
