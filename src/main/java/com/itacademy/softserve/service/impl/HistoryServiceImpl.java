@@ -2,22 +2,27 @@ package com.itacademy.softserve.service.impl;
 
 import com.itacademy.softserve.constant.HistoryPeriod;
 import com.itacademy.softserve.constant.NumberOfRecordsPerPage;
+import com.itacademy.softserve.constant.Statuses;
 import com.itacademy.softserve.constant.param.ControlTaskButton;
 import com.itacademy.softserve.dao.HistoryDao;
+import com.itacademy.softserve.dao.StatusDao;
 import com.itacademy.softserve.dao.TaskDao;
 import com.itacademy.softserve.dao.UserDao;
 import com.itacademy.softserve.dao.builder.HistoryBuilder;
+import com.itacademy.softserve.dao.builder.StatusBuilder;
 import com.itacademy.softserve.dao.builder.TaskBuilder;
 import com.itacademy.softserve.dao.builder.UserBuilder;
 import com.itacademy.softserve.dao.filter.HistoryFilter;
 import com.itacademy.softserve.dto.HistoryDto;
+import com.itacademy.softserve.dto.TaskDto;
 import com.itacademy.softserve.dto.UserDto;
 import com.itacademy.softserve.dto.mapper.HistoryDtoMapper;
 import com.itacademy.softserve.entity.History;
-import com.itacademy.softserve.entity.Task;
 import com.itacademy.softserve.service.HistoryService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,20 +33,21 @@ public class HistoryServiceImpl implements HistoryService {
     private HistoryFilter historyFilter;
 
     public HistoryServiceImpl() {
+        historyList = new ArrayList<>();
         historyDao = new HistoryDao();
         historyFilter = new HistoryFilter();
     }
 
     @Override
-    public List<HistoryDto> getHistorySet(UserDto userDto, String period, int begin) {
+    public List<HistoryDto> getHistorySet(UserDto userDto, HttpServletRequest request, int begin) {
         Long userId = new UserDao().getByFields(new UserBuilder(), userDto.getName()).get(0).getId();
-        if (period.equals(HistoryPeriod.TODAY)) {
+        if (request.getAttribute(HistoryPeriod.TODAY.toString()) != null) {
             historyList = historyFilter.getToday(userId);
-        } else if (period.equals(HistoryPeriod.LAST_WEEK)) {
+        } else if (request.getAttribute(HistoryPeriod.LAST_WEEK.toString()) != null) {
             historyList = historyFilter.getLastWeek(userId);
-        } else if (period.equals(HistoryPeriod.LAST_MONTH)) {
+        } else if (request.getAttribute(HistoryPeriod.LAST_MONTH.toString()) != null) {
             historyList = historyFilter.getLastMonth(userId);
-        } else if (period.equals(HistoryPeriod.LAST_YEAR)) {
+        } else if (request.getAttribute(HistoryPeriod.LAST_YEAR.toString()) != null) {
             historyList = historyFilter.getLastYear(userId);
         } else {
             historyList = historyDao.getAll(new HistoryBuilder(), userId);
@@ -69,13 +75,13 @@ public class HistoryServiceImpl implements HistoryService {
         }
     }
 
-    public boolean addRecord(Task task) {
+    @Override
+    public boolean addRecord(TaskDto taskDto) {
         History historyRecord = new History();
-        historyRecord.setTaskID(new TaskDao().getByFields(new TaskBuilder(), task.getAssigneeID(), task.getOwnerID(),
-                task.getDescription(), task.getCreationDate(), task.getStatusID()).get(0).getId());
-        historyRecord.setModifiedDate(task.getCreationDate());
-        historyRecord.setStatusID(task.getStatusID());
-        historyRecord.setUserID(task.getAssigneeID());
+        historyRecord.setTaskDescription(taskDto.getDescription());
+        historyRecord.setModifiedDate(Date.valueOf(LocalDate.now()));
+        historyRecord.setStatusID(new StatusDao().getByFields(new StatusBuilder(), taskDto.getStatus()).get(0).getId().intValue());
+        historyRecord.setUserID(new UserDao().getByFields(new UserBuilder(), taskDto.getAssignee()).get(0).getId());
         return new HistoryDao().insert(historyRecord);
     }
 

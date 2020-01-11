@@ -17,22 +17,28 @@
 </head>
 <body>
 <jsp:include page="fragments/header.jsp"/>
-<div class="row justify-content-left">
-    <form class="card card-sm" action="${pageContext.request.contextPath}/delete-record" method="post">
-        <button type="submit" name="CLEAR" class="btn btn-danger" value="${history_record.id}">Clear history</button>
+<br>
+<div class="row justify-content-center">
+    <form action="${pageContext.request.contextPath}/delete-record" method="post">
+        <button type="submit" name="CLEAR" class="btn btn-danger" value="${history_record.id}">Clear history
+        </button>
     </form>
-
-    <form class="card card-sm" action="${pageContext.request.contextPath}/history" method="post">
-        <select class="selectpicker" data-style="btn-info" name="period">
-            <option selected disabled>Period</option>
-            <option value="today">Today</option>
-            <option value="last week">Last week</option>
-            <option value="last month">Last month</option>
-            <option value="last year">Last year</option>
-            <option value="all">All</option>
-        </select>
-        <button type="submit" class="btn btn-info">Show</button>
-    </form>
+    <button type="button" class="btn btn-light btn-lg" disabled></button>
+    <div class="navbar-nav">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Period
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="history" name="today">Today</a>
+                <a class="dropdown-item" href="history" name="last week">Last week</a>
+                <a class="dropdown-item" href="history" name="last month">Last month</a>
+                <a class="dropdown-item" href="history" name="last year">Last year</a>
+                <a class="dropdown-item" href="history" name="all">All</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <table class="table">
@@ -70,7 +76,9 @@
         <c:forEach begin="1" end="${numOfPages}" var="i">
             <c:choose>
                 <c:when test="${currentPage eq i}">
-                    <td><div class="btn btn-secondary">${i}</div></td>
+                    <td>
+                        <div class="btn btn-secondary">${i}</div>
+                    </td>
                 </c:when>
                 <c:otherwise>
                     <td><a class="btn btn-primary" href="history?page=${i}">${i}</a></td>

@@ -12,8 +12,10 @@ import com.itacademy.softserve.dao.filter.TaskFilter;
 import com.itacademy.softserve.dto.TaskDto;
 import com.itacademy.softserve.dto.UserDto;
 import com.itacademy.softserve.dto.mapper.TaskDtoMapper;
+import com.itacademy.softserve.entity.Status;
 import com.itacademy.softserve.entity.Task;
 import com.itacademy.softserve.entity.User;
+import com.itacademy.softserve.service.HistoryService;
 import com.itacademy.softserve.service.TaskService;
 import com.itacademy.softserve.util.SessionManager;
 
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TaskServiceImpl implements TaskService {
@@ -28,6 +31,7 @@ public class TaskServiceImpl implements TaskService {
     private TaskDao taskDao;
     private UserDao userDao;
     private UserBuilder userBuilder;
+    private HistoryService historyService;
 
     public TaskServiceImpl() {
         taskDao = new TaskDao();
@@ -40,6 +44,7 @@ public class TaskServiceImpl implements TaskService {
         Long userId = userDao.getByFields(userBuilder, userDto.getName()).get(0).getId();
         tasks = taskDao.getAll(new TaskBuilder(), userId, userId,
                 new StatusDao().getByFields(new StatusBuilder(), Statuses.DELETE).get(0).getId());
+        Collections.reverse(tasks);
         return getSet(begin);
     }
 
@@ -61,7 +66,7 @@ public class TaskServiceImpl implements TaskService {
         task.setDeadline(taskDto.getDeadline());
         task.setStatusID(new StatusDao().getByFields(new StatusBuilder(), taskDto.getStatus()).get(0).getId().intValue());
         if (taskDao.insert(task)) {
-            new HistoryServiceImpl().addRecord(task);
+            new HistoryServiceImpl().addRecord(taskDto);
         }
         return true;
     }
@@ -76,21 +81,30 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public boolean setDone(Long taskId) {
-        return taskDao.updateByID(new StatusDao().getByFields(new StatusBuilder(), Statuses.DONE).get(0).getId(), taskId);
+        historyService = new HistoryServiceImpl();
+        boolean status = taskDao.updateByID(new StatusDao().getByFields(new StatusBuilder(), Statuses.DONE).get(0).getId(), taskId);
+        Task task = taskDao.getByID(new TaskBuilder(), taskId);
+        historyService.addRecord(new TaskDtoMapper().mapFromEntityToDto(task));
+        return status;
     }
 
     @Override
     public boolean setDelete(Long taskId) {
-        return taskDao.updateByID(new StatusDao().getByFields(new StatusBuilder(), Statuses.DELETE).get(0).getId(), taskId);
+        historyService = new HistoryServiceImpl();
+        Task task = taskDao.getByID(new TaskBuilder(), taskId);
+        TaskDto taskDto = new TaskDto();
+        taskDto.setStatus(Statuses.DELETE);
+        historyService.addRecord(taskDto);
+        return taskDao.deleteByID(taskId);
     }
 
     @Override
     public boolean edit(HttpServletRequest request, String description) {
-        if(SessionManager.isActiveSession(request)) {
+        if (SessionManager.isActiveSession(request)) {
             Long userId = determineAssignee(request);
             Long taskId = Long.parseLong(request.getParameter("confirm"));
             String newDescription = request.getParameter("newDescription");
-            if(newDescription.equals("")) {
+            if (newDescription.equals("")) {
                 newDescription = description;
             }
             return taskDao.updateByField(userId, newDescription, taskId);
@@ -104,6 +118,7 @@ public class TaskServiceImpl implements TaskService {
         Long userId = userDao.getByFields(new UserBuilder(), userDto.getName()).get(0).getId();
         tasks = taskDao.getByRegex(new TaskBuilder(), userId,
                 new StatusDao().getByFields(new StatusBuilder(), Statuses.DELETE).get(0).getId(), regex);
+        Collections.reverse(tasks);
         return getSet(begin);
     }
 
@@ -113,6 +128,7 @@ public class TaskServiceImpl implements TaskService {
         Long ownerId = userDao.getByFields(userBuilder, owner).get(0).getId();
         tasks = new TaskFilter().filterByOwner(new TaskBuilder(), assigneeId, ownerId,
                 new StatusDao().getByFields(new StatusBuilder(), Statuses.DELETE).get(0).getId().intValue());
+        Collections.reverse(tasks);
         return getSet(begin);
     }
 
@@ -121,6 +137,7 @@ public class TaskServiceImpl implements TaskService {
         Long userId = userDao.getByFields(userBuilder, userName).get(0).getId();
         tasks = new TaskFilter().filterByDate(new TaskBuilder(), userId, Date.valueOf(beginDate),
                 Date.valueOf(endDate), new StatusDao().getByFields(new StatusBuilder(), Statuses.DELETE).get(0).getId());
+        Collections.reverse(tasks);
         return getSet(begin);
     }
 
@@ -129,6 +146,7 @@ public class TaskServiceImpl implements TaskService {
         Long userId = userDao.getByFields(new UserBuilder(), userName).get(0).getId();
         Integer statusId = new StatusDao().getByFields(new StatusBuilder(), status).get(0).getId().intValue();
         tasks = new TaskFilter().filterByStatus(new TaskBuilder(), userId, statusId);
+        Collections.reverse(tasks);
         return getSet(begin);
     }
 
@@ -146,7 +164,7 @@ public class TaskServiceImpl implements TaskService {
 
     private Long determineAssignee(HttpServletRequest request) {
         String user = request.getParameter("users");
-        if(user.equals("user")) {
+        if (user.equals("user")) {
             HttpSession session = request.getSession(false);
             UserDto userDto = (UserDto) session.getAttribute("userDto");
             return userDao.getByFields(userBuilder, userDto.getName()).get(0).getId();

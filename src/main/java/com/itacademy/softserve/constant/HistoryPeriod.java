@@ -1,10 +1,20 @@
 package com.itacademy.softserve.constant;
 
-public interface HistoryPeriod {
-    String PERIOD = "period";
-    String TODAY = "today";
-    String LAST_WEEK = "last week";
-    String LAST_MONTH = "last month";
-    String LAST_YEAR = "last year";
-    String ALL = "all";
+public enum  HistoryPeriod {
+    TODAY("today"),
+    LAST_WEEK("last week"),
+    LAST_MONTH("last month"),
+    LAST_YEAR("last year"),
+    ALL("all");
+
+    private String value;
+
+    private HistoryPeriod(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

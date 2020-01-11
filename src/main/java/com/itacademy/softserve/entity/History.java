@@ -5,10 +5,10 @@ import java.util.Objects;
 
 public class History extends Entity {
     public static enum HistoryEntityQueries {
-        CET_BY_ID(SqlQueries.GET_BY_ID, "SELECT ID, TaskID, ModifiedDate, StatusID, UserID FROM history WHERE ID = ?;"),
-        GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT ID, TaskID, ModifiedDate, StatusID, UserID FROM history WHERE TaskID = ? AND UserID = ?;"),
-        GET_ALL(SqlQueries.GET_ALL, "SELECT ID, TaskID, ModifiedDate, StatusID, UserID FROM history WHERE UserID = ?;"),
-        INSERT(SqlQueries.INSERT, "INSERT INTO history (TaskID, ModifiedDate, StatusID, UserID) VALUES (?, ?, ?, ?);"),
+        CET_BY_ID(SqlQueries.GET_BY_ID, "SELECT ID, TaskDescription, ModifiedDate, StatusID, UserID FROM history WHERE ID = ?;"),
+        GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT ID, TaskDescription, ModifiedDate, StatusID, UserID FROM history WHERE TaskID = ? AND UserID = ?;"),
+        GET_ALL(SqlQueries.GET_ALL, "SELECT ID, TaskDescription, ModifiedDate, StatusID, UserID FROM history WHERE UserID = ?;"),
+        INSERT(SqlQueries.INSERT, "INSERT INTO history (TaskDescription, ModifiedDate, StatusID, UserID) VALUES (?, ?, ?, ?);"),
         DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM history WHERE ID = ?;"),
         DELETE_BY_FIELD(SqlQueries.DELETE_BY_FIELD, "DELETE FROM history WHERE UserID = ?;");
 
@@ -30,7 +30,7 @@ public class History extends Entity {
         }
     }
 
-    private Long taskID;
+    private String taskDescription;
     private Date modifiedDate;
     private Integer statusID;
     private Long userID;
@@ -38,27 +38,19 @@ public class History extends Entity {
     public History() {
     }
 
-    public History(Long taskID, Date modifiedDate, Integer statusID, Long userID) {
-        this.taskID = taskID;
+    public History(String taskDescription, Date modifiedDate, Integer statusID, Long userID) {
+        this.taskDescription = taskDescription;
         this.modifiedDate = modifiedDate;
         this.statusID = statusID;
         this.userID = userID;
     }
 
-    public History(Long id, Long taskID, Date modifiedDate, Integer statusID, Long userID) {
-        super(id);
-        this.taskID = taskID;
-        this.modifiedDate = modifiedDate;
-        this.statusID = statusID;
-        this.userID = userID;
+    public String getTaskDescription() {
+        return taskDescription;
     }
 
-    public Long getTaskID() {
-        return taskID;
-    }
-
-    public void setTaskID(Long taskID) {
-        this.taskID = taskID;
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
     }
 
     public Date getModifiedDate() {
@@ -90,24 +82,27 @@ public class History extends Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
+
         History history = (History) o;
-        if (!Objects.equals(taskID, history.taskID)) return false;
-        return Objects.equals(statusID, history.statusID);
+
+        if (!taskDescription.equals(history.taskDescription)) return false;
+        if (!modifiedDate.equals(history.modifiedDate)) return false;
+        return statusID.equals(history.statusID);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (taskID != null ? taskID.hashCode() : 0);
-        result = 31 * result + (statusID != null ? statusID.hashCode() : 0);
+        result = 31 * result + taskDescription.hashCode();
+        result = 31 * result + modifiedDate.hashCode();
+        result = 31 * result + statusID.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "History{" +
-                "ID=" + getId() +
-                ", taskID=" + taskID +
+                "taskDescription='" + taskDescription + '\'' +
                 ", modifiedDate=" + modifiedDate +
                 ", statusID=" + statusID +
                 ", userID=" + userID +

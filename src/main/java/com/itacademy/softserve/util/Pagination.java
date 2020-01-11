@@ -64,7 +64,7 @@ public class Pagination {
         }
     }
 
-    public void historyPagination(HttpServletRequest request, HttpServletResponse response, String period)
+    public void historyPagination(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HistoryService historyService = new HistoryServiceImpl();
         int page = getPage(request);
@@ -73,7 +73,8 @@ public class Pagination {
         }
         if (SessionManager.isActiveSession(request)) {
             UserDto userDto = (UserDto) request.getSession(false).getAttribute("userDto");
-            List<HistoryDto> historyList = historyService.getHistorySet(userDto, period, (page - 1) * NumberOfRecordsPerPage.HISTORY_RECORD_PER_PAGE);
+            List<HistoryDto> historyList = historyService.getHistorySet(userDto, request,
+                    (page - 1) * NumberOfRecordsPerPage.HISTORY_RECORD_PER_PAGE);
             request.setAttribute("historyList", historyList);
             request.setAttribute("numOfPages", historyService.getNumberOfPages());
             request.setAttribute("currentPage", page);

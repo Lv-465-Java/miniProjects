@@ -1,5 +1,6 @@
 package com.itacademy.softserve.controller;
 
+import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
 import com.itacademy.softserve.dto.UserDto;
@@ -43,10 +44,10 @@ public class AddTaskServlet extends HttpServlet {
             taskService.save(new TaskDtoMapper().createDtoFromRequest(request));
             response.sendRedirect(request.getContextPath() + ServletUrl.HOME_URL);
         } catch (RuntimeException e) {
-            request.setAttribute("error", "Such task already exist");
+            request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.SUCH_TASK_EXIST.toString());
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/add-task.jsp")
+                    .getRequestDispatcher(JspUrl.ADD_TASK_JSP)
                     .forward(request, response);
         }
     }

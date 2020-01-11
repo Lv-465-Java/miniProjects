@@ -14,7 +14,7 @@ public class HistoryDtoMapper implements DtoMapper<HistoryDto> {
         History history = (History) entity;
         HistoryDto historyDto = new HistoryDto();
         historyDto.setId(history.getId());
-        historyDto.setTask(new TaskDao().getByID(new TaskBuilder(),history.getTaskID()).getDescription());
+        historyDto.setTask(history.getTaskDescription());
         historyDto.setModifiedDate(history.getModifiedDate());
         historyDto.setStatus(new StatusDao().getByID(new StatusBuilder(), Long.valueOf(history.getStatusID())).getName());
         return historyDto;

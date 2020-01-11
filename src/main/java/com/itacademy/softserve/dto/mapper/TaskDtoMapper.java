@@ -35,7 +35,11 @@ public class TaskDtoMapper implements DtoMapper<TaskDto> {
     public TaskDto createDtoFromRequest(HttpServletRequest request) {
         UserDto userDto = (UserDto) request.getSession(false).getAttribute("userDto");
         TaskDto taskDto = new TaskDto();
-        taskDto.setAssignee(request.getParameter("users"));
+        String assignee = request.getParameter("users");
+        if(assignee == null) {
+            assignee = ((UserDto)request.getSession(false).getAttribute("userDto")).getName();
+        }
+        taskDto.setAssignee(assignee);
         taskDto.setOwner(userDto.getName());
         taskDto.setDescription(request.getParameter("description"));
         taskDto.setCreationDate(Date.valueOf(LocalDate.now()));

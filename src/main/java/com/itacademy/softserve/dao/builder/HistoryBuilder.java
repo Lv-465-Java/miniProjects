@@ -11,7 +11,7 @@ public class HistoryBuilder implements InstanceBuilder<History> {
         History history = new History();
         try {
             history.setId(resultSet.getLong("ID"));
-            history.setTaskID(resultSet.getLong("TaskID"));
+            history.setTaskDescription(resultSet.getString("TaskDescription"));
             history.setModifiedDate(resultSet.getDate("ModifiedDate"));
             history.setStatusID(resultSet.getInt("StatusID"));
             history.setUserID(resultSet.getLong("UserID"));

@@ -18,7 +18,7 @@ public class HistoryDao extends DaoCrudA<History> {
     protected Object[] getFields(History object) {
         Object[] fields = new Object[5];
         fields[0] = object.getId();
-        fields[1] = object.getTaskID();
+        fields[1] = object.getTaskDescription();
         fields[2] = object.getModifiedDate();
         fields[3] = object.getStatusID();
         fields[4] = object.getUserID();
