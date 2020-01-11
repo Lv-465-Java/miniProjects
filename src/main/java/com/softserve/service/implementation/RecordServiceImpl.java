@@ -25,7 +25,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
     @Override
     public boolean create(RecordDTO recordDTO) throws NotCompletedActionException {
         Record record = new Record(recordDTO.getSum(), recordDTO.getDate(), recordDTO.getNote(),
-                recordDTO.getFinancialTypeId(), recordDTO.getUserId(), recordDTO.getCategoryId());
+                recordDTO.getFinancialTypeId(), recordDTO.getUserId(), recordDTO.getCategoryId(), recordDTO.getPlanedOutcomeId());
         if (!recordDAO.save(record)) {
             throw new NotCompletedActionException(ErrorMessage.FAIL_TO_SAVE_A_RECORD.getErrorMessage());
         }

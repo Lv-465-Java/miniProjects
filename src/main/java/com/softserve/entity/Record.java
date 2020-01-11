@@ -42,6 +42,16 @@ public class Record {
     private Long categoryId;
     private Long planedOutcomeId;
 
+    public Record(Double sum, LocalDate date, String note, Long financialTypeId, Long userId, Long categoryId, Long planedOutcomeId) {
+        this.sum = sum;
+        this.date = date;
+        this.note = note;
+        this.financialTypeId = financialTypeId;
+        this.userId = userId;
+        this.categoryId = categoryId;
+        this.planedOutcomeId = planedOutcomeId;
+    }
+
     public Record(Double sum, LocalDate date, String note, Long financialTypeId, Long userId, Long categoryId) {
         this.sum = sum;
         this.date = date;

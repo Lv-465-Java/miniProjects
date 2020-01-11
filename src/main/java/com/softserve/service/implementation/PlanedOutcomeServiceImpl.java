@@ -3,6 +3,7 @@ package com.softserve.service.implementation;
 import com.softserve.constant.ErrorMessage;
 import com.softserve.dao.implementation.PlanedOutcomeDAOImpl;
 import com.softserve.dto.PlanedOutcomeDTO;
+import com.softserve.entity.FinancialType;
 import com.softserve.entity.PlanedOutcome;
 import com.softserve.exception.NoSuchEntityException;
 import com.softserve.exception.NotCompletedActionException;
@@ -10,6 +11,7 @@ import com.softserve.service.ReadAllService;
 import com.softserve.service.mapper.PlanedOutcomeMapperObjects;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PlanedOutcomeServiceImpl implements ReadAllService<PlanedOutcomeDTO> {
@@ -32,7 +34,7 @@ public class PlanedOutcomeServiceImpl implements ReadAllService<PlanedOutcomeDTO
     }
 
     @Override
-    public PlanedOutcomeDTO getById(Long id) throws NoSuchEntityException{
+    public PlanedOutcomeDTO getById(Long id) throws NoSuchEntityException {
         PlanedOutcome planedOutcome = PlanedOutcomeMapperObjects.verifyIfPlanedOutcomeIsPresent
                 (planedOutcomeDAO.getById(id));
         return PlanedOutcomeMapperObjects.planedOutcomeEntityToPlanedOutcomeDTO(planedOutcome);
@@ -69,5 +71,8 @@ public class PlanedOutcomeServiceImpl implements ReadAllService<PlanedOutcomeDTO
         return false;
     }
 
+    public List<FinancialType> getTypes() {
+        return Arrays.asList(FinancialType.values());
+    }
     //filters
 }

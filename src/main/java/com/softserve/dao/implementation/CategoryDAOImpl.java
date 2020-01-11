@@ -5,6 +5,7 @@ import com.softserve.dao.mapping.CategoryMapping;
 import com.softserve.database.DataBaseConnection;
 import com.softserve.database.JDBCQueries;
 import com.softserve.entity.Category;
+import com.softserve.exception.NoSuchEntityException;
 
 import java.sql.Connection;
 import java.util.List;
@@ -31,7 +32,7 @@ public class CategoryDAOImpl implements SearchDAO<Category> {
     }
 
     @Override
-    public Optional<Category> getById(Long id) {
+    public Optional<Category> getById(Long id) throws NoSuchEntityException {
         return JDBCQueries.getObject(connection, Category.CategoryEntityQueries.GET_BY_ID.getQuery(),
                 new CategoryMapping(), id);
     }

@@ -54,7 +54,7 @@
             </select>
 
             <label for="PlannedOutcomesList">Planned Outcomes</label>
-            <select class="form-select" id="PlannedOutcomesList" name="planned_outcomes_list"
+            <select class="form-select" id="PlannedOutcomesList" name="planned_outcome_id"
                     value="${record.plannedOutcomeId}">
                 <option selected disabled>Select type</option>
                 <c:forEach var="plannedOutcome" items="${plannedOutcomes}">

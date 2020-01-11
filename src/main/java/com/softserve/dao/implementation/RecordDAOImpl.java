@@ -6,6 +6,7 @@ import com.softserve.dao.mapping.RecordMapping;
 import com.softserve.database.DataBaseConnection;
 import com.softserve.database.JDBCQueries;
 import com.softserve.entity.Record;
+import com.softserve.exception.NoSuchEntityException;
 
 import java.sql.Connection;
 import java.util.List;
@@ -26,7 +27,7 @@ public class RecordDAOImpl implements RecordDAO {
     }
 
     @Override
-    public Optional<Record> getById(Long id) throws RuntimeException {
+    public Optional<Record> getById(Long id) throws NoSuchEntityException {
         return JDBCQueries.getObject(connection, Record.RecordEntityQueries.GET_BY_ID.getQuery(),
                 new RecordMapping(), id);
     }

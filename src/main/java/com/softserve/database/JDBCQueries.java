@@ -1,6 +1,7 @@
 package com.softserve.database;
 
 import com.softserve.dao.mapping.Mapping;
+import com.softserve.exception.NoSuchEntityException;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -10,7 +11,8 @@ import java.util.Optional;
 
 public class JDBCQueries {
 
-    public static <T> Optional<T> getObject(Connection connection, String query, Mapping<T> mapper, Object... parameters) {
+    public static <T> Optional<T> getObject(Connection connection, String query, Mapping<T> mapper, Object... parameters)
+            throws NoSuchEntityException {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             insertParameters(statement, parameters);
 
@@ -21,7 +23,7 @@ public class JDBCQueries {
                 return Optional.empty();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new NoSuchEntityException("Error: " + e);
         }
     }
 
@@ -67,10 +69,7 @@ public class JDBCQueries {
                 } else if (parameters[i] instanceof String) {
                     preparedStatement.setString(i + 1, (String) parameters[i]);
                 } else if (parameters[i] instanceof LocalDate) {
-////debug here
-                    LocalDate ld = LocalDate.parse(parameters[i].toString());
-                    Date date = Date.valueOf(ld);
-                    Timestamp timestamp = Timestamp.valueOf(parameters[i].toString());
+                    Date date = Date.valueOf(LocalDate.parse(parameters[i].toString()));
                     preparedStatement.setDate(i + 1, date);
                 } else {
                     throw new RuntimeException("There are no mapping for " + parameters[i].getClass());

@@ -59,8 +59,8 @@ public class AddRecordServlet extends HttpServlet {
         Long financialTypeId = Long.parseLong(req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()));
         Long categoryId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
         Long plannedOutcomeId = null;
-
-        if (req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()).isEmpty()) {
+        LOG.info(date + "THIS IS DATE");
+        if (req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()) != null) {
             plannedOutcomeId = Long.parseLong(req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()));
         }
 
@@ -77,15 +77,12 @@ public class AddRecordServlet extends HttpServlet {
         try {
             recordService.create(recordDTO);
             resp.sendRedirect(req.getContextPath() + "/record-dashboard");
-
             LOG.info("New Record is created. User is redirected to 'Record Dashboard' Page");
-
         } catch (NotCompletedActionException e) {
             LOG.info("Error: " + e.getMessage());
-
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher(View.REGISTRATION_PAGE.getViewUrl())
+                    .getRequestDispatcher(View.RECORD_DASHBOARD_PAGE.getViewUrl())
                     .forward(req, resp);
         }
     }

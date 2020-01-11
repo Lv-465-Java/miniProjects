@@ -23,10 +23,19 @@ public class CategoryServiceImpl implements ReadAllService<CategoryDTO> {
     }
 
     @Override
-    public boolean create(CategoryDTO categoryDTO) {
+    public boolean create(CategoryDTO categoryDTO) throws NotCompletedActionException {
         Category category = new Category(categoryDTO.getTitle(), categoryDTO.getColor(), categoryDTO.getDescription(),
                 categoryDTO.getUserId(), categoryDTO.getFinancialTypeId());
-        return categoryDAO.save(category);
+        if (!categoryDAO.save(category)) {
+            throw new NotCompletedActionException(ErrorMessage.FAIL_TO_SAVE_A_CATEGORY.getErrorMessage());
+        }
+        return true;
+    }
+
+    @Override
+    public CategoryDTO getById(Long id) throws NoSuchEntityException {
+        Category category = CategoryMapperObjects.verifyIfCategoryIsPresent(categoryDAO.getById(id));
+        return CategoryMapperObjects.categoryEntityToCategoryDTO(category);
     }
 
     @Override
@@ -40,35 +49,27 @@ public class CategoryServiceImpl implements ReadAllService<CategoryDTO> {
     }
 
     @Override
-    public CategoryDTO getById(Long id) {
-        Category category = CategoryMapperObjects.verifyIfCategoryIsPresent(categoryDAO.getById(id));
-        return CategoryMapperObjects.categoryEntityToCategoryDTO(category);
-    }
-
-    //test on web!!! test if you really need if-s
-    @Override
-    public boolean update(Long id, CategoryDTO categoryDTO) throws NoSuchEntityException {
-
+    public boolean update(Long id, CategoryDTO categoryDTO) throws NoSuchEntityException, NotCompletedActionException {
         Category category = CategoryMapperObjects.verifyIfCategoryIsPresent(categoryDAO.getById(categoryDTO.getId()));
-        if (categoryDTO.getTitle() != null) {
-            category.setTitle(categoryDTO.getTitle());
-        }
-        if (categoryDTO.getFinancialTypeId() != null) {
-            category.setFinancialTypeId(categoryDTO.getFinancialTypeId());
-        }
+        category.setTitle(categoryDTO.getTitle());
         category.setColor(categoryDTO.getColor());
         category.setDescription(categoryDTO.getDescription());
-        return categoryDAO.update(id, category);
-    }
-
-    @Override
-    public boolean delete(Long id) throws NotCompletedActionException{
-        if (!categoryDAO.delete(id)) {
-            throw new NotCompletedActionException(ErrorMessage.FAIL_TO_FIND_A_CATEGORY.getErrorMessage());
+        category.setFinancialTypeId(categoryDTO.getFinancialTypeId());
+        if (!categoryDAO.update(id, category)) {
+            throw new NotCompletedActionException(ErrorMessage.FAIL_TO_UPDATE_A_CATEGORY.getErrorMessage());
         }
         return true;
     }
 
+    @Override
+    public boolean delete(Long id) throws NotCompletedActionException {
+        if (!categoryDAO.delete(id)) {
+            throw new NotCompletedActionException(ErrorMessage.FAIL_TO_DELETE_A_CATEGORY.getErrorMessage());
+        }
+        return true;
+    }
+
+    @Override
     public List<FinancialType> getTypes() {
         return Arrays.asList(FinancialType.values());
     }
