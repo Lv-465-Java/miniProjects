@@ -1,5 +1,5 @@
 <%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -8,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,58 +17,44 @@
     <title>Material Design for Bootstrap</title>
     <!-- MDB icon -->
     <!--    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
+    <%--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--%>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-<%--    <link rel="stylesheet" href=<c:url value="static/css/bootstrap.min.css">--%>
-<%--    </c:url>>--%>
-
-<%--    <link rel="stylesheet" href=<c:url value="static/css/mdb.min.css">--%>
-<%--    </c:url>>--%>
-<%--    <!-- Your custom styles (optional) -->--%>
-<%--    <link rel="stylesheet" href=<c:url value="static/css/authentication.css">--%>
-<%--    </c:url>>--%>
-
-
-<%--    <link rel="stylesheet" href=<c:url value="/static/css/register.css">--%>
-<%--    </c:url>>--%>
     <!-- Bootstrap core CSS -->
-<%--    <link rel="stylesheet" href="/static/css/bootstrap.min.css">--%>
-<%--    <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/bootstrap.min.css">--%>
-<%--    <!-- Material Design Bootstrap -->--%>
-<%--    <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/mdb.min.css">--%>
-<%--    <!-- Your custom styles (optional) -->--%>
-<%--    <link rel="stylesheet" href="<%=request.getContextPath()%>/static/css/authentication.css">--%>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="static/css/mdb.min.css">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="static/css/style.css">
 
+<%--    <style>--%>
+<%--        html,--%>
+<%--        body,--%>
+<%--        header,--%>
+<%--        .carousel {--%>
+<%--            height: 60vh;--%>
+<%--        }--%>
 
-    <style>
-        html,
-        body,
-        header,
-        .carousel {
-            height: 60vh;
-        }
+<%--        @media (max-width: 740px) {--%>
+<%--            html,--%>
+<%--            body,--%>
+<%--            header,--%>
+<%--            .carousel {--%>
+<%--                height: 100vh;--%>
+<%--            }--%>
+<%--        }--%>
 
-        @media (max-width: 740px) {
-            html,
-            body,
-            header,
-            .carousel {
-                height: 100vh;
-            }
-        }
+<%--        @media (min-width: 800px) and (max-width: 850px) {--%>
+<%--            html,--%>
+<%--            body,--%>
+<%--            header,--%>
+<%--            .carousel {--%>
+<%--                height: 100vh;--%>
+<%--            }--%>
+<%--        }--%>
 
-        @media (min-width: 800px) and (max-width: 850px) {
-            html,
-            body,
-            header,
-            .carousel {
-                height: 100vh;
-            }
-        }
-
-    </style>
+<%--    </style>--%>
 </head>
 <body>
 
@@ -225,7 +211,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark
      mdb-color lighten-3 mt-3 mb-5">
-            <span class="navbar-brand">Categories:</span>
+<%--            <span class="navbar-brand">Categories:</span>--%>
 
             <button class="navbar-toggler" type="button"
                     data-toggle="collapse" data-target="#nextNav"
@@ -234,17 +220,17 @@
             </button>
 
             <div class="collapse navbar-collapse" id="nextNav">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a href="#" class="nav-link">All</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Shirts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Sport Wears</a>
-                    </li>
-                </ul>
+<%--                <ul class="navbar-nav mr-auto">--%>
+<%--                    <li class="nav-item active">--%>
+<%--                        <a href="#" class="nav-link">All</a>--%>
+<%--                    </li>--%>
+<%--                    <li class="nav-item">--%>
+<%--                        <a href="#" class="nav-link">Shirts</a>--%>
+<%--                    </li>--%>
+<%--                    <li class="nav-item">--%>
+<%--                        <a href="#" class="nav-link">Sport Wears</a>--%>
+<%--                    </li>--%>
+<%--                </ul>--%>
                 <form class="form-inline my-2 my-lg-0">
                     <div class="md-form my-2 my-lg-0">
                         <input type="text" class="form-control mr-sm-2"
@@ -559,27 +545,14 @@
 <!-- End your project here-->
 
 <!-- jQuery -->
-<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/jquery.min.js"></script>
+<script type="text/javascript" src=static/js/jquery.js"></script>
+<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="static/js/mdb.min.js"></script>
 <!-- Bootstrap tooltips -->
-<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="<%=request.getContextPath()%>/static/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="/static/js/mdb.min.js"></script>
-<!-- jQuery -->
+<script type="text/javascript" src="static/js/popper.min.js"></script>
 
-<%--<script type="text/javascript" src=<c:url value="/static/js/jquery.min.js">--%>
-<%--</c:url>></script>--%>
-<%--<!-- Bootstrap tooltips -->--%>
-<%--<script type="text/javascript" src=<c:url value="/static/js/popper.min.js">--%>
-<%--</c:url>></script>--%>
-<%--<!-- Bootstrap core JavaScript -->--%>
-<%--<script type="text/javascript" src=<c:url value="/static/js/bootstrap.min.js">--%>
-<%--</c:url>></script>--%>
-<%--<!-- MDB core JavaScript -->--%>
-<%--<script type="text/javascript" src=<c:url value="/static/js/mdb.min.js">--%>
-<%--</c:url>></script>--%>
-<!-- Your custom scripts (optional) -->
+
+
 <script type="text/javascript"></script>
 
 <script>

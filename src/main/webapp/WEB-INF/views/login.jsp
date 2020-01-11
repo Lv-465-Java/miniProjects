@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -13,10 +12,10 @@
 <html>
 <head>
     <title>Login</title>
-<%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
-<%--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--%>
+    <%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
+    <%--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--%>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/authentication.css">
+    <link rel="stylesheet" type="text/css" href="static/css/authentication.css">
 
 </head>
 <body>
@@ -27,7 +26,6 @@
             <h2 class="text-center"><strong>Login</strong> an account</h2>
             <c:if test="${not empty error}">
                 <div>
-
                     <p>
                         <span style="color: red">${error}</span>
                     </p>

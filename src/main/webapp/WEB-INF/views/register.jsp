@@ -12,7 +12,7 @@
 <head>
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/authentication.css">
+    <link rel="stylesheet" type="text/css" href="static/css/authentication.css">
 <%--    <link rel="stylesheet" type="text/css" href=<c:url value="/css/authentication.css">--%>
 <%--    </c:url>>--%>
 </head>

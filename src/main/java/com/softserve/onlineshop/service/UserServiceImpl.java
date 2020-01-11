@@ -9,6 +9,7 @@ import com.softserve.onlineshop.entity.User;
 import com.softserve.onlineshop.exception.NotDeletedException;
 import com.softserve.onlineshop.exception.NotFoundException;
 import com.softserve.onlineshop.exception.NotInsertedException;
+import com.softserve.onlineshop.exception.NotValidException;
 
 import java.util.List;
 
@@ -27,7 +28,6 @@ public class UserServiceImpl implements UserService {
                     userDto.getPassword(),
                     userDto.getEmail(),
                     userDto.getPhone()));
-//                userDto.getCartId()));
         }
         throw new NotInsertedException("User with nickname: "
                 + userDto.getNickname() + " exist");
@@ -71,10 +71,21 @@ public class UserServiceImpl implements UserService {
     public boolean isValid(UserDto userDto) {
         if (!userDao.getByFieldName(new UserRowMapper(), userDto.getNickname()).isEmpty()) {
             User user = userDao.getByFieldName(new UserRowMapper(), userDto.getNickname()).get(0);
-            return user.getNickname().equals(userDto.getNickname())
-                    && user.getPassword().equals(userDto.getPassword());
-        } else {
-            throw new NotFoundException("Don`t login");
+            if (user.getNickname().equals(userDto.getNickname())
+                    && user.getPassword().equals(userDto.getPassword())) {
+                return true;
+            } else {
+                throw new NotValidException();
+            }
         }
+        throw new NotFoundException("Don`t login");
     }
+
+
+    public static void main(String[] args) {
+        UserService userService = new UserServiceImpl();
+        System.out.println(userService.isValid(new UserDto("dsada", "111")));
+
+    }
+
 }
