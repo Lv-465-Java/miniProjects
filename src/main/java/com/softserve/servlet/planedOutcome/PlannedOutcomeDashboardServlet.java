@@ -4,7 +4,6 @@ import com.softserve.constant.View;
 import com.softserve.dto.UserDTO;
 import com.softserve.service.implementation.CategoryServiceImpl;
 import com.softserve.service.implementation.PlanedOutcomeServiceImpl;
-import com.softserve.service.implementation.RecordServiceImpl;
 import com.softserve.util.UserSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
