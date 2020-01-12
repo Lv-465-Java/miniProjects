@@ -31,7 +31,7 @@
     <div class="form-group">
         <div class="form-footer">
             <form action="${pageContext.request.contextPath}/delete-category" method="post">
-                <input type="hidden" name="categoryIdDelete" value="${category.id}">
+                <input type="hidden" name="id" value="${category.id}">
                 <button type="submit" class="btn btn-danger" id="formSaveButton">Delete</button>
             </form>
             <form action="${pageContext.request.contextPath}/profile" method="get">

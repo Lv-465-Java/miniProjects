@@ -30,7 +30,7 @@
             <table class="table table-hover" id="profileTable">
                 <thead>
                 <tr>
-                    <th scope="col">Category color</th>
+                    <th scope="col"></th>
                     <th scope="col">Category</th>
                     <th scope="col">Sum</th>
                     <th scope="col">Date</th>
@@ -57,12 +57,12 @@
                         <td>
                             <div class="form-group">
                                 <form action="${pageContext.request.contextPath}/edit-planned-outcome" method="get">
-                                    <button type="submit" class="btn btn-warning" name="editPlannedOutcomeButton"
+                                    <button type="submit" class="btn btn-warning" name="id"
                                             value="${plannedOutcome.id}">Edit
                                     </button>
                                 </form>
                                 <form action="${pageContext.request.contextPath}/delete-category" method="get">
-                                    <button type="submit" class="btn btn-danger" name="editPlannedOutcomeButton"
+                                    <button type="submit" class="btn btn-danger" name="id"
                                             value="${plannedOutcome.id}">Delete
                                     </button>
                                 </form>

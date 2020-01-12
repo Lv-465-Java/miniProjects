@@ -32,7 +32,7 @@ public class EditCategoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        categoryId = Long.parseLong(req.getParameter("editCategoryButton"));
+        categoryId = Long.parseLong(req.getParameter("id"));
         req.setAttribute("category", categoryService.getById(categoryId));
         req.setAttribute("financialTypes", categoryService.getTypes());
         req.getRequestDispatcher(View.CATEGORY_EDIT_PAGE.getViewUrl()).include(req, resp);

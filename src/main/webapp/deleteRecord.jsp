@@ -31,10 +31,10 @@
     <div class="form-group">
         <div class="form-footer">
             <form action="${pageContext.request.contextPath}/delete-record" method="post">
-                <input type="hidden" name="recordIdDelete" value="${record.id}">
+                <input type="hidden" name="id" value="${record.id}">
                 <button type="submit" class="btn btn-danger" id="formSaveButton">Delete</button>
             </form>
-            <form action="${pageContext.request.contextPath}/profile" method="get">
+            <form action="${pageContext.request.contextPath}/record-dashboard" method="get">
                 <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel</button>
             </form>
         </div>

@@ -41,7 +41,7 @@ public class EditPlanedOutcomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         currentSessionUser = userSession.retrieveUserIdFromSession(req);
-        plannedOutcomeId = Long.parseLong(req.getParameter("editPlannedOutcomeButton"));
+        plannedOutcomeId = Long.parseLong(req.getParameter("id"));
         LOG.info("DFHZH " + plannedOutcomeId);
         req.setAttribute("plannedOutcome", planedOutcomeService.getById(plannedOutcomeId));
         req.setAttribute("categories", categoryService.getAllByUserIdAndFinancialTypeId(currentSessionUser.getId()));

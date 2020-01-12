@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -36,6 +37,10 @@
                     <th scope="col">Date</th>
                     <th scope="col">Note</th>
                 </tr>
+                <c:if test="${fn:length(plannedOutcomes) == 0}">
+                    <h5 class="emptyTable">You haven't created any planned outcome yet</h5>
+                    <p class="referenceToAction" id="error">${errorCategory} </p>
+                </c:if>
                 </thead>
                 <tbody>
                 <c:forEach var="plannedOutcome" items="${plannedOutcomes}">
@@ -45,7 +50,7 @@
                             <c:if test="${category.id == plannedOutcome.categoryId}">
                                 <td>
                                     <div class="color-holder call-picker"
-                                         style="background-color: ${category.color}"></div>
+                                         id="colorTable" style="background-color: ${category.color}"></div>
                                 </td>
                                 <td>${category.title}</td>
                             </c:if>
@@ -57,12 +62,12 @@
                         <td>
                             <div class="form-group">
                                 <form action="${pageContext.request.contextPath}/edit-planned-outcome" method="get">
-                                    <button type="submit" class="btn btn-warning" name="editPlannedOutcomeButton"
+                                    <button type="submit" class="btn btn-warning" name="id"
                                             value="${plannedOutcome.id}">Edit
                                     </button>
                                 </form>
-                                <form action="${pageContext.request.contextPath}/delete-category" method="get">
-                                    <button type="submit" class="btn btn-danger" name="editPlannedOutcomeButton"
+                                <form action="${pageContext.request.contextPath}/delete-planned-outcome" method="get">
+                                    <button type="submit" class="btn btn-danger" name="id"
                                             value="${plannedOutcome.id}">Delete
                                     </button>
                                 </form>

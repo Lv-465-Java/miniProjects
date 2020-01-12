@@ -28,14 +28,14 @@ public class DeleteCategoryServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        categoryId = Long.parseLong(req.getParameter("buttonDelete"));
+        categoryId = Long.parseLong(req.getParameter("id"));
         req.setAttribute("category", categoryService.getById(categoryId));
         req.getRequestDispatcher(View.CATEGORY_DELETE_PAGE.getViewUrl()).include(req, resp);
     }
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        categoryId = Long.parseLong(req.getParameter("categoryIdDelete"));
+        categoryId = Long.parseLong(req.getParameter("id"));
         try {
             categoryService.delete(categoryId);
             resp.sendRedirect(req.getContextPath() + "/profile");

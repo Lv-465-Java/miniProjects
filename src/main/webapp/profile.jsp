@@ -66,7 +66,8 @@
 
                     <tr>
                         <td>
-                            <div class="color-holder call-picker" style="background-color: ${category.color}"></div>
+                            <div class="color-holder call-picker"
+                                 id="colorTable" style="background-color: ${category.color}"></div>
                         </td>
                         <td>${category.title}</td>
                         <td>${category.description}</td>
@@ -74,12 +75,12 @@
                             <div class="form-group">
 
                                 <form action="${pageContext.request.contextPath}/edit-category" method="get">
-                                    <button type="submit" class="btn btn-warning" name="editCategoryButton"
+                                    <button type="submit" class="btn btn-warning" name="id"
                                             value="${category.id}">Edit
                                     </button>
                                 </form>
                                 <form action="${pageContext.request.contextPath}/delete-category" method="get">
-                                    <button type="submit" class="btn btn-danger" name="buttonDelete"
+                                    <button type="submit" class="btn btn-danger" name="id"
                                             value="${category.id}">Delete
                                     </button>
                                 </form>

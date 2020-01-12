@@ -74,12 +74,12 @@
                             <div class="form-group">
 
                                 <form action="${pageContext.request.contextPath}/edit-category" method="get">
-                                    <button type="submit" class="btn btn-warning" name="editCategoryButton"
+                                    <button type="submit" class="btn btn-warning" name="id"
                                             value="${category.id}">Edit
                                     </button>
                                 </form>
                                 <form action="${pageContext.request.contextPath}/delete-category" method="get">
-                                    <button type="submit" class="btn btn-danger" name="buttonDelete"
+                                    <button type="submit" class="btn btn-danger" name="id"
                                             value="${category.id}">Delete
                                     </button>
                                 </form>

@@ -72,12 +72,12 @@
                         <td>
                             <div class="form-group">
                                 <form action="${pageContext.request.contextPath}/edit-record" method="get">
-                                    <button type="submit" class="btn btn-warning" name="editRecordButton"
+                                    <button type="submit" class="btn btn-warning" name="id"
                                             value="${record.id}">Edit
                                     </button>
                                 </form>
-                                <form action="${pageContext.request.contextPath}/delete-category" method="get">
-                                    <button type="submit" class="btn btn-danger" name="buttondelete"
+                                <form action="${pageContext.request.contextPath}/delete-record" method="get">
+                                    <button type="submit" class="btn btn-danger" name="id"
                                             value="${record.id}">Delete
                                     </button>
                                 </form>

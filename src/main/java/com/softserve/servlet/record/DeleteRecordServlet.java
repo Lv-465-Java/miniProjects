@@ -17,7 +17,7 @@ import java.io.IOException;
 public class DeleteRecordServlet extends HttpServlet {
 
     private RecordServiceImpl recordService;
-    private Logger LOG = LoggerFactory.getLogger(AddRecordServlet.class);
+    private Logger LOG = LoggerFactory.getLogger(DeleteRecordServlet.class);
     private Long recordId;
 
     @Override
@@ -27,7 +27,7 @@ public class DeleteRecordServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        recordId = Long.parseLong(req.getParameter("buttondelete"));
+        recordId = Long.parseLong(req.getParameter("id"));
         req.setAttribute("record", recordService.getById(recordId));
         req.getRequestDispatcher(View.RECORD_DELETE_PAGE.getViewUrl()).include(req, resp);
 
@@ -36,7 +36,7 @@ public class DeleteRecordServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        recordId = Long.parseLong(req.getParameter("buprofile"));
+        recordId = Long.parseLong(req.getParameter("id"));
         try {
             recordService.delete(recordId);
             resp.sendRedirect(req.getContextPath() + "/record-dashboard");

@@ -41,7 +41,7 @@ public class EditRecordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         currentSessionUser = userSession.retrieveUserIdFromSession(req);
-        recordId = Long.parseLong(req.getParameter("editRecordButton"));
+        recordId = Long.parseLong(req.getParameter("id"));
         req.setAttribute("record", recordService.getById(recordId));
         req.setAttribute("categories", categoryService.getAllByUserId(currentSessionUser.getId()));
         req.setAttribute("financialTypes", recordService.getTypes());
