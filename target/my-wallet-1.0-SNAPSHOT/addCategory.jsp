@@ -1,56 +1,53 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--suppress ALL --%>
+<%--@elvariable id="category" type="com.softserve.dto.CategoryDTO"--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-        <!DOCTYPE html>
-        <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-        <head>
-            <title>Add category</title>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-            <link rel="stylesheet" href="resource/css/file.css">
-        </head>
+<head>
+    <title>Add category</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="resource/css/file.css">
+    <link rel="stylesheet" href="resource/css/forms.css">
+</head>
 
-        <body>
+<body>
+<jsp:include page="/header.jsp"/>
 
-            <form action="add-category" method="post">
+<div class="formsContainer">
+    <div class="form-header">
+        <h3 class="form-title">Add Category</h3>
+    </div>
+    <div class="form-group">
+        <form action="${pageContext.request.contextPath}/add-category" method="post">
+            <label for="CategoryTitle" class="floatLabel">Title<span class="asterisk">*</span></label>
+            <input id="CategoryTitle" name="title" type="text" required>
 
-                <div class="form-header">
-                    <h5 class="form-title" name="addCategoryTitle">Add new category</h5>
-                    <button type="button" class="close" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                </div>
+            <label for="pickcolor" class="floatLabel">Color</label>
+            <jsp:include page="colorPicker.jsp"></jsp:include>
 
-                <div class="form-group" id="all-forms">
-                    <label for="title" class="floatLabel">Title<span class="asterisk">*</span></label>
-                    <input id="CategoryTitle" name="title" type="text" required>
-                </div>
-                <label for="color" class="floatLabel">Color</label>
-                <input id="CategoryColor" name="color" type="color">
-                <div class="form-group" id="all-forms">
-                    <label for="description" class="floatLabel">Description</label>
-                    <input id="CategoryDescription" name="description" type="text">
-                </div>
+            <label for="CategoryDescription" class="floatLabel">Description</label>
+            <input id="CategoryDescription" name="description" type="text">
 
-                <div class="form-group" id="all-forms">
-                    <label for="financial_type">Financial Type</label>
-                    <select class="form-select" id="financial-type" name="financial_type" value=<c:out value="${category.financialTypeId}">
-                        </c:out>>
-                        <option selected disabled>Select type</option>
-                        <c:forEach var="financialType" items="${financialTypes}">
-                            <option id="option" value="${financialType.id}">${financialType.typeName}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+            <label for="colorselector" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
+            <jsp:include page="categoryDropdown.jsp"></jsp:include>
 
-                <div class="form-footer">
-                    <input type="button" class="btn btn-secondary" value="Close">
-                    </button>
-                    <input type="submit" class="btn btn-primary" value="Save changes"></input>
-                </div>
-            </form>
-        </body>
-        </html>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary" id="formSaveButton">Save changes</button>
+            </div>
+        </form>
+        <form action="${pageContext.request.contextPath}/profile" method="get">
+            <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel
+            </button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -8,9 +8,23 @@
   <component name="ChangeListManager">
     <list default="true" id="ec0f44d1-05e4-4a96-aaa9-b80d6e1b406d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/constant/ServletResponseParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/constant/ServletResponseParameter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/AddCategoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/AddCategoryServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/EditCategoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/EditCategoryServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/constant/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/constant/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/dao/RecordDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/RecordDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/CategoryDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/CategoryDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/RecordDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/dao/implementation/RecordDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/entity/SqlQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/entity/SqlQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/planedOutcome/PlannedOutcomeDashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/planedOutcome/PlannedOutcomeDashboardServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/record/RecordDashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/record/RecordDashboardServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/addCategory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/addCategory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/changePassword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/changePassword.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/deleteCategory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/deleteCategory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/editCategory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/editCategory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/editUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/editUser.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/profile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/resource/css/file.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/resource/css/file.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/resource/css/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/resource/css/forms.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +103,7 @@
       <recent name="C:\Users\Halyna\IdeaProjects\miniProjects\src\main\webapp\view" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Wallet">
+  <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.softserve.Application" />
       <module name="miniProjects" />
@@ -226,7 +240,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -254,7 +268,7 @@
       <workItem from="1578757040953" duration="48000" />
       <workItem from="1578757109106" duration="36000" />
       <workItem from="1578757166192" duration="23024000" />
-      <workItem from="1578829885881" duration="2428000" />
+      <workItem from="1578829885881" duration="5590000" />
     </task>
     <task id="LOCAL-00001" summary="added enum with errors, database connection class, properties parser class">
       <created>1577639088414</created>
@@ -263,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577639088414</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed add and edit category">
+      <created>1578832349527</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1578832349527</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,45 +297,50 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added enum with errors, database connection class, properties parser class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added enum with errors, database connection class, properties parser class" />
+    <MESSAGE value="fixed add and edit category" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed add and edit category" />
   </component>
   <component name="WindowStateProjectService">
     <state x="360" y="71" key="#Tomcat_Server" timestamp="1578676622304">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="360" y="71" key="#Tomcat_Server/0.0.1536.824@0.0.1536.824" timestamp="1578676622304" />
-    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578755143496">
+    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578833097965">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1578755143496" />
-    <state x="574" y="62" key="#com.intellij.ide.util.MemberChooser" timestamp="1578778452455">
+    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1578833097965" />
+    <state x="574" y="62" key="#com.intellij.ide.util.MemberChooser" timestamp="1578834192891">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="62" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1578778452455" />
+    <state x="574" y="62" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1578834192891" />
     <state x="618" y="302" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1578692536150">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="302" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1578692536150" />
+    <state x="283" y="6" key="CommitChangelistDialog2" timestamp="1578832348625">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="283" y="6" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1578832348625" />
     <state x="548" y="154" key="FileChooserDialogImpl" timestamp="1578677314579">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1578677314579" />
-    <state width="1282" height="412" key="GridCell.Tab.0.bottom" timestamp="1578832268814">
+    <state width="1493" height="208" key="GridCell.Tab.0.bottom" timestamp="1578835483267">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578832268814" />
-    <state width="1282" height="412" key="GridCell.Tab.0.center" timestamp="1578832268814">
+    <state width="1493" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578835483267" />
+    <state width="1493" height="208" key="GridCell.Tab.0.center" timestamp="1578835483267">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578832268814" />
-    <state width="1282" height="412" key="GridCell.Tab.0.left" timestamp="1578832268813">
+    <state width="1493" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578835483267" />
+    <state width="1493" height="208" key="GridCell.Tab.0.left" timestamp="1578835483267">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578832268813" />
-    <state width="1282" height="412" key="GridCell.Tab.0.right" timestamp="1578832268814">
+    <state width="1493" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578835483267" />
+    <state width="1493" height="208" key="GridCell.Tab.0.right" timestamp="1578835483267">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578832268814" />
+    <state width="1493" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578835483267" />
     <state width="1282" height="412" key="GridCell.Tab.1.bottom" timestamp="1578832268814">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -423,26 +449,5 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="339" y="58" key="com.intellij.javaee.view.ServerArtifactsDialog/0.0.1536.824@0.0.1536.824" timestamp="1578678070928" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/AddCategoryServlet.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/AddCategoryServlet.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/AddCategoryServlet.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

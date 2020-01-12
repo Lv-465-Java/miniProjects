@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 
-public class RecordDAOImpl implements RecordDAO {
+public class RecordDAOImpl implements RecordDAO<Record> {
     private Connection connection;
 
     public RecordDAOImpl() {

@@ -1,37 +1,19 @@
 package com.softserve;
 
-import com.softserve.dto.RecordDTO;
-import com.softserve.service.implementation.PlanedOutcomeServiceImpl;
-import com.softserve.service.implementation.RecordServiceImpl;
-
-import java.sql.SQLException;
-import java.time.LocalDate;
+import com.softserve.dao.implementation.CategoryDAOImpl;
+import com.softserve.service.implementation.CategoryServiceImpl;
 
 public class Application {
 
-    public static void main(String[] args) throws SQLException {
-        RecordServiceImpl recordService = new RecordServiceImpl();
+    public static void main(String[] args) {
 
-        PlanedOutcomeServiceImpl planedOutcomeService = new PlanedOutcomeServiceImpl();
- //       PlanedOutcomeDTO planedOutcomeDTO = new PlanedOutcomeDTO(34.22, LocalDate.parse("2019-01-16"), "PLAN", 13L, 4L);
-//        planedOutcomeService.create(planedOutcomeDTO);
+        //    CategoryDAOImpl categoryDAO = new CategoryDAOImpl();
+        CategoryServiceImpl categoryService = new CategoryServiceImpl();
 
-        RecordDTO recordDTO = RecordDTO.Builder.aRecordDTO()
-                .withSum(39.3)
-                .withDate(LocalDate.parse("2019-01-16"))
-                .withNote("note")
-                .withUserId(13L)
-                .withFinancialTypeId(1L)
-                .withCategoryId(4L)
-                .withPlanedOutcomeId(2L)
-                .build();
+        System.out.println(categoryService.getAllByUserIdAndFinancialTypeId(13L));
 
-      //  System.out.println(planedOutcomeService.getById(2L));
-        System.out.println(recordService.create(recordDTO));
+        //  System.out.println(categoryDAO.getAllByUserIdAndFinancialTypeId(1L, 2L));
+
 
     }
-
-
-
-
 }

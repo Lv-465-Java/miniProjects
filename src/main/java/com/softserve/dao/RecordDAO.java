@@ -1,9 +1,7 @@
 package com.softserve.dao;
 
-import com.softserve.entity.Record;
-
 import java.util.List;
 
-public interface RecordDAO extends SearchDAO<Record> {
-    List<Record> getAllByUserIdAndFinancialTypeId(Long userId, Long typeId);
+public interface RecordDAO<T> extends SearchDAO<T> {
+    List<T> getAllByUserIdAndFinancialTypeId(Long userId, Long typeId);
 }

@@ -1,6 +1,6 @@
 package com.softserve.dao.implementation;
 
-import com.softserve.dao.SearchDAO;
+import com.softserve.dao.RecordDAO;
 import com.softserve.dao.mapping.CategoryMapping;
 import com.softserve.database.DataBaseConnection;
 import com.softserve.database.JDBCQueries;
@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 
-public class CategoryDAOImpl implements SearchDAO<Category> {
+public class CategoryDAOImpl implements RecordDAO<Category> {
     private Connection connection;
 
     public CategoryDAOImpl() {
@@ -26,15 +26,22 @@ public class CategoryDAOImpl implements SearchDAO<Category> {
     }
 
     @Override
+    public Optional<Category> getById(Long id) throws NoSuchEntityException {
+        return JDBCQueries.getObject(connection, Category.CategoryEntityQueries.GET_BY_ID.getQuery(),
+                new CategoryMapping(), id);
+    }
+
+    @Override
     public List<Category> getAllByUserId(Long userId) {
         return JDBCQueries.getListOfObjects(connection, Category.CategoryEntityQueries.GET_ALL_BY_USER_ID.getQuery(),
                 new CategoryMapping(), userId);
     }
 
     @Override
-    public Optional<Category> getById(Long id) throws NoSuchEntityException {
-        return JDBCQueries.getObject(connection, Category.CategoryEntityQueries.GET_BY_ID.getQuery(),
-                new CategoryMapping(), id);
+    public List<Category> getAllByUserIdAndFinancialTypeId(Long userId, Long typeId) {
+        return JDBCQueries.getListOfObjects(connection,
+                Category.CategoryEntityQueries.GET_ALL_BY_USER_ID_AND_FINANCIAL_TYPE.getQuery(), new CategoryMapping(),
+                userId, typeId);
     }
 
     @Override

@@ -19,14 +19,14 @@ import java.io.IOException;
 public class RecordDashboardServlet extends HttpServlet {
 
     private RecordServiceImpl recordService;
-    private CategoryServiceImpl categoryService;
+ //   private CategoryServiceImpl categoryService;
     private UserSession userSession;
     private Logger LOG = LoggerFactory.getLogger(RecordDashboardServlet.class);
 
     @Override
     public void init() {
         recordService = new RecordServiceImpl();
-        categoryService = new CategoryServiceImpl();
+ //       categoryService = new CategoryServiceImpl();
         userSession = new UserSession();
     }
 
@@ -35,7 +35,7 @@ public class RecordDashboardServlet extends HttpServlet {
         UserDTO currentSessionUser = userSession.retrieveUserIdFromSession(req);
 
         req.setAttribute("records", recordService.getAllByUserId(currentSessionUser.getId()));
-        req.setAttribute("financialTypes", categoryService.getTypes());
+        req.setAttribute("financialTypes", recordService.getTypes());
         req.getRequestDispatcher(View.RECORD_DASHBOARD_PAGE.getViewUrl()).include(req, resp);
         LOG.info("'Record Dashboard' Page is loaded");
     }

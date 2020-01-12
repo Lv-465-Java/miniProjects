@@ -48,6 +48,15 @@ public class CategoryServiceImpl implements ReadAllService<CategoryDTO> {
         return listDTO;
     }
 
+    public List<CategoryDTO> getAllByUserIdAndFinancialTypeId(Long userId) {
+        List<CategoryDTO> listDTO = new ArrayList<>();
+        List<Category> list = categoryDAO.getAllByUserIdAndFinancialTypeId(userId, FinancialType.OUTCOME.getId());
+        for (Category category : list) {
+            listDTO.add(CategoryMapperObjects.categoryEntityToCategoryDTO(category));
+        }
+        return listDTO;
+    }
+
     @Override
     public boolean update(Long id, CategoryDTO categoryDTO) throws NoSuchEntityException, NotCompletedActionException {
         Category category = CategoryMapperObjects.verifyIfCategoryIsPresent(categoryDAO.getById(categoryDTO.getId()));
