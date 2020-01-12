@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-    <title>Delete category</title>
+    <title>Delete record</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -21,24 +21,22 @@
 
 <div class="formsContainer">
     <div class="form-header">
-        <h3 class="form-title">Delete Category</h3>
+        <h3 class="form-title">Delete Record</h3>
     </div>
 
     <div class="form-head">
-        <h5>Are you sure to delete this Category?</h5>
+        <h5>Are you sure to delete this Record?</h5>
     </div>
 
     <div class="form-group">
         <div class="form-footer">
-            <form action="${pageContext.request.contextPath}/delete-category" method="post">
-                <input type="hidden" name="categoryIdDelete" value="${category.id}">
+            <form action="${pageContext.request.contextPath}/delete-record" method="post">
+                <input type="hidden" name="recordIdDelete" value="${record.id}">
                 <button type="submit" class="btn btn-danger" id="formSaveButton">Delete</button>
             </form>
             <form action="${pageContext.request.contextPath}/profile" method="get">
-                <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel
-                </button>
+                <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel</button>
             </form>
-
         </div>
     </div>
 </div>

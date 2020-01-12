@@ -46,7 +46,6 @@ public class CategoryDAOImpl implements SearchDAO<Category> {
 
     @Override
     public boolean delete(Long id) {
-        return JDBCQueries.update(connection, Category.CategoryEntityQueries.DELETE.getQuery(),
-                new CategoryMapping(), id);
+        return JDBCQueries.update(connection, Category.CategoryEntityQueries.DELETE.getQuery(), id);
     }
 }

@@ -1,3 +1,4 @@
+<%--suppress ALL --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -19,23 +20,30 @@
 
 <div class="profileContainer">
     <div class="profileInfo">
-        <h2 id="profileName">
-            <c:out value="${user.firstName}"> </c:out> <%--@elvariable id="user" type="com.softserve.dto.UserDTO"--%>
-            <c:out value="${user.lastName}"> </c:out></h2>
-        <button type="button" class="btn btn-info btn-lg" name="editUser"><a
-                href="${pageContext.request.contextPath}/edit-user">Edit User</a></button>
-        <h3 id="profileEmail"><c:out value="${user.email}"> </c:out></h3>
-        <p class="reference" name="profilePassword"><a href="${pageContext.request.contextPath}/change-user-password">Change
-            password</a></p>
+        <div class="userInfo">
+            <h2 id="profileName">
+                <c:out value="${user.firstName}"> </c:out>
+                <c:out value="${user.lastName}"> </c:out></h2>
+            <h3 id="profileEmail"><c:out value="${user.email}"> </c:out></h3>
+        </div>
+
+        <div class="editUserButton">
+            <form action="${pageContext.request.contextPath}/edit-user" method="get">
+                <button type="submit" class="btn btn-primary">Edit User</button>
+            </form>
+            <form action="${pageContext.request.contextPath}/change-user-password" method="get">
+                <button type="submit" class="btn btn-primary">Change password</button>
+            </form>
+        </div>
 
         <div class="profileCategories">
             <p class="reference" id="profileAddCategory"><a href="${pageContext.request.contextPath}/add-category">Add
                 new category</a></p>
 
-            <table class="table table-hover">
+            <table class="table table-hover" id="profileTable">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col"></th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                 </tr>
@@ -44,20 +52,28 @@
                 <%--@elvariable id="categories" type="java.util.List"--%>
                 <c:forEach var="category" items="${categories}">
                     <tr>
-                        <td>${category.id}</td>
+                        <td>
+                            <div class="color-holder call-picker" style="background-color: ${category.color}"></div>
+                        </td>
                         <td>${category.title}</td>
                         <td>${category.description}</td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/edit-category" method="get">
-                                <input type="submit" class="btn btn-outline-danger" name="editCategoryButton"
-                                       value="${category.id}">Edit
-                            </form>
-                            <form action="${pageContext.request.contextPath}/delete-category" method="get">
-                                <input type="submit" class="btn btn-outline-danger" name="buttondelete"
-                                       value="${category.id}">Delete
-                            </form>
-                        </td>
+                            <div class="form-group">
 
+                                <form action="${pageContext.request.contextPath}/edit-category" method="get">
+                                    <button type="submit" class="btn btn-warning" name="editCategoryButton"
+                                            value="${category.id}">Edit
+                                    </button>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/delete-category" method="get">
+                                    <button type="submit" class="btn btn-danger" name="buttonDelete"
+                                            value="${category.id}">Delete
+                                    </button>
+                                </form>
+
+                            </div>
+
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -31,22 +31,22 @@
             <input id="recordSum" name="sum" type="text" required value="${record.sum}"/>
 
             <label for="pickdate" class="floatLabel">Date</label>
-<%--            <jsp:include page="datePicker.jsp"/>--%>
+            <%--            <jsp:include page="datePicker.jsp"/>--%>
 
             <label for="recordNote" class="floatLabel">Note</label>
             <input id="recordNote" name="note" type="text" value="${record.note}"/>
 
             <%--            CHECK--%>
             <label for="financialType" class="floatLabel">Financial Type</label>
-<%--            <jsp:include page="categoryDropdown.jsp"></jsp:include>--%>
+            <%--            <jsp:include page="categoryDropdown.jsp"></jsp:include>--%>
 
             <%--CHECK--%>
             <label for="category" class="floatLabel">Category</label>
-<%--            <jsp:include page="categoryDropdown.jsp"></jsp:include>--%>
+            <%--            <jsp:include page="categoryDropdown.jsp"></jsp:include>--%>
 
             <%--CHECK--%>
             <label for="plannedOutcome" class="floatLabel">Planned Outcome</label>
-<%--            <jsp:include page="categoryDropdown.jsp"></jsp:include>--%>
+            <%--            <jsp:include page="categoryDropdown.jsp"></jsp:include>--%>
 
             <div class="form-footer">
                 <button type="submit" class="btn btn-primary" id="formSaveButton">Save changes</button>

@@ -1,30 +1,48 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--suppress ELValidationInJSP --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-        <!DOCTYPE html>
-        <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-        <head>
-            <title>Edit category</title>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-            <link rel="stylesheet" href=<c:url value="resource/css/file.css"></c:url>>
-            <link rel="stylesheet" href=<c:url value="resource/css/forms.css"></c:url>>
-        </head>
+<head>
+    <title>Delete category</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="resource/css/file.css">
+    <link rel="stylesheet" href="resource/css/forms.css">
+</head>
 
-        <body>
+<body>
+<jsp:include page="/header.jsp"/>
 
-            <form action="delete-category" method="post">
+<div class="formsContainer">
+    <div class="form-header">
+        <h3 class="form-title">Delete Category</h3>
+    </div>
 
-                <div class="form-footer">
-                    <input type="button" class="btn btn-secondary" value="Close">
-                    </button>
-                    <input type="hidden" name="buprofile" value="${category.id}">
-                    <input type="submit" class="btn btn-primary">Save changes</input>
-                </div>
+    <div class="form-head">
+        <h5>Are you sure to delete this Category?</h5>
+    </div>
+
+    <div class="form-group">
+        <div class="form-footer">
+            <form action="${pageContext.request.contextPath}/delete-category" method="post">
+                <input type="hidden" name="categoryIdDelete" value="${category.id}">
+                <button type="submit" class="btn btn-danger" id="formSaveButton">Delete</button>
             </form>
-        </body>
-        </html>
+            <form action="${pageContext.request.contextPath}/profile" method="get">
+                <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</form>
+</body>
+</html>

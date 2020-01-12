@@ -18,24 +18,23 @@
 <jsp:include page="/header.jsp"/>
 
 <div class="formsContainer">
+    <div class="form-header">
+        <h3 class="form-title">Edit User</h3>
+    </div>
     <div class="form-group">
         <form action="${pageContext.request.contextPath}/edit-user" method="post">
             <label for="firstName" class="floatLabel">First name<span class="asterisk">*</span></label>
-            <input id="firstName" name="first_name" type="text" required
-                   value=
-                   <%--@elvariable id="user" type="com.softserve.entity.User"--%>
-                   <c:out value="${user.firstName}"> </c:out>>
+            <input id="firstName" name="first_name" type="text" required value="${user.firstName}">
+            <%--@elvariable id="user" type="com.softserve.entity.User"--%>
 
             <label for="lastName" class="floatLabel">Last name<span class="asterisk">*</span></label>
-            <input type="text" name="last_name" id="lastName" required
-                   value=<c:out value="${user.lastName}"> </c:out>>
+            <input type="text" name="last_name" id="lastName" required value="${user.lastName}">
             <div class="form-footer">
-                <button type="submit" class="btn btn-primary" id="mainPageButton2">Save changes</button>
+                <button type="submit" class="btn btn-primary" id="formSaveButton">Save changes</button>
             </div>
         </form>
-        </form>
         <form action="${pageContext.request.contextPath}/profile" method="get">
-            <button type="submit" class="btn btn-primary" id="mainPageButton">Cancel</button>
+            <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel</button>
         </form>
     </div>
 
