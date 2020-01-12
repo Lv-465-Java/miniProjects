@@ -1,0 +1,30 @@
+package service;
+
+import dto.TripDto;
+import entity.Trip;
+
+import java.util.List;
+
+public interface TripService {
+
+    TripDto getById(Long id);
+
+    TripDto getByField(String text);
+
+    List<TripDto> getAll();
+
+    List<TripDto> getAllLimit();
+
+
+    boolean insert(Trip trip);
+
+    boolean updateByEntity(Trip trip);
+
+    boolean updateByField(String text, String textCondition);
+
+    boolean deleteById(Long id);
+
+    boolean deleteByFieldName(String textCondition);
+
+    boolean delete(Trip trip);
+}

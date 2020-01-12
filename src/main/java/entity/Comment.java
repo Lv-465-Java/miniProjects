@@ -1,0 +1,50 @@
+package entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public final class Comment implements IEntity {
+
+    public static enum CommentQueries {
+        INSERT(SqlQueries.INSERT, "INSERT INTO comments (text_of_comment, place_id, user_id) VALUES (?,?,?)"),
+        GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, text_of_comment, date_of_comment, place_id, user_id FROM comments WHERE id = ?"),
+        GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, text_of_comment, date_of_comment, place_id, user_id FROM comments WHERE date_of_comment = ?"),
+        GET_ALL(SqlQueries.GET_ALL, "SELECT id, text_of_comment, date_of_comment, place_id, user_id FROM comments;"),
+        GET_ALL_LIMIT(SqlQueries.GET_ALL_LIMIT, "SELECT id, text_of_comment, date_of_comment, place_id, user_id FROM comments LIMIT 10;"),
+        UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE comments SET text_of_comment = ?, place_id= ? WHERE id = ?"),
+        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE comments SET text_of_comment = ? WHERE place_id = ?"),///////
+        DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM comments WHERE id = ?");
+       // DELETE_BY_FIELD(SqlQueries.DELETE_BY_FIELD, "DELETE FROM comments WHERE %s = '%s';");
+
+        private SqlQueries sqlQuery;
+        private String query;
+
+        private CommentQueries(SqlQueries sqlQuery, String query) {
+            this.sqlQuery = sqlQuery;
+            this.query = query;
+        }
+
+        public SqlQueries getSqlQuery() {
+            return sqlQuery;
+        }
+
+        @Override
+        public String toString() {
+            return query;
+        }
+    }
+
+    private Long id;
+    private String textOfComment;
+    private LocalDateTime dateOfComment;
+    private Long placeId;
+    private Long userId;
+}
