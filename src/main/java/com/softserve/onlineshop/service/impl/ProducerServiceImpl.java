@@ -65,6 +65,7 @@ public class ProducerServiceImpl implements ProducerService {
 
     public static void main(String[] args) {
         ProducerService producerService = new ProducerServiceImpl();
-        System.out.println(producerService.updateById(new ProducerDto("NewProducer"), 1L));
+        System.out.println(producerService.getAll());
+//        System.out.println(producerService.updateById(new ProducerDto("NewProducer"), 1L));
     }
 }

@@ -27,11 +27,6 @@
                         ${error}
                 </div>
             </c:if>
-            <c:if test="${not empty success}">
-                <div class="alert alert-success">
-                        ${success}
-                </div>
-            </c:if>
             <div class="form-group">
                 <input class="form-control" type="text" name="nickname" placeholder="Nickname" required>
             </div>

@@ -26,23 +26,61 @@
 
 <div class="add-country">
     <div class="country-container">
-        <form class="border border-light p-5" action="/employee" method="post" role="form" data-toggle="validator">
-            <c:if test="${empty action}">
-                <c:set var="action" value="add"/>
-            </c:if>
-            <input type="hidden" id="action" name="action" value="${action}">
-            <input type="hidden" id="idEmployee" name="idEmployee" value="${employee.id}">
-            <h2>Employee</h2>
+        <form class="border border-light p-5" action="${pageContext.request.contextPath}/add-producer" method="post"
+              role="form" data-toggle="validator">
+            <%--            <c:if test="${empty action}">--%>
+            <%--                <c:set var="action" value="add"/>--%>
+            <%--            </c:if>--%>
+            <%--            <input type="hidden" id="action" name="action" value="${action}">--%>
+            <%--            <input type="hidden" id="idEmployee" name="idEmployee" value="${employee.id}">--%>
+            <h2>Producer</h2>
             <div class="form-group col-xs-4">
-                <input type="text" name="name" id="name" class="form-control mb-4" placeholder="Name" value="${employee.name}" required="true"/>
-                <button type="submit" class="btn btn-primary  btn-md">Accept</button>
+                <input type="text" name="name" id="name" class="form-control mb-4" placeholder="Name"
+                       required/>
+                <button type="submit" name="submit" class="btn blue-gradient">Submit</button>
             </div>
+            <c:if test="${not empty error}">
+                <div class="alert alert-info">
+                        ${error}
+                </div>
+            </c:if>
+            <c:if test="${not empty success}">
+                <div class="alert alert-success">
+                        ${success}
+                </div>
+            </c:if>
         </form>
     </div>
 </div>
 
-    <jsp:include page="/fragments/footer.jsp"/>
-
+<form class="border-light" action="${pageContext.request.contextPath}/add-producer" method="get">
+    <table class="table table-dark">
+        <thead class="thead-dark">
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Actions <a class=""><i>+</i></a></td>
+        </tr>
+        </thead>
+        <tbody class="producer-container">
+        <c:forEach var="producer" items="${producers}">
+            <tr>
+                <td>${producer.id}</td>
+                <td>${producer.name}</td>
+                <form action="${pageContext.request.contextPath}/edit-producer" method="post">
+                    <td>
+                        <button name="update" value="${producer.id}" class="btn blue-gradient btn-md">UPDATE</button>
+                        <button name="delete" value="${producer.id}" class="btn blue-gradient btn-md">DELETE</button>
+                    </td>
+                </form>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</form>
+<%--    <jsp:include page="/fragments/drop-producers.jsp"/>--%>
+<%--    <jsp:include page="/fragments/footer.jsp"/>--%>
 </body>
 <script src="static/js/bootstrap.min.js"></script>
+
 </html>

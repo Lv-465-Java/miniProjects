@@ -15,19 +15,21 @@ import java.io.IOException;
 public class UserLoginServlet extends HttpServlet {
     private UserService userService;
 
-    public UserLoginServlet() {
-        super();
+    @Override
+    public void init() {
         userService = new UserServiceImpl();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDto userDto = new UserDto(request.getParameter("nickname"),
                 request.getParameter("password"));
-        try {
+            try {
             userService.isValid(userDto);
             SessionUtil.createSession(userDto, request, response);
             request.setAttribute("user-nickname", userDto.getNickname());

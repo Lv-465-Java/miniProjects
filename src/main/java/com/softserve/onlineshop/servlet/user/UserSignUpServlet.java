@@ -15,8 +15,8 @@ import java.io.IOException;
 public class UserSignUpServlet extends HttpServlet {
     private UserService userService;
 
-    public UserSignUpServlet() {
-        super();
+    @Override
+    public void init() {
         userService = new UserServiceImpl();
     }
 

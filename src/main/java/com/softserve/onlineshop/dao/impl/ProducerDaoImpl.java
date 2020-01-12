@@ -25,9 +25,9 @@ public class ProducerDaoImpl extends CrudDaoImpl<Producer> {
         }
     }
 
-    public static void main(String[] args) {
-        ProducerDaoImpl producerDao = new ProducerDaoImpl();
-        System.out.println(producerDao.updateById("UpdatedName", 4L));
-//        System.out.println(producerDao.updateById(producerDao.getById(new ProducerRowMapper(),1L).get()));
-    }
+//    public static void main(String[] args) {
+//        ProducerDaoImpl producerDao = new ProducerDaoImpl();
+//        System.out.println(producerDao.updateById("UpdatedName", 4L));
+////        System.out.println(producerDao.updateById(producerDao.getById(new ProducerRowMapper(),1L).get()));
+//    }
 }
