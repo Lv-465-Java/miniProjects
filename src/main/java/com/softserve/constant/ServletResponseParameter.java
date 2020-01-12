@@ -12,7 +12,7 @@ public enum ServletResponseParameter {
     CATEGORY_TITLE("title"),
     CATEGORY_COLOR("color"),
     CATEGORY_DESCRIPTION("description"),
-    CATEGORY_FINANCIAL_TYPE("financial_type"),
+    FINANCIAL_TYPE("financial_type"),
     FINANCIAL_TYPE_ID("financial_type_id"),
     RECORD_ID("record_id"),
     SUM("sum"),

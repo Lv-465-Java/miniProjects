@@ -24,6 +24,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
 
     public RecordServiceImpl() {
         this.recordDAO = new RecordDAOImpl();
+        this.planedOutcomeDAO = new PlanedOutcomeDAOImpl();
     }
 
     @Override
@@ -47,7 +48,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         }
     }
 
-    private void checkIfPlanedOutcomeMatchesCategory(Long categoryId, Long planedOutcomeId) throws NotCompletedActionException {
+    public void checkIfPlanedOutcomeMatchesCategory(Long categoryId, Long planedOutcomeId) throws NotCompletedActionException {
         Optional<PlanedOutcome> planedOutcome = planedOutcomeDAO.getById(planedOutcomeId);
         if (planedOutcome.isPresent()) {
             if (!planedOutcome.get().getCategoryId().equals(categoryId)) {

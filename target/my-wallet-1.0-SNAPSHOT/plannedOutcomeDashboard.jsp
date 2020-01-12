@@ -19,7 +19,7 @@
 
 <div class="PlannedOutcomeContainer">
     <div class="allPlannedOutcomes">
-        <p class="reference" id="AddNewPlannedOutcome"><a href="${pageContext.request.contextPath}/add-record">Add new
+        <p class="reference" id="AddNewPlannedOutcome"><a href="${pageContext.request.contextPath}/add-planned-outcome">Add new
             planned outcome</a></p>
 
         <table class="table table-hover">
@@ -49,7 +49,7 @@
                     <td>${plannedOutcome.date}</td>
                     <td>${plannedOutcome.note}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/edit-record" method="get">
+                        <form action="${pageContext.request.contextPath}/edit-planned-outcome" method="get">
                             <input type="submit" class="btn btn-outline-danger" name="editPlannedOutcomeButton"
                                    value="Edit">
                         </form>

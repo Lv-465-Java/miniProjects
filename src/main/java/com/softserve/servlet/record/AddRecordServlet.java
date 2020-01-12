@@ -63,6 +63,8 @@ public class AddRecordServlet extends HttpServlet {
             plannedOutcomeId = Long.parseLong(req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()));
         }
 
+        LOG.info("plan " + plannedOutcomeId);
+
         RecordDTO recordDTO = RecordDTO.Builder.aRecordDTO()
                 .withSum(sum)
                 .withDate(date)
@@ -80,7 +82,6 @@ public class AddRecordServlet extends HttpServlet {
         } catch (NotCompletedActionException e) {
             LOG.info("Error: " + e.getMessage());
             req.setAttribute("error", e.getMessage());
-            resp.sendRedirect(req.getContextPath() + "/edit-record");
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.RECORD_ADD_PAGE.getViewUrl())

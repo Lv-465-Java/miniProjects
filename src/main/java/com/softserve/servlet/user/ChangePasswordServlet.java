@@ -40,12 +40,9 @@ public class ChangePasswordServlet extends HttpServlet {
 
         UserDTO userDTO = userSession.retrieveUserIdFromSession(req);
 
-        LOG.info("I am here");
-
         String currentPassword = req.getParameter(ServletResponseParameter.USER_CURRENT_PASSWORD.getServletParameter());
         String newPassword = req.getParameter(ServletResponseParameter.USER_NEW_PASSWORD.getServletParameter());
         String confirmPassword = req.getParameter(ServletResponseParameter.USER_CONFIRM_PASSWORD.getServletParameter());
-        LOG.info("CURRENT " + currentPassword + " new " + newPassword + " confirm " + confirmPassword);
         try {
             userService.changePassword(userDTO.getId(), currentPassword, newPassword, confirmPassword);
             resp.sendRedirect(req.getContextPath() + "/profile");
@@ -59,7 +56,6 @@ public class ChangePasswordServlet extends HttpServlet {
                     .getRequestDispatcher(View.USER_CHANGE_PASSWORD.getViewUrl())
                     .forward(req, resp);
 
-            LOG.info("error is !!!!!!!!!!!!!!!!!!!!! :" + e);
         }
     }
 }

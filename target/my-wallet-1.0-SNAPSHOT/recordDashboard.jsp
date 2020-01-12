@@ -18,6 +18,7 @@
 <jsp:include page="/header.jsp"/>
 
 <div class="RecordContainer">
+
     <div class="allRecords">
         <p class="reference" id="AddNewRecord"><a href="${pageContext.request.contextPath}/add-record">Add new
             record</a></p>
@@ -35,9 +36,7 @@
             </tr>
             </thead>
             <tbody>
-            <%--@elvariable id="records" type="java.util.List"--%>
             <c:forEach var="record" items="${records}">
-            <c>
                 <td>${record.id}</td>
                 <td>${record.sum}</td>
                 <td>${record.date}</td>

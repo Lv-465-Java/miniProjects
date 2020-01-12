@@ -47,7 +47,7 @@ public class EditCategoryServlet extends HttpServlet {
         String title = req.getParameter(ServletResponseParameter.CATEGORY_TITLE.getServletParameter());
         String color = req.getParameter(ServletResponseParameter.CATEGORY_COLOR.getServletParameter());
         String description = req.getParameter(ServletResponseParameter.CATEGORY_DESCRIPTION.getServletParameter());
-        Long financialTypeId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_FINANCIAL_TYPE.getServletParameter()));
+        Long financialTypeId = Long.parseLong(req.getParameter(ServletResponseParameter.FINANCIAL_TYPE.getServletParameter()));
 
         CategoryDTO categoryDTO = CategoryDTO.Builder.aCategoryDTO()
                 .withId(categoryId)
