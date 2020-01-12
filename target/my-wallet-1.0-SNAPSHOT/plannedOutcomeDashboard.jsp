@@ -17,51 +17,63 @@
 <body>
 <jsp:include page="/header.jsp"/>
 
-<div class="PlannedOutcomeContainer">
-    <div class="allPlannedOutcomes">
-        <p class="reference" id="AddNewPlannedOutcome"><a href="${pageContext.request.contextPath}/add-planned-outcome">Add new
-            planned outcome</a></p>
+<div class="profileContainer">
+    <div class="profileInfo">
+        <div class="addPlannedOutcomeButton">
+            <p class="reference" id="profileAddCategory"><a
+                    href="${pageContext.request.contextPath}/add-planned-outcome">Add new
+                planned outcome</a></p>
+        </div>
 
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Category color</th>
-                <th scope="col">Category</th>
-                <th scope="col">Sum</th>
-                <th scope="col">Date</th>
-                <th scope="col">Note</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="plannedOutcome" items="${plannedOutcomes}">
+        <div class="categoriesTable">
+
+            <table class="table table-hover" id="profileTable">
+                <thead>
                 <tr>
-                    <td>${plannedOutcome.id}</td>
-
-                    <c:forEach var="category" items="${categories}">
-                        <c:if test="${category.id == plannedOutcome.categoryId}">
-                            <td>${category.color}</td>
-                            <td>${category.title}</td>
-                        </c:if>
-                    </c:forEach>
-
-                    <td>${plannedOutcome.sum}</td>
-                    <td>${plannedOutcome.date}</td>
-                    <td>${plannedOutcome.note}</td>
-                    <td>
-                        <form action="${pageContext.request.contextPath}/edit-planned-outcome" method="get">
-                            <input type="submit" class="btn btn-outline-danger" name="editPlannedOutcomeButton"
-                                   value="Edit">
-                        </form>
-                        <form action="${pageContext.request.contextPath}/delete-category" method="get">
-                            <input type="submit" class="btn btn-outline-danger" name="editPlannedOutcomeButton"
-                                   value="Delete">
-                        </form>
-                    </td>
+                    <th scope="col">Category color</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Sum</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Note</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach var="plannedOutcome" items="${plannedOutcomes}">
+                    <tr>
+
+                        <c:forEach var="category" items="${categories}">
+                            <c:if test="${category.id == plannedOutcome.categoryId}">
+                                <td>
+                                    <div class="color-holder call-picker"
+                                         style="background-color: ${category.color}"></div>
+                                </td>
+                                <td>${category.title}</td>
+                            </c:if>
+                        </c:forEach>
+
+                        <td>${plannedOutcome.sum}</td>
+                        <td>${plannedOutcome.date}</td>
+                        <td>${plannedOutcome.note}</td>
+                        <td>
+                            <div class="form-group">
+                                <form action="${pageContext.request.contextPath}/edit-planned-outcome" method="get">
+                                    <button type="submit" class="btn btn-warning" name="editPlannedOutcomeButton"
+                                            value="${plannedOutcome.id}">Edit
+                                    </button>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/delete-category" method="get">
+                                    <button type="submit" class="btn btn-danger" name="editPlannedOutcomeButton"
+                                            value="${plannedOutcome.id}">Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 </body>

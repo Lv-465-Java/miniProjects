@@ -42,11 +42,8 @@
                 new category</a></p>
         </div>
 
-        <%--        <c:if test="${fn:length(categories) == null}">--%>
-        <%--            &lt;%&ndash;                    <h1>Please create category first</h1>&ndash;%&gt;--%>
-        <%--            <p class="referenceToAction" id="error">${errorCategory} </p>--%>
-        <%--        </c:if>--%>
         <div class="categoriesTable">
+
             <table class="table table-hover" id="profileTable">
 
                 <thead>
@@ -54,7 +51,12 @@
                     <th scope="col"></th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
+
                 </tr>
+                <c:if test="${fn:length(categories) == 0}">
+                    <h5 class="emptyTable">You haven't created any category yet</h5>
+                    <p class="referenceToAction" id="error">${errorCategory} </p>
+                </c:if>
                 </thead>
 
                 <tbody>
@@ -91,7 +93,6 @@
             </table>
         </div>
     </div>
-</div>
 </div>
 </body>
 

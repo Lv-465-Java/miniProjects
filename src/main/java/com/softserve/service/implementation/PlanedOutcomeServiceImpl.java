@@ -5,10 +5,12 @@ import com.softserve.dao.implementation.PlanedOutcomeDAOImpl;
 import com.softserve.dto.PlanedOutcomeDTO;
 import com.softserve.entity.FinancialType;
 import com.softserve.entity.PlanedOutcome;
+import com.softserve.entity.Record;
 import com.softserve.exception.NoSuchEntityException;
 import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.ReadAllService;
 import com.softserve.service.mapper.PlanedOutcomeMapperObjects;
+import com.softserve.service.mapper.RecordMapperObjects;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,8 +53,9 @@ public class PlanedOutcomeServiceImpl implements ReadAllService<PlanedOutcomeDTO
     }
 
     @Override
-    public boolean update(Long id, PlanedOutcomeDTO planedOutcomeDTO) {
-        PlanedOutcome planedOutcome = new PlanedOutcome();
+    public boolean update(Long id, PlanedOutcomeDTO planedOutcomeDTO) throws
+            NotCompletedActionException, NoSuchEntityException{
+        PlanedOutcome planedOutcome = PlanedOutcomeMapperObjects.verifyIfPlanedOutcomeIsPresent(planedOutcomeDAO.getById(id));
         planedOutcome.setSum(planedOutcomeDTO.getSum());
         planedOutcome.setDate(planedOutcomeDTO.getDate());
         planedOutcome.setNote(planedOutcomeDTO.getNote());

@@ -1,4 +1,6 @@
 package com.softserve.servlet.planedOutcome;
 
-public class DeletePlanedOutcomeServlet {
+import javax.servlet.http.HttpServlet;
+
+public class DeletePlanedOutcomeServlet extends HttpServlet {
 }

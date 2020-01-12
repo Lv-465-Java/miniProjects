@@ -25,7 +25,7 @@
     </div>
 
     <div class="form-head">
-        <h5>Are you sure to delete this Category?</h5>
+        <h5>Are you sure you want to delete this Category?</h5>
     </div>
 
     <div class="form-group">

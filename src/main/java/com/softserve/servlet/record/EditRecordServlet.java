@@ -33,21 +33,17 @@ public class EditRecordServlet extends HttpServlet {
     @Override
     public void init() {
         this.recordService = new RecordServiceImpl();
-        this.userSession = new UserSession();
+        this.categoryService = new CategoryServiceImpl();
         this.planedOutcomeService = new PlanedOutcomeServiceImpl();
+        this.userSession = new UserSession();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         currentSessionUser = userSession.retrieveUserIdFromSession(req);
-        //Take a look here
         recordId = Long.parseLong(req.getParameter("editRecordButton"));
         req.setAttribute("record", recordService.getById(recordId));
-        LOG.info("user id " + currentSessionUser.getId());
-
         req.setAttribute("categories", categoryService.getAllByUserId(currentSessionUser.getId()));
-
-        LOG.info("CAT " + categoryService.getAllByUserId(currentSessionUser.getId()));
         req.setAttribute("financialTypes", recordService.getTypes());
         req.setAttribute("plannedOutcomes", planedOutcomeService.getAllByUserId(currentSessionUser.getId()));
         req.getRequestDispatcher(View.RECORD_EDIT_PAGE.getViewUrl()).include(req, resp);
@@ -87,7 +83,7 @@ public class EditRecordServlet extends HttpServlet {
             LOG.info("Record is updated. User is redirected to 'Record Dashboard' Page");
         } catch (NotCompletedActionException e) {
             LOG.info("Error: " + e.getMessage());
-            resp.sendRedirect(req.getContextPath() + "/edit-record");
+            req.setAttribute("error", e.getMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.RECORD_EDIT_PAGE.getViewUrl())

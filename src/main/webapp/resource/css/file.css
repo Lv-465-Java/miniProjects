@@ -471,6 +471,10 @@ select:focus {
 	font-size: 20px;
 }
 
+.emptyTable
+{
+	color: red;
+}
 /*.table-hover*/
 /*{*/
 /*  font-size: 20px;*/

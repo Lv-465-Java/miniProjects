@@ -51,7 +51,6 @@
             <label for="colorselector" class="floatLabel">Planned Outcomes</label>
             <jsp:include page="plannedOutcomesDropdown.jsp"/>
 
-
             <c:if test="${not empty error}">
                 <p class="reference" id="error">${error}</p>
             </c:if>

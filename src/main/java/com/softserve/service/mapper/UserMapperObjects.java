@@ -3,6 +3,7 @@ package com.softserve.service.mapper;
 import com.softserve.constant.ErrorMessage;
 import com.softserve.dto.UserDTO;
 import com.softserve.entity.User;
+import com.softserve.exception.NoSuchEntityException;
 
 import java.util.Optional;
 
@@ -14,9 +15,9 @@ public class UserMapperObjects {
                 .build();
     }
 
-    public static User verifyIfUserIsPresent(Optional<User> optionalUser) {
+    public static User verifyIfUserIsPresent(Optional<User> optionalUser) throws NoSuchEntityException {
         if (!optionalUser.isPresent()) {
-            throw new RuntimeException(ErrorMessage.FAIL_TO_FIND_A_USER.getErrorMessage());
+            throw new NoSuchEntityException(ErrorMessage.FAIL_TO_FIND_A_USER.getErrorMessage());
         }
         return optionalUser.get();
     }

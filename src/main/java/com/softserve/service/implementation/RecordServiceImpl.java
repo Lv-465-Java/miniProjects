@@ -42,21 +42,6 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         return true;
     }
 
-    private void checkIfPlanedOutcomeMatchesFinancialType(Long financialTypeId) throws NotCompletedActionException {
-        if (!financialTypeId.equals(FinancialType.OUTCOME.getId())) {
-            throw new NotCompletedActionException(ErrorMessage.FINANCIAL_TYPE_DO_NOT_MATCH.getErrorMessage());
-        }
-    }
-
-    public void checkIfPlanedOutcomeMatchesCategory(Long categoryId, Long planedOutcomeId) throws NotCompletedActionException {
-        Optional<PlanedOutcome> planedOutcome = planedOutcomeDAO.getById(planedOutcomeId);
-        if (planedOutcome.isPresent()) {
-            if (!planedOutcome.get().getCategoryId().equals(categoryId)) {
-                throw new NotCompletedActionException(ErrorMessage.CATEGORY_ID_DO_NOT_MATCH.getErrorMessage());
-            }
-        }
-    }
-
     @Override
     public RecordDTO getById(Long id) throws NoSuchEntityException {
         Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(id));
@@ -75,6 +60,10 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
     @Override
     public boolean update(Long id, RecordDTO recordDTO)
             throws NoSuchEntityException, NotCompletedActionException {
+        if (recordDTO.getPlanedOutcomeId() != null) {
+            checkIfPlanedOutcomeMatchesFinancialType(recordDTO.getFinancialTypeId());
+            checkIfPlanedOutcomeMatchesCategory(recordDTO.getCategoryId(), recordDTO.getPlanedOutcomeId());
+        }
         Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(id));
         record.setSum(recordDTO.getSum());
         record.setDate(recordDTO.getDate());
@@ -98,6 +87,21 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
 
     public List<FinancialType> getTypes() {
         return Arrays.asList(FinancialType.values());
+    }
+
+    private void checkIfPlanedOutcomeMatchesFinancialType(Long financialTypeId) throws NotCompletedActionException {
+        if (!financialTypeId.equals(FinancialType.OUTCOME.getId())) {
+            throw new NotCompletedActionException(ErrorMessage.FINANCIAL_TYPE_DO_NOT_MATCH.getErrorMessage());
+        }
+    }
+
+    public void checkIfPlanedOutcomeMatchesCategory(Long categoryId, Long planedOutcomeId) throws NotCompletedActionException {
+        Optional<PlanedOutcome> planedOutcome = planedOutcomeDAO.getById(planedOutcomeId);
+        if (planedOutcome.isPresent()) {
+            if (!planedOutcome.get().getCategoryId().equals(categoryId)) {
+                throw new NotCompletedActionException(ErrorMessage.CATEGORY_ID_DO_NOT_MATCH.getErrorMessage());
+            }
+        }
     }
 
 

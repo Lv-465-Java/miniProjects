@@ -25,36 +25,39 @@
         <h3 class="form-title">Edit Record</h3>
     </div>
     <div class="form-group">
+        <form action="${pageContext.request.contextPath}/record-dashboard" method="get">
+            <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel</button>
+        </form>
         <form action="${pageContext.request.contextPath}/edit-record" method="post">
             <input type="hidden" name="record_id" value="${record.id}"/>
             <label for="recordSum" class="floatLabel">Sum<span class="asterisk">*</span></label>
             <input id="recordSum" name="sum" type="text" required value="${record.sum}"/>
 
             <label for="pickdate" class="floatLabel">Date</label>
+            <input id="RecordDate" name="date" type="date" required>
             <%--            <jsp:include page="datePicker.jsp"/>--%>
 
             <label for="recordNote" class="floatLabel">Note</label>
             <input id="recordNote" name="note" type="text" value="${record.note}"/>
 
-            <%--            CHECK--%>
             <label for="financialType" class="floatLabel">Financial Type</label>
-            <%--            <jsp:include page="categoryDropdown.jsp"></jsp:include>--%>
+            <jsp:include page="financialTypeDropdown.jsp"/>
 
-            <%--CHECK--%>
+
             <label for="category" class="floatLabel">Category</label>
-            <%--            <jsp:include page="categoryDropdown.jsp"></jsp:include>--%>
+            <jsp:include page="categoryDropdown.jsp"/>
 
-            <%--CHECK--%>
             <label for="plannedOutcome" class="floatLabel">Planned Outcome</label>
-            <%--            <jsp:include page="categoryDropdown.jsp"></jsp:include>--%>
+            <jsp:include page="plannedOutcomesDropdown.jsp"/>
 
             <div class="form-footer">
                 <button type="submit" class="btn btn-primary" id="formSaveButton">Save changes</button>
             </div>
 
-        </form>
-        <form action="${pageContext.request.contextPath}/record-dashboard" method="get">
-            <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel</button>
+            <c:if test="${not empty error}">
+                <p class="reference" id="error">${error}</p>
+            </c:if>
+
         </form>
     </div>
 </div>

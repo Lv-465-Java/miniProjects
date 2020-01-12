@@ -7,30 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec0f44d1-05e4-4a96-aaa9-b80d6e1b406d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/datePicker.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/financialTypeDropdown.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/plannedOutcomesDropdown.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/editPlannedOutcome.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/AddCategoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/AddCategoryServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/EditCategoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/category/EditCategoryServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/addCategory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/addCategory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/PlanedOutcomeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/PlanedOutcomeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/service/mapper/PlanedOutcomeMapperObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/service/mapper/PlanedOutcomeMapperObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/service/mapper/UserMapperObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/service/mapper/UserMapperObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/planedOutcome/DeletePlanedOutcomeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/planedOutcome/DeletePlanedOutcomeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/planedOutcome/EditPlanedOutcomeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/planedOutcome/EditPlanedOutcomeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/record/EditRecordServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/softserve/servlet/record/EditRecordServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/addRecord.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/addRecord.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/categoryDropdown.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/categoryDropdown.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/deleteCategory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/deleteCategory.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/editCategory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editCategory.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/editRecord.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editRecord.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/plannedOutcomeDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/plannedOutcomeDashboard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/recordDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/recordDashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resource/css/file.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resource/css/file.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resource/css/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resource/css/forms.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/signUp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signUp.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/addCategory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/addCategory.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/addRecord.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/addRecord.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/categoryDropdown.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/categoryDropdown.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/editCategory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/editCategory.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/profile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/resource/css/file.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/resource/css/file.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/resource/css/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/resource/css/forms.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/deleteCategory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/deleteCategory.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/plannedOutcomeDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/my-wallet-1.0-SNAPSHOT/plannedOutcomeDashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,7 +264,8 @@
       <workItem from="1578757040953" duration="48000" />
       <workItem from="1578757109106" duration="36000" />
       <workItem from="1578757166192" duration="23024000" />
-      <workItem from="1578829885881" duration="28966000" />
+      <workItem from="1578829885881" duration="29056000" />
+      <workItem from="1578863732773" duration="4421000" />
     </task>
     <task id="LOCAL-00001" summary="added enum with errors, database connection class, properties parser class">
       <created>1577639088414</created>
@@ -330,102 +322,102 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1578677314579" />
-    <state width="1282" height="412" key="GridCell.Tab.0.bottom" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.0.bottom" timestamp="1578868292387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.0.center" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578868292387" />
+    <state width="1282" height="412" key="GridCell.Tab.0.center" timestamp="1578868292387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.0.left" timestamp="1578862323254">
+    <state width="1282" height="412" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578868292387" />
+    <state width="1282" height="412" key="GridCell.Tab.0.left" timestamp="1578868292387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578862323254" />
-    <state width="1282" height="412" key="GridCell.Tab.0.right" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578868292387" />
+    <state width="1282" height="412" key="GridCell.Tab.0.right" timestamp="1578868292387">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.1.bottom" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578868292387" />
+    <state width="1282" height="412" key="GridCell.Tab.1.bottom" timestamp="1578868292259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.1.center" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578868292259" />
+    <state width="1282" height="412" key="GridCell.Tab.1.center" timestamp="1578868292259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.1.left" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1578868292259" />
+    <state width="1282" height="412" key="GridCell.Tab.1.left" timestamp="1578868292259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.1.right" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1578868292259" />
+    <state width="1282" height="412" key="GridCell.Tab.1.right" timestamp="1578868292259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.2.bottom" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1578868292259" />
+    <state width="1282" height="412" key="GridCell.Tab.2.bottom" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.2.center" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
+    <state width="1282" height="412" key="GridCell.Tab.2.center" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.2.left" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
+    <state width="1282" height="412" key="GridCell.Tab.2.left" timestamp="1578868292259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.2.right" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1578868292259" />
+    <state width="1282" height="412" key="GridCell.Tab.2.right" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.3.bottom" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
+    <state width="1282" height="412" key="GridCell.Tab.3.bottom" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
-    <state width="1282" height="412" key="GridCell.Tab.3.center" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
+    <state width="1282" height="412" key="GridCell.Tab.3.center" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
-    <state width="1282" height="412" key="GridCell.Tab.3.left" timestamp="1578862323255">
+    <state width="1282" height="412" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
+    <state width="1282" height="412" key="GridCell.Tab.3.left" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1578862323255" />
-    <state width="1282" height="412" key="GridCell.Tab.3.right" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
+    <state width="1282" height="412" key="GridCell.Tab.3.right" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
-    <state width="1282" height="412" key="GridCell.Tab.4.bottom" timestamp="1578862323257">
+    <state width="1282" height="412" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
+    <state width="1282" height="412" key="GridCell.Tab.4.bottom" timestamp="1578868292261">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.4.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578862323257" />
-    <state width="1282" height="412" key="GridCell.Tab.4.center" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.4.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578868292261" />
+    <state width="1282" height="412" key="GridCell.Tab.4.center" timestamp="1578868292261">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.4.center/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
-    <state width="1282" height="412" key="GridCell.Tab.4.left" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.4.center/0.0.1536.824@0.0.1536.824" timestamp="1578868292261" />
+    <state width="1282" height="412" key="GridCell.Tab.4.left" timestamp="1578868292261">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.4.left/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
-    <state width="1282" height="412" key="GridCell.Tab.4.right" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.4.left/0.0.1536.824@0.0.1536.824" timestamp="1578868292261" />
+    <state width="1282" height="412" key="GridCell.Tab.4.right" timestamp="1578868292261">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.4.right/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
-    <state width="1282" height="412" key="GridCell.Tab.5.bottom" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.4.right/0.0.1536.824@0.0.1536.824" timestamp="1578868292261" />
+    <state width="1282" height="412" key="GridCell.Tab.5.bottom" timestamp="1578868292261">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.5.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
-    <state width="1282" height="412" key="GridCell.Tab.5.center" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.5.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578868292261" />
+    <state width="1282" height="412" key="GridCell.Tab.5.center" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.5.center/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
-    <state width="1282" height="412" key="GridCell.Tab.5.left" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.5.center/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
+    <state width="1282" height="412" key="GridCell.Tab.5.left" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.5.left/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
-    <state width="1282" height="412" key="GridCell.Tab.5.right" timestamp="1578862323256">
+    <state width="1282" height="412" key="GridCell.Tab.5.left/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
+    <state width="1282" height="412" key="GridCell.Tab.5.right" timestamp="1578868292260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1282" height="412" key="GridCell.Tab.5.right/0.0.1536.824@0.0.1536.824" timestamp="1578862323256" />
+    <state width="1282" height="412" key="GridCell.Tab.5.right/0.0.1536.824@0.0.1536.824" timestamp="1578868292260" />
     <state width="1282" height="412" key="GridCell.Tab.6.bottom" timestamp="1578861086555">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -454,54 +446,5 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="339" y="58" key="com.intellij.javaee.view.ServerArtifactsDialog/0.0.1536.824@0.0.1536.824" timestamp="1578678070928" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java</url>
-          <line>50</line>
-          <properties class="com.softserve.service.implementation.RecordServiceImpl" method="checkIfPlanedOutcomeMatchesCategory">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/softserve/service/implementation/RecordServiceImpl.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
