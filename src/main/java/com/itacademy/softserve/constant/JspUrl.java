@@ -11,4 +11,5 @@ public interface JspUrl {
     String EDIT_TASK_JSP = "/WEB-INF/views/edit-task.jsp";
     String CHANGE_USERNAME_JSP = "/WEB-INF/views/change-username.jsp";
     String CHANGE_PASSWORD_JSP = "/WEB-INF/views/change-password.jsp";
+    String CONFIRM_DELETE_JSP = "/WEB-INF/views/delete-confirm.jsp";
  }

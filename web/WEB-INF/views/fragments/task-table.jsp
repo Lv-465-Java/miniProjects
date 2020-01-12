@@ -44,9 +44,11 @@
                     <button type="submit" name="DONE" class="btn btn-success" value="${task.taskID}">DONE</button>
                 </th>
                 <th>
-                    <button type="submit" name="DELETE" class="btn btn-danger" value="${task.taskID}">DELETE</button>
-                </th>
             </form>
+            <form action="${pageContext.request.contextPath}/confirm-delete">
+                <button type="submit" name="DELETE" class="btn btn-danger" value="${task.taskID}">DELETE</button>
+            </form>
+            </th>
         </tr>
     </c:forEach>
 </table>

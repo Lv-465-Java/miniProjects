@@ -16,4 +16,5 @@ public interface ServletUrl {
     String EDIT_TASK = "/edit-task";
     String CHANGE_USERNAME = "/change-username";
     String CHANGE_PASSWORD = "/change-password";
+    String CONFIRM_DELETE = "/confirm-delete";
 }

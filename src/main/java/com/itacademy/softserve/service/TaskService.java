@@ -20,11 +20,5 @@ public interface TaskService {
     boolean edit(HttpServletRequest request, String description);
 
     List<TaskDto> getSearchSet(UserDto userDto, String regex, int begin);
-
-    List<TaskDto> getFilteredByOwnerSet(String assignee, String owner, int begin);
-
-    List<TaskDto> getFilteredByDateSet(String userName, String beginDate, String endDate, int begin);
-
-    List<TaskDto> getFilteredByStatusSet(String userName, String status, int begin);
 }
 

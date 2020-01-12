@@ -126,32 +126,6 @@ public class TaskServiceImpl implements TaskService {
         return getSet(begin);
     }
 
-    @Override
-    public List<TaskDto> getFilteredByOwnerSet(String assignee, String owner, int begin) {
-        Long assigneeId = userDao.getByFields(userBuilder, assignee).get(0).getId();
-        Long ownerId = userDao.getByFields(userBuilder, owner).get(0).getId();
-        tasks = new TaskFilter().filterByOwner(new TaskBuilder(), assigneeId, ownerId);
-        Collections.reverse(tasks);
-        return getSet(begin);
-    }
-
-    @Override
-    public List<TaskDto> getFilteredByDateSet(String userName, String beginDate, String endDate, int begin) {
-        Long userId = userDao.getByFields(userBuilder, userName).get(0).getId();
-        tasks = new TaskFilter().filterByDate(new TaskBuilder(), userId, Date.valueOf(beginDate), Date.valueOf(endDate));
-        Collections.reverse(tasks);
-        return getSet(begin);
-    }
-
-    @Override
-    public List<TaskDto> getFilteredByStatusSet(String userName, String status, int begin) {
-        Long userId = userDao.getByFields(new UserBuilder(), userName).get(0).getId();
-        Integer statusId = new StatusDao().getByFields(new StatusBuilder(), status).get(0).getId().intValue();
-        tasks = new TaskFilter().filterByStatus(new TaskBuilder(), userId, statusId);
-        Collections.reverse(tasks);
-        return getSet(begin);
-    }
-
     private List<TaskDto> getSet(int begin) {
         int end = begin + NumberOfRecordsPerPage.TASK_RECORD_PER_PAGE;
         if (end > tasks.size()) {
