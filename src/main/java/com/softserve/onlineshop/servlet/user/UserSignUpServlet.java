@@ -33,8 +33,8 @@ public class UserSignUpServlet extends HttpServlet {
         try {
             userService.save(userDto);
             SessionUtil.createSession(userDto, request, response);
-            request.setAttribute("success", "Registration Successful");
-            response.sendRedirect(request.getContextPath() + "/index");
+            request.setAttribute("user-nickname", userDto.getNickname());
+            response.sendRedirect(request.getContextPath() + "/home");
 
         } catch (RuntimeException ex) {
             request.setAttribute("error", "User with this nickname or email exist");

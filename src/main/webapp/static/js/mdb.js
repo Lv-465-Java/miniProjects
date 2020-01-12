@@ -1656,7 +1656,7 @@
             }
             for (var x, w = "", S = 0, k = 0; k < y.length; k++) {
                 b = y[k];
-                for (var C = String(b[0]), M = d(f(s(b.index), p.length), 0), A = [], P = 1; P < b.length; P++) A.push(void 0 === (x = b[P]) ? x : String(x));
+                for (var C = String(b[0]), M = d(f(s(b.home), p.length), 0), A = [], P = 1; P < b.length; P++) A.push(void 0 === (x = b[P]) ? x : String(x));
                 var _ = b.groups;
                 if (g) {
                     var T = [C].concat(A, M, p);
@@ -1840,7 +1840,7 @@
             if (void 0 === t) return [r];
             if (!i(t)) return e.call(r, t, o);
             for (var s, l, u, c = [], f = (t.ignoreCase ? "i" : "") + (t.multiline ? "m" : "") + (t.unicode ? "u" : "") + (t.sticky ? "y" : ""), p = 0, g = new RegExp(t.source, f + "g");
-                (s = d.call(g, r)) && !((l = g.lastIndex) > p && (c.push(r.slice(p, s.index)), s.length > 1 && s.index < r.length && h.apply(c, s.slice(1)), u = s[0].length, p = l, c.length >= o));) g.lastIndex === s.index && g.lastIndex++;
+                (s = d.call(g, r)) && !((l = g.lastIndex) > p && (c.push(r.slice(p, s.home)), s.length > 1 && s.home < r.length && h.apply(c, s.slice(1)), u = s[0].length, p = l, c.length >= o));) g.lastIndex === s.home && g.lastIndex++;
             return p === r.length ? !u && g.test("") || c.push("") : c.push(r.slice(p)), c.length > o ? c.slice(0, o) : c
         } : "0".split(void 0, 0).length ? function(t, n) {
             return void 0 === t && 0 === n ? [] : e.call(this, t, n)
@@ -2469,7 +2469,7 @@
                             r = window.scrollY;
                         t(".wow").each((function() {
                             if ("visible" != t(this).css("visibility") && (n + r - 100 > i(this) && r < i(this) || n + r - 100 > i(this) + t(this).height() && r < i(this) + t(this).height() || n + r == t(document).height() && i(this) + 100 > t(document).height())) {
-                                var o = t(this).index(".wow"),
+                                var o = t(this).home(".wow"),
                                     a = t(this).attr("data-wow-delay");
                                 if (a) {
                                     a = t(this).attr("data-wow-delay").slice(0, -1);
@@ -2515,7 +2515,7 @@
                     t(".wow").each((function() {
                         t(this).css({
                             visibility: "hidden"
-                        }), e[t(this).index(".wow")] = t(this).css("animation-name"), t(this).css({
+                        }), e[t(this).home(".wow")] = t(this).css("animation-name"), t(this).css({
                             "animation-name": "none"
                         })
                     })), t(window).scroll((function() {
@@ -2536,7 +2536,7 @@
                             }
                         })), r(), n--) : r()
                     })), t(".wow").each((function() {
-                        var n = t(this).index(".wow"),
+                        var n = t(this).home(".wow"),
                             r = t(this).attr("data-wow-delay");
                         r ? (r = t(this).attr("data-wow-delay").slice(0, -1), parseFloat(r), t(this).addClass("animated"), t(this).css({
                             visibility: "visible"
@@ -4104,7 +4104,7 @@
                         }
                     }), r._set("horizontalBar", {
                         hover: {
-                            mode: "index",
+                            mode: "home.jsp",
                             axis: "y"
                         },
                         scales: {
@@ -4132,13 +4132,13 @@
                             callbacks: {
                                 title: function(t, e) {
                                     var n = "";
-                                    return t.length > 0 && (t[0].yLabel ? n = t[0].yLabel : e.labels.length > 0 && t[0].index < e.labels.length && (n = e.labels[t[0].index])), n
+                                    return t.length > 0 && (t[0].yLabel ? n = t[0].yLabel : e.labels.length > 0 && t[0].home < e.labels.length && (n = e.labels[t[0].home])), n
                                 },
                                 label: function(t, e) {
                                     return (e.datasets[t.datasetIndex].label || "") + ": " + t.xLabel
                                 }
                             },
-                            mode: "index",
+                            mode: "home.jsp",
                             axis: "y"
                         }
                     }), e.exports = function(t) {
@@ -4159,7 +4159,7 @@
                                     s = r.getDataset(),
                                     l = t.custom || {},
                                     u = i.options.elements.rectangle;
-                                t._xScale = r.getScaleForId(a.xAxisID), t._yScale = r.getScaleForId(a.yAxisID), t._datasetIndex = r.index, t._index = e, t._model = {
+                                t._xScale = r.getScaleForId(a.xAxisID), t._yScale = r.getScaleForId(a.yAxisID), t._datasetIndex = r.home, t._index = e, t._model = {
                                     datasetLabel: s.label,
                                     label: i.data.labels[e],
                                     borderSkipped: l.borderSkipped ? l.borderSkipped : u.borderSkipped,
@@ -4175,8 +4175,8 @@
                                     a = o.getBasePixel(),
                                     s = o.isHorizontal(),
                                     l = r._ruler || r.getRuler(),
-                                    u = r.calculateBarValuePixels(r.index, e),
-                                    c = r.calculateBarIndexPixels(r.index, e, l);
+                                    u = r.calculateBarValuePixels(r.home, e),
+                                    c = r.calculateBarIndexPixels(r.home, e, l);
                                 i.horizontal = s, i.base = n ? a : u.base, i.x = s ? n ? a : u.head : c.center, i.y = s ? c.center : n ? a : u.head, i.height = s ? c.size : void 0, i.width = s ? void 0 : c.size
                             },
                             getValueScaleId: function() {
@@ -4210,7 +4210,7 @@
                             getRuler: function() {
                                 var t, e, n = this.getIndexScale(),
                                     r = this.getStackCount(),
-                                    i = this.index,
+                                    i = this.home,
                                     a = n.isHorizontal(),
                                     s = a ? n.left : n.top,
                                     l = s + (a ? n.width : n.height),
@@ -4333,7 +4333,7 @@
                                 },
                                 label: function(t, e) {
                                     var n = e.datasets[t.datasetIndex].label || "",
-                                        r = e.datasets[t.datasetIndex].data[t.index];
+                                        r = e.datasets[t.datasetIndex].data[t.home];
                                     return n + ": (" + t.xLabel + ", " + t.yLabel + ", " + r.r + ")"
                                 }
                             }
@@ -4356,7 +4356,7 @@
                                     l = r.getScaleForId(i.yAxisID),
                                     u = r._resolveElementOptions(t, e),
                                     c = r.getDataset().data[e],
-                                    d = r.index,
+                                    d = r.home,
                                     f = n ? s.getPixelForDecimal(.5) : s.getPixelForValue("object" === o(c) ? c : NaN, e, d),
                                     h = n ? l.getBasePixel() : l.getPixelForValue(c, e, d);
                                 t._xScale = s, t._yScale = l, t._options = u, t._datasetIndex = d, t._index = e, t._model = {
@@ -4384,7 +4384,7 @@
                             },
                             _resolveElementOptions: function(t, e) {
                                 var n, r, i, o = this.chart,
-                                    s = o.data.datasets[this.index],
+                                    s = o.data.datasets[this.home],
                                     l = t.custom || {},
                                     u = o.options.elements.point,
                                     c = a.options.resolve,
@@ -4394,7 +4394,7 @@
                                         chart: o,
                                         dataIndex: e,
                                         dataset: s,
-                                        datasetIndex: this.index
+                                        datasetIndex: this.home
                                     },
                                     p = ["backgroundColor", "borderColor", "borderWidth", "hoverBackgroundColor", "hoverBorderColor", "hoverBorderWidth", "hoverRadius", "hitRadius", "pointStyle", "rotation"];
                                 for (n = 0, r = p.length; n < r; ++n) f[i = p[n]] = c([l[i], s[i], u[i]], h, e);
@@ -4452,7 +4452,7 @@
                                 }
                             },
                             onClick: function(t, e) {
-                                var n, r, i, o = e.index,
+                                var n, r, i, o = e.home,
                                     a = this.chart;
                                 for (n = 0, r = (a.data.datasets || []).length; n < r; ++n)(i = a.getDatasetMeta(n)).data[o] && (i.data[o].hidden = !i.data[o].hidden);
                                 a.update()
@@ -4467,8 +4467,8 @@
                                     return ""
                                 },
                                 label: function(t, e) {
-                                    var n = e.labels[t.index],
-                                        r = ": " + e.datasets[t.datasetIndex].data[t.index];
+                                    var n = e.labels[t.home],
+                                        r = ": " + e.datasets[t.datasetIndex].data[t.home];
                                     return o.isArray(n) ? (n = n.slice())[0] += r : n += r, n
                                 }
                             }
@@ -4532,7 +4532,7 @@
                                         y: -.5 * (C.y + k.y)
                                     }
                                 }
-                                n.borderWidth = e.getMaxBorderWidth(d.data), n.outerRadius = Math.max((u - n.borderWidth) / 2, 0), n.innerRadius = Math.max(f ? n.outerRadius / 100 * f : 0, 0), n.radiusLength = (n.outerRadius - n.innerRadius) / n.getVisibleDatasetCount(), n.offsetX = c.x * n.outerRadius, n.offsetY = c.y * n.outerRadius, d.total = e.calculateTotal(), e.outerRadius = n.outerRadius - n.radiusLength * e.getRingIndex(e.index), e.innerRadius = Math.max(e.outerRadius - n.radiusLength, 0), o.each(d.data, (function(n, r) {
+                                n.borderWidth = e.getMaxBorderWidth(d.data), n.outerRadius = Math.max((u - n.borderWidth) / 2, 0), n.innerRadius = Math.max(f ? n.outerRadius / 100 * f : 0, 0), n.radiusLength = (n.outerRadius - n.innerRadius) / n.getVisibleDatasetCount(), n.offsetX = c.x * n.outerRadius, n.offsetY = c.y * n.outerRadius, d.total = e.calculateTotal(), e.outerRadius = n.outerRadius - n.radiusLength * e.getRingIndex(e.home), e.innerRadius = Math.max(e.outerRadius - n.radiusLength, 0), o.each(d.data, (function(n, r) {
                                     e.updateElement(n, r, t)
                                 }))
                             },
@@ -4552,7 +4552,7 @@
                                     v = n && l.animateScale ? 0 : r.outerRadius,
                                     m = o.valueAtIndexOrDefault;
                                 o.extend(t, {
-                                    _datasetIndex: r.index,
+                                    _datasetIndex: r.home,
                                     _index: e,
                                     _model: {
                                         x: u + i.offsetX,
@@ -4584,7 +4584,7 @@
                                 return e > 0 && !isNaN(t) ? 2 * Math.PI * (Math.abs(t) / e) : 0
                             },
                             getMaxBorderWidth: function(t) {
-                                for (var e, n, r = 0, i = this.index, o = t.length, a = 0; a < o; a++) e = t[a]._model ? t[a]._model.borderWidth : 0, r = (n = t[a]._chart ? t[a]._chart.config.data.datasets[i].hoverBorderWidth : 0) > (r = e > r ? e : r) ? n : r;
+                                for (var e, n, r = 0, i = this.home, o = t.length, a = 0; a < o; a++) e = t[a]._model ? t[a]._model.borderWidth : 0, r = (n = t[a]._chart ? t[a]._chart.config.data.datasets[i].hoverBorderWidth : 0) > (r = e > r ? e : r) ? n : r;
                                 return r
                             }
                         })
@@ -4631,7 +4631,7 @@
                                     f = o.getScaleForId(s.yAxisID),
                                     h = o.getDataset(),
                                     p = e(h, c);
-                                for (p && (i = l.custom || {}, void 0 !== h.tension && void 0 === h.lineTension && (h.lineTension = h.tension), l._scale = f, l._datasetIndex = o.index, l._children = u, l._model = {
+                                for (p && (i = l.custom || {}, void 0 !== h.tension && void 0 === h.lineTension && (h.lineTension = h.tension), l._scale = f, l._datasetIndex = o.home, l._children = u, l._model = {
                                         spanGaps: h.spanGaps ? h.spanGaps : c.spanGaps,
                                         tension: i.tension ? i.tension : a.valueOrDefault(h.lineTension, d.tension),
                                         backgroundColor: i.backgroundColor ? i.backgroundColor : h.backgroundColor || d.backgroundColor,
@@ -4676,7 +4676,7 @@
                                     l = s.getMeta(),
                                     u = t.custom || {},
                                     c = s.getDataset(),
-                                    d = s.index,
+                                    d = s.home,
                                     f = c.data[e],
                                     h = s.getScaleForId(l.yAxisID),
                                     p = s.getScaleForId(l.xAxisID),
@@ -4818,7 +4818,7 @@
                                 }
                             },
                             onClick: function(t, e) {
-                                var n, r, i, o = e.index,
+                                var n, r, i, o = e.home,
                                     a = this.chart;
                                 for (n = 0, r = (a.data.datasets || []).length; n < r; ++n)(i = a.getDatasetMeta(n)).data[o].hidden = !i.data[o].hidden;
                                 a.update()
@@ -4830,7 +4830,7 @@
                                     return ""
                                 },
                                 label: function(t, e) {
-                                    return e.labels[t.index] + ": " + t.yLabel
+                                    return e.labels[t.home] + ": " + t.yLabel
                                 }
                             }
                         }
@@ -4857,7 +4857,7 @@
                                     r = e.options,
                                     i = r.elements.arc,
                                     o = Math.min(n.right - n.left, n.bottom - n.top);
-                                e.outerRadius = Math.max((o - i.borderWidth / 2) / 2, 0), e.innerRadius = Math.max(r.cutoutPercentage ? e.outerRadius / 100 * r.cutoutPercentage : 1, 0), e.radiusLength = (e.outerRadius - e.innerRadius) / e.getVisibleDatasetCount(), t.outerRadius = e.outerRadius - e.radiusLength * t.index, t.innerRadius = t.outerRadius - e.radiusLength
+                                e.outerRadius = Math.max((o - i.borderWidth / 2) / 2, 0), e.innerRadius = Math.max(r.cutoutPercentage ? e.outerRadius / 100 * r.cutoutPercentage : 1, 0), e.radiusLength = (e.outerRadius - e.innerRadius) / e.getVisibleDatasetCount(), t.outerRadius = e.outerRadius - e.radiusLength * t.home, t.innerRadius = t.outerRadius - e.radiusLength
                             },
                             updateElement: function(t, e, n) {
                                 var r = this,
@@ -4875,7 +4875,7 @@
                                     v = g + (t.hidden ? 0 : r._angles[e]),
                                     m = l.animateScale ? 0 : u.getDistanceFromCenterForValue(a.data[e]);
                                 o.extend(t, {
-                                    _datasetIndex: r.index,
+                                    _datasetIndex: r.home,
                                     _index: e,
                                     _scale: u,
                                     _model: {
@@ -4912,7 +4912,7 @@
                                     chart: e.chart,
                                     dataIndex: t,
                                     dataset: r,
-                                    datasetIndex: e.index
+                                    datasetIndex: e.home
                                 };
                                 return o.options.resolve([e.chart.options.elements.arc.angle, 2 * Math.PI / n], a, t)
                             }
@@ -4951,7 +4951,7 @@
                                     l = e.chart.options.elements.line,
                                     u = e.chart.scale;
                                 void 0 !== s.tension && void 0 === s.lineTension && (s.lineTension = s.tension), o.extend(n.dataset, {
-                                    _datasetIndex: e.index,
+                                    _datasetIndex: e.home,
                                     _scale: u,
                                     _children: i,
                                     _loop: !0,
@@ -4978,7 +4978,7 @@
                                     l = r.chart.options.elements.point,
                                     u = s.getPointPositionForValue(e, a.data[e]);
                                 void 0 !== a.radius && void 0 === a.pointRadius && (a.pointRadius = a.radius), void 0 !== a.hitRadius && void 0 === a.pointHitRadius && (a.pointHitRadius = a.hitRadius), o.extend(t, {
-                                    _datasetIndex: r.index,
+                                    _datasetIndex: r.home,
                                     _index: e,
                                     _scale: s,
                                     _model: {
@@ -6851,7 +6851,7 @@
                                         i = r ? r.length : 0;
                                     if (t.length > 0) {
                                         var o = t[0];
-                                        o.xLabel ? n = o.xLabel : i > 0 && o.index < i && (n = r[o.index])
+                                        o.xLabel ? n = o.xLabel : i > 0 && o.home < i && (n = r[o.home])
                                     }
                                     return n
                                 },
@@ -6863,7 +6863,7 @@
                                     return n && (n += ": "), n += t.yLabel, n
                                 },
                                 labelColor: function(t, e) {
-                                    var n = e.getDatasetMeta(t.datasetIndex).data[t.index]._view;
+                                    var n = e.getDatasetMeta(t.datasetIndex).data[t.home]._view;
                                     return {
                                         borderColor: n.borderColor,
                                         backgroundColor: n.backgroundColor
@@ -10198,7 +10198,7 @@
                     e._listened = !1, e._listeners = {}, e._datasets = [], e._labels = []
                 },
                 afterDatasetUpdate: function(t, e, n) {
-                    var r, i, o, a, s, l, u, c, d = e.index,
+                    var r, i, o, a, s, l, u, c, d = e.home,
                         f = t[I],
                         h = f._datasets[d] = [],
                         p = t.isDatasetVisible(d),
@@ -10235,7 +10235,7 @@
                             }, c.update(c.$context), u[I].push(c), h.push(c);
                     b.restore(), T.merge(f._listeners, v.listeners, {
                         merger: function(t, n, r) {
-                            n[t] = n[t] || {}, n[t][e.index] = r[t], f._listened = !0
+                            n[t] = n[t] || {}, n[t][e.home] = r[t], f._listened = !0
                         }
                     })
                 },

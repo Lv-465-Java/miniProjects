@@ -8,7 +8,6 @@ import com.softserve.onlineshop.entity.Producer;
 import com.softserve.onlineshop.exception.NotFoundException;
 import com.softserve.onlineshop.service.ProducerService;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +26,7 @@ public class ProducerServiceImpl implements ProducerService {
 
     @Override
     public boolean updateById(ProducerDto producerDto, Long id) {
-        return producerDao.insert(getProducer(getById(id), producerDto));
+        return producerDao.updateById(getProducer(getById(id), producerDto));
     }
 
     private Producer getProducer(Producer producer, ProducerDto producerDto) {
@@ -51,12 +50,21 @@ public class ProducerServiceImpl implements ProducerService {
 
     @Override
     public List<ProducerDto> getAll() {
-        return producerDao.getAll(new ProducerRowMapper()).stream()
+        List<ProducerDto> producers = producerDao.getAll(new ProducerRowMapper()).stream()
                 .map(new ProducerDtoMapper()::mapToDto).collect(Collectors.toList());
+        if (producers.isEmpty()) {
+            throw new NotFoundException("Users not found");
+        }
+        return producers;
     }
 
     @Override
     public boolean deleteById(Long id) {
         return producerDao.deleteById(getById(id).getId());
+    }
+
+    public static void main(String[] args) {
+        ProducerService producerService = new ProducerServiceImpl();
+        System.out.println(producerService.updateById(new ProducerDto("NewProducer"), 1L));
     }
 }

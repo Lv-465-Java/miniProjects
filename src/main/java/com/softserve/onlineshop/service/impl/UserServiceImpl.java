@@ -87,8 +87,10 @@ public class UserServiceImpl implements UserService {
 
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
-        System.out.println(userService.isValid(new UserDto("dsada", "111")));
-
+//        System.out.println(userService.save(new UserDto("user123", "111")));
+//        System.out.println(userService.getById(10L));
+//        System.out.println(userService.getByIdDto(10L));
+        System.out.println(userService.getAll());
     }
 
 }

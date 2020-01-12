@@ -6,6 +6,7 @@ public interface CrudDao<T> extends ReadDao<T> {
     boolean insert(T entity);
 
     // Update
+//    boolean updateById(T entity);
     boolean updateById(Object... args);
 
     boolean updateByFieldName(String fieldName, String text, String fieldCondition, String textCondition);

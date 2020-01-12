@@ -16,4 +16,20 @@ public final class SessionUtil {
         response.addCookie(cookie);
     }
 
+    public static void destroySession(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.removeAttribute("userDto");
+            session.invalidate();
+        }
+        Cookie cookie;
+        for (Cookie cook : request.getCookies()) {
+            if (cook.getName().equals("id_session")) {
+                cookie = cook;
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+                break;
+            }
+        }
+    }
 }

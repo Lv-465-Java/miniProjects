@@ -7,11 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@WebServlet("/index")
-public class IndexServlet extends HttpServlet {
-
+@WebServlet("/add-producer")
+public class AddProducerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/login.jsp").include(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/add-producer.jsp").include(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

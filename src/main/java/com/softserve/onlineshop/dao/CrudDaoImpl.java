@@ -23,6 +23,13 @@ public abstract class CrudDaoImpl<T> extends ReadDaoImpl<T> implements CrudDao<T
         return executeQuery > 0;
     }
 
+//    public boolean updateById(T entity) {
+//        Connection connection = ConnectionManager.getInstance().getConnection();
+//        int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(),
+//                (Object[]) getFields(entity));
+//        return executeQuery > 0;
+//    }
+
     public boolean updateById(Object... args) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(), args);

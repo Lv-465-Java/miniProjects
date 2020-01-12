@@ -30,8 +30,8 @@ public class UserLoginServlet extends HttpServlet {
         try {
             userService.isValid(userDto);
             SessionUtil.createSession(userDto, request, response);
-            request.setAttribute("success", "Login Successful");
-            response.sendRedirect(request.getContextPath() + "/index");
+            request.setAttribute("user-nickname", userDto.getNickname());
+            response.sendRedirect(request.getContextPath() + "/home");
         } catch (RuntimeException ex) {
             request.setAttribute("error", "Bad Login or Password");
             getServletConfig()

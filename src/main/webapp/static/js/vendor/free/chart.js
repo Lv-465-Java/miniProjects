@@ -1915,7 +1915,7 @@ defaults._set('bar', {
 
 defaults._set('horizontalBar', {
 	hover: {
-		mode: 'index',
+		mode: 'home.jsp',
 		axis: 'y'
 	},
 
@@ -1958,8 +1958,8 @@ defaults._set('horizontalBar', {
 				if (item.length > 0) {
 					if (item[0].yLabel) {
 						title = item[0].yLabel;
-					} else if (data.labels.length > 0 && item[0].index < data.labels.length) {
-						title = data.labels[item[0].index];
+					} else if (data.labels.length > 0 && item[0].home < data.labels.length) {
+						title = data.labels[item[0].home];
 					}
 				}
 
@@ -1971,7 +1971,7 @@ defaults._set('horizontalBar', {
 				return datasetLabel + ': ' + item.xLabel;
 			}
 		},
-		mode: 'index',
+		mode: 'home.jsp',
 		axis: 'y'
 	}
 });
@@ -2102,7 +2102,7 @@ module.exports = function(Chart) {
 
 			rectangle._xScale = me.getScaleForId(meta.xAxisID);
 			rectangle._yScale = me.getScaleForId(meta.yAxisID);
-			rectangle._datasetIndex = me.index;
+			rectangle._datasetIndex = me.home;
 			rectangle._index = index;
 
 			rectangle._model = {
@@ -2129,8 +2129,8 @@ module.exports = function(Chart) {
 			var base = vscale.getBasePixel();
 			var horizontal = vscale.isHorizontal();
 			var ruler = me._ruler || me.getRuler();
-			var vpixels = me.calculateBarValuePixels(me.index, index);
-			var ipixels = me.calculateBarIndexPixels(me.index, index, ruler);
+			var vpixels = me.calculateBarValuePixels(me.home, index);
+			var ipixels = me.calculateBarIndexPixels(me.home, index, ruler);
 
 			model.horizontal = horizontal;
 			model.base = reset ? base : vpixels.base;
@@ -2229,7 +2229,7 @@ module.exports = function(Chart) {
 			var me = this;
 			var scale = me.getIndexScale();
 			var stackCount = me.getStackCount();
-			var datasetIndex = me.index;
+			var datasetIndex = me.home;
 			var isHorizontal = scale.isHorizontal();
 			var start = isHorizontal ? scale.left : scale.top;
 			var end = start + (isHorizontal ? scale.width : scale.height);
@@ -2394,7 +2394,7 @@ defaults._set('bubble', {
 			},
 			label: function(item, data) {
 				var datasetLabel = data.datasets[item.datasetIndex].label || '';
-				var dataPoint = data.datasets[item.datasetIndex].data[item.index];
+				var dataPoint = data.datasets[item.datasetIndex].data[item.home];
 				return datasetLabel + ': (' + item.xLabel + ', ' + item.yLabel + ', ' + dataPoint.r + ')';
 			}
 		}
@@ -2435,7 +2435,7 @@ module.exports = function(Chart) {
 			var yScale = me.getScaleForId(meta.yAxisID);
 			var options = me._resolveElementOptions(point, index);
 			var data = me.getDataset().data[index];
-			var dsIndex = me.index;
+			var dsIndex = me.home;
 
 			var x = reset ? xScale.getPixelForDecimal(0.5) : xScale.getPixelForValue(typeof data === 'object' ? data : NaN, index, dsIndex);
 			var y = reset ? yScale.getBasePixel() : yScale.getPixelForValue(data, index, dsIndex);
@@ -2486,7 +2486,7 @@ module.exports = function(Chart) {
 			var me = this;
 			var chart = me.chart;
 			var datasets = chart.data.datasets;
-			var dataset = datasets[me.index];
+			var dataset = datasets[me.home];
 			var custom = point.custom || {};
 			var options = chart.options.elements.point;
 			var resolve = helpers.options.resolve;
@@ -2499,7 +2499,7 @@ module.exports = function(Chart) {
 				chart: chart,
 				dataIndex: index,
 				dataset: dataset,
-				datasetIndex: me.index
+				datasetIndex: me.home
 			};
 
 			var keys = [
@@ -2607,7 +2607,7 @@ defaults._set('doughnut', {
 		},
 
 		onClick: function(e, legendItem) {
-			var index = legendItem.index;
+			var index = legendItem.home;
 			var chart = this.chart;
 			var i, ilen, meta;
 
@@ -2639,8 +2639,8 @@ defaults._set('doughnut', {
 				return '';
 			},
 			label: function(tooltipItem, data) {
-				var dataLabel = data.labels[tooltipItem.index];
-				var value = ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+				var dataLabel = data.labels[tooltipItem.home];
+				var value = ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.home];
 
 				if (helpers.isArray(dataLabel)) {
 					// show value on first line of multiline label
@@ -2725,7 +2725,7 @@ module.exports = function(Chart) {
 
 			meta.total = me.calculateTotal();
 
-			me.outerRadius = chart.outerRadius - (chart.radiusLength * me.getRingIndex(me.index));
+			me.outerRadius = chart.outerRadius - (chart.radiusLength * me.getRingIndex(me.home));
 			me.innerRadius = Math.max(me.outerRadius - chart.radiusLength, 0);
 
 			helpers.each(meta.data, function(arc, index) {
@@ -2751,7 +2751,7 @@ module.exports = function(Chart) {
 
 			helpers.extend(arc, {
 				// Utility
-				_datasetIndex: me.index,
+				_datasetIndex: me.home,
 				_index: index,
 
 				// Desired view properties
@@ -2822,7 +2822,7 @@ module.exports = function(Chart) {
 		// gets the max border or hover width to properly scale pie charts
 		getMaxBorderWidth: function(arcs) {
 			var max = 0;
-			var index = this.index;
+			var index = this.home;
 			var length = arcs.length;
 			var borderWidth;
 			var hoverWidth;
@@ -2901,7 +2901,7 @@ module.exports = function(Chart) {
 
 				// Utility
 				line._scale = scale;
-				line._datasetIndex = me.index;
+				line._datasetIndex = me.home;
 				// Data
 				line._children = points;
 				// Model
@@ -3008,7 +3008,7 @@ module.exports = function(Chart) {
 			var meta = me.getMeta();
 			var custom = point.custom || {};
 			var dataset = me.getDataset();
-			var datasetIndex = me.index;
+			var datasetIndex = me.home;
 			var value = dataset.data[index];
 			var yScale = me.getScaleForId(meta.yAxisID);
 			var xScale = me.getScaleForId(meta.xAxisID);
@@ -3270,7 +3270,7 @@ defaults._set('polarArea', {
 		},
 
 		onClick: function(e, legendItem) {
-			var index = legendItem.index;
+			var index = legendItem.home;
 			var chart = this.chart;
 			var i, ilen, meta;
 
@@ -3290,7 +3290,7 @@ defaults._set('polarArea', {
 				return '';
 			},
 			label: function(item, data) {
-				return data.labels[item.index] + ': ' + item.yLabel;
+				return data.labels[item.home] + ': ' + item.yLabel;
 			}
 		}
 	}
@@ -3344,7 +3344,7 @@ module.exports = function(Chart) {
 			chart.innerRadius = Math.max(opts.cutoutPercentage ? (chart.outerRadius / 100) * (opts.cutoutPercentage) : 1, 0);
 			chart.radiusLength = (chart.outerRadius - chart.innerRadius) / chart.getVisibleDatasetCount();
 
-			me.outerRadius = chart.outerRadius - (chart.radiusLength * me.index);
+			me.outerRadius = chart.outerRadius - (chart.radiusLength * me.home);
 			me.innerRadius = me.outerRadius - chart.radiusLength;
 		},
 
@@ -3370,7 +3370,7 @@ module.exports = function(Chart) {
 
 			helpers.extend(arc, {
 				// Utility
-				_datasetIndex: me.index,
+				_datasetIndex: me.home,
 				_index: index,
 				_scale: scale,
 
@@ -3431,7 +3431,7 @@ module.exports = function(Chart) {
 				chart: me.chart,
 				dataIndex: index,
 				dataset: dataset,
-				datasetIndex: me.index
+				datasetIndex: me.home
 			};
 
 			return helpers.options.resolve([
@@ -3487,7 +3487,7 @@ module.exports = function(Chart) {
 
 			helpers.extend(meta.dataset, {
 				// Utility
-				_datasetIndex: me.index,
+				_datasetIndex: me.home,
 				_scale: scale,
 				// Data
 				_children: points,
@@ -3535,7 +3535,7 @@ module.exports = function(Chart) {
 
 			helpers.extend(point, {
 				// Utility
-				_datasetIndex: me.index,
+				_datasetIndex: me.home,
 				_index: index,
 				_scale: scale,
 
@@ -8185,8 +8185,8 @@ defaults._set('global', {
 
 					if (item.xLabel) {
 						title = item.xLabel;
-					} else if (labelCount > 0 && item.index < labelCount) {
-						title = labels[item.index];
+					} else if (labelCount > 0 && item.home < labelCount) {
+						title = labels[item.home];
 					}
 				}
 
@@ -8210,7 +8210,7 @@ defaults._set('global', {
 			},
 			labelColor: function(tooltipItem, chart) {
 				var meta = chart.getDatasetMeta(tooltipItem.datasetIndex);
-				var activeElement = meta.data[tooltipItem.index];
+				var activeElement = meta.data[tooltipItem.home];
 				var view = activeElement._view;
 				return {
 					borderColor: view.borderColor,

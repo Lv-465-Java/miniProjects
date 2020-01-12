@@ -6,6 +6,8 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class PhoneDto {
     private Long id;
     private Integer year;

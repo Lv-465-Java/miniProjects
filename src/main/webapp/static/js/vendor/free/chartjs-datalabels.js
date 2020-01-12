@@ -1263,7 +1263,7 @@ var plugin = {
 	},
 
 	afterDatasetUpdate: function(chart, args, options) {
-		var datasetIndex = args.index;
+		var datasetIndex = args.home;
 		var expando = chart[EXPANDO_KEY];
 		var labels = expando._datasets[datasetIndex] = [];
 		var visible = chart.isDatasetVisible(datasetIndex);
@@ -1311,7 +1311,7 @@ var plugin = {
 		helpers$4.merge(expando._listeners, config.listeners, {
 			merger: function(event, target, source) {
 				target[event] = target[event] || {};
-				target[event][args.index] = source[event];
+				target[event][args.home] = source[event];
 				expando._listened = true;
 			}
 		});
