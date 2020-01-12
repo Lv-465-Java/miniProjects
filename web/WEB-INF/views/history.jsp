@@ -24,6 +24,7 @@
         </button>
     </form>
     <button type="button" class="btn btn-light btn-lg" disabled></button>
+    <form action="${pageContext.request.contextPath}/history" method="post">
     <div class="navbar-nav">
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -31,14 +32,15 @@
                 Period
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="history" name="today">Today</a>
-                <a class="dropdown-item" href="history" name="last week">Last week</a>
-                <a class="dropdown-item" href="history" name="last month">Last month</a>
-                <a class="dropdown-item" href="history" name="last year">Last year</a>
-                <a class="dropdown-item" href="history" name="all">All</a>
+                <button type="submit" class="dropdown-item" name="today" value="today">Today</button>
+                <button type="submit" class="dropdown-item" name="last week" value="last week">Last week</button>
+                <button type="submit" class="dropdown-item" name="last month" value="last month">Last month</button>
+                <button type="submit" class="dropdown-item" name="last year" value="last year">Last year</button>
+                <button type="submit" class="dropdown-item" name="all" value="all">All</button>
             </div>
         </div>
     </div>
+    </form>
 </div>
 
 <table class="table">
@@ -67,30 +69,31 @@
     </c:forEach>
 </table>
 
-<c:if test="${currentPage != 1}">
-    <td><a class="btn btn-info" href="history?page=${currentPage - 1}">Previous</a></td>
-</c:if>
-<table>
-    <thead class="thead-dark">
-    <tr>
-        <c:forEach begin="1" end="${numOfPages}" var="i">
-            <c:choose>
-                <c:when test="${currentPage eq i}">
-                    <td>
-                        <div class="btn btn-secondary">${i}</div>
-                    </td>
-                </c:when>
-                <c:otherwise>
-                    <td><a class="btn btn-primary" href="history?page=${i}">${i}</a></td>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-    </tr>
-    </thead>
-</table>
-<c:if test="${currentPage lt numOfPages}">
-    <td><a class="btn btn-info" href="history?page=${currentPage + 1}">Next</a></td>
-</c:if>
-
+<div style="display: flex; justify-content: center;">
+    <c:if test="${currentPage != 1}">
+        <td><a class="btn btn-info" href="history?page=${currentPage - 1}">Previous</a></td>
+    </c:if>
+    <table>
+        <thead class="thead-dark">
+        <tr>
+            <c:forEach begin="1" end="${numOfPages}" var="i">
+                <c:choose>
+                    <c:when test="${currentPage eq i}">
+                        <td>
+                            <div class="btn btn-secondary">${i}</div>
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td><a class="btn btn-primary" href="history?page=${i}">${i}</a></td>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </tr>
+        </thead>
+    </table>
+    <c:if test="${currentPage lt numOfPages}">
+        <td><a class="btn btn-info" href="history?page=${currentPage + 1}">Next</a></td>
+    </c:if>
+</div>
 </body>
 </html>

@@ -37,13 +37,15 @@ public class TaskDtoMapper implements DtoMapper<TaskDto> {
         TaskDto taskDto = new TaskDto();
         String assignee = request.getParameter("users");
         if(assignee == null) {
-            assignee = ((UserDto)request.getSession(false).getAttribute("userDto")).getName();
+            assignee = userDto.getName();
         }
         taskDto.setAssignee(assignee);
         taskDto.setOwner(userDto.getName());
         taskDto.setDescription(request.getParameter("description"));
         taskDto.setCreationDate(Date.valueOf(LocalDate.now()));
-        taskDto.setDeadline(Date.valueOf(request.getParameter("deadline")));
+        if(!request.getParameter("deadline").equals("")) {
+            taskDto.setDeadline(Date.valueOf(request.getParameter("deadline")));
+        }
         taskDto.setStatus(Statuses.CREATED);
         return taskDto;
     }

@@ -11,8 +11,6 @@ public interface TaskService {
 
     boolean save(TaskDto taskDto);
 
-    void changeStatus(List<TaskDto> tasks);
-
     int getNumberOfPages();
 
     boolean setDone(Long taskId);

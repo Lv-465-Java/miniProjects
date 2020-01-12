@@ -18,28 +18,29 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 <jsp:include page="fragments/task-table.jsp"/>
-
-<c:if test="${currentPage != 1}">
-    <td><a class="btn btn-info" href="search-task?page=${currentPage - 1}">Previous</a></td>
-</c:if>
-<table>
-    <thead class="thead-dark">
-    <tr>
-        <c:forEach begin="1" end="${numOfPages}" var="i">
-            <c:choose>
-                <c:when test="${currentPage eq i}">
-                    <td>${i}</td>
-                </c:when>
-                <c:otherwise>
-                    <td><a class="btn btn-primary" href="search-task?page=${i}">${i}</a></td>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-    </tr>
-    </thead>
-</table>
-<c:if test="${currentPage lt numOfPages}">
-    <td><a class="btn btn-info" href="search-task?page=${currentPage + 1}">Next</a></td>
-</c:if>
+<div style="display: flex; justify-content: center;">
+    <c:if test="${currentPage != 1}">
+        <td><a class="btn btn-info" href="search-task?page=${currentPage - 1}">Previous</a></td>
+    </c:if>
+    <table>
+        <thead class="thead-dark">
+        <tr>
+            <c:forEach begin="1" end="${numOfPages}" var="i">
+                <c:choose>
+                    <c:when test="${currentPage eq i}">
+                        <td>${i}</td>
+                    </c:when>
+                    <c:otherwise>
+                        <td><a class="btn btn-primary" href="search-task?page=${i}">${i}</a></td>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </tr>
+        </thead>
+    </table>
+    <c:if test="${currentPage lt numOfPages}">
+        <td><a class="btn btn-info" href="search-task?page=${currentPage + 1}">Next</a></td>
+    </c:if>
+</div>
 </body>
 </html>

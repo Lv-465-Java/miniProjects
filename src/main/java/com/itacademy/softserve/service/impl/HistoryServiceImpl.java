@@ -2,15 +2,11 @@ package com.itacademy.softserve.service.impl;
 
 import com.itacademy.softserve.constant.HistoryPeriod;
 import com.itacademy.softserve.constant.NumberOfRecordsPerPage;
-import com.itacademy.softserve.constant.Statuses;
 import com.itacademy.softserve.constant.param.ControlTaskButton;
 import com.itacademy.softserve.dao.HistoryDao;
 import com.itacademy.softserve.dao.StatusDao;
-import com.itacademy.softserve.dao.TaskDao;
 import com.itacademy.softserve.dao.UserDao;
-import com.itacademy.softserve.dao.builder.HistoryBuilder;
 import com.itacademy.softserve.dao.builder.StatusBuilder;
-import com.itacademy.softserve.dao.builder.TaskBuilder;
 import com.itacademy.softserve.dao.builder.UserBuilder;
 import com.itacademy.softserve.dao.filter.HistoryFilter;
 import com.itacademy.softserve.dto.HistoryDto;
@@ -39,18 +35,10 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     @Override
-    public List<HistoryDto> getHistorySet(UserDto userDto, HttpServletRequest request, int begin) {
-        Long userId = new UserDao().getByFields(new UserBuilder(), userDto.getName()).get(0).getId();
-        if (request.getAttribute(HistoryPeriod.TODAY.toString()) != null) {
-            historyList = historyFilter.getToday(userId);
-        } else if (request.getAttribute(HistoryPeriod.LAST_WEEK.toString()) != null) {
-            historyList = historyFilter.getLastWeek(userId);
-        } else if (request.getAttribute(HistoryPeriod.LAST_MONTH.toString()) != null) {
-            historyList = historyFilter.getLastMonth(userId);
-        } else if (request.getAttribute(HistoryPeriod.LAST_YEAR.toString()) != null) {
-            historyList = historyFilter.getLastYear(userId);
-        } else {
-            historyList = historyDao.getAll(new HistoryBuilder(), userId);
+    public List<HistoryDto> getHistorySet(HttpServletRequest request, int begin) {
+        historyList = (List<History>) request.getSession(false).getAttribute(HistoryPeriod.PERIOD.toString());
+        if (historyList == null) {
+            historyList = new ArrayList<>();
         }
         Collections.reverse(historyList);
         return getSet(begin);

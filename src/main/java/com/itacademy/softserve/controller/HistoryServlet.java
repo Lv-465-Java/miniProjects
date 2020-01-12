@@ -5,6 +5,7 @@ import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
 import com.itacademy.softserve.service.HistoryService;
 import com.itacademy.softserve.service.impl.HistoryServiceImpl;
+import com.itacademy.softserve.util.Filter;
 import com.itacademy.softserve.util.Pagination;
 
 import javax.servlet.ServletConfig;
@@ -14,16 +15,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 @WebServlet(ServletUrl.HISTORY_URL)
 public class HistoryServlet extends HttpServlet {
     private Pagination pagination;
-    private HistoryService historyService;
 
     @Override
     public void init(){
         pagination = new Pagination();
-        historyService = new HistoryServiceImpl();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class HistoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String period = request.getParameter(HistoryPeriod.PERIOD);
-//        pagination.historyPagination(request, response, period);
+        new Filter().determineHistoryPeriod(request);
+        doGet(request, response);
     }
 }

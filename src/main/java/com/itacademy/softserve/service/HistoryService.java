@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface HistoryService {
-    List<HistoryDto> getHistorySet(UserDto userDto, HttpServletRequest request, int begin);
+    List<HistoryDto> getHistorySet(HttpServletRequest request, int begin);
 
     int getNumberOfPages();
 

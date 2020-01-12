@@ -72,8 +72,7 @@ public class Pagination {
             page = Integer.parseInt(request.getParameter("page"));
         }
         if (SessionManager.isActiveSession(request)) {
-            UserDto userDto = (UserDto) request.getSession(false).getAttribute("userDto");
-            List<HistoryDto> historyList = historyService.getHistorySet(userDto, request,
+            List<HistoryDto> historyList = historyService.getHistorySet(request,
                     (page - 1) * NumberOfRecordsPerPage.HISTORY_RECORD_PER_PAGE);
             request.setAttribute("historyList", historyList);
             request.setAttribute("numOfPages", historyService.getNumberOfPages());

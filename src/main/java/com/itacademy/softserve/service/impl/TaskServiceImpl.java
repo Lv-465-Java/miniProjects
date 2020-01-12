@@ -15,12 +15,12 @@ import com.itacademy.softserve.dto.mapper.TaskDtoMapper;
 import com.itacademy.softserve.entity.Task;
 import com.itacademy.softserve.service.HistoryService;
 import com.itacademy.softserve.service.TaskService;
+import com.itacademy.softserve.util.AutoChangeOfStatus;
 import com.itacademy.softserve.util.SessionManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,15 +41,9 @@ public class TaskServiceImpl implements TaskService {
     public List<TaskDto> getPageSet(UserDto userDto, int begin) {
         Long userId = userDao.getByFields(userBuilder, userDto.getName()).get(0).getId();
         tasks = taskDao.getAll(new TaskBuilder(), userId, userId);
+        new AutoChangeOfStatus().updateStatuses(tasks);
         Collections.reverse(tasks);
         return getSet(begin);
-    }
-
-    @Override
-    public void changeStatus(List<TaskDto> tasks) {
-        for (TaskDto taskDto : tasks) {
-
-        }
     }
 
     @Override
@@ -63,7 +57,9 @@ public class TaskServiceImpl implements TaskService {
         task.setDeadline(taskDto.getDeadline());
         task.setStatusID(new StatusDao().getByFields(new StatusBuilder(), taskDto.getStatus()).get(0).getId().intValue());
         if (taskDao.insert(task)) {
-            new HistoryServiceImpl().addRecord(taskDto);
+            try {
+                new HistoryServiceImpl().addRecord(taskDto);
+            } catch (RuntimeException ignored){}
         }
         return true;
     }
@@ -73,7 +69,7 @@ public class TaskServiceImpl implements TaskService {
         if (tasks == null) {
             return 0;
         }
-        return (int) Math.ceil(tasks.size() * 1.0 / NumberOfRecordsPerPage.TASK_RECORD_PER_PAGE);
+        return (int) Math.ceil((double) tasks.size() / NumberOfRecordsPerPage.TASK_RECORD_PER_PAGE);
     }
 
     @Override
@@ -152,14 +148,10 @@ public class TaskServiceImpl implements TaskService {
 
     private List<TaskDto> getSet(int begin) {
         int end = begin + NumberOfRecordsPerPage.TASK_RECORD_PER_PAGE;
-        List<TaskDto> taskGroup = new ArrayList<>();
         if (end > tasks.size()) {
             end = tasks.size();
         }
-        for (Task task : tasks.subList(begin, end)) {
-            taskGroup.add(new TaskDtoMapper().mapFromEntityToDto(task));
-        }
-        return taskGroup;
+        return new TaskDtoMapper().mapToDtoList(tasks.subList(begin, end));
     }
 
     private Long determineAssignee(HttpServletRequest request) {

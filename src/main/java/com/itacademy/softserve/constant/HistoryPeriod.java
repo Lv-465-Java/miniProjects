@@ -1,6 +1,7 @@
 package com.itacademy.softserve.constant;
 
 public enum  HistoryPeriod {
+    PERIOD("period"),
     TODAY("today"),
     LAST_WEEK("last week"),
     LAST_MONTH("last month"),
