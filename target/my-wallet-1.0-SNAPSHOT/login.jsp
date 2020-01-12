@@ -1,3 +1,4 @@
+<%--suppress ELValidationInJSP --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -14,26 +15,30 @@
 </head>
 
 <body>
+
 <div class="mainContainer">
-    <div action="${pageContext.request.contextPath}/profile" class="signIn">
-        <form autocomplete="on" method="post">
+
+    <div class="signIn">
+        <form autocomplete="on" action="${pageContext.request.contextPath}/login" method="post">
             <label for="Email" class="floatLabel">Email<span class="asterisk">*</span></label>
             <input id="Email" name="email" type="email" required>
+
             <label for="Password" class="floatLabel">Password<span class="asterisk">*</span></label>
             <input id="Password" name="password" type="password" required>
 
             <c:if test="${not empty error}">
-                <p class="reference" id="error">${error}</p>
+                <p class="errorActionMessage" id="error">${error}</p>
             </c:if>
 
-            <input type="submit" class="btn btn-primary" id="mainPageButton" value="Sign In">
+            <button type="submit" class="btn btn-primary" id="loginButton">Sign In</button>
         </form>
 
-        <p class="reference">Do not have an account? <a href="${pageContext.request.contextPath}/register">Sign up</a>
+        <p class="referenceToAction">Do not have an account? <a href="${pageContext.request.contextPath}/register">Sign
+            up</a>
         </p>
     </div>
 
-    <div class="whySignIn">
+    <div class="whySign">
         <h1>Welcome to MY-WALLET</h1>
         <p>Understanding your cash flow is a major part of successfully managing your finances. How much is coming in,
             when it hits your bank account, and where it is going are all important aspects of financial success.

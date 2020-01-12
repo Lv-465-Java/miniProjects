@@ -10,27 +10,30 @@ body
 .mainContainer
 {
 	background-color: white;
-	width: 1000px;
+	width: 70%;
 	margin: 25px auto;
+	border-radius: 0 5px 5px 0;
+	font-size: 14px;
+
 }
 
-.whySignUp, .whySignIn
+.whySign
 {
 	float: left;
 	background-color: white;
-	width: 600px;
+	width: 60%;
 	border-radius: 0 5px 5px 0;
 	padding-top: 20px;
 	padding-right: 40px;
 	font-size: 14px;
 }
 
-.whySignUp
+.whySign
 {
 	height: 444px;
 }
 
-.whySignIn
+.whySign
 {
 	height: 354px;
 }
@@ -48,12 +51,6 @@ body
 .signIn
 {
 	padding: 49px 20px;
-}
-
-#mainPageButton:hover
-{
-	cursor: pointer;
-	background-color:#2e47d1;
 }
 
 [type="text"],
@@ -82,17 +79,46 @@ body
 	color: rgba(0, 0, 0, .5);
 }
 
-.btn btn-primary
+/*.btn btn-primary*/
+/*{*/
+/*  margin-top: 25px;*/
+/*  width: 20%;*/
+/*  border: 0;*/
+/*  background-color: #2038bd;*/
+/*  border-radius: 5px;*/
+/*  height: 50px;*/
+/*  color: white;*/
+/*  font-weight: 400;*/
+/*  font-size: 1em;*/
+/*}*/
+
+.btn-primary, .btn-warning, .btn-danger, .btn-secondary
 {
-	margin-top: 25px;
-	width: 20%;
-	border: 0;
-	background-color: #2038bd;
-	border-radius: 5px;
-	height: 50px;
-	color: white;
-	font-weight: 400;
-	font-size: 1em;
+	width: 130px;
+	float: right;
+	margin: 5px 5px 5px 5px;
+}
+
+.btn-primary:hover
+{
+	cursor: pointer;
+	background-color:#2e47d1;
+}
+
+.btn-secondary {
+	color: #fff;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
+
+.btn-secondary.focus, .btn-secondary:hover{
+	color: #fffefe;
+	background-color: #7e878f;
+}
+
+#loginButton
+{
+	float: none;
 }
 
 input[type=password]:focus,
@@ -128,14 +154,24 @@ p
 	text-align: justify;
 }
 
-.reference
+.errorActionMessage
 {
 	color: rgba(0, 0, 0, .6);
 	font-size: 1em;
-	margin: 14px 24px 0px 24px;
-}
-#error {
+	margin: 14px 24px 0 24px;
 	color: #db3c30;
+}
+
+.referenceToAction
+{
+	font-size: 1em;
+	text-align: center;
+	margin: auto;
+}
+
+.addRecordButton
+{
+	padding: 15px;
 }
 
 a
@@ -177,10 +213,10 @@ a
 .profileContainer
 {
 	background-color: white;
-	width: 1400px;
-	height: 670px;
+	width: 90%;
+	height: 100%;
 	border-radius: 5px 5px 5px 5px;
-	margin-left: 60px;
+	margin: 0 auto 0;
 }
 
 .profileInfo
@@ -212,17 +248,17 @@ a
 
 ---------------------------
 	/*html, body
-      {
-          background-color: #676486;
-      }*/
+        {
+            background-color: #676486;
+        }*/
 
 header
 {
 	font-family: Raleway;
 	margin: 0 auto;
 	/*
-        padding: 5em 3em;
-      */
+          padding: 5em 3em;
+        */
 	text-align: center;
 }
 
@@ -292,18 +328,6 @@ header h1
 	transform: translateX(0px);
 }
 
-.btn-primary, .btn-warning, .btn-danger, .btn-secondary
-{
-	width: 130px;
-	float: right;
-	margin: 5px 5px 5px 5px;
-}
-
-.btn-secondary {
-	color: #fff;
-	background-color: #6c757d;
-	border-color: #6c757d;
-}
 .color-wrapper {
 	position: relative;
 	width: 250px;

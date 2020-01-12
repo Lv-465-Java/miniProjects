@@ -1,4 +1,4 @@
-<%--suppress ELValidationInJSP --%>
+<%--suppress ALL --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -16,10 +16,10 @@
 <body>
 
 <div class="button dropdown">
-    <select required id="colorselector" class="form-select" name="financial_type">
+    <select required id="colorselector" class="form-select" name="category_id">
         <option selected disabled> </option>
-        <c:forEach var="financialType" items="${financialTypes}">
-            <option id="option" value="${financialType.id}">${financialType.typeName}</option>
+        <c:forEach var="category" items="${categories}">
+            <option id="option" value="${category.id}">${category.title}</option>
         </c:forEach>
     </select>
 </div>
@@ -33,6 +33,7 @@
         });
     });
 </script>
+
 
 </body>
 </html>

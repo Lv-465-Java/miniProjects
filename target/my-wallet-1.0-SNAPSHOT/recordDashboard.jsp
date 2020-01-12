@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>Record dashboard</title>
+    <title>My records</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -17,16 +17,19 @@
 <body>
 <jsp:include page="/header.jsp"/>
 
-<div class="RecordContainer">
+<div class="profileContainer">
 
-    <div class="allRecords">
-        <p class="reference" id="AddNewRecord"><a href="${pageContext.request.contextPath}/add-record">Add new
+    <div class="addRecordButton">
+        <p class="reference" id="profileAddCategory"><a href="${pageContext.request.contextPath}/add-record">Add new
             record</a></p>
+    </div>
 
-        <table class="table table-hover">
+    <div class="categoriesTable">
+
+
+        <table class="table table-hover" id="profileTable">
             <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Sum</th>
                 <th scope="col">Date</th>
                 <th scope="col">Note</th>
@@ -36,48 +39,55 @@
             </tr>
             </thead>
             <tbody>
+            <%--@elvariable id="records" type="java.util.List"--%>
             <c:forEach var="record" items="${records}">
-                <td>${record.id}</td>
-                <td>${record.sum}</td>
-                <td>${record.date}</td>
-                <td>${record.note}</td>
+                <tr>
+                    <td>${record.sum}</td>
+                    <td>${record.date}</td>
+                    <td>${record.note}</td>
+                    <c:forEach var="financialType" items="${financialTypes}">
+                        <c:if test="${financialType.id == record.financialTypeId}">
+                            <td>${financialType.typeName}</td>
+                        </c:if>
+                    </c:forEach>
 
-                <c:forEach var="financialType" items="${financialTypes}">
-                <c:if test="${financialType.id == record.financialTypeId}">
-                <td>${financialType.typeName}</td>
-                </c:if>
-                </c:forEach>
+                    <c:forEach var="category" items="${categories}">
+                        <c:if test="${category.id == record.categoryId}">
+                            <td>${category.title}</td>
+                        </c:if>
+                    </c:forEach>
 
-                <c:forEach var="category" items="${categories}">
-                <c:if test="${category.id == record.categoryId}">
-                <td>${category.title}</td>
-                </c:if>
-                </c:forEach>
+                    <c:choose>
+                        <c:when test="${record.planedOutcomeId > 0}">
+                            <c:forEach var="plannedOutcome" items="${plannedOutcomes}">
+                                <c:if test="${plannedOutcome.id == record.planedOutcomeId}">
+                                    <td>${plannedOutcome.note}</td>
+                                </c:if>
+                            </c:forEach>
+                        </c:when>
+                        <c:when test="${record.planedOutcomeId == 0}">
+                            <td>None</td>
+                        </c:when>
+                    </c:choose>
+                    <td>
+                        <div class="form-group">
 
-                <c:choose>
-                <c:when test="${record.planedOutcomeId > 0}">
-                <c:forEach var="plannedOutcome" items="${plannedOutcomes}">
-                <c:if test="${plannedOutcome.id == record.planedOutcomeId}">
-                <td>${plannedOutcome.note}</td>
-                </c:if>
-                </c:forEach>
-                </c:when>
-                <c:when test="${record.planedOutcomeId == 0}">
-                <td>None</td>
-                </c:when>
-                </c:choose>
+                            <form action="${pageContext.request.contextPath}/edit-record" method="get">
+                                <button type="submit" class="btn btn-warning" name="editRecordButton"
+                                        value="${record.id}">Edit
+                                </button>
+                            </form>
+                            <form action="${pageContext.request.contextPath}/delete-category" method="get">
+                                <button type="submit" class="btn btn-danger" name="buttondelete"
+                                        value="${record.id}">Delete
+                                </button>
+                            </form>
 
-                <td>
-                    <form action="${pageContext.request.contextPath}/edit-record" method="get">
-                        <input type="submit" class="btn btn-outline-danger" name="editRecordButton" value="Edit">
-                    </form>
-                    <form action="${pageContext.request.contextPath}/delete-category" method="get">
-                        <input type="submit" class="btn btn-outline-danger" name="editRecordButton"
-                               value="Delete">
-                    </form>
-                </td>
+                        </div>
+
+                    </td>
                 </tr>
-                </c:forEach>
+            </c:forEach>
             </tbody>
         </table>
     </div>

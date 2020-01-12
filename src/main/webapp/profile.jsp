@@ -1,6 +1,7 @@
 <%--suppress ALL --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +40,15 @@
         <div class="profileCategories">
             <p class="reference" id="profileAddCategory"><a href="${pageContext.request.contextPath}/add-category">Add
                 new category</a></p>
+        </div>
 
+        <%--        <c:if test="${fn:length(categories) == null}">--%>
+        <%--            &lt;%&ndash;                    <h1>Please create category first</h1>&ndash;%&gt;--%>
+        <%--            <p class="referenceToAction" id="error">${errorCategory} </p>--%>
+        <%--        </c:if>--%>
+        <div class="categoriesTable">
             <table class="table table-hover" id="profileTable">
+
                 <thead>
                 <tr>
                     <th scope="col"></th>
@@ -48,9 +56,12 @@
                     <th scope="col">Description</th>
                 </tr>
                 </thead>
+
                 <tbody>
                 <%--@elvariable id="categories" type="java.util.List"--%>
+
                 <c:forEach var="category" items="${categories}">
+
                     <tr>
                         <td>
                             <div class="color-holder call-picker" style="background-color: ${category.color}"></div>
@@ -80,6 +91,7 @@
             </table>
         </div>
     </div>
+</div>
 </div>
 </body>
 

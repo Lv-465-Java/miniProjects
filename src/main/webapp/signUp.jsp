@@ -8,33 +8,39 @@
     <title>Sign Up in My-WALLET</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href=<c:url value="resource/css/file.css">
-    </c:url>>
+    <link rel="stylesheet" href="resource/css/file.css">
 </head>
 
 <body>
+
 <div class="mainContainer">
+
     <div class="signUp">
-        <form autocomplete="on" method="post">
+        <form autocomplete="on" action="${pageContext.request.contextPath}/register" method="post">
             <label for="firstName" class="floatLabel">First name<span class="asterisk">*</span></label>
             <input id="firstName" name="first_name" type="text" required>
+
             <label for="lastName" class="floatLabel">Last name<span class="asterisk">*</span></label>
             <input id="lastName" name="last_name" type="text" required>
+
             <label for="Email" class="floatLabel">Email<span class="asterisk">*</span></label>
             <input id="Email" name="email" type="email" required>
+
             <label for="Password" class="floatLabel">Password<span class="asterisk">*</span></label>
             <input id="Password" name="password" type="password" required>
 
             <c:if test="${not empty error}">
-                <p class="reference" id="error">${error}</p>
+                <p class="errorActionMessage" id="error">${error}</p>
             </c:if>
 
-            <input type="submit" class="btn btn-primary" id="mainPageButton" value="Sign Up">
+            <button type="submit" class="btn btn-primary" id="loginButton">Sign Up</button>
         </form>
-        <p class="reference">Already existing user? <a href="login">Sign in</a></p>
+
+        <p class="referenceToAction">Already existing user? <a href="${pageContext.request.contextPath}/login">Sign
+            in</a></p>
     </div>
 
-    <div class="whySignUp">
+    <div class="whySign">
         <h1>Welcome to MY-WALLET</h1>
         <p>Understanding your cash flow is a major part of successfully managing your finances. How much is coming in,
             when it hits your bank account, and where it is going are all important aspects of financial success.

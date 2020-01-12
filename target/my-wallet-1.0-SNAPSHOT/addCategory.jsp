@@ -21,9 +21,11 @@
 <jsp:include page="/header.jsp"/>
 
 <div class="formsContainer">
+
     <div class="form-header">
         <h3 class="form-title">Add Category</h3>
     </div>
+
     <div class="form-group">
         <form action="${pageContext.request.contextPath}/add-category" method="post">
             <label for="CategoryTitle" class="floatLabel">Title<span class="asterisk">*</span></label>
@@ -36,7 +38,7 @@
             <input id="CategoryDescription" name="description" type="text">
 
             <label for="colorselector" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
-            <jsp:include page="categoryDropdown.jsp"></jsp:include>
+            <jsp:include page="financialTypeDropdown.jsp"></jsp:include>
 
             <div class="form-footer">
                 <button type="submit" class="btn btn-primary" id="formSaveButton">Save changes</button>

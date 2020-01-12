@@ -16,10 +16,10 @@
 <body>
 
 <div class="button dropdown">
-    <select required id="colorselector" class="form-select" name="category_id">
-        <option selected disabled> </option>
-        <c:forEach var="category" items="${categories}">
-            <option id="option" value="${category.id}">${category.title}</option>
+    <select id="colorselector" class="form-select" name="planned_outcome_id">
+        <option selected disabled></option>
+        <c:forEach var="plannedOutcome" items="${plannedOutcomes}">
+            <option id="option" value="${plannedOutcome.id}">${plannedOutcome.note}</option>
         </c:forEach>
     </select>
 </div>

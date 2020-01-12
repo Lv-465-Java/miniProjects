@@ -37,7 +37,7 @@
             <input id="categoryDescription" name="description" type="text" value="${category.description}"/>
 
             <label for="financial-type" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
-            <jsp:include page="categoryDropdown.jsp"></jsp:include>
+            <jsp:include page="financialTypeDropdown.jsp"></jsp:include>
 
             <div class="form-footer">
                 <button type="submit" class="btn btn-primary" id="formSaveButton">Save changes</button>
