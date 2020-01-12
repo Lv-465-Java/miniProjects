@@ -40,7 +40,6 @@ public class HistoryServiceImpl implements HistoryService {
         if (historyList == null) {
             historyList = new ArrayList<>();
         }
-        Collections.reverse(historyList);
         return getSet(begin);
     }
 

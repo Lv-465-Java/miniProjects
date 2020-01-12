@@ -15,4 +15,4 @@ public interface HistoryService {
     boolean clear(HttpServletRequest request);
 
     public boolean addRecord(TaskDto taskDto);
-    }
+}

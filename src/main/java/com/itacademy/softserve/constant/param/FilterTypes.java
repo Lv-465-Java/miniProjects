@@ -5,4 +5,5 @@ public interface FilterTypes {
     String BY_OWNER = "user";
     String BY_DATE = "date";
     String BY_STATUS = "status";
+    String RESET = "reset";
 }

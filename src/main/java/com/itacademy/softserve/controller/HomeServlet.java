@@ -4,6 +4,7 @@ import com.itacademy.softserve.constant.ServletUrl;
 import com.itacademy.softserve.dto.UserDto;
 import com.itacademy.softserve.service.UserService;
 import com.itacademy.softserve.service.impl.UserServiceImpl;
+import com.itacademy.softserve.util.Filter;
 import com.itacademy.softserve.util.Pagination;
 
 import javax.servlet.ServletException;
@@ -17,18 +18,16 @@ import java.util.List;
 @WebServlet(ServletUrl.HOME_URL)
 public class HomeServlet extends HttpServlet {
     private Pagination pagination;
-    private UserService userService;
 
     @Override
     public void init() {
         pagination = new Pagination();
-        userService = new UserServiceImpl();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<UserDto> users = userService.getAll();
+        List<UserDto> users = new UserServiceImpl().getAll();
         req.setAttribute("users", users);
         pagination.homePagination(req, resp);
     }
@@ -36,6 +35,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        new Filter().determineFilter(request);
         doGet(request, response);
     }
 }

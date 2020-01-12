@@ -1,4 +1,4 @@
-package com.itacademy.softserve.controller;
+package com.itacademy.softserve.controller.user;
 
 import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.JspUrl;
@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(ServletUrl.LOGIN_URL)
-public class LoginServlet extends HttpServlet {
+@WebServlet(ServletUrl.REGISTER_URL)
+public class RegisterServlet extends HttpServlet {
     private UserService userService;
 
     @Override
@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher(JspUrl.LOGIN_JSP).include(req, resp);
+        req.getRequestDispatcher(JspUrl.REGISTER_JSP).include(req, resp);
     }
 
     @Override
@@ -36,14 +36,14 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         UserDto userDto = new UserDto(request.getParameter("name"), request.getParameter("password"));
         try {
-            userService.login(userDto);
+            userService.save(userDto);
             SessionManager.createSession(userDto, request, response);
             response.sendRedirect(request.getContextPath() + ServletUrl.HOME_URL);
         } catch (RuntimeException e) {
-            request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.BAD_LOGIN_OR_PASSWORD.toString());
+            request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.SUCH_USER_EXIST.toString());
             getServletConfig()
                     .getServletContext()
-                    .getRequestDispatcher(JspUrl.LOGIN_JSP)
+                    .getRequestDispatcher(JspUrl.REGISTER_JSP)
                     .forward(request, response);
         }
     }

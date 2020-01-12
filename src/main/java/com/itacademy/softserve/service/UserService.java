@@ -16,11 +16,5 @@ public interface UserService {
 
     boolean changeUsername(HttpServletRequest request);
 
-    boolean update(User user);
-
-    Optional<User> getById(Long id);
-
-    Optional<User> getByName(String name);
-
     List<UserDto> getAll();
 }

@@ -1,4 +1,4 @@
-package com.itacademy.softserve.controller;
+package com.itacademy.softserve.controller.task;
 
 import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
@@ -10,31 +10,32 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(ServletUrl.SEARCH_TASK)
 public class SearchServlet extends HttpServlet {
-    private String regex;
     private Pagination pagination;
 
     @Override
-    public void init(){
+    public void init() {
         pagination = new Pagination();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        pagination.searchPagination(req, resp, regex);
-
+        pagination.searchPagination(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        regex = request.getParameter("regex");
-        if(regex != null) {
-            pagination.searchPagination(request, response, regex);
+        HttpSession session = request.getSession(false);
+        String regex = request.getParameter("regex");
+        session.setAttribute("regex", regex);
+        if (regex != null) {
+            pagination.searchPagination(request, response);
         } else {
             request.getRequestDispatcher(JspUrl.HOME_JSP).forward(request, response);
         }

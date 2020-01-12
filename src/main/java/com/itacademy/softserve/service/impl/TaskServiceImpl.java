@@ -38,11 +38,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskDto> getPageSet(UserDto userDto, int begin) {
+    public List<TaskDto> getPageSet(HttpServletRequest request, int begin) {
+        HttpSession session = request.getSession(false);
+        UserDto userDto = (UserDto) session.getAttribute("userDto");
         Long userId = userDao.getByFields(userBuilder, userDto.getName()).get(0).getId();
-        tasks = taskDao.getAll(new TaskBuilder(), userId, userId);
+        tasks = (List<Task>) session.getAttribute("tasks");
+        if(tasks == null) {
+            tasks = taskDao.getAll(new TaskBuilder(), userId, userId);
+            Collections.reverse(tasks);
+        }
         new AutoChangeOfStatus().updateStatuses(tasks);
-        Collections.reverse(tasks);
         return getSet(begin);
     }
 
@@ -59,7 +64,8 @@ public class TaskServiceImpl implements TaskService {
         if (taskDao.insert(task)) {
             try {
                 new HistoryServiceImpl().addRecord(taskDto);
-            } catch (RuntimeException ignored){}
+            } catch (RuntimeException ignored) {
+            }
         }
         return true;
     }
@@ -69,7 +75,7 @@ public class TaskServiceImpl implements TaskService {
         if (tasks == null) {
             return 0;
         }
-        return (int) Math.ceil((double) tasks.size() / NumberOfRecordsPerPage.TASK_RECORD_PER_PAGE);
+        return (int) Math.ceil(((double) tasks.size()) / NumberOfRecordsPerPage.TASK_RECORD_PER_PAGE);
     }
 
     @Override

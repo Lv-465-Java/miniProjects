@@ -1,4 +1,4 @@
-package com.itacademy.softserve.controller;
+package com.itacademy.softserve.controller.user;
 
 import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.JspUrl;

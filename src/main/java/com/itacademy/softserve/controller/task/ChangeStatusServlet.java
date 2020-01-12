@@ -1,4 +1,4 @@
-package com.itacademy.softserve.controller;
+package com.itacademy.softserve.controller.task;
 
 import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;

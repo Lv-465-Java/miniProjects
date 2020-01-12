@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean login(UserDto userDto) {
         User user = userDao.getByFields(new UserBuilder(), userDto.getName()).get(0);
-        if(user != null) {
+        if (user != null) {
             return user.getName().equals(userDto.getName())
                     && user.getPassword().equals(userDto.getPassword());
         } else {
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean save(UserDto userDto) {
-        if(userDao.getByFields(new UserBuilder(), userDto.getName()).isEmpty()) {
+        if (userDao.getByFields(new UserBuilder(), userDto.getName()).isEmpty()) {
             return userDao.insert(new User(userDto.getName(), userDto.getPassword()));
         } else {
             throw new NotSaveException("Don`t save");
@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService {
         String newPassword = request.getParameter("newPassword");
         String repeatPassword = request.getParameter("repeatPassword");
         UserDto userDto = (UserDto) request.getSession(false).getAttribute("userDto");
-        if(!oldPassword.equals(userDto.getPassword())
-           || !newPassword.equals(repeatPassword)) {
+        if (!oldPassword.equals(userDto.getPassword())
+                || !newPassword.equals(repeatPassword)) {
             throw new NotSaveException(ErrorMessage.INCORRECT_DATA.toString());
         }
         return userDao.updateByField(UpdateUserParam.PASSWORD, newPassword, userDto.getName());
@@ -64,11 +64,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean changeUsername(HttpServletRequest request) {
-        if(SessionManager.isActiveSession(request)) {
+        if (SessionManager.isActiveSession(request)) {
             HttpSession session = request.getSession(false);
             String name = ((UserDto) session.getAttribute("userDto")).getName();
             String newName = request.getParameter("newUsername");
-            if(newName.isEmpty()) {
+            if (newName.isEmpty()) {
                 return false;
             }
             return userDao.updateByField(UpdateUserParam.USERNAME, newName, name);
@@ -77,25 +77,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean update(User user) {
-        return false;
-    }
-
-    @Override
-    public Optional<User> getById(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<User> getByName(String name) {
-        return Optional.empty();
-    }
-
-    @Override
     public List<UserDto> getAll() {
         List<UserDto> users = new ArrayList<>();
         UserDtoMapper userDtoMapper = new UserDtoMapper();
-        userDao.getAll(new UserBuilder()).forEach(user->users.add(userDtoMapper.mapFromEntityToDto(user)));
+        userDao.getAll(new UserBuilder()).forEach(user -> users.add(userDtoMapper.mapFromEntityToDto(user)));
         return users;
     }
 }

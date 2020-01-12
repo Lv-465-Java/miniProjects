@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface TaskService {
-    List<TaskDto> getPageSet(UserDto userDto, int begin);
+    List<TaskDto> getPageSet(HttpServletRequest request, int begin);
 
     boolean save(TaskDto taskDto);
 

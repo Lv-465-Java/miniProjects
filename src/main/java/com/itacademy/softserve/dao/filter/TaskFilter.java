@@ -18,7 +18,7 @@ public class TaskFilter {
         FILTER_BY_DATE("SELECT TaskID, Assignee, Owner, Description, CreationDate," +
                 " Deadline, StatusID FROM tasks WHERE Assignee = ? AND CreationDate BETWEEN ? AND ?;"),
         FILTER_BY_STATUS("SELECT TaskID, Assignee, Owner, Description," +
-                " CreationDate, Deadline, StatusID FROM tasks WHERE Assignee = ?  AND StatusID = ?;");
+                " CreationDate, Deadline, StatusID FROM tasks WHERE (Assignee = ? OR Owner = ?) AND StatusID = ?;");
 
         private String query;
 
@@ -43,7 +43,7 @@ public class TaskFilter {
 
     public List<Task> filterByStatus(InstanceBuilder<Task> builder, Long userId, Integer statusId) {
         Connection connection = ConnectionFactory.getConnectionFactory().getConnection();
-        return CrudUtils.getEntityList(connection, Filters.FILTER_BY_STATUS.getQuery(), builder, userId, statusId);
+        return CrudUtils.getEntityList(connection, Filters.FILTER_BY_STATUS.getQuery(), builder, userId, userId, statusId);
     }
 
 }
