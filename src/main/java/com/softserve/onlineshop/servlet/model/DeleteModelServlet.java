@@ -1,4 +1,4 @@
-package com.softserve.onlineshop.servlet;
+package com.softserve.onlineshop.servlet.model;
 
 import com.softserve.onlineshop.service.ModelService;
 import com.softserve.onlineshop.service.impl.ModelServiceImpl;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/delete-model")
-public class ModelDeleteServlet extends HttpServlet {
+public class DeleteModelServlet extends HttpServlet {
     private ModelService modelService;
 
     @Override

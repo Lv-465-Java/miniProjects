@@ -1,4 +1,4 @@
-package com.softserve.onlineshop.servlet;
+package com.softserve.onlineshop.servlet.model;
 
 import com.softserve.onlineshop.dto.ModelDto;
 import com.softserve.onlineshop.dto.ProducerDto;

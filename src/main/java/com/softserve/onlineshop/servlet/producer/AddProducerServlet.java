@@ -1,4 +1,4 @@
-package com.softserve.onlineshop.servlet;
+package com.softserve.onlineshop.servlet.producer;
 
 import com.softserve.onlineshop.dto.ProducerDto;
 import com.softserve.onlineshop.entity.Producer;

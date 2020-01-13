@@ -1,4 +1,4 @@
-package com.softserve.onlineshop.servlet;
+package com.softserve.onlineshop.servlet.producer;
 
 import com.softserve.onlineshop.dto.ProducerDto;
 import com.softserve.onlineshop.service.ProducerService;
@@ -44,6 +44,5 @@ public class UpdateProducerServlet extends HttpServlet {
                             .getRequestDispatcher("/WEB-INF/views/update-producer.jsp")
                             .forward(request, response);
         }
-
     }
 }

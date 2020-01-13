@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: admin
   Date: 2020-01-13
-  Time: 16:51
+  Time: 18:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -23,10 +23,11 @@
 </head>
 <body>
 <jsp:include page="/fragments/admin-page-header.jsp"/>
-<div class="add-model">
+<div class="update-model">
     <div class="model-container">
-        <form class="border border-light p-5" action="${pageContext.request.contextPath}/add-model" method="post"
+        <form class="border border-light p-5" action="${pageContext.request.contextPath}/update-model" method="post"
               role="form" data-toggle="validator">
+            <input type="hidden" name="producerId" value="${modelId}">
             <h2>Model</h2>
             <div class="form-group col-xs-4">
                 <select name="producers">
@@ -37,7 +38,14 @@
                 </select>
             </div>
             <div class="form-group col-xs-4">
-                <input type="text" name="name" id="name" class="form-control mb-4" placeholder="Name"
+                <label for="old-name">Old Name</label>
+                <input type="text" name="old-name" id="old-name"
+                       class="form-control mb-4" readonly
+                       placeholder="${pageContext.request.getAttribute("old-name")}"/>
+            </div>
+            <div class="form-group col-xs-4">
+                <input type="text" name="new-name" id="new-name" class="form-control mb-4"
+                       placeholder="New Name"
                        required/>
                 <button type="submit" name="submit" class="btn blue-gradient">Submit</button>
             </div>
@@ -54,42 +62,6 @@
         </form>
     </div>
 </div>
-
-<form class="border-light" action="${pageContext.request.contextPath}/add-producer" method="get">
-    <table class="table table-dark">
-        <thead class="thead-dark">
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>ProducerId</td>
-            <td>Actions <a class=""><i>+</i></a></td>
-        </tr>
-        </thead>
-        <tbody class="producer-container">
-        <c:forEach var="model" items="${models}">
-            <tr>
-                <td>${model.id}</td>
-                <td>${model.name}</td>
-                <td>${model.producerId}</td>
-                <form action="${pageContext.request.contextPath}/update-model">
-                    <td>
-                        <a href="/update-model?modelId=$${producer.id}&old-name=${model.name}&producerId=${model.producerId}">
-                            <button name="update" value="${model.id}" class="btn blue-gradient btn-md">UPDATE</button>
-                        </a>
-                    </td>
-                </form>
-                <form action="${pageContext.request.contextPath}/delete-model" method="post">
-                    <td>
-                        <button name="delete" value="${model.id}" class="btn blue-gradient btn-md">DELETE</button>
-                    </td>
-                </form>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</form>
-<%--    <jsp:include page="/fragments/drop-producers.jsp"/>--%>
 <jsp:include page="/fragments/footer.jsp"/>
-
 </body>
 </html>
