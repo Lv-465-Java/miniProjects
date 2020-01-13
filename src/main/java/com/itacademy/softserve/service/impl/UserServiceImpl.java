@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
             String name = ((UserDto) session.getAttribute("userDto")).getName();
             String newName = request.getParameter("newUsername");
             if (newName.isEmpty()) {
-                return false;
+                throw  new NotSaveException(ErrorMessage.EMPTY_NAME.toString());
             }
             return userDao.updateByField(UpdateUserParam.USERNAME, newName, name);
         }

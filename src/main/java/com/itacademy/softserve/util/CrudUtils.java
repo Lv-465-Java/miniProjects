@@ -1,5 +1,6 @@
 package com.itacademy.softserve.util;
 
+import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.dao.builder.InstanceBuilder;
 
 import java.sql.*;
@@ -44,7 +45,7 @@ public class CrudUtils {
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException();
+            throw new RuntimeException(ErrorMessage.SORRY_MESSAGE.toString());
         }
     }
 

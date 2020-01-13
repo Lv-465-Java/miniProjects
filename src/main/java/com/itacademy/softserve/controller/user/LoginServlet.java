@@ -8,7 +8,6 @@ import com.itacademy.softserve.service.UserService;
 import com.itacademy.softserve.service.impl.UserServiceImpl;
 import com.itacademy.softserve.util.SessionManager;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

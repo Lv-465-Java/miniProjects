@@ -16,11 +16,11 @@
 </head>
 <body>
 <jsp:include page="fragments/header.jsp"/>
+<br><br>
 <div class="row justify-content-center">
     <div class="col-12 col-md-10 col-lg-8">
         <c:if test="${error ne null}">
             <p class="text-center">
-                <br><br>
                 <font color="red">${error}</font>
             </p>
         </c:if>

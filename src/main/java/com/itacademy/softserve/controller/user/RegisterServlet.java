@@ -21,7 +21,7 @@ public class RegisterServlet extends HttpServlet {
     private UserService userService;
 
     @Override
-    public void init(){
+    public void init() {
         userService = new UserServiceImpl();
     }
 

@@ -1,5 +1,7 @@
 package com.itacademy.softserve.controller;
 
+import com.itacademy.softserve.constant.ErrorMessage;
+import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
 import com.itacademy.softserve.dto.UserDto;
 import com.itacademy.softserve.service.UserService;
@@ -35,7 +37,15 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        new Filter().determineFilter(request);
-        doGet(request, response);
+        try {
+            new Filter().determineFilter(request);
+            doGet(request, response);
+        } catch (RuntimeException e) {
+            request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.NO_INFO.toString());
+            getServletConfig()
+                    .getServletContext()
+                    .getRequestDispatcher(JspUrl.HOME_JSP)
+                    .forward(request, response);
+        }
     }
 }

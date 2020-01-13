@@ -15,6 +15,7 @@
 </head>
 <body>
 <jsp:include page="fragments/header.jsp"/>
+<br><br><br>
 <div class="row justify-content-center">
     <div class="col-12 col-md-10 col-lg-8">
         <form action="${pageContext.request.contextPath}/change-status" method="post">

@@ -5,7 +5,10 @@ public enum ErrorMessage {
     INCORRECT_DATA("Please try again. You enter incorrect data("),
     BAD_LOGIN_OR_PASSWORD("Bad Login or Password"),
     SUCH_USER_EXIST("Such user already exist"),
-    SUCH_TASK_EXIST("Such task already exist");
+    SUCH_TASK_EXIST("Such task already exist"),
+    NO_INFO("No info on your request("),
+    EMPTY_NAME("Name field is empty"),
+    SORRY_MESSAGE("At the moment we cannot perform this operation");
 
     private String message;
 

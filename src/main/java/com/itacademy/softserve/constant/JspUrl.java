@@ -12,4 +12,5 @@ public interface JspUrl {
     String CHANGE_USERNAME_JSP = "/WEB-INF/views/change-username.jsp";
     String CHANGE_PASSWORD_JSP = "/WEB-INF/views/change-password.jsp";
     String CONFIRM_DELETE_JSP = "/WEB-INF/views/delete-confirm.jsp";
+    String ERROR_404 = "404-error.jsp";
  }
