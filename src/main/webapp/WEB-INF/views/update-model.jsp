@@ -54,11 +54,6 @@
                         ${error}
                 </div>
             </c:if>
-            <c:if test="${not empty success}">
-                <div class="alert alert-success">
-                        ${success}
-                </div>
-            </c:if>
         </form>
     </div>
 </div>

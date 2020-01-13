@@ -67,7 +67,6 @@ public class AddPhoneServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/views/add-phone.jsp")
                     .forward(request, response);
         } catch (RuntimeException e) {
-            request.setAttribute("error", "Phone already exist");
             doGet(request, response);
             request.getRequestDispatcher("/WEB-INF/views/add-phone.jsp")
                     .forward(request, response);

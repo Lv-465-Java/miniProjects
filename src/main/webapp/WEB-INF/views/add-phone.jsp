@@ -32,7 +32,7 @@
             <h2>Phones</h2>
             <div class="form-group col-xs-4">
                 <select name="models">
-                    <option selected disabled value="producer">Models</option>
+                    <option selected disabled value="models">Models</option>
                     <c:forEach items="${models}" var="model">
                         <option value="${model.id}">${model.name}</option>
                     </c:forEach>
@@ -108,9 +108,9 @@
                 <td>${phone.screenDiagonal}</td>
                 <td>${phone.internalMemory}</td>
                 <td>${phone.modelId}</td>
-                <form action="${pageContext.request.contextPath}/update-model">
+                <form action="${pageContext.request.contextPath}/update-phone">
                     <td>
-                        <a href="/update-phone?phoneId=$${producer.id}">
+                        <a href="/update-phone?phoneId=$${phone.id}">
                             <button name="update" value="${phone.id}" class="btn blue-gradient btn-md">UPDATE</button>
                         </a>
                     </td>
