@@ -32,9 +32,7 @@ public class AddProducerServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/views/add-producer.jsp").include(request, response);
         } catch (RuntimeException e) {
             request.setAttribute("error", "Empty producer list");
-            getServletConfig()
-                    .getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/add-producers.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/add-producers.jsp")
                     .forward(request, response);
         }
     }
@@ -45,16 +43,12 @@ public class AddProducerServlet extends HttpServlet {
             producerService.save(new ProducerDto(request.getParameter("name")));
             request.setAttribute("success", "Producer successfully added");
             doGet(request, response);
-            getServletConfig()
-                    .getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/add-producer.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/add-producer.jsp")
                     .forward(request, response);
         } catch (RuntimeException e) {
             request.setAttribute("error", "Producer already exist");
             doGet(request, response);
-            getServletConfig()
-                    .getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/add-producer.jsp")
+            request.getRequestDispatcher("/WEB-INF/views/add-producer.jsp")
                     .forward(request, response);
         }
     }

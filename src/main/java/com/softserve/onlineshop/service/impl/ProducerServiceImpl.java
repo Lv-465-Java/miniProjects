@@ -21,12 +21,16 @@ public class ProducerServiceImpl implements ProducerService {
 
     @Override
     public boolean save(ProducerDto producerDto) {
-        return producerDao.insert(getProducer(null, producerDto));
+        Producer producer = new Producer();
+        producer.setName(producerDto.getName());
+        return producerDao.insert(producer);
     }
 
     @Override
-    public boolean updateById(ProducerDto producerDto, Long id) {
-        return producerDao.updateById(getProducer(getById(id), producerDto));
+    public boolean updateById(Long id) {
+        return true;
+//        return producerDao.updateById(getById(id))
+//        return producerDao.updateById(getProducer(getById(id), producerDto));
     }
 
     private Producer getProducer(Producer producer, ProducerDto producerDto) {

@@ -25,6 +25,7 @@ public class EditProducerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/add-producer.jsp").include(request, response);
         response.sendRedirect(request.getContextPath() + "/add-producer");
+
     }
 
     @Override
