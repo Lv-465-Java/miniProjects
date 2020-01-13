@@ -14,6 +14,8 @@ public abstract class CrudDaoImpl<T> extends ReadDaoImpl<T> implements CrudDao<T
 
     protected abstract String[] getFields(T entity);
 
+    protected abstract String[] getUpdatedFields(T entity);
+
 
     // Create
     public boolean insert(T entity) {
@@ -23,18 +25,18 @@ public abstract class CrudDaoImpl<T> extends ReadDaoImpl<T> implements CrudDao<T
         return executeQuery > 0;
     }
 
-//    public boolean updateById(T entity) {
-//        Connection connection = ConnectionManager.getInstance().getConnection();
-//        int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(),
-//                (Object[]) getFields(entity));
-//        return executeQuery > 0;
-//    }
-
-    public boolean updateById(Object... args) {
+    public boolean updateById(T entity) {
         Connection connection = ConnectionManager.getInstance().getConnection();
-        int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(), args);
+        int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(),
+                (Object[]) getUpdatedFields(entity));
         return executeQuery > 0;
     }
+
+//    public boolean updateById(Object... args) {
+//        Connection connection = ConnectionManager.getInstance().getConnection();
+//        int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(), args);
+//        return executeQuery > 0;
+//    }
 
     public boolean updateByFieldName(String fieldName, String text, String fieldCondition, String textCondition) {
         Connection connection = ConnectionManager.getInstance().getConnection();

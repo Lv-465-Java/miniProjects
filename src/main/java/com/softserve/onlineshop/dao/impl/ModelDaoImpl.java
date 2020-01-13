@@ -34,6 +34,11 @@ public class ModelDaoImpl extends CrudDaoImpl<Model> {
         return fields;
     }
 
+    @Override
+    protected String[] getUpdatedFields(Model entity) {
+        return new String[0];
+    }
+
     public List<Model> getAllByProducerId(ModelRowMapper mapper, Long producerId) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntityList(connection, sqlQueries.get(SqlQueries.GET_BY_PRODUCER_ID).toString(),

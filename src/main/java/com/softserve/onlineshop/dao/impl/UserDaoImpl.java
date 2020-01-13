@@ -29,6 +29,11 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
     }
 
     @Override
+    protected String[] getUpdatedFields(User entity) {
+        return new String[0];
+    }
+
+    @Override
     protected void init() {
         for (UserEntityQueries userEntityQueries : UserEntityQueries.values()) {
             sqlQueries.put(userEntityQueries.getSqlQuery(), userEntityQueries);

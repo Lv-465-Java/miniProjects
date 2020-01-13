@@ -6,6 +6,7 @@ import com.softserve.onlineshop.dto.ProducerDto;
 import com.softserve.onlineshop.dto.mapper.ProducerDtoMapper;
 import com.softserve.onlineshop.entity.Producer;
 import com.softserve.onlineshop.exception.NotFoundException;
+import com.softserve.onlineshop.exception.NotUpdatedException;
 import com.softserve.onlineshop.service.ProducerService;
 
 import java.util.List;
@@ -21,21 +22,20 @@ public class ProducerServiceImpl implements ProducerService {
 
     @Override
     public boolean save(ProducerDto producerDto) {
-        Producer producer = new Producer();
-        producer.setName(producerDto.getName());
-        return producerDao.insert(producer);
+        return producerDao.insert(getProducer(null, producerDto));
     }
 
     @Override
-    public boolean updateById(Long id) {
-        return true;
-//        return producerDao.updateById(getById(id))
-//        return producerDao.updateById(getProducer(getById(id), producerDto));
+    public boolean updateById(ProducerDto producerDto, Long id) {
+        return producerDao.updateById(getProducer(getById(id), producerDto));
     }
 
     private Producer getProducer(Producer producer, ProducerDto producerDto) {
         if (producer == null) {
             producer = new Producer();
+        }
+        if (producerDto.getName().equals(producer.getName())) {
+            throw new NotUpdatedException("Producer with name " + producer.getName() + " already exists");
         }
         producer.setName(producerDto.getName());
         return producer;
@@ -67,9 +67,11 @@ public class ProducerServiceImpl implements ProducerService {
         return producerDao.deleteById(getById(id).getId());
     }
 
-    public static void main(String[] args) {
-        ProducerService producerService = new ProducerServiceImpl();
-        System.out.println(producerService.getAll());
-//        System.out.println(producerService.updateById(new ProducerDto("NewProducer"), 1L));
-    }
+//    public static void main(String[] args) {
+//        ProducerService producerService = new ProducerServiceImpl();
+////        System.out.println(producerService.getAll());
+//        ProducerDto producerDto = new ProducerDto("LG");
+//        System.out.println(producerService.updateById(producerDto, 8L));
+////        System.out.println(producerService.updateById(new ProducerDto("NewProducer"), 1L));
+//    }
 }

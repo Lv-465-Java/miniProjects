@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/edit-producer")
-public class EditProducerServlet extends HttpServlet {
+@WebServlet("/delete-producer")
+public class DeleteProducerServlet extends HttpServlet {
     private ProducerService producerService;
 
     @Override

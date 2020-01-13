@@ -18,6 +18,12 @@ public class ProducerDaoImpl extends CrudDaoImpl<Producer> {
         return fields;
     }
 
+    protected String[] getUpdatedFields(Producer producer) {
+        String[] fields = new String[2];
+        fields[0] = producer.getName();
+        fields[1] = producer.getId().toString();
+        return fields;
+    }
     @Override
     protected void init() {
         for (Producer.ProducerEntityQueries producerEntityQueries : Producer.ProducerEntityQueries.values()) {
@@ -25,9 +31,17 @@ public class ProducerDaoImpl extends CrudDaoImpl<Producer> {
         }
     }
 
+
+
 //    public static void main(String[] args) {
 //        ProducerDaoImpl producerDao = new ProducerDaoImpl();
-//        System.out.println(producerDao.updateById("UpdatedName", 4L));
+//        Producer producer = producerDao.getById(new ProducerRowMapper(), 8L).get();
+//        producer.setName("LG");
+//
+//        System.out.println(producerDao.updateById(producer));
+//
+////        System.out.println(producerDao.updateById(new Producer("Updated"), 8L));
+////        System.out.println(producerDao.updateById("Update", 8L));
 ////        System.out.println(producerDao.updateById(producerDao.getById(new ProducerRowMapper(),1L).get()));
 //    }
 }

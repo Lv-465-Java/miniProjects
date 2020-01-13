@@ -27,6 +27,11 @@ public class CartDaoImpl extends CrudDaoImpl<Cart> {
     }
 
     @Override
+    protected String[] getUpdatedFields(Cart entity) {
+        return new String[0];
+    }
+
+    @Override
     protected void init() {
         for (CartEntityQueries cartEntityQueries : CartEntityQueries.values()) {
             sqlQueries.put(cartEntityQueries.getSqlQuery(), cartEntityQueries);

@@ -28,11 +28,6 @@
     <div class="country-container">
         <form class="border border-light p-5" action="${pageContext.request.contextPath}/add-producer" method="post"
               role="form" data-toggle="validator">
-            <%--            <c:if test="${empty action}">--%>
-            <%--                <c:set var="action" value="add"/>--%>
-            <%--            </c:if>--%>
-            <%--            <input type="hidden" id="action" name="action" value="${action}">--%>
-            <%--            <input type="hidden" id="idEmployee" name="idEmployee" value="${employee.id}">--%>
             <h2>Producer</h2>
             <div class="form-group col-xs-4">
                 <input type="text" name="name" id="name" class="form-control mb-4" placeholder="Name"
@@ -67,9 +62,15 @@
             <tr>
                 <td>${producer.id}</td>
                 <td>${producer.name}</td>
-                <form action="${pageContext.request.contextPath}/edit-producer" method="post">
+                <form action="${pageContext.request.contextPath}/update-producer">
                     <td>
-                        <button name="update" value="${producer.id}" class="btn blue-gradient btn-md">UPDATE</button>
+                        <a href="/update-producer?producerId=$${producer.id}&old-name=${producer.name}">
+                            <button name="update" value="${producer.id}" class="btn blue-gradient btn-md">UPDATE</button>
+                        </a>
+                    </td>
+                </form>
+                <form action="${pageContext.request.contextPath}/delete-producer" method="post">
+                    <td>
                         <button name="delete" value="${producer.id}" class="btn blue-gradient btn-md">DELETE</button>
                     </td>
                 </form>
@@ -79,7 +80,7 @@
     </table>
 </form>
 <%--    <jsp:include page="/fragments/drop-producers.jsp"/>--%>
-<%--    <jsp:include page="/fragments/footer.jsp"/>--%>
+    <jsp:include page="/fragments/footer.jsp"/>
 </body>
 <script src="static/js/bootstrap.min.js"></script>
 

@@ -40,6 +40,11 @@ public class PhoneDaoImpl extends CrudDaoImpl<Phone> {
         return fields;
     }
 
+    @Override
+    protected String[] getUpdatedFields(Phone entity) {
+        return new String[0];
+    }
+
     public List<Phone> getPhonesByModelId(PhoneRowMapper mapper, Long modelId) {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntityList(connection, sqlQueries.get(SqlQueries.GET_BY_MODEL_ID).toString(),
