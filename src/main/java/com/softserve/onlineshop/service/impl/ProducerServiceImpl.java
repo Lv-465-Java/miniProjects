@@ -57,7 +57,7 @@ public class ProducerServiceImpl implements ProducerService {
         List<ProducerDto> producers = producerDao.getAll(new ProducerRowMapper()).stream()
                 .map(new ProducerDtoMapper()::mapToDto).collect(Collectors.toList());
         if (producers.isEmpty()) {
-            throw new NotFoundException("Users not found");
+            throw new NotFoundException("Models not found");
         }
         return producers;
     }
