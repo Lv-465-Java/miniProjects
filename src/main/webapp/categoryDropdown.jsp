@@ -18,7 +18,6 @@
 <div class="button dropdown">
     <select required id="colorselector" class="form-select" name="category_id">
 
-
         <c:if test="${empty record || empty plannedOutcome}">
             <option selected disabled>None</option>
         </c:if>
@@ -36,7 +35,6 @@
     </select>
 </div>
 
-
 <script>
     $(function () {
         $('#colorselector').change(function () {
@@ -45,7 +43,6 @@
         });
     });
 </script>
-
 
 </body>
 </html>

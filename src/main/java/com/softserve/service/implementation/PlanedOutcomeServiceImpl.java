@@ -69,7 +69,7 @@ public class PlanedOutcomeServiceImpl implements ReadAllService<PlanedOutcomeDTO
     @Override
     public boolean delete(Long id) throws NotCompletedActionException {
         if (!planedOutcomeDAO.delete(id)) {
-            throw new NotCompletedActionException();
+            throw new NotCompletedActionException("vgbhjnk");
         }
         return false;
     }

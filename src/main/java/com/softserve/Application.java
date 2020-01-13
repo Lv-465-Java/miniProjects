@@ -13,10 +13,12 @@ public class Application {
     public static void main(String[] args) {
 
         RecordServiceImpl recordService = new RecordServiceImpl();
-        System.out.println(recordService.filter(13L, 2L, LocalDate.parse(""), LocalDate.parse("")));
+        System.out.println(recordService.filter(13L, 2L, LocalDate.parse("2020-01-22"), LocalDate.parse("2020-01-24")));
 
 //        RecordDAOImpl recordDAO = new RecordDAOImpl();
-//        System.out.println(recordDAO.getAllBySelectedFilters(13L, 2L, LocalDate.parse("2020-01-22"), LocalDate.parse("2020-01-24")));
+//        System.out.println(recordDAO.getAllBySelectedFilters(13L, 1L, LocalDate.parse("2020-01-22"), LocalDate.parse("2020-01-24")));
+
+
 //        recordService.checkIfPlanedOutcomeMatchesCategory(3L, 7L);
 //        PlanedOutcomeServiceImpl planedOutcomeService = new PlanedOutcomeServiceImpl();
 //        System.out.println(recordDAO.generateSearchQuery(13L, LocalDate.parse("2020-01-22"),

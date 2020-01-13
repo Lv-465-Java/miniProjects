@@ -51,5 +51,6 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-util:9.0.26" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-util-scan:9.0.26" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-jaspic-api:9.0.26" level="project" />
+    <orderEntry type="library" name="bootstrap-datepicker" level="application" />
   </component>
 </module>

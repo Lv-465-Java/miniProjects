@@ -32,10 +32,8 @@
             <label for="RecordSum" class="floatLabel">Sum<span class="asterisk">*</span></label>
             <input id="RecordSum" name="sum" type="text" required>
 
-            <label for="RecordDate" class="floatLabel">Date<span class="asterisk">*</span></label>
-            <input id="RecordDate" name="date" type="date" required>
-            <%--            <label for="datepicker" class="floatLabel">Date<span class="asterisk">*</span></label>--%>
-            <%--            <jsp:include page="datePicker.jsp"/>--%>
+            <label for="datePickerDate" class="floatLabel">Date<span class="asterisk">*</span></label>
+            <jsp:include page="datePicker.jsp"/>
 
             <label for="RecordNote" class="floatLabel">Note</label>
             <input id="RecordNote" name="note" type="text">

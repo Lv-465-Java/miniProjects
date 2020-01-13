@@ -137,9 +137,11 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         planedOutcomeDAO.update(plannedOutcomeId, planedOutcome);
     }
 
-    public List<RecordDTO> filter(Long userId, Long financialTypeId, LocalDate from, LocalDate to) {
+
+    //TO DO!
+    public List<RecordDTO> filter(Long userId, List<Object> parameters) {
         List<RecordDTO> dtoList = new ArrayList<>();
-        List<Record> list = recordDAO.getAllBySelectedFilters(userId, financialTypeId, from, to);
+        List<Record> list = recordDAO.getAllBySelectedFilters(userId, parameters);
         for (Record record : list) {
             dtoList.add(RecordMapperObjects.recordEntityToRecordDTO(record));
         }

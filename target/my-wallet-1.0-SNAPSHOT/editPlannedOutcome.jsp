@@ -30,15 +30,13 @@
             <label for="plannedOutcomeSum" class="floatLabel">Sum<span class="asterisk">*</span></label>
             <input id="plannedOutcomeSum" name="sum" type="text" required value="${plannedOutcome.sum}"/>
 
-            <label for="datepicker" class="floatLabel">Date</label>
-            <input id="PlannedOutcomeDate" name="date" type="date" required>
-
-        <%--            <jsp:include page="datePicker.jsp"/>--%>
+            <label for="datePickerDate" class="floatLabel">Date</label>
+            <jsp:include page="datePicker.jsp"/>
 
             <label for="plannedOutcomeNote" class="floatLabel">Note<span class="asterisk">*</span></label>
             <input id="plannedOutcomeNote" name="note" type="text" required value="${plannedOutcome.note}"/>
 
-            <label for="category" class="floatLabel">Category</label>
+            <label for="category" class="floatLabel">Category<span class="asterisk">*</span></label>
             <jsp:include page="categoryDropdown.jsp"/>
 
             <div class="form-footer">

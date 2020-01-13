@@ -30,7 +30,6 @@
 
         <div class="categoriesTable">
 
-
             <table class="table table-hover" id="profileTable">
                 <thead>
                 <tr>
@@ -42,12 +41,12 @@
                     <th scope="col">Planned Outcome</th>
                 </tr>
                 <c:if test="${fn:length(records) == 0}">
-                    <h5 class="emptyTable">You haven't created any planned outcome yet</h5>
+                    <h5 class="emptyTable">No records</h5>
                     <p class="referenceToAction" id="error">${errorCategory} </p>
                 </c:if>
                 </thead>
+
                 <tbody>
-                <%--@elvariable id="records" type="java.util.List"--%>
                 <c:forEach var="record" items="${records}">
                     <tr>
                         <td>${record.sum}</td>

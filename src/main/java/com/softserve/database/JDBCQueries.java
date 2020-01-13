@@ -2,7 +2,6 @@ package com.softserve.database;
 
 import com.softserve.dao.mapping.Mapping;
 import com.softserve.exception.NoSuchEntityException;
-import com.softserve.exception.NotCompletedActionException;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -24,7 +23,7 @@ public class JDBCQueries {
                 return Optional.empty();
             }
         } catch (SQLException e) {
-            throw new NoSuchEntityException("Error: " + e);
+            throw new RuntimeException();
         }
     }
 
@@ -42,7 +41,7 @@ public class JDBCQueries {
                 return list;
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException();
         }
     }
 

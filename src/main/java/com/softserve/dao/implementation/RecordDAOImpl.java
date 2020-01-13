@@ -58,29 +58,52 @@ public class RecordDAOImpl implements RecordDAO<Record> {
         return JDBCQueries.update(connection, Record.RecordEntityQueries.DELETE.getQuery(), id);
     }
 
-    public List<Record> getAllBySelectedFilters(Long userId, Long financialTypeId, LocalDate from, LocalDate to) {
-        return JDBCQueries.getListOfObjects(connection, generateSearchQuery(financialTypeId, from, to), new RecordMapping(),
-                userId, financialTypeId, from, to);
+    public List<Record> getAllBySelectedFilters(Long userId, Object... parameters) {
+        return JDBCQueries.getListOfObjects(connection, generateSearchQuery(userId, parameters), new RecordMapping(), parameters);
     }
 
-    public String generateSearchQuery(Long financialTypeId, LocalDate from, LocalDate to) {
-        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM records WHERE user_id = ?");
+    public String generateSearchQuery(Long userId, Object... parameters) {
+        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM records WHERE user_id = ".concat(userId.toString()));
 
         try {
-            if (financialTypeId != null) {
-                stringBuilder.append(" AND financial_type_id = ?");
+            for (Object parameter : parameters) {
+
+                if (parameter instanceof Long) {
+                    stringBuilder.append(" AND financial_type_id = ?");
+                }
+                if (parameter instanceof LocalDate) {
+                    if (!stringBuilder.toString().contains("date BETWEEN")) {
+                        stringBuilder.append(" AND date BETWEEN ?");
+                    } else {
+                        stringBuilder.append(" AND ?");
+                    }
+                }
             }
-            if (from != null) {
-                stringBuilder.append(" AND date BETWEEN ?");
-            }
-            if (to != null) {
-                stringBuilder.append(" AND ?");
-            }
-        } catch (
-                RuntimeException e) {
+            return stringBuilder.append(";").toString();
+        } catch (RuntimeException e) {
             e.getStackTrace();
             throw new RuntimeException();
         }
-        return stringBuilder.append(";").toString();
     }
+
+//    public String generateSearchQuery(Long financialTypeId, LocalDate from, LocalDate to) {
+//        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM records WHERE user_id = ?");
+//
+//        try {
+//            if (financialTypeId != null) {
+//                stringBuilder.append(" AND financial_type_id = ?");
+//            }
+//            if (from != null) {
+//                stringBuilder.append(" AND date BETWEEN ?");
+//            }
+//            if (to != null) {
+//                stringBuilder.append(" AND ?");
+//            }
+//        } catch (
+//                RuntimeException e) {
+//            e.getStackTrace();
+//            throw new RuntimeException();
+//        }
+//        return stringBuilder.append(";").toString();
+//    }
 }

@@ -19,7 +19,7 @@
             <div id="filterDate2">
 
                 <div class="input-group date" data-date-format="dd.mm.yyyy">
-                    <input type="text" readonly id="datePickerDate" name="date" class="form-control" placeholder="yyyy-mm-dd">
+                    <input type="text" id="datePickerDateTo" name="toDate" class="form-control" placeholder="yyyy-mm-dd">
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
                     </div>

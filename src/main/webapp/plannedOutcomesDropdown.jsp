@@ -18,9 +18,9 @@
 <div class="button dropdown">
     <select required id="colorselector" class="form-select" name="planned_outcome_id">
 
-        <c:if test="${empty record || empty category}">
-            <option selected disabled>None</option>
-        </c:if>
+        <%--        <c:if test="${empty record}">--%>
+        <option selected disabled>None</option>
+        <%--        </c:if>--%>
         <c:forEach var="plannedOutcome" items="${plannedOutcomes}">
             <c:choose>
                 <c:when test="${plannedOutcome.id == record.planedOutcomeId}">

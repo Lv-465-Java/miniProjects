@@ -38,7 +38,7 @@
                     <th scope="col">Note</th>
                 </tr>
                 <c:if test="${fn:length(plannedOutcomes) == 0}">
-                    <h5 class="emptyTable">You haven't created any planned outcome yet</h5>
+                    <h5 class="emptyTable">No planned outcomes</h5>
                     <p class="referenceToAction" id="error">${errorCategory} </p>
                 </c:if>
                 </thead>

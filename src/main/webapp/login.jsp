@@ -16,7 +16,7 @@
 
 <body>
 
-<div class="mainContainer">
+<%--<div class="mainContainer">--%>
 
     <div class="signIn">
         <form autocomplete="on" action="${pageContext.request.contextPath}/login" method="post">
@@ -49,7 +49,7 @@
             <br>
             <br> Do not hesitate and start your well-planned financial life with us today.</p>
     </div>
-</div>
+<%--</div>--%>
 
 </body>
 

@@ -25,26 +25,21 @@
         <h3 class="form-title">Edit Record</h3>
     </div>
     <div class="form-group">
-        <form action="${pageContext.request.contextPath}/record-dashboard" method="get">
-            <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel</button>
-        </form>
         <form action="${pageContext.request.contextPath}/edit-record" method="post">
             <input type="hidden" name="record_id" value="${record.id}"/>
             <label for="recordSum" class="floatLabel">Sum<span class="asterisk">*</span></label>
             <input id="recordSum" name="sum" type="text" required value="${record.sum}"/>
 
-            <label for="pickdate" class="floatLabel">Date</label>
-            <input id="RecordDate" name="date" type="date" required>
-            <%--            <jsp:include page="datePicker.jsp"/>--%>
+            <label for="datePickerDate" class="floatLabel">Date</label>
+            <jsp:include page="datePicker.jsp"/>
 
             <label for="recordNote" class="floatLabel">Note</label>
             <input id="recordNote" name="note" type="text" value="${record.note}"/>
 
-            <label for="financialType" class="floatLabel">Financial Type</label>
+            <label for="financialType" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
             <jsp:include page="financialTypeDropdown.jsp"/>
 
-
-            <label for="category" class="floatLabel">Category</label>
+            <label for="category" class="floatLabel">Category<span class="asterisk">*</span></label>
             <jsp:include page="categoryDropdown.jsp"/>
 
             <label for="plannedOutcome" class="floatLabel">Planned Outcome</label>
@@ -58,6 +53,9 @@
                 <p class="reference" id="error">${error}</p>
             </c:if>
 
+        </form>
+        <form action="${pageContext.request.contextPath}/record-dashboard" method="get">
+            <button type="submit" class="btn btn-secondary" id="formCancelButton">Cancel</button>
         </form>
     </div>
 </div>

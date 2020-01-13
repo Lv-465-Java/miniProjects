@@ -16,27 +16,23 @@ body {
 }
 
 .whySign {
+    margin: 25px auto;
+    height: 389px;
     float: left;
     background-color: white;
-    width: 60%;
+    width: 45%;
     border-radius: 0 5px 5px 0;
-    padding-top: 20px;
+    padding-top: 15px;
     padding-right: 40px;
     font-size: 14px;
 }
 
-.whySign {
-    height: 444px;
-}
-
-.whySign {
-    height: 354px;
-}
-
 .signUp, .signIn {
+    margin: 25px auto 25px 250px;
+    height: 389px;
     float: left;
     width: 300px;
-    padding: 20px 20px;
+    padding: 5px 15px;
     background-color: white;
     text-align: center;
     border-radius: 5px 0 0 5px;
@@ -44,6 +40,18 @@ body {
 
 .signIn {
     padding: 49px 20px;
+    height: 355px;
+}
+
+#RecordDate {
+    /*border-bottom: 1px solid rgba(0, 0, 0, 0);*/
+    margin-left: 10px;
+}
+
+.input-group {
+    margin-inline-start: 98px;
+    margin-block-start: -26px;
+    width: 350px;
 }
 
 [type="text"],
@@ -65,23 +73,10 @@ body {
     width: 80%;
     height: 15px;
     line-height: 45px;
-    margin: 0 auto 10px;
+    margin: -10px auto 10px;
     font-size: 1.2em;
     color: rgba(0, 0, 0, .5);
 }
-
-/*.btn btn-primary*/
-/*{*/
-/*  margin-top: 25px;*/
-/*  width: 20%;*/
-/*  border: 0;*/
-/*  background-color: #2038bd;*/
-/*  border-radius: 5px;*/
-/*  height: 50px;*/
-/*  color: white;*/
-/*  font-weight: 400;*/
-/*  font-size: 1em;*/
-/*}*/
 
 .btn-primary, .btn-warning, .btn-danger, .btn-secondary {
     width: 130px;
