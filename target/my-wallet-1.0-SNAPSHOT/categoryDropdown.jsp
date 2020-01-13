@@ -17,9 +17,21 @@
 
 <div class="button dropdown">
     <select required id="colorselector" class="form-select" name="category_id">
-        <option selected disabled> </option>
+
+
+        <c:if test="${empty record || empty plannedOutcome}">
+            <option selected disabled>None</option>
+        </c:if>
+
         <c:forEach var="category" items="${categories}">
-            <option id="option" value="${category.id}">${category.title}</option>
+            <c:choose>
+                <c:when test="${category.id == record.categoryId}">
+                    <option id="option" value="${category.id}" selected>${category.title} </option>
+                </c:when>
+                <c:otherwise>
+                    <option id="option" value="${category.id}">${category.title}</option>
+                </c:otherwise>
+            </c:choose>
         </c:forEach>
     </select>
 </div>

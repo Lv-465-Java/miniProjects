@@ -46,13 +46,13 @@ public class JDBCQueries {
         }
     }
 
-    public static boolean update(Connection connection, String query, Object... parameters) throws NotCompletedActionException {
+    public static boolean update(Connection connection, String query, Object... parameters) throws RuntimeException {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             insertParameters(statement, parameters);
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new NotCompletedActionException("Error:" + e);
+            throw new RuntimeException();
         }
     }
 

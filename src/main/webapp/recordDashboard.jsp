@@ -20,6 +20,9 @@
 
 <div class="profileContainer">
     <div class="profileInfo">
+
+        <jsp:include page="/filter.jsp"/>
+
         <div class="addRecordButton">
             <p class="reference" id="profileAddCategory"><a href="${pageContext.request.contextPath}/add-record">Add new
                 record</a></p>

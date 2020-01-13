@@ -9,6 +9,7 @@ import com.softserve.entity.Record;
 import com.softserve.exception.NoSuchEntityException;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,30 +58,29 @@ public class RecordDAOImpl implements RecordDAO<Record> {
         return JDBCQueries.update(connection, Record.RecordEntityQueries.DELETE.getQuery(), id);
     }
 
-    public List<Record> getAllBySelectedFilters(Long userId, Object... parameters) {
-        return JDBCQueries.getListOfObjects(connection, generateSearchQuery(userId, parameters), new RecordMapping());
+    public List<Record> getAllBySelectedFilters(Long userId, Long financialTypeId, LocalDate from, LocalDate to) {
+        return JDBCQueries.getListOfObjects(connection, generateSearchQuery(financialTypeId, from, to), new RecordMapping(),
+                userId, financialTypeId, from, to);
     }
 
-    public static String generateSearchQuery(Long userId, Object... parameters) {
-        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM records WHERE user_id = " + userId);
+    public String generateSearchQuery(Long financialTypeId, LocalDate from, LocalDate to) {
+        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM records WHERE user_id = ?");
 
         try {
-            for (Object parameter : parameters) {
-                if (parameter instanceof Long) {
-                    stringBuilder.append(" AND financial_type_id = ".concat(parameter.toString()));
-                }
-                if (parameter instanceof String) {
-                    if (!stringBuilder.toString().contains("date BETWEEN")) {
-                        stringBuilder.append(" AND date BETWEEN ".concat(parameter.toString()));
-                    } else {
-                        stringBuilder.append(" AND ".concat(parameter.toString()));
-                    }
-                }
+            if (financialTypeId != null) {
+                stringBuilder.append(" AND financial_type_id = ?");
             }
-            return stringBuilder.append(';').toString();
-        } catch (RuntimeException e) {
+            if (from != null) {
+                stringBuilder.append(" AND date BETWEEN ?");
+            }
+            if (to != null) {
+                stringBuilder.append(" AND ?");
+            }
+        } catch (
+                RuntimeException e) {
             e.getStackTrace();
             throw new RuntimeException();
         }
+        return stringBuilder.append(";").toString();
     }
 }

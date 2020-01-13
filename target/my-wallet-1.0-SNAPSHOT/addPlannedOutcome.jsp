@@ -37,7 +37,6 @@
             <label for="pickcolor" class="floatLabel">Category<span class="asterisk">*</span></label>
             <jsp:include page="categoryDropdown.jsp"/>
 
-
             <c:if test="${not empty error}">
                 <p class="errorActionMessage" id="error">${error}</p>
             </c:if>

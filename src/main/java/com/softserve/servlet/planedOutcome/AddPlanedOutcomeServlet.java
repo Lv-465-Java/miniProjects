@@ -46,28 +46,28 @@ public class AddPlanedOutcomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         currentSessionUser = userSession.retrieveUserIdFromSession(req);
-
-        Double sum = Double.parseDouble(req.getParameter(ServletResponseParameter.SUM.getServletParameter()));
-        LocalDate date = LocalDate.parse(req.getParameter(ServletResponseParameter.DATE.getServletParameter()));
-        String note = req.getParameter(ServletResponseParameter.NOTE.getServletParameter());
-        Long categoryId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
-
-        PlanedOutcomeDTO planedOutcomeDTO = PlanedOutcomeDTO.Builder.aPlanedOutcomeDTO()
-                .withSum(sum)
-                .withDate(date)
-                .withNote(note)
-                .withUserId(currentSessionUser.getId())
-                .withCategoryId(categoryId)
-                .build();
-
         try {
+            Double sum = Double.parseDouble(req.getParameter(ServletResponseParameter.SUM.getServletParameter()));
+            LocalDate date = LocalDate.parse(req.getParameter(ServletResponseParameter.DATE.getServletParameter()));
+            String note = req.getParameter(ServletResponseParameter.NOTE.getServletParameter());
+            Long categoryId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
+
+            PlanedOutcomeDTO planedOutcomeDTO = PlanedOutcomeDTO.Builder.aPlanedOutcomeDTO()
+                    .withSum(sum)
+                    .withDate(date)
+                    .withNote(note)
+                    .withUserId(currentSessionUser.getId())
+                    .withCategoryId(categoryId)
+                    .build();
+
+
             planedOutcomeService.create(planedOutcomeDTO);
             resp.sendRedirect(req.getContextPath() + "/planned-outcome-dashboard");
             LOG.info("New Planned Outcome is created. User is redirected to 'Planned outcome Dashboard' Page");
-        } catch (NotCompletedActionException e) {
+        } catch (NotCompletedActionException | NumberFormatException e) {
             LOG.info("Error: " + e.getMessage());
             req.setAttribute("error", e.getMessage());
-            resp.sendRedirect(req.getContextPath() + "/add-planned-outcome");
+          //  resp.sendRedirect(req.getContextPath() + "/add-planned-outcome");
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.PLANNED_OUTCOME_ADD_PAGE.getViewUrl())

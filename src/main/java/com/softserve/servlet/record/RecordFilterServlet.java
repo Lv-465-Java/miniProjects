@@ -1,4 +1,8 @@
 package com.softserve.servlet.record;
 
-public class RecordFilterServlet {
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet(value = {"/"})
+public class RecordFilterServlet extends HttpServlet {
 }

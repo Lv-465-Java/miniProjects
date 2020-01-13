@@ -34,7 +34,7 @@ public class RecordDashboardServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDTO currentSessionUser = userSession.retrieveUserIdFromSession(req);
 
         req.setAttribute("records", recordService.getAllByUserId(currentSessionUser.getId()));
@@ -43,5 +43,11 @@ public class RecordDashboardServlet extends HttpServlet {
         req.setAttribute("plannedOutcomes", planedOutcomeService.getAllByUserId(currentSessionUser.getId()));
         req.getRequestDispatcher(View.RECORD_DASHBOARD_PAGE.getViewUrl()).include(req, resp);
         LOG.info("'Record Dashboard' Page is loaded");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
     }
 }

@@ -15,6 +15,7 @@ import com.softserve.service.mapper.RecordMapperObjects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -85,21 +86,21 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
 
     @Override
     public boolean delete(Long recordId) throws NotCompletedActionException {
-        someTH(recordId);
+        checkIfRecordHasPlannedOutcome(recordId);
         if (!recordDAO.delete(recordId)) {
             throw new NotCompletedActionException(ErrorMessage.FAIL_TO_DELETE_A_RECORD.getErrorMessage());
         }
         return true;
     }
 
-    public void someTH(Long recordId) {
+    private void checkIfRecordHasPlannedOutcome(Long recordId) {
         Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(recordId));
         if (record.getPlanedOutcomeId() != null) {
             increasePlannedOutcomeSum(record.getPlanedOutcomeId(), record.getSum());
         }
     }
 
-    public void increasePlannedOutcomeSum(Long plannedOutcomeId, Double sum) {
+    private void increasePlannedOutcomeSum(Long plannedOutcomeId, Double sum) {
         PlanedOutcome planedOutcome = PlanedOutcomeMapperObjects.
                 verifyIfPlanedOutcomeIsPresent(planedOutcomeDAO.getById(plannedOutcomeId));
         planedOutcome.setSum(planedOutcome.getSum() + sum);
@@ -136,6 +137,12 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         planedOutcomeDAO.update(plannedOutcomeId, planedOutcome);
     }
 
-
-    // filter method
+    public List<RecordDTO> filter(Long userId, Long financialTypeId, LocalDate from, LocalDate to) {
+        List<RecordDTO> dtoList = new ArrayList<>();
+        List<Record> list = recordDAO.getAllBySelectedFilters(userId, financialTypeId, from, to);
+        for (Record record : list) {
+            dtoList.add(RecordMapperObjects.recordEntityToRecordDTO(record));
+        }
+        return dtoList;
+    }
 }

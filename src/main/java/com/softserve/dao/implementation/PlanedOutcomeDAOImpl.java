@@ -5,6 +5,7 @@ import com.softserve.dao.mapping.PlanedOutcomeMapping;
 import com.softserve.database.DataBaseConnection;
 import com.softserve.database.JDBCQueries;
 import com.softserve.entity.PlanedOutcome;
+import com.softserve.exception.NotCompletedActionException;
 
 import java.sql.Connection;
 import java.util.List;
@@ -37,7 +38,7 @@ public class PlanedOutcomeDAOImpl implements SearchDAO<PlanedOutcome> {
     }
 
     @Override
-    public boolean update(Long id, PlanedOutcome planedOutcome) {
+    public boolean update(Long id, PlanedOutcome planedOutcome) throws NotCompletedActionException {
         return JDBCQueries.update(connection, PlanedOutcome.PlanedOutcomeEntityQueries.UPDATE.getQuery(),
                 planedOutcome.getSum(), planedOutcome.getDate(),
                 planedOutcome.getNote(), planedOutcome.getUserId(), planedOutcome.getCategoryId(), id);

@@ -54,7 +54,7 @@ public class PlanedOutcomeServiceImpl implements ReadAllService<PlanedOutcomeDTO
 
     @Override
     public boolean update(Long id, PlanedOutcomeDTO planedOutcomeDTO) throws
-            NotCompletedActionException, NoSuchEntityException{
+            NotCompletedActionException, NoSuchEntityException {
         PlanedOutcome planedOutcome = PlanedOutcomeMapperObjects.verifyIfPlanedOutcomeIsPresent(planedOutcomeDAO.getById(id));
         planedOutcome.setSum(planedOutcomeDTO.getSum());
         planedOutcome.setDate(planedOutcomeDTO.getDate());
@@ -69,7 +69,7 @@ public class PlanedOutcomeServiceImpl implements ReadAllService<PlanedOutcomeDTO
     @Override
     public boolean delete(Long id) throws NotCompletedActionException {
         if (!planedOutcomeDAO.delete(id)) {
-            throw new NotCompletedActionException(ErrorMessage.FAIL_TO_DELETE_A_PLANED_OUTCOME.getErrorMessage());
+            throw new NotCompletedActionException();
         }
         return false;
     }
