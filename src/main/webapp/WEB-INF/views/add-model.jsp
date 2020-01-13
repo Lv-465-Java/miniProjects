@@ -61,6 +61,7 @@
         <tr>
             <td>ID</td>
             <td>Name</td>
+            <td>ProducerId</td>
             <td>Actions <a class=""><i>+</i></a></td>
         </tr>
         </thead>
@@ -77,9 +78,9 @@
                         </a>
                     </td>
                 </form>
-                <form action="${pageContext.request.contextPath}/delete-producer" method="post">
+                <form action="${pageContext.request.contextPath}/delete-model" method="post">
                     <td>
-                        <button name="delete" value="${producer.id}" class="btn blue-gradient btn-md">DELETE</button>
+                        <button name="delete" value="${model.id}" class="btn blue-gradient btn-md">DELETE</button>
                     </td>
                 </form>
             </tr>
