@@ -24,8 +24,8 @@
 <body>
 <jsp:include page="/fragments/admin-page-header.jsp"/>
 
-<div class="add-country">
-    <div class="country-container">
+<div class="add-producer">
+    <div class="producer-container">
         <form class="border border-light p-5" action="${pageContext.request.contextPath}/add-producer" method="post"
               role="form" data-toggle="validator">
             <h2>Producer</h2>

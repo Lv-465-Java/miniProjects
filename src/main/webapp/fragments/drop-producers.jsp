@@ -12,27 +12,13 @@
     <title></title>
 </head>
 <body>
-<table class="table table-dark">
-    <thead class="thead-dark">
-    <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Actions <a class="btn-add btn-floating btn-large waves-effect waves-light "><i class="material-icons">+</i></a></td>
-    </tr>
-    </thead>
-    <tbody class="producer-container">
-
-    <c:forEach var="producer" items="${producersList}">
-        <tr>
-            <td>${producer.id}</td>
-            <td>${producer.name}</td>
-<%--            <td> <button data-id="${producer.id}" class="btn-white" >DELETE</button>--%>
-<%--                <button data-id="${producer.id}" class="btn-white">UPDATE</button></td>--%>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
-
-
+<div class="producer-dropdown">
+    <select name="producers">
+        <option selected disabled value="producer">Producer</option>
+        <c:forEach items="${producers}" var="producer">
+            <option value="${producer.name}">${producer.name}</option>
+        </c:forEach>
+    </select>
+</div>
 </body>
 </html>

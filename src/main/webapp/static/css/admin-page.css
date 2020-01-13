@@ -4,14 +4,20 @@ body,
     height: 100%;
 }
 
-.add-country {
-    margin-top: 80px;
+.add-producer {
+    margin-top: 120px;
 }
 
 .update-producer {
-    margin-top: 80px;
+    margin-top: 120px;
 }
 
-.page-footer{
+.add-model {
+    margin-top: 120px;
+}
+
+
+.page-footer {
     background-color: #929fba;
 }
+
