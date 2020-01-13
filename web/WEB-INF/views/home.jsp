@@ -44,7 +44,7 @@
 <jsp:include page="fragments/filters.jsp"/>
 <jsp:include page="fragments/task-table.jsp"/>
 <div style="display: flex; justify-content: center;">
-    <c:if test="${currentPage != 1}">
+    <c:if test="${currentPage > 1}">
         <td><a class="btn btn-info" href="home?page=${currentPage - 1}">Previous</a></td>
     </c:if>
     <table>

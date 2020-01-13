@@ -35,7 +35,6 @@ public class Pagination {
     public void homePagination(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int page = getPage(request);
         if (SessionManager.isActiveSession(request)) {
-            UserDto userDto = (UserDto) request.getSession(false).getAttribute("userDto");
             int begin = (page - 1) * NumberOfRecordsPerPage.TASK_RECORD_PER_PAGE;
             List<TaskDto> tasks = taskService.getPageSet(request, begin);
             request.setAttribute("taskList", tasks);

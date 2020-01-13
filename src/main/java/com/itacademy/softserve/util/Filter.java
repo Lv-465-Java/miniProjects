@@ -69,7 +69,7 @@ public class Filter {
         } else if (filter.equals(FilterTypes.BY_DATE)) {
             String beginDate = request.getParameter("from");
             String endDate = request.getParameter("to");
-            tasks = taskFilter.filterByDate(taskBuilder, userId, Date.valueOf(beginDate), Date.valueOf(endDate));
+            tasks = taskFilter.filterByDate(taskBuilder, userId, userId, Date.valueOf(beginDate), Date.valueOf(endDate));
         } else if (filter.equals(FilterTypes.BY_STATUS)) {
             String status = request.getParameter("statuses");
             Integer statusId = new StatusDao().getByFields(new StatusBuilder(), status).get(0).getId().intValue();

@@ -27,7 +27,6 @@
 
             <c:if test="${error ne null}">
                 <p class="text-center">
-                    <br><br>
                     <font color="red">${error}</font>
                 </p>
             </c:if>

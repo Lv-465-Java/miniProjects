@@ -9,7 +9,9 @@ public enum ErrorMessage {
     NO_INFO("No info on your request("),
     EMPTY_NAME("Name field is empty"),
     SORRY_MESSAGE("At the moment we cannot perform this operation"),
-    EMPTY_SEARCH("Search field is empty. Please write some text");
+    EMPTY_SEARCH("Search field is empty. Please write some text"),
+    EMPTY_DESCRIPTION("Description field is empty. Please write some text"),
+    NO_PERMISSION("Sorry. Yuo are not owner of this task.");
 
     private String message;
 

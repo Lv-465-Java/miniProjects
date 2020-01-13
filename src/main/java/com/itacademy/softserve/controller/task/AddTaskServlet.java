@@ -41,10 +41,10 @@ public class AddTaskServlet extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
         try {
-            taskService.save(new TaskDtoMapper().createDtoFromRequest(request));
+            taskService.save(request, new TaskDtoMapper().createDtoFromRequest(request));
             response.sendRedirect(request.getContextPath() + ServletUrl.HOME_URL);
         } catch (RuntimeException e) {
-            request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.SUCH_TASK_EXIST.toString());
+            request.setAttribute(ErrorMessage.ERROR.toString(), e.getMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(JspUrl.ADD_TASK_JSP)

@@ -70,7 +70,7 @@
 </table>
 
 <div style="display: flex; justify-content: center;">
-    <c:if test="${currentPage != 1}">
+    <c:if test="${currentPage > 1}">
         <td><a class="btn btn-info" href="history?page=${currentPage - 1}">Previous</a></td>
     </c:if>
     <table>

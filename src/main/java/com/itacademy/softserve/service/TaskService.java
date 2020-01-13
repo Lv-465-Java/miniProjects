@@ -9,13 +9,13 @@ import java.util.List;
 public interface TaskService {
     List<TaskDto> getPageSet(HttpServletRequest request, int begin);
 
-    boolean save(TaskDto taskDto);
+    boolean save(HttpServletRequest request, TaskDto taskDto);
 
     int getNumberOfPages();
 
-    boolean setDone(Long taskId);
+    boolean setDone(HttpServletRequest request, Long taskId);
 
-    boolean setDelete(Long taskId);
+    boolean setDelete(HttpServletRequest request, Long taskId);
 
     boolean edit(HttpServletRequest request, String description);
 

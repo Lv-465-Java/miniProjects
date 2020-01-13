@@ -62,12 +62,10 @@ public class CrudUtils {
                     preparedStatement.setInt(i + 1, (Integer) args[i]);
                 } else if (Date.class.equals(args[i].getClass())) {
                     preparedStatement.setDate(i + 1, (Date) args[i]);
-                } else {
-                    //throw custom exception
                 }
             }
         } catch (SQLException e) {
-
+            throw new RuntimeException();
         }
     }
 }

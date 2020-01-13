@@ -22,7 +22,8 @@ public class ConfirmDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         HttpSession session = req.getSession(false);
-        session.setAttribute("referer", req.getHeader("Referer"));
+        String previous = req.getHeader("Referer");
+        session.setAttribute("referer", previous);
         req.getRequestDispatcher(JspUrl.CONFIRM_DELETE_JSP).include(req, resp);
     }
 

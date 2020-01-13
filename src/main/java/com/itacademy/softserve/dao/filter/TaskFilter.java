@@ -16,7 +16,7 @@ public class TaskFilter {
         FILTER_BY_OWNER("SELECT TaskID, Assignee, Owner, Description, CreationDate," +
                 " Deadline, StatusID FROM tasks WHERE Assignee = ? AND Owner = ?;"),
         FILTER_BY_DATE("SELECT TaskID, Assignee, Owner, Description, CreationDate," +
-                " Deadline, StatusID FROM tasks WHERE Assignee = ? AND CreationDate BETWEEN ? AND ?;"),
+                " Deadline, StatusID FROM tasks WHERE (Assignee = ? OR Owner = ?) AND CreationDate BETWEEN ? AND ?;"),
         FILTER_BY_STATUS("SELECT TaskID, Assignee, Owner, Description," +
                 " CreationDate, Deadline, StatusID FROM tasks WHERE (Assignee = ? OR Owner = ?) AND StatusID = ?;");
 

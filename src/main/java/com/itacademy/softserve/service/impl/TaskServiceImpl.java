@@ -1,5 +1,6 @@
 package com.itacademy.softserve.service.impl;
 
+import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.NumberOfRecordsPerPage;
 import com.itacademy.softserve.constant.Statuses;
 import com.itacademy.softserve.dao.StatusDao;
@@ -8,11 +9,11 @@ import com.itacademy.softserve.dao.UserDao;
 import com.itacademy.softserve.dao.builder.StatusBuilder;
 import com.itacademy.softserve.dao.builder.TaskBuilder;
 import com.itacademy.softserve.dao.builder.UserBuilder;
-import com.itacademy.softserve.dao.filter.TaskFilter;
 import com.itacademy.softserve.dto.TaskDto;
 import com.itacademy.softserve.dto.UserDto;
 import com.itacademy.softserve.dto.mapper.TaskDtoMapper;
 import com.itacademy.softserve.entity.Task;
+import com.itacademy.softserve.exception.NotSaveException;
 import com.itacademy.softserve.service.HistoryService;
 import com.itacademy.softserve.service.TaskService;
 import com.itacademy.softserve.util.AutoChangeOfStatus;
@@ -20,7 +21,6 @@ import com.itacademy.softserve.util.SessionManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,30 +43,37 @@ public class TaskServiceImpl implements TaskService {
         UserDto userDto = (UserDto) session.getAttribute("userDto");
         Long userId = userDao.getByFields(userBuilder, userDto.getName()).get(0).getId();
         tasks = (List<Task>) session.getAttribute("tasks");
-        if(tasks == null) {
+        if (tasks == null) {
             tasks = taskDao.getAll(new TaskBuilder(), userId, userId);
             Collections.reverse(tasks);
-            session.setAttribute("task", tasks);
+            session.setAttribute("tasks", tasks);
         }
         new AutoChangeOfStatus().updateStatuses(tasks);
         return getSet(begin);
     }
 
     @Override
-    public boolean save(TaskDto taskDto) {
+    public boolean save(HttpServletRequest request, TaskDto taskDto) {
         UserDao userDao = new UserDao();
         Task task = new Task();
         task.setAssigneeID(userDao.getByFields(new UserBuilder(), taskDto.getAssignee()).get(0).getId());
         task.setOwnerID(userDao.getByFields(new UserBuilder(), taskDto.getOwner()).get(0).getId());
+        if (taskDto.getDescription().isEmpty()) {
+            throw new RuntimeException(ErrorMessage.EMPTY_DESCRIPTION.toString());
+        }
         task.setDescription(taskDto.getDescription());
         task.setCreationDate(taskDto.getCreationDate());
         task.setDeadline(taskDto.getDeadline());
         task.setStatusID(new StatusDao().getByFields(new StatusBuilder(), taskDto.getStatus()).get(0).getId().intValue());
-        if (taskDao.insert(task)) {
-            try {
-                new HistoryServiceImpl().addRecord(taskDto);
-            } catch (RuntimeException ignored) {
-            }
+        try {
+            taskDao.insert(task);
+            tasks = taskDao.getAll(new TaskBuilder(), task.getOwnerID(), task.getOwnerID());
+            Collections.reverse(tasks);
+            HttpSession session = request.getSession(false);
+            session.setAttribute("tasks", tasks);
+            new HistoryServiceImpl().addRecord(taskDto);
+        } catch (RuntimeException e) {
+            throw new NotSaveException(ErrorMessage.SUCH_TASK_EXIST.toString());
         }
         return true;
     }
@@ -80,7 +87,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public boolean setDone(Long taskId) {
+    public boolean setDone(HttpServletRequest request, Long taskId) {
         historyService = new HistoryServiceImpl();
         boolean status = taskDao.updateByID(new StatusDao().getByFields(new StatusBuilder(), Statuses.DONE).get(0).getId(), taskId);
         Task task = taskDao.getByID(new TaskBuilder(), taskId);
@@ -88,11 +95,19 @@ public class TaskServiceImpl implements TaskService {
             historyService.addRecord(new TaskDtoMapper().mapFromEntityToDto(task));
         } catch (RuntimeException ignored) {
         }
+        HttpSession session = request.getSession(false);
+        tasks = (List<Task>) session.getAttribute("tasks");
+        for (Task findToChange : tasks) {
+            if (findToChange.getId().equals(taskId)) {
+                findToChange.setStatusID(new StatusDao().getByFields(new StatusBuilder(), Statuses.DONE).get(0).getId().intValue());
+                break;
+            }
+        }
         return status;
     }
 
     @Override
-    public boolean setDelete(Long taskId) {
+    public boolean setDelete(HttpServletRequest request, Long taskId) {
         historyService = new HistoryServiceImpl();
         Task task = taskDao.getByID(new TaskBuilder(), taskId);
         TaskDto taskDto = new TaskDtoMapper().mapFromEntityToDto(task);
@@ -100,6 +115,14 @@ public class TaskServiceImpl implements TaskService {
         try {
             historyService.addRecord(taskDto);
         } catch (RuntimeException ignored) {
+        }
+        HttpSession session = request.getSession(false);
+        tasks = (List<Task>) session.getAttribute("tasks");
+        for (Task findToRemove : tasks) {
+            if (findToRemove.getId().equals(taskId)) {
+                tasks.remove(findToRemove);
+                break;
+            }
         }
         return taskDao.deleteByID(taskId);
     }
@@ -114,7 +137,16 @@ public class TaskServiceImpl implements TaskService {
             if (newDescription.equals("")) {
                 newDescription = description;
             }
-            String finalNewDescription = newDescription;
+            tasks = (List<Task>) session.getAttribute("tasks");
+            for (Task edited : tasks) {
+                if (edited.getDescription().equals(description)) {
+                    if(!edited.getOwnerID().equals(userId)) {
+                        throw new RuntimeException(ErrorMessage.NO_PERMISSION.toString());
+                    }
+                    edited.setAssigneeID(userId);
+                    edited.setDescription(newDescription);
+                }
+            }
             return taskDao.updateByField(userId, newDescription, taskId);
         } else {
             return false;
@@ -148,4 +180,35 @@ public class TaskServiceImpl implements TaskService {
         }
     }
 
+//    private List<Task> getFilteredTasks(HttpServletRequest request, String filter) {
+//        HttpSession session = request.getSession(false);
+//        UserDao userDao = new UserDao();
+//        UserDto userDto = (UserDto) session.getAttribute("userDto");
+//        UserBuilder userBuilder = new UserBuilder();
+//        Long userId = userDao.getByFields(userBuilder, userDto.getName()).get(0).getId();
+//        TaskFilter taskFilter = new TaskFilter();
+//        TaskDao taskDao = new TaskDao();
+//        TaskBuilder taskBuilder = new TaskBuilder();
+//        List<Task> filteredTasks;
+//        String reset = request.getParameter("reset");
+//        if (filter == null || reset != null) {
+//            filteredTasks = taskDao.getAll(new TaskBuilder(), userId, userId);
+//        } else if (filter.equals(FilterTypes.BY_OWNER)) {
+//            String owner = request.getParameter("users");
+//            Long ownerId = userDao.getByFields(userBuilder, owner).get(0).getId();
+//            filteredTasks = taskFilter.filterByOwner(taskBuilder, userId, ownerId);
+//        } else if (filter.equals(FilterTypes.BY_DATE)) {
+//            String beginDate = request.getParameter("from");
+//            String endDate = request.getParameter("to");
+//            filteredTasks = taskFilter.filterByDate(taskBuilder, userId, Date.valueOf(beginDate), Date.valueOf(endDate));
+//        } else if (filter.equals(FilterTypes.BY_STATUS)) {
+//            String status = request.getParameter("statuses");
+//            Integer statusId = new StatusDao().getByFields(new StatusBuilder(), status).get(0).getId().intValue();
+//            filteredTasks = taskFilter.filterByStatus(taskBuilder, userId, statusId);
+//        } else {
+//            filteredTasks = new ArrayList<>();
+//        }
+//        Collections.reverse(filteredTasks);
+//        return filteredTasks;
+//    }
 }

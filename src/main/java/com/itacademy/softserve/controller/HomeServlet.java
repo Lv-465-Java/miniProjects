@@ -3,6 +3,7 @@ package com.itacademy.softserve.controller;
 import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
+import com.itacademy.softserve.constant.param.FilterTypes;
 import com.itacademy.softserve.dto.UserDto;
 import com.itacademy.softserve.service.UserService;
 import com.itacademy.softserve.service.impl.UserServiceImpl;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -38,7 +40,11 @@ public class HomeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            HttpSession session = request.getSession(false);
+            String filter = request.getParameter(FilterTypes.FILTER_CHECK);
+            session.setAttribute("filter", filter);
             new Filter().determineFilter(request);
+            //pagination.homePagination(request, response);
             doGet(request, response);
         } catch (RuntimeException e) {
             request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.NO_INFO.toString());

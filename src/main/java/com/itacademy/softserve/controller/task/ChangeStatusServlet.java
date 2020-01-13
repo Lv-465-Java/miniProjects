@@ -7,7 +7,6 @@ import com.itacademy.softserve.service.TaskService;
 import com.itacademy.softserve.service.impl.TaskServiceImpl;
 import com.itacademy.softserve.util.Pagination;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,14 +36,17 @@ public class ChangeStatusServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter(ControlTaskButton.DONE);
+        HttpSession session = request.getSession(false);
+        String action = request.getParameter(ControlTaskButton.DELETE);
         Long taskId;
-        if (action != null) {
+        if (action == null) {
+            String previous = request.getHeader("Referer");
+            session.setAttribute("referer", previous);
             taskId = Long.parseLong(request.getParameter(ControlTaskButton.DONE));
-            taskService.setDone(taskId);
+            taskService.setDone(request, taskId);
         } else {
             taskId = Long.parseLong(request.getParameter(ControlTaskButton.DELETE));
-            taskService.setDelete(taskId);
+            taskService.setDelete(request, taskId);
         }
         doGet(request, response);
     }

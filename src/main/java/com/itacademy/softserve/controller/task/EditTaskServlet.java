@@ -1,5 +1,6 @@
 package com.itacademy.softserve.controller.task;
 
+import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
 import com.itacademy.softserve.dto.UserDto;
@@ -42,12 +43,19 @@ public class EditTaskServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        String action = request.getParameter("confirm");
-        if (action != null) {
-            taskService.edit(request, (String) session.getAttribute("description"));
+        try{
+            if (request.getParameter("confirm") != null) {
+                taskService.edit(request, (String) session.getAttribute("description"));
+            }
+            response.sendRedirect((String) session.getAttribute("referer"));
+        } catch (RuntimeException e) {
+            request.setAttribute(ErrorMessage.ERROR.toString(), e.getMessage());
+            getServletConfig()
+                    .getServletContext()
+                    .getRequestDispatcher(JspUrl.EDIT_TASK_JSP)
+                    .forward(request, response);
         }
-        response.sendRedirect((String) session.getAttribute("referer"));
     }
 }

@@ -36,13 +36,13 @@ public class SearchServlet extends HttpServlet {
         String regex = request.getParameter("regex");
         session.setAttribute("regex", regex);
         if (regex != null && !regex.isEmpty()) {
-            pagination.searchPagination(request, response);
+            doGet(request, response);
         } else {
             request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.EMPTY_SEARCH.toString());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(JspUrl.HOME_JSP)
-                    .include(request, response);
+                    .forward(request, response);
         }
     }
 }
