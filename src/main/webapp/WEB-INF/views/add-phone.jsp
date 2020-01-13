@@ -67,17 +67,16 @@
             </div>
 
             <button type="submit" name="submit" class="btn blue-gradient">Submit</button>
-
-            <%--            <c:if test="${not empty error}">--%>
-            <%--                <div class="alert alert-info">--%>
-            <%--                        ${error}--%>
-            <%--                </div>--%>
-            <%--            </c:if>--%>
-            <%--            <c:if test="${not empty success}">--%>
-            <%--                <div class="alert alert-success">--%>
-            <%--                        ${success}--%>
-            <%--                </div>--%>
-            <%--            </c:if>--%>
+            <c:if test="${not empty error}">
+                <div class="alert alert-info">
+                        ${error}
+                </div>
+            </c:if>
+            <c:if test="${not empty success}">
+                <div class="alert alert-success">
+                        ${success}
+                </div>
+            </c:if>
         </form>
     </div>
 </div>
@@ -111,14 +110,14 @@
                 <td>${phone.modelId}</td>
                 <form action="${pageContext.request.contextPath}/update-model">
                     <td>
-                        <a href="/update-model?modelId=$${producer.id}&old-name=${model.name}&producerId=${model.producerId}">
-                            <button name="update" value="${model.id}" class="btn blue-gradient btn-md">UPDATE</button>
+                        <a href="/update-phone?phoneId=$${producer.id}">
+                            <button name="update" value="${phone.id}" class="btn blue-gradient btn-md">UPDATE</button>
                         </a>
                     </td>
                 </form>
-                <form action="${pageContext.request.contextPath}/delete-model" method="post">
+                <form action="${pageContext.request.contextPath}/delete-phone" method="post">
                     <td>
-                        <button name="delete" value="${model.id}" class="btn blue-gradient btn-md">DELETE</button>
+                        <button name="delete" value="${phone.id}" class="btn blue-gradient btn-md">DELETE</button>
                     </td>
                 </form>
             </tr>
