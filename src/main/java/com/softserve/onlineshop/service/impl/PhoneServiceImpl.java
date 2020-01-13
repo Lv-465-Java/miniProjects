@@ -4,12 +4,14 @@ import com.softserve.onlineshop.dao.impl.PhoneDaoImpl;
 import com.softserve.onlineshop.dao.mapper.PhoneRowMapper;
 import com.softserve.onlineshop.dto.ModelDto;
 import com.softserve.onlineshop.dto.PhoneDto;
+import com.softserve.onlineshop.dto.UserDto;
 import com.softserve.onlineshop.dto.mapper.PhoneDtoMapper;
 import com.softserve.onlineshop.entity.Phone;
 import com.softserve.onlineshop.exception.NotFoundException;
 import com.softserve.onlineshop.service.FileService;
 import com.softserve.onlineshop.service.ModelService;
 import com.softserve.onlineshop.service.PhoneService;
+import com.softserve.onlineshop.service.UserService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,11 +45,12 @@ public class PhoneServiceImpl implements PhoneService {
         }
         phone.setYear(phoneDto.getYear());
         phone.setPrice(phoneDto.getPrice());
-        phone.setPhoto(fileService.saveFile(phoneDto.getPhoto()));
+        phone.setPhoto(phoneDto.getPhoto());
+//        phone.setPhoto(fileService.saveFile(phoneDto.getPhoto()));
         phone.setColor(phoneDto.getColor());
         phone.setScreenDiagonal(phoneDto.getScreenDiagonal());
         phone.setInternalMemory(phoneDto.getInternalMemory());
-        phone.setModelId(modelService.getById(phoneDto.getId()).getId());
+        phone.setModelId(modelService.getById(phoneDto.getModelId()).getId());
         return phone;
     }
 
@@ -70,5 +73,14 @@ public class PhoneServiceImpl implements PhoneService {
     @Override
     public boolean deleteById(Long id) {
         return phoneDao.deleteById(getById(id).getId());
+    }
+
+    public static void main(String[] args) {
+        PhoneService phoneService = new PhoneServiceImpl();
+        PhoneDto phoneDto = new PhoneDto(2019, 25000, "dsadsa",
+                "blue", 4.6, 64, 3L);
+        System.out.println(phoneDto);
+        System.out.println(phoneService.save(phoneDto));
+
     }
 }
