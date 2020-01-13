@@ -2,6 +2,7 @@ package com.softserve.database;
 
 import com.softserve.dao.mapping.Mapping;
 import com.softserve.exception.NoSuchEntityException;
+import com.softserve.exception.NotCompletedActionException;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -45,13 +46,13 @@ public class JDBCQueries {
         }
     }
 
-    public static boolean update(Connection connection, String query, Object... parameters) {
+    public static boolean update(Connection connection, String query, Object... parameters) throws NotCompletedActionException {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             insertParameters(statement, parameters);
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new NotCompletedActionException("Error:" + e);
         }
     }
 

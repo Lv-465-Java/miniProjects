@@ -35,8 +35,8 @@
 
         <%--            <jsp:include page="datePicker.jsp"/>--%>
 
-            <label for="plannedOutcomeNote" class="floatLabel">Note</label>
-            <input id="plannedOutcomeNote" name="note" type="text" value="${plannedOutcome.note}"/>
+            <label for="plannedOutcomeNote" class="floatLabel">Note<span class="asterisk">*</span></label>
+            <input id="plannedOutcomeNote" name="note" type="text" required value="${plannedOutcome.note}"/>
 
             <label for="category" class="floatLabel">Category</label>
             <jsp:include page="categoryDropdown.jsp"/>

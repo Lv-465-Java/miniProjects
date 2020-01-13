@@ -17,9 +17,20 @@
 
 <div class="button dropdown">
     <select required id="colorselector" class="form-select" name="financial_type_id">
-        <option selected disabled> </option>
+
+        <c:if test="${empty category}">
+            <option selected disabled></option>
+        </c:if>
         <c:forEach var="financialType" items="${financialTypes}">
-            <option id="option" value="${financialType.id}">${financialType.typeName}</option>
+            <c:choose>
+                <c:when test="${financialType.id == category.financialTypeId}">
+                    <option id="option" value="${financialType.id}" selected>${financialType.typeName} </option>
+                </c:when>
+
+                <c:otherwise>
+                    <option id="option" value="${financialType.id}">${financialType.typeName}</option>
+                </c:otherwise>
+            </c:choose>
         </c:forEach>
     </select>
 </div>

@@ -10,7 +10,10 @@ import com.softserve.entity.Record;
 import com.softserve.exception.NoSuchEntityException;
 import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.ReadAllService;
+import com.softserve.service.mapper.PlanedOutcomeMapperObjects;
 import com.softserve.service.mapper.RecordMapperObjects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +24,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
 
     private RecordDAOImpl recordDAO;
     private PlanedOutcomeDAOImpl planedOutcomeDAO;
+    private Logger LOG = LoggerFactory.getLogger(RecordServiceImpl.class);
 
     public RecordServiceImpl() {
         this.recordDAO = new RecordDAOImpl();
@@ -32,6 +36,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         if (recordDTO.getPlanedOutcomeId() != null) {
             checkIfPlanedOutcomeMatchesFinancialType(recordDTO.getFinancialTypeId());
             checkIfPlanedOutcomeMatchesCategory(recordDTO.getCategoryId(), recordDTO.getPlanedOutcomeId());
+            reducePlannedOutcomeSum(recordDTO.getPlanedOutcomeId(), recordDTO.getSum());
         }
         Record record = new Record(recordDTO.getSum(), recordDTO.getDate(), recordDTO.getNote(),
                 recordDTO.getFinancialTypeId(), recordDTO.getUserId(), recordDTO.getCategoryId(),
@@ -63,6 +68,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         if (recordDTO.getPlanedOutcomeId() != null) {
             checkIfPlanedOutcomeMatchesFinancialType(recordDTO.getFinancialTypeId());
             checkIfPlanedOutcomeMatchesCategory(recordDTO.getCategoryId(), recordDTO.getPlanedOutcomeId());
+            reducePlannedOutcomeSum(recordDTO.getPlanedOutcomeId(), recordDTO.getSum());
         }
         Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(id));
         record.setSum(recordDTO.getSum());
@@ -78,11 +84,26 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
     }
 
     @Override
-    public boolean delete(Long id) throws NotCompletedActionException {
-        if (!recordDAO.delete(id)) {
+    public boolean delete(Long recordId) throws NotCompletedActionException {
+        someTH(recordId);
+        if (!recordDAO.delete(recordId)) {
             throw new NotCompletedActionException(ErrorMessage.FAIL_TO_DELETE_A_RECORD.getErrorMessage());
         }
         return true;
+    }
+
+    public void someTH(Long recordId) {
+        Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(recordId));
+        if (record.getPlanedOutcomeId() != null) {
+            increasePlannedOutcomeSum(record.getPlanedOutcomeId(), record.getSum());
+        }
+    }
+
+    public void increasePlannedOutcomeSum(Long plannedOutcomeId, Double sum) {
+        PlanedOutcome planedOutcome = PlanedOutcomeMapperObjects.
+                verifyIfPlanedOutcomeIsPresent(planedOutcomeDAO.getById(plannedOutcomeId));
+        planedOutcome.setSum(planedOutcome.getSum() + sum);
+        planedOutcomeDAO.update(plannedOutcomeId, planedOutcome);
     }
 
     public List<FinancialType> getTypes() {
@@ -95,13 +116,24 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         }
     }
 
-    public void checkIfPlanedOutcomeMatchesCategory(Long categoryId, Long planedOutcomeId) throws NotCompletedActionException {
+    private void checkIfPlanedOutcomeMatchesCategory(Long categoryId, Long planedOutcomeId) throws NotCompletedActionException {
         Optional<PlanedOutcome> planedOutcome = planedOutcomeDAO.getById(planedOutcomeId);
         if (planedOutcome.isPresent()) {
             if (!planedOutcome.get().getCategoryId().equals(categoryId)) {
                 throw new NotCompletedActionException(ErrorMessage.CATEGORY_ID_DO_NOT_MATCH.getErrorMessage());
             }
         }
+    }
+
+    private void reducePlannedOutcomeSum(Long plannedOutcomeId, Double sum) {
+        PlanedOutcome planedOutcome = PlanedOutcomeMapperObjects.
+                verifyIfPlanedOutcomeIsPresent(planedOutcomeDAO.getById(plannedOutcomeId));
+        double plannedOutcomeSumRemaining = planedOutcome.getSum() - sum;
+        if (plannedOutcomeSumRemaining < 0) {
+            throw new NotCompletedActionException(ErrorMessage.PLANNED_OUTCOME_SUM_DO_NOT_MATCH.getErrorMessage());
+        }
+        planedOutcome.setSum(planedOutcome.getSum() - sum);
+        planedOutcomeDAO.update(plannedOutcomeId, planedOutcome);
     }
 
 

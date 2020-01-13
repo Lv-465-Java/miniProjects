@@ -66,7 +66,8 @@
 
                     <tr>
                         <td>
-                            <div class="color-holder call-picker" style="background-color: ${category.color}"></div>
+                            <div class="color-holder call-picker"
+                                 id="colorTable" style="background-color: ${category.color}"></div>
                         </td>
                         <td>${category.title}</td>
                         <td>${category.description}</td>
