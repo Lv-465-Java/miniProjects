@@ -21,7 +21,6 @@ public class PhoneDaoImpl extends CrudDaoImpl<Phone> {
         init();
     }
 
-    // TODO Create abstract method in ADao
     protected void init() {
         for (PhoneEntityQueries phoneEntityQueries : PhoneEntityQueries.values()) {
             sqlQueries.put(phoneEntityQueries.getSqlQuery(), phoneEntityQueries);
@@ -41,8 +40,18 @@ public class PhoneDaoImpl extends CrudDaoImpl<Phone> {
     }
 
     @Override
-    protected String[] getUpdatedFields(Phone entity) {
-        return new String[0];
+    protected String[] getUpdatedFields(Phone phone) {
+        String[] result = new String[8];
+        String[] allFields = getFields(phone);
+        result[0] = allFields[0];
+        result[1] = allFields[1];
+        result[2] = allFields[2];
+        result[3] = allFields[3];
+        result[4] = allFields[4];
+        result[5] = allFields[5];
+        result[6] = allFields[6];
+        result[7] = phone.getId().toString();
+        return result;
     }
 
     public List<Phone> getPhonesByModelId(PhoneRowMapper mapper, Long modelId) {
