@@ -5,6 +5,7 @@ import com.itacademy.softserve.constant.ServletUrl;
 import com.itacademy.softserve.constant.param.ControlTaskButton;
 import com.itacademy.softserve.service.TaskService;
 import com.itacademy.softserve.service.impl.TaskServiceImpl;
+import com.itacademy.softserve.util.Pagination;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -18,10 +19,12 @@ import java.io.IOException;
 @WebServlet(ServletUrl.CHANGE_STATUS)
 public class ChangeStatusServlet extends HttpServlet {
     private TaskService taskService;
+    private Pagination pagination;
 
     @Override
     public void init() {
         taskService = new TaskServiceImpl();
+        pagination = new Pagination();
     }
 
     @Override

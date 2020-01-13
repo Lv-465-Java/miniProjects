@@ -8,7 +8,8 @@ public enum ErrorMessage {
     SUCH_TASK_EXIST("Such task already exist"),
     NO_INFO("No info on your request("),
     EMPTY_NAME("Name field is empty"),
-    SORRY_MESSAGE("At the moment we cannot perform this operation");
+    SORRY_MESSAGE("At the moment we cannot perform this operation"),
+    EMPTY_SEARCH("Search field is empty. Please write some text");
 
     private String message;
 

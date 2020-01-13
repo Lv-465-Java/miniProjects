@@ -19,6 +19,11 @@
 <jsp:include page="fragments/header.jsp"/>
 <div class="container">
     <br/>
+    <c:if test="${error ne null}">
+        <p class="text-center">
+            <font color="red">${error}</font>
+        </p>
+    </c:if>
     <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8">
             <form class="card card-sm" action="${pageContext.request.contextPath}/search-task" method="post">

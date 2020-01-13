@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class HistoryServiceImpl implements HistoryService {
@@ -55,7 +54,15 @@ public class HistoryServiceImpl implements HistoryService {
     public boolean clear(HttpServletRequest request) {
         String action = request.getParameter(ControlTaskButton.DELETE);
         if (action != null) {
-            return historyDao.deleteByID(Long.parseLong(request.getParameter(ControlTaskButton.DELETE)));
+            historyList = (List<History>) request.getSession(false).getAttribute(HistoryPeriod.PERIOD.toString());
+            Long historyId = Long.parseLong(request.getParameter(ControlTaskButton.DELETE));
+            for (History history : historyList) {
+                if (history.getId().equals(historyId)) {
+                    historyList.remove(history);
+                    break;
+                }
+            }
+            return historyDao.deleteByID(historyId);
         } else {
             UserDto userDto = (UserDto) request.getSession(false).getAttribute("userDto");
             return historyDao.deleteByField(new UserDao().getByFields(new UserBuilder(), userDto.getName()).get(0).getId());

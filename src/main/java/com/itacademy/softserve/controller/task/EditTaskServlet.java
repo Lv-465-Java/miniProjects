@@ -48,6 +48,6 @@ public class EditTaskServlet extends HttpServlet {
         if (action != null) {
             taskService.edit(request, (String) session.getAttribute("description"));
         }
-        response.sendRedirect((String) session.getAttribute("Referer"));
+        response.sendRedirect((String) session.getAttribute("referer"));
     }
 }

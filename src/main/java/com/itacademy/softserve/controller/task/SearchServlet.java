@@ -1,5 +1,6 @@
 package com.itacademy.softserve.controller.task;
 
+import com.itacademy.softserve.constant.ErrorMessage;
 import com.itacademy.softserve.constant.JspUrl;
 import com.itacademy.softserve.constant.ServletUrl;
 import com.itacademy.softserve.util.Pagination;
@@ -34,10 +35,14 @@ public class SearchServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         String regex = request.getParameter("regex");
         session.setAttribute("regex", regex);
-        if (regex != null) {
+        if (regex != null && !regex.isEmpty()) {
             pagination.searchPagination(request, response);
         } else {
-            request.getRequestDispatcher(JspUrl.HOME_JSP).forward(request, response);
+            request.setAttribute(ErrorMessage.ERROR.toString(), ErrorMessage.EMPTY_SEARCH.toString());
+            getServletConfig()
+                    .getServletContext()
+                    .getRequestDispatcher(JspUrl.HOME_JSP)
+                    .include(request, response);
         }
     }
 }

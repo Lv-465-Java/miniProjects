@@ -46,6 +46,7 @@ public class TaskServiceImpl implements TaskService {
         if(tasks == null) {
             tasks = taskDao.getAll(new TaskBuilder(), userId, userId);
             Collections.reverse(tasks);
+            session.setAttribute("task", tasks);
         }
         new AutoChangeOfStatus().updateStatuses(tasks);
         return getSet(begin);
@@ -106,12 +107,14 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public boolean edit(HttpServletRequest request, String description) {
         if (SessionManager.isActiveSession(request)) {
+            HttpSession session = request.getSession(false);
             Long userId = determineAssignee(request);
             Long taskId = Long.parseLong(request.getParameter("confirm"));
             String newDescription = request.getParameter("newDescription");
             if (newDescription.equals("")) {
                 newDescription = description;
             }
+            String finalNewDescription = newDescription;
             return taskDao.updateByField(userId, newDescription, taskId);
         } else {
             return false;
