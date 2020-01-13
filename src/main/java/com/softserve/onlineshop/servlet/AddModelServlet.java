@@ -1,6 +1,7 @@
 package com.softserve.onlineshop.servlet;
 
 import com.softserve.onlineshop.dto.ModelDto;
+import com.softserve.onlineshop.dto.ProducerDto;
 import com.softserve.onlineshop.service.ModelService;
 import com.softserve.onlineshop.service.ProducerService;
 import com.softserve.onlineshop.service.impl.ModelServiceImpl;
@@ -29,7 +30,9 @@ public class AddModelServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List<ModelDto> models = modelService.getAll();
+            List<ProducerDto> producers = producerService.getAll();
             request.setAttribute("models", models);
+            request.setAttribute("producers", producers);
             request.getRequestDispatcher("/WEB-INF/views/add-model.jsp").include(request, response);
         } catch (RuntimeException e) {
             request.setAttribute("error", "Empty model list");
@@ -40,17 +43,19 @@ public class AddModelServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        try {
-//            producerService.save(new ProducerDto(request.getParameter("name")));
-//            request.setAttribute("success", "Producer successfully added");
-//            doGet(request, response);
-//            request.getRequestDispatcher("/WEB-INF/views/add-producer.jsp")
-//                    .forward(request, response);
-//        } catch (RuntimeException e) {
-//            request.setAttribute("error", "Producer already exist");
-//            doGet(request, response);
-//            request.getRequestDispatcher("/WEB-INF/views/add-producer.jsp")
-//                    .forward(request, response);
-//        }
+        ModelDto modelDto = new ModelDto(request.getParameter("name"),
+                Long.parseLong(request.getParameter("producers")));
+        try {
+            modelService.save(modelDto);
+            request.setAttribute("success", "Model successfully added");
+            doGet(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/add-model.jsp")
+                    .forward(request, response);
+        } catch (RuntimeException e) {
+            request.setAttribute("error", "Model already exist");
+            doGet(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/add-model.jsp")
+                    .forward(request, response);
+        }
     }
 }

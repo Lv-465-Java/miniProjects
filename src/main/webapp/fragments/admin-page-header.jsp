@@ -6,11 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
     <div class="container">
         <a href="/home" class="navbar-brand waves-effect">
@@ -30,7 +25,7 @@
                     <a href="/add-producer" class="nav-link waves-effect">Producer</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link waves-effect">Model</a>
+                    <a href="/add-model" class="nav-link waves-effect">Model</a>
                 </li>
                 <li class="nav-item">
                     <a href="" class="nav-link waves-effect">Phone</a>
@@ -64,5 +59,4 @@
         </div>
     </div>
 </nav>
-</body>
-</html>
+

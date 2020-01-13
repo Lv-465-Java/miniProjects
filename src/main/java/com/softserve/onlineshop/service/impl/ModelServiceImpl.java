@@ -77,6 +77,10 @@ public class ModelServiceImpl implements ModelService {
         return modelDao.deleteById(getById(id).getId());
     }
 
+    public static void main(String[] args) {
+        ModelService modelService = new ModelServiceImpl();
+
+    }
 //    public static void main(String[] args) {
 //        ModelService modelService = new ModelServiceImpl();
 //        System.out.println(modelService.getAllByProducerId(1L));

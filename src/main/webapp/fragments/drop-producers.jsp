@@ -7,11 +7,6 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
 <div class="producer-dropdown">
     <select name="producers">
         <option selected disabled value="producer">Producer</option>
@@ -20,5 +15,5 @@
         </c:forEach>
     </select>
 </div>
-</body>
-</html>
+
+

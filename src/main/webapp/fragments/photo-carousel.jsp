@@ -7,11 +7,6 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
 <div id="carousel-ex" class="carousel slide carousel-fade pt-4" data-ride="carousel">
     <ol class="carousel-indicators">
         <li class="active" data-target="#carousel-ex" data-slide-to="0"></li>
@@ -105,5 +100,3 @@
         </a>
     </div>
 </div>
-</body>
-</html>

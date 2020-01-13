@@ -7,11 +7,6 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
     <div class="container">
         <a href="/home" class="navbar-brand waves-effect">
@@ -70,5 +65,4 @@
         </div>
     </div>
 </nav>
-</body>
-</html>
+
