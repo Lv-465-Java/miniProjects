@@ -1,6 +1,7 @@
 package com.softserve.onlineshop.service;
 
 import com.softserve.onlineshop.dao.mapper.PhoneRowMapper;
+import com.softserve.onlineshop.dto.ModelDto;
 import com.softserve.onlineshop.dto.PhoneDto;
 import com.softserve.onlineshop.entity.Phone;
 
@@ -11,15 +12,13 @@ public interface PhoneService {
 
     boolean save(PhoneDto phoneDto);
 
-    Optional<Phone> getById(Long id);
-
-    List<PhoneDto> getByFieldName(String fieldName, String fieldValue);
+    Phone getById(Long id);
 
     List<PhoneDto> getAll();
 
-    boolean updateById(Long id);
+//    List<ModelDto> getAllModelId(Long modelId);
 
-    boolean updateByFieldName(String fieldName, String text, String fieldCondition, String textCondition);
+    boolean updateById(PhoneDto phoneDto, Long id);
 
     boolean deleteById(Long id);
 
