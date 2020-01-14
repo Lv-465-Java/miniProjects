@@ -1,5 +1,6 @@
 package com.softserve.servlet.planedOutcome;
 
+import com.softserve.constant.ErrorMessage;
 import com.softserve.constant.View;
 import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.implementation.PlanedOutcomeServiceImpl;
@@ -41,9 +42,9 @@ public class DeletePlanedOutcomeServlet extends HttpServlet {
             planedOutcomeService.delete(plannedOutcomeId);
             resp.sendRedirect(req.getContextPath() + "/planned-outcome-dashboard");
             LOG.info("Planned outcome is deleted. User is redirected to 'Planned outcome Dashboard' Page");
-        } catch (NotCompletedActionException e) {
+        } catch (RuntimeException e) {
             LOG.info("Error: " + e.getMessage());
-            req.setAttribute("error", e.getMessage());
+            req.setAttribute("error", ErrorMessage.FAIL_TO_DELETE_A_PLANED_OUTCOME.getErrorMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.PLANNED_OUTCOME_DELETE_PAGE.getViewUrl())

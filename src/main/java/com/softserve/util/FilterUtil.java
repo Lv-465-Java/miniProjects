@@ -1,6 +1,9 @@
 package com.softserve.util;
 
 import com.softserve.constant.ServletResponseParameter;
+import com.softserve.servlet.record.RecordDashboardServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -9,9 +12,13 @@ import java.util.List;
 
 public class FilterUtil {
 
+    private Logger LOG = LoggerFactory.getLogger(FilterUtil.class);
+
+
     public List<Object> filterParser(HttpServletRequest req) {
         List<Object> parameters = new ArrayList<>();
-        if (!req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()).isEmpty()) {
+        LOG.info("FHG " + req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()));
+        if (req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()) != null) {
             Long financialTypeId = Long.parseLong(req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()));
             parameters.add(financialTypeId);
         }

@@ -1,5 +1,6 @@
 package com.softserve.servlet.category;
 
+import com.softserve.constant.ErrorMessage;
 import com.softserve.constant.View;
 import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.implementation.CategoryServiceImpl;
@@ -40,9 +41,9 @@ public class DeleteCategoryServlet extends HttpServlet {
             categoryService.delete(categoryId);
             resp.sendRedirect(req.getContextPath() + "/profile");
             LOG.info("Category is deleted. User is redirected to 'User Profile' Page");
-        } catch (NotCompletedActionException e) {
+        } catch (RuntimeException e) {
             LOG.info("Error: " + e.getMessage());
-            req.setAttribute("error", e.getMessage());
+            req.setAttribute("error", ErrorMessage.FAIL_TO_DELETE_A_CATEGORY.getErrorMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.CATEGORY_DELETE_PAGE.getViewUrl())

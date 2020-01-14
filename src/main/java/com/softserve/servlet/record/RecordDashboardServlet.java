@@ -68,5 +68,4 @@ public class RecordDashboardServlet extends HttpServlet {
                 .getRequestDispatcher(View.RECORD_DASHBOARD_PAGE.getViewUrl())
                 .forward(req, resp);
     }
-
 }

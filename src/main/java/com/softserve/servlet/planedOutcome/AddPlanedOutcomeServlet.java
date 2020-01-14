@@ -65,9 +65,9 @@ public class AddPlanedOutcomeServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/planned-outcome-dashboard");
             LOG.info("New Planned Outcome is created. User is redirected to 'Planned outcome Dashboard' Page");
         } catch (NotCompletedActionException | NumberFormatException e) {
+            doGet(req, resp);
             LOG.info("Error: " + e.getMessage());
             req.setAttribute("error", e.getMessage());
-          //  resp.sendRedirect(req.getContextPath() + "/add-planned-outcome");
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.PLANNED_OUTCOME_ADD_PAGE.getViewUrl())

@@ -28,7 +28,7 @@
             <label for="PlannedOutcomeSum" class="floatLabel">Sum<span class="asterisk">*</span></label>
             <input id="PlannedOutcomeSum" name="sum" type="text" required>
 
-            <label for="datePickerDate" class="floatLabel">Note<span class="asterisk">*</span></label>
+            <label for="datePickerDate" class="floatLabel">Date<span class="asterisk">*</span></label>
             <jsp:include page="datePicker.jsp"/>
 
             <label for="PlannedOutcomeNote" class="floatLabel">Note<span class="asterisk">*</span></label>

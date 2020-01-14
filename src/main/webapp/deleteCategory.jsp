@@ -28,6 +28,10 @@
         <h5>Are you sure you want to delete this Category?</h5>
     </div>
 
+    <c:if test="${not empty error}">
+        <p class="errorActionMessage" id="error">${error}</p>
+    </c:if>
+
     <div class="form-group">
         <div class="form-footer">
             <form action="${pageContext.request.contextPath}/delete-category" method="post">

@@ -15,7 +15,8 @@ public enum ErrorMessage {
     FAIL_TO_SAVE_A_CATEGORY("Fail to save a category"),
     FAIL_TO_FIND_A_CATEGORY("There is no such a category"),
     FAIL_TO_UPDATE_A_CATEGORY("Fail to update a category"),
-    FAIL_TO_DELETE_A_CATEGORY("Fail to delete a category"),
+    FAIL_TO_DELETE_A_CATEGORY("Fail to delete a planed outcome. This planned outcome is associated with records." +
+            "You must remove them first."),
 
     FAIL_TO_SAVE_A_RECORD("Fail to save a record"),
     FAIL_TO_FIND_A_RECORD("There is no such a record"),
@@ -28,7 +29,8 @@ public enum ErrorMessage {
     FAIL_TO_SAVE_A_PLANED_OUTCOME("Fail to save a planed outcome"),
     FAIL_TO_FIND_A_PLANED_OUTCOME("Fail to find a planed outcome"),
     FAIL_TO_UPDATE_A_PLANED_OUTCOME("Fail to update a planed outcome"),
-    FAIL_TO_DELETE_A_PLANED_OUTCOME("Fail to delete a planed outcome");
+    FAIL_TO_DELETE_A_PLANED_OUTCOME("Fail to delete a planed outcome. This planned outcome is associated with records. " +
+            "You must remove them first.");
 
     String errorMessage;
 

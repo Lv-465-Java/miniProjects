@@ -24,8 +24,10 @@
         <h3 class="form-title">Delete Planned outcome</h3>
     </div>
 
+    <input type="hidden" name="id" value="${plannedOutcome.id}">
+
     <div class="form-head">
-        <h5>Are you sure to delete this Planned outcome?</h5>
+        <h5>Are you sure you want to delete this Planned outcome?</h5>
     </div>
 
     <c:if test="${not empty error}">

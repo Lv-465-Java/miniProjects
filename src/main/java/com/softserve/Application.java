@@ -7,13 +7,19 @@ import com.softserve.service.implementation.RecordServiceImpl;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
+        List<Object> dates = new ArrayList<>();
+        dates.add(2L);
+        dates.add(LocalDate.parse("2020-01-01"));
+        dates.add(LocalDate.parse("2020-01-30"));
 
         RecordServiceImpl recordService = new RecordServiceImpl();
-        System.out.println(recordService.filter(13L, 2L, LocalDate.parse("2020-01-22"), LocalDate.parse("2020-01-24")));
+        System.out.println(recordService.filter(13L, dates));
 
 //        RecordDAOImpl recordDAO = new RecordDAOImpl();
 //        System.out.println(recordDAO.getAllBySelectedFilters(13L, 1L, LocalDate.parse("2020-01-22"), LocalDate.parse("2020-01-24")));

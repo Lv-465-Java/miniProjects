@@ -25,7 +25,7 @@
     </div>
 
     <div class="form-head">
-        <h5>Are you sure to delete this Record?</h5>
+        <h5>Are you sure you want to delete this Record?</h5>
     </div>
 
     <div class="form-group">

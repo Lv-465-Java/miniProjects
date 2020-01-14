@@ -67,11 +67,8 @@ public class PlanedOutcomeServiceImpl implements ReadAllService<PlanedOutcomeDTO
     }
 
     @Override
-    public boolean delete(Long id) throws NotCompletedActionException {
-        if (!planedOutcomeDAO.delete(id)) {
-            throw new NotCompletedActionException("vgbhjnk");
-        }
-        return false;
+    public boolean delete(Long id) throws RuntimeException {
+        return planedOutcomeDAO.delete(id);
     }
 
     public List<FinancialType> getTypes() {

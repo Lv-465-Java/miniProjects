@@ -95,7 +95,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
 
     private void checkIfRecordHasPlannedOutcome(Long recordId) {
         Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(recordId));
-        if (record.getPlanedOutcomeId() != null) {
+        if (record.getPlanedOutcomeId() != 0) {
             increasePlannedOutcomeSum(record.getPlanedOutcomeId(), record.getSum());
         }
     }
@@ -141,7 +141,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
     //TO DO!
     public List<RecordDTO> filter(Long userId, List<Object> parameters) {
         List<RecordDTO> dtoList = new ArrayList<>();
-        List<Record> list = recordDAO.getAllBySelectedFilters(userId, parameters);
+        List<Record> list = recordDAO.getAllBySelectedFilters(userId, parameters.toArray());
         for (Record record : list) {
             dtoList.add(RecordMapperObjects.recordEntityToRecordDTO(record));
         }

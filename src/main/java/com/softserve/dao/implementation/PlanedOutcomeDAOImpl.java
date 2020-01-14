@@ -45,7 +45,7 @@ public class PlanedOutcomeDAOImpl implements SearchDAO<PlanedOutcome> {
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws RuntimeException{
         return JDBCQueries.update(connection, PlanedOutcome.PlanedOutcomeEntityQueries.DELETE.getQuery(),
                 id);
     }
