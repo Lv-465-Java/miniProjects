@@ -4,7 +4,7 @@ VALUES ('maryana','mar','admin','admin@gmail.com','admin', 'ADMIN');
 
 
 INSERT INTO places(country,town,name,description,photo)
-VALUES ('Italy','Venice','Dorsoduro','ucked away behind the Chiesa Santa Maria della Salute, the cultural hub of Dorsoduro is a taste of the real Venice; that of the locals. The quiet streets lend themselves to an arty crowd, and bring a feeling of relaxed charm. Be sure to stop by the Gallerie dell’Accademia and the Peggy Guggenheim Collection before bedding down at Ca Maria Adele.',''
+VALUES ('Italy','Venice','Dorsoduro','ucked away behind the Chiesa Santa Maria della Salute, the cultural hub of Dorsoduro is a taste of the real Venice; that of the locals. The quiet streets lend themselves to an arty crowd, and bring a feeling of relaxed charm. Be sure to stop by the Gallerie dell’Accademia and the Peggy Guggenheim Collection before bedding down at Ca Maria Adele.',url('../webapp/images/')
 
        );
 
