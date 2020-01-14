@@ -25,6 +25,7 @@ public enum ErrorMessage {
     FINANCIAL_TYPE_DO_NOT_MATCH("Financial type should be outcome because you have linked the current record to the planned outcome"),
     CATEGORY_ID_DO_NOT_MATCH("Selected category don't match with category of selected planned outcome"),
     PLANNED_OUTCOME_SUM_DO_NOT_MATCH("Entered record sum exceeds the planned outcome sum. Modify planned outcome sum before saving a record"),
+    WRONG_INPUT_FORMAT("Enter numbers in 'Sum' field"),
 
     FAIL_TO_SAVE_A_PLANED_OUTCOME("Fail to save a planed outcome"),
     FAIL_TO_FIND_A_PLANED_OUTCOME("Fail to find a planed outcome"),

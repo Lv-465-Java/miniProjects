@@ -1,5 +1,6 @@
 package com.softserve.servlet.planedOutcome;
 
+import com.softserve.constant.ErrorMessage;
 import com.softserve.constant.ServletResponseParameter;
 import com.softserve.constant.View;
 import com.softserve.dto.PlanedOutcomeDTO;
@@ -53,28 +54,29 @@ public class EditPlanedOutcomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         currentSessionUser = userSession.retrieveUserIdFromSession(req);
-
-        plannedOutcomeId = Long.parseLong(req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()));
-        Double sum = Double.parseDouble(req.getParameter(ServletResponseParameter.SUM.getServletParameter()));
-        LocalDate date = LocalDate.parse(req.getParameter(ServletResponseParameter.DATE.getServletParameter()));
-        String note = req.getParameter(ServletResponseParameter.NOTE.getServletParameter());
-        Long categoryId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
-
-        PlanedOutcomeDTO planedOutcomeDTO = PlanedOutcomeDTO.Builder.aPlanedOutcomeDTO()
-                .withId(plannedOutcomeId)
-                .withSum(sum)
-                .withDate(date)
-                .withNote(note)
-                .withUserId(currentSessionUser.getId())
-                .withCategoryId(categoryId)
-                .build();
         try {
+            plannedOutcomeId = Long.parseLong(req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()));
+            Double sum = Double.parseDouble(req.getParameter(ServletResponseParameter.SUM.getServletParameter()));
+            LocalDate date = LocalDate.parse(req.getParameter(ServletResponseParameter.DATE.getServletParameter()));
+            String note = req.getParameter(ServletResponseParameter.NOTE.getServletParameter());
+            Long categoryId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
+
+            PlanedOutcomeDTO planedOutcomeDTO = PlanedOutcomeDTO.Builder.aPlanedOutcomeDTO()
+                    .withId(plannedOutcomeId)
+                    .withSum(sum)
+                    .withDate(date)
+                    .withNote(note)
+                    .withUserId(currentSessionUser.getId())
+                    .withCategoryId(categoryId)
+                    .build();
+
             planedOutcomeService.update(plannedOutcomeId, planedOutcomeDTO);
             resp.sendRedirect(req.getContextPath() + "/planned-outcome-dashboard");
             LOG.info("Planned outcome is updated. User is redirected to 'Planned outcome Dashboard' Page");
-        } catch (NotCompletedActionException e) {
+        } catch (NotCompletedActionException | NumberFormatException e) {
+            doGet(req, resp);
             LOG.info("Error: " + e.getMessage());
-            req.setAttribute("error", e.getMessage());
+            req.setAttribute("error", ErrorMessage.WRONG_INPUT_FORMAT.getErrorMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.PLANNED_OUTCOME_EDIT_PAGE.getViewUrl())

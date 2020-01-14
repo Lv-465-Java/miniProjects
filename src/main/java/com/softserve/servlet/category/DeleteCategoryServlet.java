@@ -42,6 +42,7 @@ public class DeleteCategoryServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/profile");
             LOG.info("Category is deleted. User is redirected to 'User Profile' Page");
         } catch (RuntimeException e) {
+            doGet(req, resp);
             LOG.info("Error: " + e.getMessage());
             req.setAttribute("error", ErrorMessage.FAIL_TO_DELETE_A_CATEGORY.getErrorMessage());
             getServletConfig()

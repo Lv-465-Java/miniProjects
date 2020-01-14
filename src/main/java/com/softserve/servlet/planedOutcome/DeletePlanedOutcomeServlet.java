@@ -43,6 +43,7 @@ public class DeletePlanedOutcomeServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/planned-outcome-dashboard");
             LOG.info("Planned outcome is deleted. User is redirected to 'Planned outcome Dashboard' Page");
         } catch (RuntimeException e) {
+            doGet(req, resp);
             LOG.info("Error: " + e.getMessage());
             req.setAttribute("error", ErrorMessage.FAIL_TO_DELETE_A_PLANED_OUTCOME.getErrorMessage());
             getServletConfig()

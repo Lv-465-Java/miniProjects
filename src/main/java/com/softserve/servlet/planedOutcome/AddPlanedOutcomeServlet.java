@@ -1,5 +1,6 @@
 package com.softserve.servlet.planedOutcome;
 
+import com.softserve.constant.ErrorMessage;
 import com.softserve.constant.ServletResponseParameter;
 import com.softserve.constant.View;
 import com.softserve.dto.PlanedOutcomeDTO;
@@ -67,7 +68,7 @@ public class AddPlanedOutcomeServlet extends HttpServlet {
         } catch (NotCompletedActionException | NumberFormatException e) {
             doGet(req, resp);
             LOG.info("Error: " + e.getMessage());
-            req.setAttribute("error", e.getMessage());
+            req.setAttribute("error", ErrorMessage.WRONG_INPUT_FORMAT.getErrorMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.PLANNED_OUTCOME_ADD_PAGE.getViewUrl())

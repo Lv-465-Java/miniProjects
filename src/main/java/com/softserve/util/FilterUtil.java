@@ -14,10 +14,8 @@ public class FilterUtil {
 
     private Logger LOG = LoggerFactory.getLogger(FilterUtil.class);
 
-
     public List<Object> filterParser(HttpServletRequest req) {
         List<Object> parameters = new ArrayList<>();
-        LOG.info("FHG " + req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()));
         if (req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()) != null) {
             Long financialTypeId = Long.parseLong(req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()));
             parameters.add(financialTypeId);

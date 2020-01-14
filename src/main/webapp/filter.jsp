@@ -19,7 +19,11 @@
     <form action="${pageContext.request.contextPath}/record-dashboard" method="post">
 
         <label for="datePickerDateFrom" class="floatLabel">From</label>
-        <input type="date" id="datePickerDateFrom" name="fromDate">
+<%--        <c:if>--%>
+<%--            <input type="date" id="datePickerDateFrom" name="fromDate" value=dfrom>--%>
+
+<%--        </c:if>--%>
+        <input type="date" id="datePickerDateFrom" name="fromDate" value=${"2020-01-28"}>
 
 <%--            <jsp:include page="datePickerFrom.jsp"/>--%>
 

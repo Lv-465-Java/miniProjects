@@ -1,5 +1,6 @@
 package com.softserve.servlet.record;
 
+import com.softserve.constant.ErrorMessage;
 import com.softserve.constant.ServletResponseParameter;
 import com.softserve.constant.View;
 import com.softserve.dto.RecordDTO;
@@ -55,35 +56,37 @@ public class EditRecordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         currentSessionUser = userSession.retrieveUserIdFromSession(req);
 
-        recordId = Long.parseLong(req.getParameter(ServletResponseParameter.RECORD_ID.getServletParameter()));
-        Double sum = Double.parseDouble(req.getParameter(ServletResponseParameter.SUM.getServletParameter()));
-        LocalDate date = LocalDate.parse(req.getParameter(ServletResponseParameter.DATE.getServletParameter()));
-        String note = req.getParameter(ServletResponseParameter.NOTE.getServletParameter());
-        Long financialTypeId = Long.parseLong(req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()));
-        Long categoryId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
-        Long plannedOutcomeId = null;
-
-        if (req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()) != null) {
-            plannedOutcomeId = Long.parseLong(req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()));
-        }
-
-        RecordDTO recordDTO = RecordDTO.Builder.aRecordDTO()
-                .withId(recordId)
-                .withSum(sum)
-                .withDate(date)
-                .withNote(note)
-                .withUserId(currentSessionUser.getId())
-                .withFinancialTypeId(financialTypeId)
-                .withCategoryId(categoryId)
-                .withPlanedOutcomeId(plannedOutcomeId)
-                .build();
         try {
+            recordId = Long.parseLong(req.getParameter(ServletResponseParameter.RECORD_ID.getServletParameter()));
+            Double sum = Double.parseDouble(req.getParameter(ServletResponseParameter.SUM.getServletParameter()));
+            LocalDate date = LocalDate.parse(req.getParameter(ServletResponseParameter.DATE.getServletParameter()));
+            String note = req.getParameter(ServletResponseParameter.NOTE.getServletParameter());
+            Long financialTypeId = Long.parseLong(req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()));
+            Long categoryId = Long.parseLong(req.getParameter(ServletResponseParameter.CATEGORY_ID.getServletParameter()));
+            Long plannedOutcomeId = null;
+
+            if (req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()) != null) {
+                plannedOutcomeId = Long.parseLong(req.getParameter(ServletResponseParameter.PLANNED_OUTCOME_ID.getServletParameter()));
+            }
+
+            RecordDTO recordDTO = RecordDTO.Builder.aRecordDTO()
+                    .withId(recordId)
+                    .withSum(sum)
+                    .withDate(date)
+                    .withNote(note)
+                    .withUserId(currentSessionUser.getId())
+                    .withFinancialTypeId(financialTypeId)
+                    .withCategoryId(categoryId)
+                    .withPlanedOutcomeId(plannedOutcomeId)
+                    .build();
+
             recordService.update(recordId, recordDTO);
             resp.sendRedirect(req.getContextPath() + "/record-dashboard");
             LOG.info("Record is updated. User is redirected to 'Record Dashboard' Page");
-        } catch (NotCompletedActionException e) {
+        } catch (NotCompletedActionException | NumberFormatException e) {
+            doGet(req, resp);
             LOG.info("Error: " + e.getMessage());
-            req.setAttribute("error", e.getMessage());
+            req.setAttribute("error", ErrorMessage.WRONG_INPUT_FORMAT.getErrorMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.RECORD_EDIT_PAGE.getViewUrl())
