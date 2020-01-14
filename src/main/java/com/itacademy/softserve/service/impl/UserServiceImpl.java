@@ -10,13 +10,11 @@ import com.itacademy.softserve.entity.User;
 import com.itacademy.softserve.exception.NotFoundException;
 import com.itacademy.softserve.exception.NotSaveException;
 import com.itacademy.softserve.service.UserService;
-import com.itacademy.softserve.util.SessionManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
@@ -64,16 +62,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean changeUsername(HttpServletRequest request) {
-        if (SessionManager.isActiveSession(request)) {
-            HttpSession session = request.getSession(false);
-            String name = ((UserDto) session.getAttribute("userDto")).getName();
-            String newName = request.getParameter("newUsername");
-            if (newName.isEmpty()) {
-                throw  new NotSaveException(ErrorMessage.EMPTY_NAME.toString());
-            }
-            return userDao.updateByField(UpdateUserParam.USERNAME, newName, name);
+        HttpSession session = request.getSession(false);
+        String name = ((UserDto) session.getAttribute("userDto")).getName();
+        String newName = request.getParameter("newUsername");
+        if (newName.isEmpty()) {
+            throw  new NotSaveException(ErrorMessage.EMPTY_NAME.toString());
         }
-        return false;
+        return userDao.updateByField(UpdateUserParam.USERNAME, newName, name);
     }
 
     @Override

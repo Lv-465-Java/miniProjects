@@ -1,10 +1,34 @@
 package com.itacademy.softserve.dto;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class HistoryDto {
     private Long id;
     private String task;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        HistoryDto that = (HistoryDto) o;
+
+        if (!Objects.equals(id, that.id)) return false;
+        if (!Objects.equals(task, that.task)) return false;
+        if (!Objects.equals(modifiedDate, that.modifiedDate)) return false;
+        return Objects.equals(status, that.status);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (task != null ? task.hashCode() : 0);
+        result = 31 * result + (modifiedDate != null ? modifiedDate.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        return result;
+    }
+
     private Date modifiedDate;
     private String status;
 

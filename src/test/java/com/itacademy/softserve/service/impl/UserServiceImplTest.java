@@ -2,6 +2,7 @@ package com.itacademy.softserve.service.impl;
 
 import com.itacademy.softserve.dao.UserDao;
 import com.itacademy.softserve.dto.UserDto;
+import com.itacademy.softserve.dto.mapper.UserDtoMapper;
 import com.itacademy.softserve.entity.User;
 import com.itacademy.softserve.exception.NotFoundException;
 import com.itacademy.softserve.exception.NotSaveException;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -105,19 +107,40 @@ class UserServiceImplTest {
 
     @Test
     void changeUsername() {
-//
-//        UserDto userDto = new UserDto("username", "password");
-//        HttpServletRequest request = mock(HttpServletRequest.class);
-//        HttpSession session = mock(HttpSession.class);
-//        when(request.getSession(false)).thenReturn(session);
-//        when(session.getAttribute(anyString())).thenReturn(userDto);
-//        when(request.getParameter(anyString())).thenReturn("newName");
-//        when(userDao.updateByField(anyString(), anyString(), anyString())).thenReturn(true);
-//        boolean actual = service.changeUsername(request);
-//        assertTrue(actual);
+        UserDto userDto = new UserDto("username", "password");
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession(false)).thenReturn(session);
+        when(session.getAttribute(anyString())).thenReturn(userDto);
+        when(request.getParameter(anyString())).thenReturn("newName");
+        when(userDao.updateByField(anyString(), anyString(), anyString())).thenReturn(true);
+        boolean actual = service.changeUsername(request);
+        assertTrue(actual);
+    }
+
+    @Test
+    void changeUsernameFail() {
+        UserDto userDto = new UserDto("username", "password");
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession(false)).thenReturn(session);
+        when(session.getAttribute(anyString())).thenReturn(userDto);
+        when(request.getParameter(anyString())).thenReturn("");
+        when(userDao.updateByField(anyString(), anyString(), anyString())).thenReturn(true);
+        assertThrows(NotSaveException.class, () -> service.changePassword(request));
     }
 
     @Test
     void getAll() {
+        List<UserDto> users = Arrays.asList(new UserDto("name", "pass"));
+        when(userDao.getAll(any())).thenReturn(Arrays.asList(new User("name", "pass")));
+        assertEquals(service.getAll(), users);
+    }
+
+    @Test
+    void getAllFail() {
+        List<UserDto> users = Arrays.asList(new UserDto("name", "pass"));
+        when(userDao.getAll(any())).thenReturn(new ArrayList<>());
+        assertNotEquals(service.getAll(), users);
     }
 }

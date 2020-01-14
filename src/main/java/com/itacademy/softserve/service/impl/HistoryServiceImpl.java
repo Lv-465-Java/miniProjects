@@ -8,7 +8,6 @@ import com.itacademy.softserve.dao.StatusDao;
 import com.itacademy.softserve.dao.UserDao;
 import com.itacademy.softserve.dao.builder.StatusBuilder;
 import com.itacademy.softserve.dao.builder.UserBuilder;
-import com.itacademy.softserve.dao.filter.HistoryFilter;
 import com.itacademy.softserve.dto.HistoryDto;
 import com.itacademy.softserve.dto.TaskDto;
 import com.itacademy.softserve.dto.UserDto;
@@ -25,12 +24,10 @@ import java.util.List;
 public class HistoryServiceImpl implements HistoryService {
     private List<History> historyList;
     private HistoryDao historyDao;
-    private HistoryFilter historyFilter;
 
     public HistoryServiceImpl() {
         historyList = new ArrayList<>();
         historyDao = new HistoryDao();
-        historyFilter = new HistoryFilter();
     }
 
     @Override
@@ -39,7 +36,15 @@ public class HistoryServiceImpl implements HistoryService {
         if (historyList == null) {
             historyList = new ArrayList<>();
         }
-        return getSet(begin);
+        List<HistoryDto> historyGroup = new ArrayList<>();
+        int end = begin + NumberOfRecordsPerPage.HISTORY_RECORD_PER_PAGE;
+        if (end > historyList.size()) {
+            end = historyList.size();
+        }
+        for (History historyRecord : historyList.subList(begin, end)) {
+            historyGroup.add(new HistoryDtoMapper().mapFromEntityToDto(historyRecord));
+        }
+        return historyGroup;
     }
 
     @Override
@@ -77,17 +82,5 @@ public class HistoryServiceImpl implements HistoryService {
         historyRecord.setStatusID(new StatusDao().getByFields(new StatusBuilder(), taskDto.getStatus()).get(0).getId().intValue());
         historyRecord.setUserID(new UserDao().getByFields(new UserBuilder(), taskDto.getAssignee()).get(0).getId());
         return new HistoryDao().insert(historyRecord);
-    }
-
-    private List<HistoryDto> getSet(int begin) {
-        List<HistoryDto> historyGroup = new ArrayList<>();
-        int end = begin + NumberOfRecordsPerPage.HISTORY_RECORD_PER_PAGE;
-        if (end > historyList.size()) {
-            end = historyList.size();
-        }
-        for (History historyRecord : historyList.subList(begin, end)) {
-            historyGroup.add(new HistoryDtoMapper().mapFromEntityToDto(historyRecord));
-        }
-        return historyGroup;
     }
 }
