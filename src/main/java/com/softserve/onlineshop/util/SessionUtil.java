@@ -1,6 +1,7 @@
 package com.softserve.onlineshop.util;
 
 import com.softserve.onlineshop.dto.UserDto;
+import com.softserve.onlineshop.service.UserService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -31,5 +32,10 @@ public final class SessionUtil {
                 break;
             }
         }
+    }
+
+    public static UserDto getUserIdFromSession(HttpServletRequest request, UserService userService) {
+        UserDto userDto = (UserDto) request.getSession().getAttribute("userDto");
+        return userService.getByNickname(userDto.getNickname());
     }
 }

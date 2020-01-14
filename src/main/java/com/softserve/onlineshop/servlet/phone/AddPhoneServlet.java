@@ -16,12 +16,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Base64;
+import javax.servlet.http.Part;
+import java.io.*;
+
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
+
+import static com.softserve.onlineshop.constant.Parameters.IMG_PATH;
 
 @WebServlet("/add-phone")
-@MultipartConfig(location = "/Users/admin/SoftServe_Java/miniProjects/src/main/webapp/static/img/")
+@MultipartConfig
 public class AddPhoneServlet extends HttpServlet {
     private PhoneService phoneService;
     private ModelService modelService;
@@ -53,10 +58,24 @@ public class AddPhoneServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Part filePart = request.getPart("photo");
+        String fileName = UUID.randomUUID().toString() + "_" + Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
+        InputStream fileStream = filePart.getInputStream();
+        byte[] bytes = new byte[fileStream.available()];
+        fileStream.read(bytes);
+        BufferedOutputStream bos = new BufferedOutputStream(
+                new FileOutputStream(
+                        new File(IMG_PATH + fileName)));
+        bos.write(bytes);
+        bos.close();
+
+
         PhoneDto phoneDto = new PhoneDto();
         phoneDto.setYear(Integer.parseInt(request.getParameter("year")));
         phoneDto.setPrice(Integer.parseInt(request.getParameter("price")));
-        phoneDto.setPhoto(request.getParameter("photo"));
+        phoneDto.setPhoto(fileName);
+//        phoneDto.setPhoto(request.getParameter("photo"));
         phoneDto.setColor(request.getParameter("color"));
         phoneDto.setScreenDiagonal(Double.parseDouble(request.getParameter("screen-diagonal")));
         phoneDto.setInternalMemory(Integer.parseInt(request.getParameter("internal-memory")));

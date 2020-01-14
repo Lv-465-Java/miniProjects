@@ -104,7 +104,7 @@
 
                                 <div class="view overlay">
                                     <img class="card-img-top"
-                                         src="${phone.photo}"
+                                         src="${pageContext.request.contextPath}/static/images/${phone.photo}"
                                          alt="adidas">
                                     <a href="">
                                         <div class="mask rgba-white-slight"></div>
@@ -114,8 +114,7 @@
                                 <div class="card-body text-center">
                                     <a  href="" class="gray-text">
                                         <h5>${phone.year}</h5>
-                                        <h5>${phone.id}</h5>
-                                        <h5>${phone.price}</h5>
+                                        <h5></h5>
                                     </a>
                                     <h5>
                                         <strong>
@@ -124,11 +123,11 @@
                                         </strong>
                                     </h5>
                                     <h4 class="font-weight-bold blue-text">
-                                        <strong>$</strong>
+                                        <strong>${phone.price}$</strong>
                                     </h4>
                                 </div>
                                 <form action="${pageContext.request.contextPath}/product-page">
-                                    <a href="/product-page?phoneId=$${phone.id}">
+                                    <a href="/product-page?phoneId=${phone.id}">
                                         <button name="phoneId" value="${phone.id}" class="btn blue-gradient btn-md">
                                             Details
                                         </button>

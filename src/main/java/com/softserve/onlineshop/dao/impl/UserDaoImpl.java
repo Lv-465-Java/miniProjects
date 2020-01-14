@@ -20,7 +20,7 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
     @Override
     protected String[] getFields(User user) {
         String[] fields = new String[4];
-//        fields[0] = user.getId().toString();
+        fields[0] = user.getId().toString();
         fields[0] = user.getNickname();
         fields[1] = user.getPassword();
         fields[2] = user.getEmail();

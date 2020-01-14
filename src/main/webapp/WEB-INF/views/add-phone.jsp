@@ -27,7 +27,7 @@
 <jsp:include page="/fragments/admin-page-header.jsp"/>
 <div class="add-phone">
     <div class="phone-container">
-        <form class="border border-light p-5" action="${pageContext.request.contextPath}/add-phone" method="post"
+        <form class="border border-light p-5" action="${pageContext.request.contextPath}/add-phone" method="post" enctype="multipart/form-data"
               role="form" data-toggle="validator">
             <h2>Phones</h2>
             <div class="form-group col-xs-4">
@@ -105,7 +105,7 @@
                 <td>${phone.id}</td>
                 <td>${phone.year}</td>
                 <td>${phone.price}</td>
-                <td><img width="100" height="100" src="${pageContext.request.contextPath}/phones_images/${phone.photo}"></td>
+                <td><img width="100" height="100" src="${pageContext.request.contextPath}/static/images/${phone.photo}"></td>
                     <%--                <td>${phone.photo}</td>--%>
                 <td>${phone.color}</td>
                 <td>${phone.screenDiagonal}</td>
@@ -130,28 +130,5 @@
 </form>
 <%--    <jsp:include page="/fragments/drop-producers.jsp"/>--%>
 <jsp:include page="/fragments/footer.jsp"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script>
-    const $imgInput = $(`#input-file-now`);
-    function appGetBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-        });
-    }
-    appGetBase64($imgInput[0].files[0])
-        .then(img => data.photo = img)
-        .catch()
-        .finally(_ => {
-                $.ajax({
-                    url: `add-phone`,
-                    type: 'PUT',
-                    data: JSON.stringify(data)
-                })
-        })
-    };
-</script>
 </body>
 </html>

@@ -14,6 +14,8 @@ public interface PhoneService {
 
     Phone getById(Long id);
 
+    PhoneDto getByIdDto(Long id);
+
     List<PhoneDto> getAll();
 
 //    List<ModelDto> getAllModelId(Long modelId);

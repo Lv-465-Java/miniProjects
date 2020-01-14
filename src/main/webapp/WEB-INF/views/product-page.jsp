@@ -22,12 +22,13 @@
 <jsp:include page="/fragments/home-header.jsp"/>
 
 <main class="mt-5 pt-4">
-    <form action="${pageContext.request.contextPath}/product-page">
+<%--    <form action="${pageContext.request.contextPath}/product-page">--%>
+
         <div class="container dark-gray-text mt-5">
             <div class="row wow fadeIn">
                 <div class="col-md-6 mb-4">
-                    <img src="https://pcshop.ua/image/cache/catalog/tovar/1153243-1024x768.jpg"
-                         alt="tnf jacket" class="img-fluid">
+                    <img src="${pageContext.request.contextPath}/static/images/${phoneDto.photo}"
+                         class="img-fluid">
 <%--                    <img src="https://worldwide.com.ua/wp-content/uploads/2017/11/supreme-the-north-face-by-any-means-necessary-7-1500x1000-925x896.jpg"--%>
 <%--                         alt="tnf jacket" class="img-fluid">--%>
                 </div>
@@ -35,7 +36,7 @@
                     <div class="p-4">
                         <div class="mb-3">
                             <a id="modelId" href="">
-                                <span class="badge purple mr-1">Category ${phone.modelId}</span>
+                                <span class="badge purple mr-1">Category ${phoneDto.modelId}</span>
                             </a>
                             <a href="">
                                 <span class="badge blue mr-1">New</span>
@@ -44,29 +45,31 @@
                                 <span class="badge red mr-1">Bestseller</span>
                             </a>
                         </div>
+                        <p>Price</p>
                         <p class="lead">
                         <span class="mr-1">
                             <del>1500</del>
                         </span>
                             <span id="price" class="mr-1">
-                            <span>${phone.year}$</span>
+                            <span>${phoneDto.price}$</span>
                         </span>
                         </p>
+                        <p>Year</p>
                         <div>
-                            <p class="lead">${phone.price}$</p>
+                            <p class="lead">${phoneDto.year}$</p>
                         </div>
+                        <p>Color</p>
                         <div>
-                            <p id="photo" class="lead">${phone.photo}</p>
+                            <p id="color" class="lead">${phoneDto.color}</p>
                         </div>
+                        <p>Screen Diagonal</p>
                         <div>
-                            <p id="color" class="lead">${phone.color}</p>
+                            <p></p>
+                            <p id="screenDiagonal" class="lead">${phoneDto.screenDiagonal} Gb</p>
                         </div>
+                        <p>Internal Memory</p>
                         <div>
-                            <p id="screenDiagonal" class="lead">${phone.screenDiagonal}</p>
-                        </div>
-
-                        <div>
-                            <p id="internalMemory" class="lead">${phone.internalMemory}</p>
+                            <p id="internalMemory" class="lead">${phoneDto.internalMemory} Gb</p>
                         </div>
 
                         <p class="lead font-weight-bold">Description</p>
@@ -77,9 +80,11 @@
                             totam.
                         </p>
 
-                        <form action="${pageContext.request.contextPath}/shopping-cart" method="post" class="d-flex justify-content-left">
+                        <form action="${pageContext.request.contextPath}/shopping-cart" method="get" class="d-flex justify-content-left">
+                            <input type="hidden" name="phoneId" value="${phoneDto.id}">
                             <a href="/shopping-cart">
-                                <button type="submit" class="btn btn-primary btn-md my-0 p">
+<%--                            <a href="/shopping-cart?phoneId=${phoneDto.id}">--%>
+                                <button name="userId" type="submit" class="btn btn-primary btn-md my-0 p" value="${userDto.id}">
                                     Add to cart <i class="fa fa-shopping-cart ml-1"></i>
                                 </button>
                             </a>
@@ -109,7 +114,7 @@
                 </div>
             </div>
         </div>
-    </form>
+<%--    </form>--%>
 </main>
 <jsp:include page="/fragments/footer.jsp"/>
 

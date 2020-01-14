@@ -56,6 +56,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto getByNickname(String name) {
+        return new UserDtoMapper().mapToDto(userDao.getByFieldName(new UserRowMapper(), name).get(0));
+    }
+
+    @Override
     public boolean updateById(Long id) {
         return false;
     }
@@ -83,14 +88,4 @@ public class UserServiceImpl implements UserService {
         }
         throw new NotFoundException("Don`t login");
     }
-
-
-    public static void main(String[] args) {
-        UserService userService = new UserServiceImpl();
-//        System.out.println(userService.save(new UserDto("user123", "111")));
-//        System.out.println(userService.getById(10L));
-//        System.out.println(userService.getByIdDto(10L));
-        System.out.println(userService.getAll());
-    }
-
 }

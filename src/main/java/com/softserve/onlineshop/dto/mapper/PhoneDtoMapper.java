@@ -10,6 +10,7 @@ public class PhoneDtoMapper {
        PhoneDto phoneDto = new PhoneDto();
        phoneDto.setId(phone.getId());
        phoneDto.setYear(phone.getYear());
+       phoneDto.setPrice(phone.getPrice());
        phoneDto.setPhoto(phone.getPhoto());
        phoneDto.setColor(phone.getColor());
        phoneDto.setScreenDiagonal(phone.getScreenDiagonal());

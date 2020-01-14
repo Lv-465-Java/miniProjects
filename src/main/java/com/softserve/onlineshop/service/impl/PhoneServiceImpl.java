@@ -46,7 +46,7 @@ public class PhoneServiceImpl implements PhoneService {
         phone.setYear(phoneDto.getYear());
         phone.setPrice(phoneDto.getPrice());
         phone.setPhoto(phoneDto.getPhoto());
-        phone.setPhoto(phoneDto.getPhoto());
+//        phone.setPhoto(phoneDto.getPhoto());
 //        phone.setPhoto(fileService.saveFile(phoneDto.getPhoto()));
         phone.setColor(phoneDto.getColor());
         phone.setScreenDiagonal(phoneDto.getScreenDiagonal());
@@ -59,6 +59,11 @@ public class PhoneServiceImpl implements PhoneService {
     public Phone getById(Long id) {
         return phoneDao.getById(new PhoneRowMapper(), id)
                 .orElseThrow(() -> new NotFoundException("Producer with id:" + id + " not found"));
+    }
+
+    @Override
+    public PhoneDto getByIdDto(Long id) {
+        return new PhoneDtoMapper().mapToDto(getById(id));
     }
 
     @Override

@@ -27,7 +27,7 @@
 
 <div class="update-phone">
     <div class="phone-container">
-        <form class="border border-light p-5" action="${pageContext.request.contextPath}/update-phone" method="post"
+        <form class="border border-light p-5" action="${pageContext.request.contextPath}/update-phone" method="post" enctype="multipart/form-data"
               role="form" data-toggle="validator">
             <%--            <input type="hidden" name="producerId" value="${}">--%>
             <h2>Phone</h2>
@@ -52,10 +52,14 @@
             </div>
             <div class="form-group col-xs-4">
                 <div class="file-upload-wrapper">
-                    <input type="file" name="new-photo" id="input-file-now" class="file-upload"
-                           placeholder=""/> ${pageContext.request.getAttribute("old-photo")}
+                    <input type="file" name="photo" id="input-file-now" class="file-upload"/>
                 </div>
             </div>
+<%--                <div class="form-group col-xs-4">--%>
+<%--                    <div class="file-upload-wrapper">--%>
+<%--                        <input type="file" name="photo" id="input-file-now" class="file-upload"/>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
             <div class="form-group col-xs-4">
                 <label for="color">Color</label>

@@ -12,15 +12,18 @@ import java.io.IOException;
 
 @WebServlet("/shopping-cart")
 public class ShoppingCartServlet extends HttpServlet {
-
+//    private Long phoneId;
+//    private PhoneService phoneService;
 
     @Override
     public void init() {
+//        phoneService = new PhoneServiceImpl();
 
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        phoneId = Long.parseLong(request.getParameter("phoneId"));
         request.getRequestDispatcher("/WEB-INF/views/shopping-cart.jsp").include(request,response);
     }
 
