@@ -1,18 +1,9 @@
 package com.softserve.onlineshop.servlet;
 
-import com.softserve.onlineshop.dto.ModelDto;
-import com.softserve.onlineshop.dto.PhoneDto;
-import com.softserve.onlineshop.dto.ProducerDto;
-import com.softserve.onlineshop.dto.UserDto;
+import com.softserve.onlineshop.dto.*;
 import com.softserve.onlineshop.entity.Phone;
-import com.softserve.onlineshop.service.ModelService;
-import com.softserve.onlineshop.service.PhoneService;
-import com.softserve.onlineshop.service.ProducerService;
-import com.softserve.onlineshop.service.UserService;
-import com.softserve.onlineshop.service.impl.ModelServiceImpl;
-import com.softserve.onlineshop.service.impl.PhoneServiceImpl;
-import com.softserve.onlineshop.service.impl.ProducerServiceImpl;
-import com.softserve.onlineshop.service.impl.UserServiceImpl;
+import com.softserve.onlineshop.service.*;
+import com.softserve.onlineshop.service.impl.*;
 import com.softserve.onlineshop.util.SessionUtil;
 
 import javax.servlet.ServletException;
@@ -30,12 +21,15 @@ public class ProductPageServlet extends HttpServlet {
     private ModelService modelService;
     private ProducerService producerService;
     private UserService userService;
+    private CartService cartService;
+
     @Override
     public void init() {
         phoneService = new PhoneServiceImpl();
         modelService = new ModelServiceImpl();
         producerService = new ProducerServiceImpl();
         userService = new UserServiceImpl();
+        cartService = new CartServiceImpl();
     }
 
     @Override
@@ -44,7 +38,7 @@ public class ProductPageServlet extends HttpServlet {
         PhoneDto phoneDto = phoneService.getByIdDto(phoneId);
         ModelDto modelDto = modelService.getByIdDto(phoneDto.getModelId());
         ProducerDto producerDto = producerService.getByIdDto(modelDto.getProducerId());
-        UserDto userDto = SessionUtil.getUserIdFromSession(request, userService);
+        UserDto userDto = SessionUtil.getUserFromSession(request, userService);
         request.setAttribute("phoneDto", phoneDto);
         request.setAttribute("modelDto", modelDto);
         request.setAttribute("producerDto", producerDto);
@@ -54,6 +48,19 @@ public class ProductPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        try {
+            CartDto cartDto = new CartDto(Long.parseLong(request.getParameter("phoneId")),
+                    Long.parseLong(request.getParameter("userId")));
+            cartService.addToCart(cartDto);
+            request.setAttribute("success", "Phone has been successfully added to cart");
+            doGet(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/product-page.jsp")
+                    .forward(request, response);
+        } catch (RuntimeException e) {
+            request.setAttribute("error", "Phone has already in cart");
+            doGet(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/product-page.jsp")
+                    .forward(request, response);
+        }
     }
 }

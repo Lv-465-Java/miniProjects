@@ -82,15 +82,25 @@
                             totam.
                         </p>
 
-                        <form action="${pageContext.request.contextPath}/shopping-cart" method="get" class="d-flex justify-content-left">
+                        <form action="${pageContext.request.contextPath}/product-page" method="post" class="d-flex justify-content-left">
                             <input type="hidden" name="phoneId" value="${phoneDto.id}">
-                            <a href="/shopping-cart">
+<%--                            <a href="/shopping-cart">--%>
 <%--                            <a href="/shopping-cart?phoneId=${phoneDto.id}">--%>
                                 <button name="userId" type="submit" class="btn btn-primary btn-md my-0 p" value="${userDto.id}">
                                     Add to cart <i class="fa fa-shopping-cart ml-1"></i>
                                 </button>
-                            </a>
+<%--                            </a>--%>
                         </form>
+                        <c:if test="${not empty error}">
+                            <div class="alert alert-info">
+                                    ${error}
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty success}">
+                            <div class="alert alert-success">
+                                    ${success}
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>

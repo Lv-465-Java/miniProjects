@@ -1,14 +1,9 @@
-package com.softserve.onlineshop.servlet;
+package com.softserve.onlineshop.servlet.cart;
 
 import com.softserve.onlineshop.dto.CartDto;
-import com.softserve.onlineshop.service.CartService;
-import com.softserve.onlineshop.service.ModelService;
-import com.softserve.onlineshop.service.PhoneService;
-import com.softserve.onlineshop.service.ProducerService;
-import com.softserve.onlineshop.service.impl.CartServiceImpl;
-import com.softserve.onlineshop.service.impl.ModelServiceImpl;
-import com.softserve.onlineshop.service.impl.PhoneServiceImpl;
-import com.softserve.onlineshop.service.impl.ProducerServiceImpl;
+import com.softserve.onlineshop.service.*;
+import com.softserve.onlineshop.service.impl.*;
+import com.softserve.onlineshop.util.SessionUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +20,7 @@ public class ShoppingCartServlet extends HttpServlet {
     private PhoneService phoneService;
     private ModelService modelService;
     private ProducerService producerService;
+    private UserService userService;
 
     @Override
     public void init() {
@@ -32,12 +28,14 @@ public class ShoppingCartServlet extends HttpServlet {
         phoneService = new PhoneServiceImpl();
         modelService = new ModelServiceImpl();
         producerService = new ProducerServiceImpl();
+        userService = new UserServiceImpl();
 
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        userId = Long.parseLong(request.getParameter("userId"));
+        userId = SessionUtil.getUserFromSession(request, userService).getId();
+//        request.getSession(false).setAttribute("userId", );
         request.setAttribute("cartElements", cartService.getByUserId(userId));
         request.setAttribute("phones", phoneService.getAll());
         request.setAttribute("models", modelService.getAll());

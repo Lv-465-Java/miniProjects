@@ -3,12 +3,15 @@ package com.softserve.onlineshop.servlet;
 import com.softserve.onlineshop.dto.ModelDto;
 import com.softserve.onlineshop.dto.PhoneDto;
 import com.softserve.onlineshop.dto.ProducerDto;
+import com.softserve.onlineshop.dto.UserDto;
 import com.softserve.onlineshop.service.ModelService;
 import com.softserve.onlineshop.service.PhoneService;
 import com.softserve.onlineshop.service.ProducerService;
+import com.softserve.onlineshop.service.UserService;
 import com.softserve.onlineshop.service.impl.ModelServiceImpl;
 import com.softserve.onlineshop.service.impl.PhoneServiceImpl;
 import com.softserve.onlineshop.service.impl.ProducerServiceImpl;
+import com.softserve.onlineshop.util.SessionUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +26,7 @@ public class HomeServlet extends HttpServlet {
     private PhoneService phoneService;
     private ModelService modelService;
     private ProducerService producerService;
+    private UserService userService;
 
     @Override
     public void init() {

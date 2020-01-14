@@ -34,7 +34,7 @@ public final class SessionUtil {
         }
     }
 
-    public static UserDto getUserIdFromSession(HttpServletRequest request, UserService userService) {
+    public static UserDto getUserFromSession(HttpServletRequest request, UserService userService) {
         UserDto userDto = (UserDto) request.getSession().getAttribute("userDto");
         return userService.getByNickname(userDto.getNickname());
     }
