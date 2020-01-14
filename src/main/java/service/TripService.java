@@ -15,6 +15,7 @@ public interface TripService {
 
     List<TripDto> getAllLimit();
 
+    List<TripDto> getByUserId(Long userId);
 
     boolean insert(Trip trip);
 

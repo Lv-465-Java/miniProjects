@@ -8,7 +8,7 @@ public interface RateService {
 
 //    RateDto getById(Long id);
 //
-//    List<RateDto> getByField(String text);
+    List<Rate> getByFieldName(Long id);
 
     List<Rate> getAll();
 

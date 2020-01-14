@@ -1,8 +1,9 @@
 package servlet.transport;
 
-import db.ConnectionManager;
+import exception.NotFoundException;
 import service.TransportService;
 import service.impl.TransportServiceImpl;
+import servlet.JSPFILES;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,14 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 
+/**
+ * Class processes requests for "/deleteTransport"  url
+ */
 @WebServlet("/deleteTransport")
 public class DeleteTransportServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private TransportService transportService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         transportService=new TransportServiceImpl();
@@ -27,20 +33,19 @@ public class DeleteTransportServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
-        //String errorString = null;
 
-        Long id=Long.parseLong(request.getParameter("id"));
-        if(!transportService.deleteById(id)){
-            // If has an error, redirecte to the error page.
-            request.setAttribute("errorString", "Error when delete user");
+       // Long id=Long.parseLong(request.getParameter("id"));
+        String name=request.getParameter("name");
+        try {
+            transportService.deleteByName(name);
+            response.sendRedirect(request.getContextPath() + "/transportList");
+        } catch (NotFoundException e){
+            request.setAttribute("error", e.getMessage());
 
             RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/deleteTransportError.jsp");
+                    .getRequestDispatcher(JSPFILES.ADMIN_PAGE.getPath());
             dispatcher.forward(request, response);
-        } else {
-            response.sendRedirect(request.getContextPath() + "/TransportList");
         }
 
     }

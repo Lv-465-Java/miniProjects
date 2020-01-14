@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Login page</title>
-<link rel="stylesheet" type="text/css" href=${pageContext.request.contextPath}/resources/css/login.css" >
+<link rel="stylesheet" type="text/css" href="css/login.css" />
 </head>
 <body>
 <div class="login-wrap">
@@ -22,11 +22,6 @@
             <div class="sign-in-htm">
                 <form action="${pageContext.request.contextPath}/login" method="post">
                     <div>
-<%--                        <c:forEach var="configParams" items="${error}">--%>
-<%--                            <c:if test="${configParams.key=='username'}">--%>
-<%--                                <c:out value="${error.value}" />--%>
-<%--                            </c:if>--%>
-<%--                        </c:forEach>--%>
                     </div>
                 <div class="group">
                     <label for="user" class="label">Username</label>
@@ -44,7 +39,6 @@
                     <a href="${pageContext.request.contextPath}/forgotPassword">Forgot Password?</a>
                 </div>
                 </form>
-
                 <c:if test="${not empty error}">
                     <c:out value="${error}"/>
                 </c:if>

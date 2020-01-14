@@ -1,9 +1,15 @@
 package dao.impl;
 
+import db.ConnectionManager;
 import entity.*;
 import entity.Trip.TripQueries;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class TripDaoImpl extends DaoCRUDAbsImpl<Trip> {
 
@@ -24,9 +30,9 @@ public final class TripDaoImpl extends DaoCRUDAbsImpl<Trip> {
                     LocalDate.parse(args[1] == null ? LocalDate.now().toString() : args[1]),
                     LocalDate.parse(args[2] == null ? LocalDate.now().toString() : args[2]),
                     Integer.parseInt(args[3] == null ? "0" : args[3]),
-                    Boolean.parseBoolean(args[4] == null ? "true" : args[4]),
-                    Long.parseLong(args[5] == null ? "0" : args[5]),
-                    Long.parseLong(args[6] == null ? "0" : args[6])
+                   // Boolean.parseBoolean(args[4] == null ? "true" : args[4]),
+                    Long.parseLong(args[4] == null ? "0" : args[4]),
+                    Long.parseLong(args[5] == null ? "0" : args[5])
             );
         }
 

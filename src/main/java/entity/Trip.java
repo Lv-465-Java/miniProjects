@@ -17,6 +17,7 @@ public final class Trip implements IEntity {
     public static enum TripQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO trips (departure_day, day_of_arrival, count_of_people, access, transport_id, user_id ) VALUES (?,?,?,?,?,?)"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, departure_day, day_of_arrival, count_of_people, transport_id, user_id  FROM trips WHERE id = ?"),
+        GET_BY_USER_ID(SqlQueries.GET_BY_USER_ID, "SELECT id, departure_day, day_of_arrival, count_of_people, transport_id  FROM trips WHERE user_id = ?"),
         GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, departure_day, day_of_arrival, count_of_people, transport_id, user_id  FROM trips WHERE departure_day = ?"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, departure_day, day_of_arrival, count_of_people, transport_id, user_id  FROM trips WHERE access='true';"),
         GET_ALL_LIMIT(SqlQueries.GET_ALL_LIMIT, "SELECT id, departure_day, day_of_arrival, count_of_people, transport_id, user_id  FROM trips WHERE access='true' LIMIT 10;"),
@@ -50,4 +51,13 @@ public final class Trip implements IEntity {
     private boolean access;
     private Long transportId;
     private Long userId;
+
+    public Trip(Long id, LocalDate departureDay, LocalDate dayOfArrival, int countOfPeople, Long transportId, Long userId) {
+        this.id = id;
+        this.departureDay = departureDay;
+        this.dayOfArrival = dayOfArrival;
+        this.countOfPeople = countOfPeople;
+        this.transportId = transportId;
+        this.userId = userId;
+    }
 }

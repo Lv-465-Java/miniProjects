@@ -2,8 +2,10 @@ package servlet.user;
 
 import db.ConnectionManager;
 import dto.UserDto;
+import exception.NotFoundException;
 import service.UserService;
 import service.impl.UserServiceImpl;
+import servlet.JSPFILES;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,12 +17,18 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * Class processes requests for "/userList"  url
+ */
 @WebServlet("/userList")
 public class UserListServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private UserService userService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         userService=new UserServiceImpl();
@@ -29,16 +37,19 @@ public class UserListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
-       // String errorString = null;
-        List<UserDto> list = userService.getAll();
-        //request.setAttribute("errorString", errorString);
-        request.setAttribute("userList", list);
+        try {
+            List<UserDto> list = userService.getAll();
 
-        RequestDispatcher dispatcher = request.getServletContext()
-                .getRequestDispatcher("/WEB-INF/views/userList.jsp");
-        dispatcher.forward(request, response);
+            request.setAttribute("userList", list);
+            RequestDispatcher dispatcher = request.getServletContext()
+                    .getRequestDispatcher(JSPFILES.USER_LIST.getPath());
+            dispatcher.forward(request, response);
+
+        } catch (NotFoundException e) {
+            request.setAttribute("error", e.getMessage());
+            response.sendRedirect(request.getContextPath() + "/adminPage");
+        }
     }
 
     @Override

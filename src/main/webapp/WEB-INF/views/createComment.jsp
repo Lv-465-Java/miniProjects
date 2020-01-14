@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: int
@@ -10,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>Create Comment</title>
-    <link rel="stylesheet" type="text/css" href="../../css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
 </head>
 <body>
 <div class="login-wrap">
@@ -20,23 +21,23 @@
         <div class="sign-up-htm">
             <form action="${pageContext.request.contextPath}/createComment" method="post">
                 <div class="group">
-                    <label for="first_name" class="label">Choose place</label>
-                    <select name="place">
-                        <option value="">Italy</option>
-                        <option value="">Germany</option>
-                        <option value="">Tokyo</option>
+                    <label for="places" class="label">Choose place</label>
+                    <select id="places" name="placeId">
+                        <c:forEach items="${placeDtoList}" var="place">
+                            <option value="${place.id}">${place.country}, ${place.town}, ${place.name}</option>
+                        </c:forEach>
                     </select>
-                    <!--  <input id="first" type="text" class="input" required> -->
                 </div>
                 <div class="group">
                     <label for="text" class="label">Text of comment</label>
                     <textarea id="text" name="comment" cols="60" rows="4">Enter your comment...</textarea>
-                    <!-- <input id="text" type="texta" class="input" required> -->
                 </div>
 
 
                 <div class="group">
+                    <a href="${pageContext.request.contextPath}/mainPage">
                     <input type="submit" class="button" value="Create">
+                    </a>
                 </div>
                 <div class="group">
                     <a href="${pageContext.request.contextPath}/mainPage">

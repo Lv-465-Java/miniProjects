@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: int
@@ -12,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
 </head>
 <body>
-<h1>Create trip</h1>
 <div class="login-wrap">
     <div class="login-html">
         <div class="login-form">
@@ -28,54 +28,58 @@
                 <div class="group">
                     <label for="count" class="label">Count of people</label>
                     <input id="count" type="text" class="input" required>
-<%--                    <form action="createTrip.jsp">--%>
-<%--                        <select name="count">--%>
-<%--                            <option value="one">1</option>--%>
-<%--                            <option value="two">2</option>--%>
-<%--                            <option value="three">3</option>--%>
-<%--                            <option value="four">4</option>--%>
-<%--                            <option value="five">5</option>--%>
-<%--                            <option value="six">6</option>--%>
-<%--                        </select>--%>
+                </div>
+                <div class="group">
+<%--                    <label for="access" class="label">Access</label>--%>
+<%--                    <form action="${pageContext.request.contextPath}/createTrip" method="post">--%>
+                        <label for="access" class="label">Access
+                            <select id="access" name="access">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </label>
 <%--                    </form>--%>
                 </div>
                 <div class="group">
-                    <label for="access" class="label">Access</label>
-                    <form action="${pageContext.request.contextPath}/createTrip">
-                        <select name="access">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                        </select>
-                    </form>
-                </div>
-                <div class="group">
-                    <label for="transport" class="label">Transport</label>
-                    <form action="${pageContext.request.contextPath}/createTrip">
-                            <select name="transport">
-                                <option value="bus">BUS</option>
-                                <option value="train">TRAIN</option>
-                                <option value="plain">PLAIN</option>
-                                <option value="ship">SHIP</option>
+<%--                    <form action="${pageContext.request.contextPath}/createTrip" method="post">--%>
+                        <label for="transport" class="label">Transport
+                            <select id="transport" name="transport">
+                                <c:forEach items="${transportList}" var="transport">
+                                <option value="name">${transport.transportName}</option>
+                                </c:forEach>
                             </select>
-                    </form>
+                        </label>
+
+<%--                    </form>--%>
                 </div>
 
                 <div class="group">
-                    <input type="submit" class="button" value="Create">
+                    <form action="${pageContext.request.contextPath}/addPlaceToTrip" method="get">
+                    <input type="submit" class="button" value="Add place to trip">
+                    </form>
                 </div>
-                <div class="group">
-                    <input type="submit" class="button" value="Calculate the cost of the trip">
-                </div>
+<%--                <div class="group">--%>
+<%--                    <input type="submit" class="button" value="Calculate the cost of the trip">--%>
+<%--                </div>--%>
                 <div class="group">
                     <form action="${pageContext.request.contextPath}/mainPage">
                         <input type="submit" class="button" value="Cancel">
                     </form>
+                    <c:if test="${not empty message}">
+                        <c:out value="${message}"/>
+                    </c:if>
                 </div>
                 <div class="hr"></div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    let price=function () {
+
+    }
+</script>
 </body>
 </html>
 

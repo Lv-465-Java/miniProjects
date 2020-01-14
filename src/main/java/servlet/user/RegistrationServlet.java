@@ -1,11 +1,14 @@
 package servlet.user;
 
+import dto.UserDto;
 import entity.User;
 import exception.NotFoundException;
+import mapper.UserMapper;
 import service.UserService;
 import service.impl.DBInitializerService;
 import service.impl.UserServiceImpl;
 import servlet.JSPFILES;
+import utils.SessionCookieManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -14,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -61,9 +65,11 @@ public class RegistrationServlet extends HttpServlet{
 
             if (DBInitializerService.isFirst()) {
 
-                resp.sendRedirect(req.getContextPath()
-                        + "/initDB");
-            } else {
+//                resp.sendRedirect(req.getContextPath()
+//                        + "/initDB");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/initDB");
+                requestDispatcher.include(req, resp);
+            }
 
                 String firstName = req.getParameter("first_name");
                 String lastName = req.getParameter("last_name");
@@ -73,6 +79,13 @@ public class RegistrationServlet extends HttpServlet{
 
                 User user = User.builder().firstName(firstName).lastName(lastName).username(username)
                         .email(email).password(password).build();
+
+//                HttpSession session = req.getSession();
+//
+//                UserDto userDto = UserMapper.getUserDto(user);
+//                SessionCookieManager.storeLoginedUser(session, userDto);
+//                SessionCookieManager.storeUserCookie(resp,userDto);
+
 
                 try {
                     userService.insert(user);
@@ -84,4 +97,3 @@ public class RegistrationServlet extends HttpServlet{
                 }
             }
         }
-}

@@ -12,7 +12,7 @@
     <title>Personal cabinet</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mainPage.css"/>
+    <link rel="stylesheet" type="text/css" href="$css/mainPage.css"/>
 </head>
 <body>
 <div class="wrapper container">
@@ -44,6 +44,16 @@
 
     <div class="heading"></div>
 
+    <form action="${pageContext.request.contextPath}/uploadPoster" method="post" enctype="multipart/form-data" name="poster">
+    <div class="row">
+        <div class="col-4">
+            <input type="file" name="file"/>
+            <input type="submit" value="Upload">
+        </div>
+        <img src="${pageContext.request.contextPath}/posters/${fileName}">
+    </div>
+    </form>
+
 
     <div class="row">
         <aside class="col-md-3">
@@ -51,29 +61,30 @@
                 <div class="panel-heading">MY MENU</div>
                 <div class="panel-body">
                     <ul class="list-group submenu">
-                        <li class="list-group-item active">Edit profile</li>
+                        <li class="list-group-item active">
+                            <a href="${pageContext.request.contextPath}/editUser">Edit profile</a></li>
                         <li class="list-group-item">Comments
                             <ul>
-                                <li>My comments</li>
-                                <li>Create comment</li>
+                                <li><a href="${pageContext.request.contextPath}/getUserComment">My comments</a></li>
+                                <li><a href="${pageContext.request.contextPath}/createComment">Create comment</a></li>
                                 <li>Get comment by date</li>
-                                <li>Update comment</li>
+                                <li><a href="${pageContext.request.contextPath}/editComment">Update comment</a></li>
                                 <li>Update comment by place</li>
-                                <li>Delete comment</li>
+                                <li><a href="${pageContext.request.contextPath}/deleteComment">Delete comment</a></li>
                             </ul>
                         </li>
                         <li class="list-group-item">Trips
                             <ul>
-                                <li>My trips</li>
-                                <li>Create trip</li>
+                                <li><a href="${pageContext.request.contextPath}/getUserTrip">My trips</a></li>
+                                <li><a href="${pageContext.request.contextPath}/createTrip">Create trip</a></li>
                                 <li>Get trip by departure day</li>
-                                <li>Update trip</li>
+                                <li><a href="${pageContext.request.contextPath}/editTrip">Update trip</a></li>
                                 <li>Update day of arrival</li>
-                                <li>Delete trip</li>
+                                <li><a href="${pageContext.request.contextPath}/deleteTrip">Delete trip</a></li>
                                 <li>Delete trip by departure day</li>
                             </ul>
                         </li>
-                        <li class="list-group-item"><a href="/evaluatePlace">Evaluate the place</a></li>
+                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/evaluatePlace">Evaluate the place</a></li>
                     </ul>
                 </div>
             </div>

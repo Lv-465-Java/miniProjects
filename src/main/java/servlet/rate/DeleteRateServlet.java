@@ -13,12 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class processes requests for "/deleteRale"  url
+ */
 @WebServlet("/deleteRate")
 public class DeleteRateServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private RateService rateService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         rateService=new RateServiceImpl();

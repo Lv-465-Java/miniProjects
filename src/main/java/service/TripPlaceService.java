@@ -17,4 +17,6 @@ public interface TripPlaceService {
     boolean updateByField(Long tripId, Long placeId);
 
     boolean deleteByTwoId(Long tripId, Long placeId);
+
+    public boolean isEmptyPlaceList( Long tripId);
 }

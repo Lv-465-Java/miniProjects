@@ -9,6 +9,10 @@ public interface DaoRead<TEntity> {
 
     Optional<TEntity> getByField(String text);
 
+    List<TEntity> getByUserId(Long userId);
+
+    List<TEntity> getByFieldName(Long id);
+
     List<TEntity> getAll();
 
     List<TEntity> getAllLimit();

@@ -17,13 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class processes requests for "/editUser"  url
+ */
 @WebServlet("/editUser")
 public class EditUserServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private UserService userService;
 
-
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         userService=new UserServiceImpl();

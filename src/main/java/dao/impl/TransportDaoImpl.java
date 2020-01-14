@@ -2,7 +2,6 @@ package dao.impl;
 
 import entity.Transport;
 import entity.Transport.TransportQueries;
-import entity.TransportName;
 
 public class TransportDaoImpl extends DaoCRUDAbsImpl<Transport> {
 
@@ -20,7 +19,7 @@ public class TransportDaoImpl extends DaoCRUDAbsImpl<Transport> {
     protected Transport createInstance(String[] args) {
         return new Transport(
                 Long.parseLong(args[0] == null ? "0" : args[0]),
-                args[1] == null ? TransportName.BUS : TransportName.valueOf(args[1])
+                args[1] == null ? "BUS" : args[1]//TransportName.BUS : TransportName.valueOf(args[1])
         );
     }
 
@@ -36,7 +35,7 @@ public class TransportDaoImpl extends DaoCRUDAbsImpl<Transport> {
     protected String[] getFields(Transport transport) {
 
         String[] fields = new String[1];
-        fields[0] = transport.getTransportName().toString();
+        fields[0] = transport.getTransportName();
 
         return fields;
     }

@@ -17,12 +17,18 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * Class processes requests for "/commentList"  url
+ */
 @WebServlet("/commentList")
 public class CommentListServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private CommentService commentService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         commentService=new CommentServiceImpl();
@@ -31,7 +37,6 @@ public class CommentListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
         try {
             List<CommentDto> list = commentService.getAll();
@@ -42,7 +47,7 @@ public class CommentListServlet extends HttpServlet {
         } catch (NotFoundException e) {
             request.setAttribute("error", e.getMessage());
             RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher(JSPFILES.LOGIN_JSP.getPath());/////////////
+                    .getRequestDispatcher(JSPFILES.MAIN_PAGE.getPath());
             dispatcher.forward(request, response);
         }
     }

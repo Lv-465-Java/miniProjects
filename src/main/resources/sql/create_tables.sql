@@ -72,3 +72,10 @@ CREATE TABLE trips_has_places(
                                  FOREIGN KEY (trip_id) REFERENCES trips (id) on delete cascade ,
                                  FOREIGN KEY (place_id) REFERENCES places (id)
 );
+
+CREATE TABLE posters(
+    user_id BIGINT NOT NULL,
+    path VARCHAR(255) NULL ,
+    PRIMARY KEY (user_id),
+    FOREIGN KEY (user_id) REFERENCES users (id) on delete cascade
+);

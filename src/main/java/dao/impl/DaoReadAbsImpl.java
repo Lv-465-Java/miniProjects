@@ -3,6 +3,7 @@ package dao.impl;
 import dao.DaoRead;
 import db.ConnectionManager;
 import entity.SqlQueries;
+import entity.User;
 
 import java.sql.*;
 import java.util.*;
@@ -70,6 +71,18 @@ public abstract class DaoReadAbsImpl<TEntity> implements DaoRead<TEntity> {
         return getQueryResult(
                 sqlQueries.get(SqlQueries.GET_ALL_LIMIT).toString(),
                 SqlQueries.GET_ALL_LIMIT);
+    }
+
+    public List<TEntity> getByUserId(Long userId) {
+        return getQueryResult(
+                sqlQueries.get(SqlQueries.GET_BY_USER_ID).toString(),
+                SqlQueries.GET_BY_USER_ID, userId);
+    }
+
+    public List<TEntity> getByFieldName(Long id) {
+        return getQueryResult(
+                sqlQueries.get(SqlQueries.GET_BY_FIELD_NAME).toString(),
+                SqlQueries.GET_BY_FIELD_NAME,id);
     }
 }
 

@@ -20,12 +20,18 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * Class processes requests for "/tripList"  url
+ */
 @WebServlet("/tripList")
 public class TripListServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private TripService tripService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         tripService=new TripServiceImpl();
@@ -34,7 +40,6 @@ public class TripListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
         try {
             List<TripDto> list = tripService.getAll();

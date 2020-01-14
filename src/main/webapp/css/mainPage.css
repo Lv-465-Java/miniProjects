@@ -1,17 +1,12 @@
-/*@brand-font: "Oswald", sans-serif;*/
+
 body{
     border-top: 5px solid #7e7e7e;
-    background-image: url("/images/back.jpg");
-    /*margin: 0;
-    padding: 0;*/
+    background-image: url(../images/back.jpg);
 }
-/*.search{
-	margin-right: 1em;
-}*/
 
-/*.page-header header container-fluid{
-  background-image: : url(/home/int/Download/Foto/timetotravel.jpg);
-}*/
+.page-header header container-fluid{
+  background-image:  url(../images/timetotravel.jpg);
+}
 
 h1{
     color: #00bfff;
@@ -20,7 +15,7 @@ h1{
 
 .navbar{
     text-transform: uppercase;
-    background: #4b0082;/*rgb(255,83,0);*/
+    background: #4b0082;
 }
 
 /*navbar-link, */
@@ -44,7 +39,7 @@ h1{
 }
 
 .page-footer {
-    background-color: #4b0082;/*#222;*/
+    background-color: #4b0082;
     color: #ccc;
     padding: 5px 0 1px;
 }
@@ -60,20 +55,20 @@ h1{
 header{
     padding: 20px 0;
 }
-/*.form-inline form-search pull-right{*/
+
 .input-group{
     width: 200px;
     text-align: right;
 }
 .navbar a {
     text-transform: uppercase;
-    font-size: 14px /*@brand-font*/;
+    font-size: 14px;
 }
 
 .panel-heading{
     text-transform: uppercase;
     font-size: 20px;
-    /*font-weight: 2px;*/
+    font-weight: bold;
     /*color:*/
 }
 
@@ -86,7 +81,7 @@ p{
 }
 
 .btn{
-    font-family: Arial, serif/*@brand-font*/;
+    font-family: Arial, serif;
 }
 .jumbotron{
 

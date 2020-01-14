@@ -16,6 +16,7 @@ public interface PlaceService {
 
     List<PlaceDto> getAllLimit();
 
+    List<PlaceDto> getByTemplate(String template);
 
     boolean insert(Place place);
 
@@ -24,8 +25,6 @@ public interface PlaceService {
     boolean updateByField(String text, String textCondition);
 
     boolean deleteById(Long id);
-
-    //boolean deleteByFieldName(String textCondition);
 
     boolean delete(Place place);
 }

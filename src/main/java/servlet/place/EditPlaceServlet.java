@@ -17,19 +17,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class processes requests for "/editPlace"  url
+ */
 @WebServlet("/editPlace")
 public class EditPlaceServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private PlaceService placeService;
 
-
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         placeService=new PlaceServiceImpl();
     }
 
-    // Show product edit page.
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,12 +56,9 @@ public class EditPlaceServlet extends HttpServlet {
         }
     }
 
-    // After the user modifies the product information, and click Submit.
-    // This method will be executed.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
         String country =  request.getParameter("country");
         String town =  request.getParameter("town");

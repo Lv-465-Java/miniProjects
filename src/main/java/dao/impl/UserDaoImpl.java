@@ -6,6 +6,7 @@ import entity.User.UserQueries;
 import utils.MD5HashPassword;
 
 import javax.jws.soap.SOAPBinding;
+import java.util.List;
 
 
 public final class UserDaoImpl extends DaoCRUDAbsImpl<User> {
@@ -61,10 +62,9 @@ public final class UserDaoImpl extends DaoCRUDAbsImpl<User> {
         fields[1] = user.getLastName();
         fields[2] = user.getUsername();
         fields[3] = user.getEmail();
-        fields[4] = MD5HashPassword.hashPassword(user.getPassword());//// encoder
+        fields[4] = MD5HashPassword.hashPassword(user.getPassword());
        // fields[5] = user.getUserRole().toString();
 
         return fields;
     }
-
 }

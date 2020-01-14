@@ -10,11 +10,10 @@
 <html>
 <head>
     <title>Registration page</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css"/>
-<%--    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/javascript/checkPassword.js"></script>--%>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
+    <script src="<c:url value="/javascript/checkPassword.js"/>"></script>
 </head>
 <body>
-<h1>Registration page</h1>
 <div class="login-wrap">
     <div class="login-html">
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
@@ -39,42 +38,29 @@
                 </div>
                 <div class="group">
                     <label for="password" class="label">Password</label>
-                    <input id="password" name="password" type="password" class="input" data-type="password" onclick="check()" required/>
-<%--                           onkeyup='check();' required>--%>
+                    <input id="password" name="password" type="password" class="input" data-type="password" onclick="check()" required/
                 </div>
                 <div class="group">
                     <label for="passw" class="label">Repeat Password</label>
                     <input id="passw" name="repPass" type="password" class="input" data-type="password" onclick="check()" required/>
-<%--                           onkeyup='check();' required>--%>
                     <span id="message"></span>
                 </div>
                 <div class="group">
                     <input type="submit" class="button" value="Sign Up">
                 </div>
                 <div class="group">
-<%--                    <form action="<c:out value="/login"/>" method="get">--%>
                     <a href="${pageContext.request.contextPath}/login">
                     <input type="submit" class="button" value="Cancel">
-<%--                    </form>--%>
                     </a>
                 </div>
                 <div class="hr"></div>
                 </form>
+                <c:if test="${not empty error}">
+                    <c:out value="${error}"/>
+                </c:if>
             </div>
         </div>
     </div>
 </div>
-<script>
-    var check=function () {
-        if (document.getElementById('password').value ===
-            document.getElementById('passw').value){
-            document.getElementById('message').style.color='green';
-            document.getElementById('message').innerHTML='matching';
-        } else {
-            document.getElementById('message').style.color='red';
-            document.getElementById('message').innerHTML='not matching';
-        }
-    }
-</script>
 </body>
 </html>

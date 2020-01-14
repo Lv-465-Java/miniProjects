@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>Edit Comment</title>
-    <link rel="stylesheet" type="text/css" href="../../css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
 </head>
 <body>
 <c:if test="${not empty comment}">

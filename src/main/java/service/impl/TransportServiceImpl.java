@@ -57,10 +57,6 @@ public class TransportServiceImpl implements TransportService, Message {
         }
     }
 
-//    @Override
-//    public boolean updateByField(String text, String textCondition) {
-//        return false;
-//    }
 
     @Override
     public boolean deleteById(Long id) {
@@ -71,13 +67,12 @@ public class TransportServiceImpl implements TransportService, Message {
         }
     }
 
-//    @Override
-//    public boolean deleteByFieldName(String fieldCondition, String textCondition) {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean delete(Transport transport) {
-//        return false;
-//    }
+    @Override
+    public boolean deleteByName(String transportName) {
+        if(daoCRUD.deleteByFieldName(transportName)){
+            return true;
+        } else {
+            throw new NotFoundException(DELETE_TRANSPORT_EXCEPTION_MESSAGE);
+        }
+    }
 }

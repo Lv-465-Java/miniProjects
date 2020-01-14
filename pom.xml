@@ -13,101 +13,6 @@
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
-<!--  <properties>-->
-<!--    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-<!--    <maven.compiler.source>1.8</maven.compiler.source>-->
-<!--    <maven.compiler.target>1.8</maven.compiler.target>-->
-<!--  </properties>-->
-
-<!--  <dependencies>-->
-<!--    <dependency>-->
-<!--      <groupId>junit</groupId>-->
-<!--      <artifactId>junit</artifactId>-->
-<!--      <version>4.11</version>-->
-<!--      <scope>test</scope>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>javax.servlet</groupId>-->
-<!--      <artifactId>javax.servlet-api</artifactId>-->
-<!--      <version>4.0.1</version>-->
-<!--      <scope>provided</scope>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.projectlombok</groupId>-->
-<!--      <artifactId>lombok</artifactId>-->
-<!--      <version>1.18.10</version>-->
-<!--      <scope>provided</scope>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>mysql</groupId>-->
-<!--      <artifactId>mysql-connector-java</artifactId>-->
-<!--      <version>8.0.18</version>-->
-<!--    </dependency>-->
-<!--  </dependencies>-->
-
-<!--  <build>-->
-<!--    <finalName>ProjectOneTomcat</finalName>-->
-<!--    <pluginManagement>&lt;!&ndash; lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) &ndash;&gt;-->
-<!--      <plugins>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-clean-plugin</artifactId>-->
-<!--          <version>3.1.0</version>-->
-<!--        </plugin>-->
-<!--        &lt;!&ndash; see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging &ndash;&gt;-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-resources-plugin</artifactId>-->
-<!--          <version>3.0.2</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-compiler-plugin</artifactId>-->
-<!--          <version>3.8.0</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-surefire-plugin</artifactId>-->
-<!--          <version>2.22.1</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-war-plugin</artifactId>-->
-<!--          <version>3.2.2</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-install-plugin</artifactId>-->
-<!--          <version>2.5.2</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <artifactId>maven-deploy-plugin</artifactId>-->
-<!--          <version>2.8.2</version>-->
-<!--        </plugin>-->
-<!--        <plugin>-->
-<!--          <groupId>org.apache.maven.plugins</groupId>-->
-<!--          <artifactId>maven-war-plugin</artifactId>-->
-<!--          <version>${maven.war.plugin.version}</version>-->
-<!--          <executions>-->
-<!--            <execution>-->
-<!--              <id>make-a-war</id>-->
-<!--              <phase>package</phase>-->
-<!--              <goals>-->
-<!--                <goal>war</goal>-->
-<!--              </goals>-->
-<!--            </execution>-->
-<!--          </executions>-->
-<!--          <configuration>-->
-<!--            &lt;!&ndash; <packagingExcludes> &ndash;&gt;-->
-<!--            &lt;!&ndash; WEB-INF/lib/servlet-api-2.5.jar &ndash;&gt;-->
-<!--            &lt;!&ndash; WEB-INF/lib/velocity-dep-1.4.jar &ndash;&gt;-->
-<!--            &lt;!&ndash; </packagingExcludes> &ndash;&gt;-->
-<!--            &lt;!&ndash; <warSourceDirectory>WebContent</warSourceDirectory> &ndash;&gt;-->
-<!--            <failOnMissingWebXml>false</failOnMissingWebXml>-->
-<!--            <warName>${project.artifactId}</warName>-->
-<!--          </configuration>-->
-<!--        </plugin>-->
-<!--      </plugins>-->
-<!--    </pluginManagement>-->
-<!--  </build>-->
-
-<!--  -->
-<!--  <name>${project.artifactId}</name>-->
-<!--  <url>http://maven.apache.org</url>-->
 
   <properties>
     <!-- - - - - - Encoding - - - - - -->
@@ -163,7 +68,6 @@
       <scope>provided</scope>
     </dependency>
 
-
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
@@ -178,14 +82,43 @@
     </dependency>
 
     <dependency>
-      <groupId>at.favre.lib</groupId>
-      <artifactId>bcrypt</artifactId>
-      <version>0.9.0</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/activation/activation -->
+    <dependency>
+      <groupId>activation</groupId>
+      <artifactId>activation</artifactId>
+      <version>1.0.2</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.2.4</version>
+      <scope>test</scope>
+    </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>at.favre.lib</groupId>-->
+<!--      <artifactId>bcrypt</artifactId>-->
+<!--      <version>0.9.0</version>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>javax.mail</groupId>
       <artifactId>javax.mail-api</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
       <version>1.6.2</version>
     </dependency>
 
@@ -220,6 +153,12 @@
       <artifactId>testng</artifactId>
       <version>${org.testng.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>RELEASE</version>
+      <scope>compile</scope>
     </dependency>
 
   </dependencies>
@@ -282,11 +221,6 @@
           </execution>
         </executions>
         <configuration>
-          <!-- <packagingExcludes> -->
-          <!-- WEB-INF/lib/servlet-api-2.5.jar -->
-          <!-- WEB-INF/lib/velocity-dep-1.4.jar -->
-          <!-- </packagingExcludes> -->
-          <!-- <warSourceDirectory>WebContent</warSourceDirectory> -->
           <failOnMissingWebXml>false</failOnMissingWebXml>
           <warName>${project.artifactId}</warName>
         </configuration>
@@ -294,7 +228,5 @@
 
     </plugins>
   </build>
-
-
 
 </project>

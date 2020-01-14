@@ -15,12 +15,18 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * Class processes requests for "/rateList"  url
+ */
 @WebServlet("/rateList")
 public class RateListServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private RateService rateService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         rateService=new RateServiceImpl();

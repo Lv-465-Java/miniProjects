@@ -14,10 +14,9 @@ public final class Rate implements IEntity{
     public static enum RateQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO rates (value, user_id, place_id) VALUES (?, ?, ?)"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, value, user_id, place_id FROM rates;"),
+        GET_BY_FIELD_NAME(SqlQueries.GET_BY_FIELD_NAME, "SELECT id, value, user_id, place_id FROM rates WHERE place_id = ?"),
         UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE rates SET value = ?, place_id = ? WHERE id = ?"),
-//        UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD, "UPDATE rates SET %s = '%s' WHERE %s = '%s';"),
         DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM rates WHERE id = ?");
-       // DELETE_BY_FIELD(SqlQueries.DELETE_BY_FIELD, "DELETE FROM rates WHERE  = ?");
 
         private SqlQueries sqlQuery;
         private String query;

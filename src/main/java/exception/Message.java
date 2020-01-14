@@ -4,6 +4,8 @@ public interface Message {
 
     String USER_NOT_FOUND_EXCEPTION_MESSAGE = "User with id '%s' not found";
 
+    String USERNAME_EXIST_EXCEPTION_MESSAGE = "User with username '%s' is already exist";
+
     String USERNAME_NOT_FOUND_EXCEPTION_MESSAGE = "User with username '%s' not found";
 
     String TRANSPORT_NOT_FOUND_EXCEPTION_MESSAGE = "Transport with id '%s' not found";

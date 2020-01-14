@@ -67,4 +67,13 @@ public class TripPlaceServiceImpl implements TripPlaceService, Message {
             throw new NotFoundException(DELETE_TRIP_PLACE_EXCEPTION_MESSAGE);
         }
     }
+
+    public boolean isEmptyPlaceList( Long tripId){
+        List<TripPlace> list=getByTripId(tripId);
+        if(list.isEmpty()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

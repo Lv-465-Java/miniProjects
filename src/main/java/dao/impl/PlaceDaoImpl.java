@@ -1,7 +1,15 @@
 package dao.impl;
 
+import db.ConnectionManager;
 import entity.Place;
 import entity.Place.PlaceQueries;
+import entity.TripPlace;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlaceDaoImpl extends DaoCRUDAbsImpl<Place> {
 
@@ -51,5 +59,33 @@ public class PlaceDaoImpl extends DaoCRUDAbsImpl<Place> {
         fields[4] = place.getPhoto();
 
         return fields;
+    }
+
+    public List<Place> getByTemplate(String template) {
+       String query= "SELECT id, country, town, name, description, photo, price FROM places WHERE name LIKE ?  ;";
+        List<Place> placeList=new ArrayList<>();
+        try {
+            PreparedStatement statement = ConnectionManager.getInstance().getConnection().prepareStatement(query);
+
+            statement.setString(1,  '%' +template + '%');
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Long id= resultSet.getLong("id");
+                String country = resultSet.getString("country");
+                String town = resultSet.getString("town");
+                String name = resultSet.getString("name");
+                String description = resultSet.getString("description");
+                String photo = resultSet.getString("photo");
+                Integer price = resultSet.getInt("price");
+
+                Place place = new Place(id,country,town,name,description,photo);
+                placeList.add(place);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return placeList;
     }
 }

@@ -68,6 +68,19 @@ public class CommentServiceImpl implements CommentService, Message {
     }
 
     @Override
+    public List<CommentDto> getByUserId(Long userId) {
+        List<Comment> list=daoCRUD.getByUserId(userId);
+
+        List<CommentDto>dtoList= list.stream()
+                .map(CommentMapper::getCommentDto)
+                .collect(Collectors.toList());
+
+        if (dtoList.isEmpty()){
+            throw  new NotFoundException(EMPTY_COMMENT_LIST_EXCEPTION_MESSAGE);
+        } return dtoList;
+    }
+
+    @Override
     public boolean insert(Comment comment) {
         if(daoCRUD.insert(comment)){
             return true;

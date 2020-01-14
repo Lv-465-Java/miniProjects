@@ -13,12 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class processes requests for "/deleteTrip"  url
+ */
 @WebServlet("/deleteTrip")
 public class DeleteTripServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private TripService tripService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         tripService=new TripServiceImpl();
@@ -27,7 +33,6 @@ public class DeleteTripServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
         //String errorString = null;
 

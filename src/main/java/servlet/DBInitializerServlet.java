@@ -1,6 +1,5 @@
 package servlet;
 
-import lombok.RequiredArgsConstructor;
 import service.impl.DBInitializerService;
 
 import javax.servlet.ServletException;
@@ -10,9 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class processes requests for "/initDB"  url
+ */
 @WebServlet("/initDB")
 public class DBInitializerServlet extends HttpServlet {
 
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
     public DBInitializerServlet() {
         super();
     }
@@ -31,14 +36,9 @@ public class DBInitializerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-//        if (DBInitializerService.isFirst()) {
-
-//            response.sendRedirect(request.getContextPath()
-//                    + "/initDB");
             DBInitializerService.getInstance();
             request.setAttribute("init DB", "DB initialized");
             response.sendRedirect(request.getContextPath() + "/login");
-//        } else {
 
     }
 }

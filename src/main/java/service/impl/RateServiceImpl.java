@@ -5,6 +5,7 @@ import dao.impl.RateDaoImpl;
 import entity.Rate;
 import exception.Message;
 import exception.NotFoundException;
+import service.PlaceService;
 import service.RateService;
 
 import java.util.List;
@@ -12,20 +13,22 @@ import java.util.List;
 public class RateServiceImpl implements RateService, Message {
 
     private DaoCRUD<Rate> daoCRUD;
+    private RateService rateService;
 
     public RateServiceImpl() {
         daoCRUD=new RateDaoImpl();
+        rateService=new RateServiceImpl();
     }
 
-//    @Override
-//    public RateDto getById(Long id) {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<RateDto> getByField(String text) {
-//        return null;
-//    }
+
+    @Override
+    public List<Rate> getByFieldName(Long id) {
+        List<Rate> list=daoCRUD.getByFieldName(id);
+
+        if(list.isEmpty()){
+            throw new NotFoundException(EMPTY_RATE_LIST_EXCEPTION_MESSAGE);
+        } return list;
+    }
 
     @Override
     public List<Rate> getAll() {
@@ -63,8 +66,11 @@ public class RateServiceImpl implements RateService, Message {
         }
     }
 
-//    @Override
-//    public boolean delete(Rate rate) {
-//        return false;
-//    }
+    public Long getRateValue(Long placeId){
+        List<Rate> list=rateService.getByFieldName(placeId);
+        long count=list.stream().map(Rate::getValue).count();
+
+        return (list.stream().map(Rate::getValue).mapToInt(Integer::intValue).sum())/count;
+
+    }
 }

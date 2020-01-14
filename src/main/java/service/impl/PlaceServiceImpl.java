@@ -64,6 +64,20 @@ public class PlaceServiceImpl implements PlaceService, Message {
     }
 
     @Override
+    public List<PlaceDto> getByTemplate(String template) {
+        PlaceDaoImpl placeDao=new PlaceDaoImpl();
+        List<Place> list=placeDao.getByTemplate(template);
+
+        List<PlaceDto>placeDtoList= list.stream()
+                .map(PlaceMapper::getPlaceDto)
+                .collect(Collectors.toList());
+
+        if (placeDtoList.isEmpty()){
+            throw new NotFoundException(EMPTY_PLACE_LIST_EXCEPTION_MESSAGE);
+        } return placeDtoList;
+    }
+
+    @Override
     public boolean insert(Place place) {
         if (daoCRUD.insert(place)){
             return true;

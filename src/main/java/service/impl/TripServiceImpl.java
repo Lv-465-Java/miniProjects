@@ -69,6 +69,19 @@ public class TripServiceImpl implements TripService, Message {
     }
 
     @Override
+    public List<TripDto> getByUserId(Long userId) {
+        List<Trip> list=daoCRUD.getByUserId(userId);
+
+        List<TripDto> tripDtoList= list.stream()
+                .map(TripMapper::getTripDto)
+                .collect(Collectors.toList());
+
+        if(tripDtoList.isEmpty()){
+            throw new NotFoundException(EMPTY_TRIP_LIST_EXCEPTION_MESSAGE);
+        } return tripDtoList;
+    }
+
+    @Override
     public boolean insert(Trip trip) {
         if(daoCRUD.insert(trip)){
             return true;
@@ -123,11 +136,11 @@ public class TripServiceImpl implements TripService, Message {
     }
 
 
-    public double getPrice(Trip trip){
-        Place place=new Place();
-
-        return place.getPrice()*transportService.getById(trip.getTransportId()).getTransportName().getCoefficient()
-                *trip.getCountOfPeople()
-                * Period.between(trip.getDepartureDay(),trip.getDayOfArrival()).getDays();
-    }
+//    public double getPrice(Trip trip){
+//        Place place=new Place();
+//
+//        return place.getPrice()*transportService.getById(trip.getTransportId()).getTransportName().getCoefficient()
+//                *trip.getCountOfPeople()
+//                * Period.between(trip.getDepartureDay(),trip.getDayOfArrival()).getDays();
+//    }
 }

@@ -14,12 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class processes requests for "/deletePlace"  url
+ */
 @WebServlet("/deletePlace")
 public class DeletePlaceServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private PlaceService placeService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         placeService=new PlaceServiceImpl();

@@ -115,9 +115,16 @@ public class UserServiceImpl implements UserService, Message {
 
 
     public boolean isRoleAdmin(User user){
-        if(user.getUserRole().equals(Role.ADMIN) & user.getPassword().equals("admin")){
-            return true;
-        } return false;
+        return user.getUserRole().equals(Role.ADMIN) & user.getPassword().equals("admin");
     }
+
+//    public boolean isUsernameUnique(String username){
+//       List<String> list= daoCRUD.getAll().stream().map(User::getUsername).filter(u->(u.equals(username))).collect(Collectors.toList());
+//        if(list.isEmpty()){
+//            throw new NotFoundException(String.format(USERNAME_NOT_FOUND_EXCEPTION_MESSAGE,username));
+//        } else {
+//            return true;
+//        }
+//    }
 
 }

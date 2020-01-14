@@ -53,7 +53,7 @@
 <html>
 <head>
     <title>Send an e-mail</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}././css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
 </head>
 <body>
 <div class="login-wrap">
@@ -62,6 +62,10 @@
         <div class="login-form">
             <div class="sign-up-htm">
                 <form action="${pageContext.request.contextPath}/forgotPassword" method="post">
+<%--                    <div class="group">--%>
+<%--                        <label for="recipient_address" class="label">Username</label>--%>
+<%--                        <input id="recipient_address" name="recipient_address" type="text" class="input" required>--%>
+<%--                    </div>--%>
                     <div class="group">
                         <label for="recipient_address" class="label">Recipient address</label>
                         <input id="recipient_address" name="recipient_address" type="text" class="input" required>
@@ -84,7 +88,6 @@
                     </div>
                     <div class="hr"></div>
                 </form>
-<%--                ${message}--%>
             </div>
         </div>
     </div>

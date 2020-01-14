@@ -14,10 +14,18 @@ public enum JSPFILES {
     PERSONAL_CABINET("/WEB-INF/views/personalCabinet.jsp"),
     COMMENT_LIST("/WEB-INF/views/commentList.jsp"),
     TRIP_LIST("/WEB-INF/views/tripList.jsp"),
+    USER_LIST("/WEB-INF/views/userList.jsp"),
+    PLACE_LIST("/WEB-INF/views/placeList.jsp"),
     TRANSPORT_LIST("/WEB-INF/views/transportList.jsp"),
     ADMIN_PAGE("/WEB-INF/views/adminPage.jsp"),
     EDIT_COMMENT("/WEB-INF/views/editComment.jsp"),
-    EDIT_PLACE("/WEB-INF/views/editPlace.jsp");
+    EDIT_PLACE("/WEB-INF/views/editPlace.jsp"),
+    EDIT_PLACE_DESCRIPTION("/WEB-INF/views/editPlaceDescription.jsp"),
+    CREATE_TRANSPORT("/WEB-INF/views/createTransport.jsp"),
+    SEARCH_PLACE_BY_TEMPLATE("/WEB-INF/views/searchPlaceByTemplate.jsp"),
+    ADD_PLACE_TO_TRIP("/WEB-INF/views/addPlaceToTrip.jsp"),
+    UPLOAD_FILE("/WEB-INF/views/uploadPoster.jsp"),
+    EVALUATE_PLACE("/WEB-INF/views/evaluatePlace.jsp");
 
 
     private String path;

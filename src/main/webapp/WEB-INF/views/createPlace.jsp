@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Create Place</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}././css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css"/>
 </head>
 <body>
 <div class="login-wrap">
@@ -18,41 +18,42 @@
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Create place</label>
         <div class="login-form">
             <div class="sign-up-htm">
-                <form action="<c:out value="/createPlace"/>" method="post">
+                <form action="${pageContext.request.contextPath}/createPlace" method="post">
                     <div class="group">
                         <label for="country" class="label">Country</label>
-                        <input id="country" type="text" class="input" required>
+                        <input id="country" name="country" type="text" class="input" required>
                     </div>
                     <div class="group">
                         <label for="town" class="label">Town</label>
-                        <input id="town" type="text" class="input" required>
+                        <input id="town" name="town" type="text" class="input" required>
                     </div>
                     <div class="group">
                         <label for="name" class="label">Name</label>
-                        <input id="name" type="text" class="input" required>
+                        <input id="name" name="name" type="text" class="input" required>
                     </div>
                     <div class="group">
-                        <label for="email" class="label">Description</label>
-                        <textarea name="descr"  cols="60" rows="4" required></textarea>
-<%--                        <input id="email" type="text" class="input" required>--%>
+                        <label for="descr" class="label">Description
+                        <textarea name="descr" cols="60" rows="4" required></textarea>
+                        </label>
                     </div>
                     <div class="group">
-                        <label for="descr" class="label">Photo</label>
-                        <input id="descr" type="text" class="input" required>
+                        <label for="photo" class="label">Photo</label>
+                        <input id="photo" name="photo" type="text" class="input" required>
                     </div>
 
                     <div class="group">
                         <input type="submit" class="button" value="Create">
                     </div>
                     <div class="group">
-                        <%--                    <form action="<c:out value="/login"/>" method="get">--%>
-                        <a href="<c:out value="/adminPage"/>">
+                        <a href="${pageContext.request.contextPath}/adminPage">
                             <input type="submit" class="button" value="Cancel">
-                            <%--                    </form>--%>
                         </a>
                     </div>
                     <div class="hr"></div>
                 </form>
+                <c:if test="${not empty error}">
+                    <c:out value="${error}"/>
+                </c:if>
             </div>
         </div>
     </div>

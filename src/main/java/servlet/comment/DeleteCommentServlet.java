@@ -14,12 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
+/**
+ * Class processes requests for "/deleteComment"  url
+ */
 @WebServlet("/deleteComment")
 public class DeleteCommentServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private CommentService commentService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         commentService=new CommentServiceImpl();

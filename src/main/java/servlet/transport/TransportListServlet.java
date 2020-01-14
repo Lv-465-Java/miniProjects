@@ -1,6 +1,5 @@
 package servlet.transport;
 
-import db.ConnectionManager;
 import entity.Transport;
 import exception.NotFoundException;
 import service.TransportService;
@@ -14,15 +13,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.List;
 
+/**
+ * Class processes requests for "/transportList"  url
+ */
 @WebServlet("/transportList")
 public class TransportListServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private TransportService transportService;
 
+    /**
+     * Method initializes required resources
+     */
     @Override
     public void init() {
         transportService=new TransportServiceImpl();
@@ -31,7 +35,6 @@ public class TransportListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
         try{
         List<Transport> list = transportService.getAll();

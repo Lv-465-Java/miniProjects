@@ -32,7 +32,7 @@ import java.util.Arrays;
                 for (int i=1; i<= args.length; i++) {
                     preparedStatement.setObject(i, args[i-1]);
                 }
-                result = preparedStatement.executeUpdate()>0 ? Boolean.TRUE : Boolean.FALSE;//.execute();
+                result = preparedStatement.executeUpdate() > 0;
             } catch (SQLException e) {
                 throw new RuntimeException(DATABASE_INPUT_ERROR, e);
             }
@@ -42,12 +42,12 @@ import java.util.Arrays;
 
         public boolean insert(TEntity entity) {
             return executeQuery(sqlQueries.get(SqlQueries.INSERT).toString(), SqlQueries.INSERT,
-                    (Object) Arrays.copyOfRange(getFields(entity), 0, getFields(entity).length));
+                    (Object[]) Arrays.copyOfRange(getFields(entity), 0, getFields(entity).length));
         }
 
         public boolean updateByEntity(TEntity entity) {
 
-            return executeQuery(sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(), SqlQueries.UPDATE_BY_FIELD,  (Object) getUpdateFields(entity));
+            return executeQuery(sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(), SqlQueries.UPDATE_BY_FIELD,  (Object[]) getUpdateFields(entity));
         }
 
         public boolean updateByField(String text, String textCondition) {

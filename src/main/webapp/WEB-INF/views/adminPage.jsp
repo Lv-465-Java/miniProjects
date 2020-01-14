@@ -12,7 +12,7 @@
     <title>Admin Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mainPage.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mainPage.css"/>
 </head>
 <body>
 <div class="wrapper container">
@@ -21,19 +21,19 @@
     <nav class="navbar navbar-default">
         <ul class="nav navbar-nav">
             <div class="row">
-                <div class="col-md-4">
-                    <li><!-- class="nav-item">-->
+                <div class="col-md-10">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Admin Page</a>
                     </li>
                 </div>
-                <div class="col-md-4">
+<%--                <div class="col-md-4">--%>
+<%--                    <li class="nav-item">--%>
+<%--                        <a class="nav-link" href="#">Personal cabinet</a>--%>
+<%--                    </li>--%>
+<%--                </div>--%>
+                <div class="col-md-10">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Personal cabinet</a>
-                    </li>
-                </div>
-                <div class="col-md-4">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/login">Log out</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
                     </li>
                 </div>
             </div>
@@ -50,11 +50,12 @@
                 <div class="panel-heading">ADMIN MENU</div>
                 <div class="panel-body">
                     <ul class="list-group submenu">
-                        <li class="list-group-item active">Places
+                        <li class="list-group-item">Places
                             <ul>
                                 <li><a href="${pageContext.request.contextPath}/createPlace">Create place</a></li>
-                                <li>Update place</li>
-                                <li>Update place description</li>
+                                <li><a href="${pageContext.request.contextPath}/placeList">Get all places</a></li>
+                                <li><a href="${pageContext.request.contextPath}/editPlace">Update place</a></li>
+                                <li><a href="${pageContext.request.contextPath}/editPlaceDescription">Update place description</a></li>
                                 <li><a href="${pageContext.request.contextPath}/deletePlace">Delete place</a></li>
                             </ul>
                         </li>
@@ -71,7 +72,7 @@
                         <li class="list-group-item">Trips
                             <ul>
                                 <li><a href="${pageContext.request.contextPath}/createTrip">Create trip</a></li>
-                                <li>Get all trips</li>
+                                <li><a href="${pageContext.request.contextPath}/tripList">Get all trips</a></li>
                                 <li>Get trip by id</li>
                                 <li>Update trip</li>
                                 <li><a href="${pageContext.request.contextPath}/deleteTrip">Delete trip</a></li>
@@ -79,10 +80,10 @@
                         </li>
                         <li class="list-group-item">Transports
                         <ul>
-                               <li>Create transport</li>
-                               <li>Get all transport</li>
+                            <li><a href="${pageContext.request.contextPath}/createTransport">Create transport</a></li>
+                            <li><a href="${pageContext.request.contextPath}/transportList">Get all transport</a></li>
                                <li>Get transport by id</li>
-                               <li>Update transport</li>
+<%--                               <li>Update transport</li>--%>
                             <li><a href="${pageContext.request.contextPath}/deleteTransport">Delete transport</a></li>
                         </ul>
                         </li>
@@ -100,8 +101,8 @@
                         <ul>
                               <li>Create rate</li>
                             <li><a href="${pageContext.request.contextPath}/rateList">Get all rates</a></li>
-                              <li>Update user</li>
-                            <li><a href="${pageContext.request.contextPath}/deleteRate">Delete user</a></li>
+                              <li>Update rate</li>
+                            <li><a href="${pageContext.request.contextPath}/deleteRate">Delete rate</a></li>
                         </ul>
                         </li>
                     </ul>

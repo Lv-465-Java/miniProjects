@@ -5,6 +5,7 @@ import db.ConnectionManager;
 import dto.UserDto;
 import dto.UserLoginDto;
 import entity.User;
+import exception.Message;
 import exception.NotFoundException;
 import service.UserService;
 
@@ -13,8 +14,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class UserLoginService {
+public class UserLoginService implements Message {
 
     private UserService userService;
 
@@ -47,5 +50,14 @@ public class UserLoginService {
 
     public UserDto getUserDto(UserLoginDto userLoginDto){
         return userService.getByField(userLoginDto.getUsername());
+    }
+
+    public boolean isUsernameUnique(String username){
+        List<String> list= userService.getAll().stream().map(UserDto::getUsername).filter(u->(u.equals(username))).collect(Collectors.toList());
+        if(list.isEmpty()){
+            throw new NotFoundException(String.format(USERNAME_NOT_FOUND_EXCEPTION_MESSAGE,username));
+        } else {
+            return true;
+        }
     }
 }

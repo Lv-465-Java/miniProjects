@@ -67,6 +67,9 @@
                     </div>
                     <div class="hr"></div>
                 </form>
+                <c:if test="${not empty error}">
+                    <c:out value="${error}"/>
+                </c:if>
             </div>
         </div>
     </div>

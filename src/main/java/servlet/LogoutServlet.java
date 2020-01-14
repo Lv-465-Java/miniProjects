@@ -1,15 +1,17 @@
 package servlet;
 
+import utils.SessionCookieManager;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Class processes requests for "/logout"  url
+ */
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 
@@ -20,45 +22,49 @@ public class LogoutServlet extends HttpServlet {
      */
     public LogoutServlet() {
         super();
-        System.out.println("Logout servlet constructor called");
     }
 
     /**
      *
      */
-    public void init(ServletConfig config) throws ServletException {
-        System.out.println("LogoutServlet \"Init\" method called");
-    }
+//    public void init(ServletConfig config) throws ServletException {
+//        System.out.println("LogoutServlet \"Init\" method called");
+//    }
 
     /**
      *
      */
-    public void destroy() {
-        System.out.println("LogoutServlet \"Destroy\" method called");
-    }
-
+    //public void destroy() {
+      //  System.out.println("LogoutServlet \"Destroy\" method called");
+   // }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("LogoutServlet doGet called");
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies != null) {
+            SessionCookieManager.deleteUserCookie(response);
+        }
+
         HttpSession session = request.getSession(false);
-        PrintWriter out = response.getWriter();
-        out.write("<html><body><h4>Check console to understand the flow</h4></body></html>");
-        if(session!=null)
-        {
-            //invalidates the session
+
+        if (session != null) {
             session.invalidate();
-            System.out.println("Session is invalidated/logged out");
-            out.write("<html><body><h1>Session is invalidated/logged out</h1></body></html>");
-
-
         }
-        else{
-            out.write("<html><body><h1>Session not present</h1></body></html>");
-        }
-        out.write("<html><body><p>&copy 2016 Preetham</p></body></html>");
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 
+        /**
+         * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+         */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        doGet(request,response);
+    }
 }

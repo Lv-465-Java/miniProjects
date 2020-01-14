@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Class processes requests for "/personalCabinet"  url
+ */
 @WebServlet("/personalCabinet")
 public class PersonalCabinetServlet extends HttpServlet {
 
@@ -29,7 +32,7 @@ public class PersonalCabinetServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        HttpSession session= SessionCookieManager.getSession(request);
+        HttpSession session= request.getSession();
         UserDto userDto=SessionCookieManager.getLoginedUser(session);
 
 //        if (userDto==null){

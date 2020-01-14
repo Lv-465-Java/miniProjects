@@ -15,6 +15,7 @@ public interface CommentService {
 
     List<CommentDto> getAllLimit();
 
+    List<CommentDto> getByUserId(Long userId);
 
     boolean insert(Comment entity);
 

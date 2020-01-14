@@ -16,7 +16,7 @@ public final class ConnectionManager {
         private static volatile ConnectionManager instance = null;
 
         private DataSource dataSource;
-        // id of thread and connection
+
         private final Map<Long, Connection> connections;
 
         private ConnectionManager() {
