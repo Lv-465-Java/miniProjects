@@ -34,7 +34,7 @@
             <label for="PlannedOutcomeNote" class="floatLabel">Note<span class="asterisk">*</span></label>
             <input id="PlannedOutcomeNote" name="note" type="text" required>
 
-            <label for="pickcolor" class="floatLabel">Category<span class="asterisk">*</span></label>
+            <label for="categorySelector" class="floatLabel">Category<span class="asterisk">*</span></label>
             <jsp:include page="categoryDropdown.jsp"/>
 
             <c:if test="${not empty error}">

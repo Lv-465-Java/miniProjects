@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="button dropdown">
-    <select id="colorselector" class="form-select" name="planned_outcome_id">
+
+    <select id="plannedOutcomeDown" class="form-select" name="planned_outcome_id">
         <option disabled selected value>None</option>
         <c:forEach var="plannedOutcome" items="${plannedOutcomes}">
             <c:choose>
@@ -15,5 +16,15 @@
                 </c:otherwise>
             </c:choose>
         </c:forEach>
+
     </select>
+    <button id="unselect" type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
+
+<script>
+    $("#unselect").click(function(){
+        $("#plannedOutcomeDown").val(0);
+    });
+</script>

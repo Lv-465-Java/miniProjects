@@ -36,7 +36,7 @@
             <label for="categoryDescription" class="floatLabel">Description</label>
             <input id="categoryDescription" name="description" type="text" value="${category.description}"/>
 
-            <label for="financial-type" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
+            <label for="financialTypeSelector" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
             <jsp:include page="financialTypeDropdown.jsp"></jsp:include>
 
             <div class="form-footer">

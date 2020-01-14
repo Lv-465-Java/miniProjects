@@ -488,7 +488,8 @@ select:focus {
     cursor: auto;
 }
 
-/*.table-hover*/
-/*{*/
-/*  font-size: 20px;*/
-/*}*/
+#unselect
+{
+    margin-right: -20px;
+    color: #D43F13;
+}

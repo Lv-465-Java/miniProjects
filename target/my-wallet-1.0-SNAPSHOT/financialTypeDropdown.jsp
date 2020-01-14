@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="button dropdown">
-    <select required id="colorselector" class="form-select" name="financial_type_id">
+    <select required id="financialTypeSelector" class="form-select" name="financial_type_id">
         <c:if test="${empty category || empty record}">
             <option disabled selected value>None</option>
         </c:if>

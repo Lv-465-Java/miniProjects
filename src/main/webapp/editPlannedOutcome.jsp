@@ -36,7 +36,7 @@
             <label for="plannedOutcomeNote" class="floatLabel">Note<span class="asterisk">*</span></label>
             <input id="plannedOutcomeNote" name="note" type="text" required value="${plannedOutcome.note}"/>
 
-            <label for="category" class="floatLabel">Category<span class="asterisk">*</span></label>
+            <label for="categorySelector" class="floatLabel">Category<span class="asterisk">*</span></label>
             <jsp:include page="categoryDropdown.jsp"/>
 
             <div class="form-footer">

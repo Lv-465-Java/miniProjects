@@ -29,9 +29,6 @@
                                    placeholder="yyyy-mm-dd" required>
                         </c:otherwise>
                     </c:choose>
-
-                    <%--                    <input type="text" readonly id="datePickerDate" name="date" class="form-control"--%>
-                    <%--                           placeholder="yyyy-mm-dd" required>--%>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
                     </div>

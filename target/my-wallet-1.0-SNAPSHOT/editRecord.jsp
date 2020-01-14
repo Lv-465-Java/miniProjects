@@ -36,13 +36,13 @@
             <label for="recordNote" class="floatLabel">Note</label>
             <input id="recordNote" name="note" type="text" value="${record.note}"/>
 
-            <label for="financialType" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
+            <label for="financialTypeSelector" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
             <jsp:include page="financialTypeDropdown.jsp"/>
 
-            <label for="category" class="floatLabel">Category<span class="asterisk">*</span></label>
+            <label for="categorySelector" class="floatLabel">Category<span class="asterisk">*</span></label>
             <jsp:include page="categoryDropdown.jsp"/>
 
-            <label for="plannedOutcome" class="floatLabel">Planned Outcome</label>
+            <label for="plannedOutcomeDown" class="floatLabel">Planned Outcome</label>
             <jsp:include page="plannedOutcomesDropdown.jsp"/>
 
             <div class="form-footer">

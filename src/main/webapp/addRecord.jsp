@@ -38,15 +38,15 @@
             <label for="RecordNote" class="floatLabel">Note</label>
             <input id="RecordNote" name="note" type="text">
 
-            <label for="colorselector" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
+            <label for="financialTypeSelector" class="floatLabel">Financial Type<span class="asterisk">*</span></label>
             <jsp:include page="financialTypeDropdown.jsp"/>
 
 
-            <label for="colorselector" class="floatLabel">Category<span class="asterisk">*</span></label>
+            <label for="categorySelector" class="floatLabel">Category<span class="asterisk">*</span></label>
             <jsp:include page="categoryDropdown.jsp"/>
 
 
-            <label for="colorselector" class="floatLabel">Planned Outcomes</label>
+            <label for="plannedOutcomeDown" class="floatLabel">Planned Outcomes</label>
             <jsp:include page="plannedOutcomesDropdown.jsp"/>
 
             <c:if test="${not empty error}">
