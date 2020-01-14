@@ -1,6 +1,5 @@
 package com.softserve.onlineshop.dto;
 
-import com.softserve.onlineshop.entity.Producer;
 import lombok.*;
 
 @Getter
