@@ -12,7 +12,7 @@ public class PlanedOutcomeMapperObjects {
     public static PlanedOutcomeDTO planedOutcomeEntityToPlanedOutcomeDTO(PlanedOutcome entity) {
         return PlanedOutcomeDTO.Builder.aPlanedOutcomeDTO()
                 .withId(entity.getId())
-                .withSum(entity.getSum())
+                .withSum((double) Math.round(entity.getSum()))
                 .withDate(entity.getDate())
                 .withNote(entity.getNote())
                 .withUserId(entity.getUserId())

@@ -65,10 +65,12 @@ public class AddPlanedOutcomeServlet extends HttpServlet {
             planedOutcomeService.create(planedOutcomeDTO);
             resp.sendRedirect(req.getContextPath() + "/planned-outcome-dashboard");
             LOG.info("New Planned Outcome is created. User is redirected to 'Planned outcome Dashboard' Page");
-        } catch (NotCompletedActionException | NumberFormatException e) {
+        } catch (NotCompletedActionException e) {
             doGet(req, resp);
             LOG.info("Error: " + e.getMessage());
-            req.setAttribute("error", ErrorMessage.WRONG_INPUT_FORMAT.getErrorMessage());
+            //ErrorMessage.WRONG_INPUT_FORMAT.getErrorMessage()
+            // | NumberFormatException e
+            req.setAttribute("error", e.getMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.PLANNED_OUTCOME_ADD_PAGE.getViewUrl())

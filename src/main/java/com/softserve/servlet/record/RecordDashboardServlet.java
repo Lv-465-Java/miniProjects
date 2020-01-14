@@ -60,7 +60,6 @@ public class RecordDashboardServlet extends HttpServlet {
 
         req.setAttribute("records", recordService.filter(currentSessionUser.getId(), list));
         req.setAttribute("financialTypes", recordService.getTypes());
-//        req.setAttribute("dfrom", "2020-01-28");
         req.setAttribute("categories", categoryService.getAllByUserId(currentSessionUser.getId()));
         req.setAttribute("plannedOutcomes", planedOutcomeService.getAllByUserId(currentSessionUser.getId()));
         LOG.info("Records are filtered. User is redirected to 'Record Dashboard' Page");

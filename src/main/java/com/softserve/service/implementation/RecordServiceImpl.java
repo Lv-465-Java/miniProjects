@@ -15,7 +15,6 @@ import com.softserve.service.mapper.RecordMapperObjects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -137,8 +136,6 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         planedOutcomeDAO.update(plannedOutcomeId, planedOutcome);
     }
 
-
-    //TO DO!
     public List<RecordDTO> filter(Long userId, List<Object> parameters) {
         List<RecordDTO> dtoList = new ArrayList<>();
         List<Record> list = recordDAO.getAllBySelectedFilters(userId, parameters.toArray());
@@ -147,4 +144,35 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         }
         return dtoList;
     }
+
+//    public Double calculateTotalBalance(List<RecordDTO> recordDTOList) {
+//        List<Long> listOfRecordsIds = new ArrayList<>();
+//        for (RecordDTO recordDTO : recordDTOList) {
+//            listOfRecordsIds.add(recordDTO.getId());
+//        }
+//        List<Record> recordList = getRecordsById(listOfRecordsIds);
+//
+//    }
+//
+//    public List<Record> getRecordsById(List<Long> listOfRecordsIds) {
+//        List<Record> recordList = new ArrayList<>();
+//        for (Long id : listOfRecordsIds) {
+//            Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(id));
+//            recordList.add(record);
+//        }
+//        return recordList;
+//    }
+//
+//    public Double calculateTotalAmount(List<Record> recordList) {
+//        Double sum = 0.00;
+//        for (Record record : recordList) {
+//            if (record.getFinancialTypeId().equals(FinancialType.INCOME.getId())) {
+//                sum+=record.getSum();
+//            } else if (record.getFinancialTypeId().equals(FinancialType.OUTCOME.getId())) {
+//                sum-=record.getSum();
+//            }
+//        }
+//    }
+
+
 }

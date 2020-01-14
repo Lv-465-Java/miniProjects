@@ -19,17 +19,20 @@
     <form action="${pageContext.request.contextPath}/record-dashboard" method="post">
 
         <label for="datePickerDateFrom" class="floatLabel">From</label>
-<%--        <c:if>--%>
-<%--            <input type="date" id="datePickerDateFrom" name="fromDate" value=dfrom>--%>
-
-<%--        </c:if>--%>
-        <input type="date" id="datePickerDateFrom" name="fromDate" value=${"2020-01-28"}>
-
-<%--            <jsp:include page="datePickerFrom.jsp"/>--%>
+        <input type="date" id="datePickerDateFrom" name="fromDate">
 
         <label for="datePickerDateTo" class="floatLabel">To</label>
         <input type="date" id="datePickerDateTo" name="toDate">
-<%--        <jsp:include page="datePickerTo.jsp"/>--%>
+
+        <%--        <c:if>--%>
+        <%--            <input type="date" id="datePickerDateFrom" name="fromDate">--%>
+
+        <%--        </c:if>--%>
+
+        <%--            <jsp:include page="datePickerFrom.jsp"/>--%>
+
+
+        <%--        <jsp:include page="datePickerTo.jsp"/>--%>
 
         <select required id="recordFilterDropdown" class="form-select" name="financial_type_id">
             <option selected disabled>None</option>
@@ -37,16 +40,16 @@
                 <option id="option" value="${financialType.id}">${financialType.typeName}</option>
             </c:forEach>
 
-<%--            <c:forEach var="financialType" items="${financialTypes}">--%>
-<%--                <c:choose>--%>
-<%--                    <c:when test="${financialType.id == record.categoryId}">--%>
-<%--                        <option id="option" value="${financialType.id}" selected>${financialType.title} </option>--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <option id="option" value="${financialType.id}">${financialType.title}</option>--%>
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
-<%--            </c:forEach>--%>
+            <%--            <c:forEach var="financialType" items="${financialTypes}">--%>
+            <%--                <c:choose>--%>
+            <%--                    <c:when test="${financialType.id == record.categoryId}">--%>
+            <%--                        <option id="option" value="${financialType.id}" selected>${financialType.title} </option>--%>
+            <%--                    </c:when>--%>
+            <%--                    <c:otherwise>--%>
+            <%--                        <option id="option" value="${financialType.id}">${financialType.title}</option>--%>
+            <%--                    </c:otherwise>--%>
+            <%--                </c:choose>--%>
+            <%--            </c:forEach>--%>
         </select>
 
         <button type="submit" class="btn btn-secondary" id="formCancelButton">Filter</button>
