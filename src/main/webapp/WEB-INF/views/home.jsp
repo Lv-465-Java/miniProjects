@@ -112,7 +112,9 @@
                                 </div>
 
                                 <div class="card-body text-center">
-                                    <a id="price" href="" class="gray-text">
+                                    <a  href="" class="gray-text">
+                                        <h5>${phone.year}</h5>
+                                        <h5>${phone.id}</h5>
                                         <h5>${phone.price}</h5>
                                     </a>
                                     <h5>
@@ -122,7 +124,7 @@
                                         </strong>
                                     </h5>
                                     <h4 class="font-weight-bold blue-text">
-                                        <strong>${phone.price}$</strong>
+                                        <strong>$</strong>
                                     </h4>
                                 </div>
                                 <form action="${pageContext.request.contextPath}/product-page">

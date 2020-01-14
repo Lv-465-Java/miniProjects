@@ -33,7 +33,7 @@ public class ProductPageServlet extends HttpServlet {
 //        request.setAttribute("color", phoneService.getById(phoneId).getColor());
 //        request.setAttribute("screen-diagonal", phoneService.getById(phoneId).getScreenDiagonal());
 //        request.setAttribute("internal-memory", phoneService.getById(phoneId).getInternalMemory());
-//        request.getRequestDispatcher("/WEB-INF/views/product-page.jsp").include(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/product-page.jsp").include(request, response);
     }
 
     @Override

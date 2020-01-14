@@ -26,8 +26,10 @@
         <div class="container dark-gray-text mt-5">
             <div class="row wow fadeIn">
                 <div class="col-md-6 mb-4">
-                    <img src="https://worldwide.com.ua/wp-content/uploads/2017/11/supreme-the-north-face-by-any-means-necessary-7-1500x1000-925x896.jpg"
+                    <img src="https://pcshop.ua/image/cache/catalog/tovar/1153243-1024x768.jpg"
                          alt="tnf jacket" class="img-fluid">
+<%--                    <img src="https://worldwide.com.ua/wp-content/uploads/2017/11/supreme-the-north-face-by-any-means-necessary-7-1500x1000-925x896.jpg"--%>
+<%--                         alt="tnf jacket" class="img-fluid">--%>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="p-4">

@@ -130,6 +130,28 @@
 </form>
 <%--    <jsp:include page="/fragments/drop-producers.jsp"/>--%>
 <jsp:include page="/fragments/footer.jsp"/>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    const $imgInput = $(`#input-file-now`);
+    function appGetBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+    }
+    appGetBase64($imgInput[0].files[0])
+        .then(img => data.photo = img)
+        .catch()
+        .finally(_ => {
+                $.ajax({
+                    url: `add-phone`,
+                    type: 'PUT',
+                    data: JSON.stringify(data)
+                })
+        })
+    };
+</script>
 </body>
 </html>
