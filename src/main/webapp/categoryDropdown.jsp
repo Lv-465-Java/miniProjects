@@ -12,6 +12,9 @@
                 <c:when test="${category.id == record.categoryId}">
                     <option id="option${category.id}" value="${category.id}" selected>${category.title} </option>
                 </c:when>
+                <c:when test="${category.id == plannedOutcome.categoryId}">
+                    <option id="option${category.id}" value="${category.id}" selected>${category.title} </option>
+                </c:when>
                 <c:otherwise>
                     <option id="option${category.id}" value="${category.id}">${category.title}</option>
                 </c:otherwise>

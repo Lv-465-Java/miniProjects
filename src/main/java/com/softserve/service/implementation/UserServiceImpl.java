@@ -55,10 +55,8 @@ public class UserServiceImpl implements CrudService<UserDTO> {
         return UserMapperObjects.userEntityToUserDTO(user.get());
     }
 
-
-    //test on web!
     @Override
-    public boolean update(Long id, UserDTO userDTO) throws NoSuchEntityException{
+    public boolean update(Long id, UserDTO userDTO) throws NoSuchEntityException {
         User user = UserMapperObjects.verifyIfUserIsPresent(userDAOImpl.getById(id));
         if (userDTO.getFirstName() != null) {
             user.setFirstName(userDTO.getFirstName());
@@ -97,7 +95,6 @@ public class UserServiceImpl implements CrudService<UserDTO> {
     }
 
 
-
     @Override
     public boolean delete(Long id) {
         if (!userDAOImpl.delete(id)) {
@@ -106,7 +103,4 @@ public class UserServiceImpl implements CrudService<UserDTO> {
         return true;
     }
 
-    public boolean logout(Long sessionId) {
-        return true;
-    }
 }

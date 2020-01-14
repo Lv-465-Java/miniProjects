@@ -19,7 +19,7 @@
             <div id="filterDate2">
 
                 <div class="input-group date" data-date-format="dd.mm.yyyy">
-                    <input type="text" readonly id="datePickerDate" name="date" class="form-control" required>
+                    <input type="text" readonly id="datePickerDate" name="date" class="form-control" placeholder="yyyy-mm-dd" required>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
                     </div>
@@ -30,11 +30,9 @@
     </div>
 </div>
 
-
 <script>
     $('.input-group.date').datepicker({format: "yyyy-mm-dd"});
 </script>
-
 
 </body>
 </html>

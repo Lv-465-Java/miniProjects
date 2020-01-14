@@ -23,6 +23,8 @@
 
         <jsp:include page="/filter.jsp"/>
 
+            <p id="totalBalance">Total ${totalBalance}</p>
+
         <div class="addRecordButton">
             <p class="reference" id="profileAddCategory"><a href="${pageContext.request.contextPath}/add-record">Add new
                 record</a></p>

@@ -68,9 +68,15 @@ public class AddPlanedOutcomeServlet extends HttpServlet {
         } catch (NotCompletedActionException e) {
             doGet(req, resp);
             LOG.info("Error: " + e.getMessage());
-            //ErrorMessage.WRONG_INPUT_FORMAT.getErrorMessage()
-            // | NumberFormatException e
             req.setAttribute("error", e.getMessage());
+            getServletConfig()
+                    .getServletContext()
+                    .getRequestDispatcher(View.PLANNED_OUTCOME_ADD_PAGE.getViewUrl())
+                    .forward(req, resp);
+        } catch (NumberFormatException y) {
+            doGet(req, resp);
+            LOG.info("Error: " + y.getMessage());
+            req.setAttribute("error", ErrorMessage.WRONG_INPUT_FORMAT.getErrorMessage());
             getServletConfig()
                     .getServletContext()
                     .getRequestDispatcher(View.PLANNED_OUTCOME_ADD_PAGE.getViewUrl())

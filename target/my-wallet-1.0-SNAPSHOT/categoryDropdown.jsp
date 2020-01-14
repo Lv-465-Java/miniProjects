@@ -4,14 +4,15 @@
 
 <div class="button dropdown">
     <select required id="colorselector" class="form-select" name="category_id">
-
         <c:if test="${empty record || empty plannedOutcome}">
             <option disabled selected value>None</option>
         </c:if>
-
         <c:forEach var="category" items="${categories}">
             <c:choose>
                 <c:when test="${category.id == record.categoryId}">
+                    <option id="option${category.id}" value="${category.id}" selected>${category.title} </option>
+                </c:when>
+                <c:when test="${category.id == plannedOutcome.categoryId}">
                     <option id="option${category.id}" value="${category.id}" selected>${category.title} </option>
                 </c:when>
                 <c:otherwise>

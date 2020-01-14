@@ -5,6 +5,7 @@ import com.softserve.dto.PlanedOutcomeDTO;
 import com.softserve.entity.PlanedOutcome;
 import com.softserve.exception.NoSuchEntityException;
 
+import java.text.DecimalFormat;
 import java.util.Optional;
 
 public class PlanedOutcomeMapperObjects {
@@ -12,7 +13,10 @@ public class PlanedOutcomeMapperObjects {
     public static PlanedOutcomeDTO planedOutcomeEntityToPlanedOutcomeDTO(PlanedOutcome entity) {
         return PlanedOutcomeDTO.Builder.aPlanedOutcomeDTO()
                 .withId(entity.getId())
-                .withSum((double) Math.round(entity.getSum()))
+//                .withSum(Double.valueOf(String.format("%.1f", entity.getSum())))
+                //Math.floor(x * 100) / 100
+//                .withSum(Math.floor((entity.getSum() * 100) / 100))
+                .withSum(entity.getSum())
                 .withDate(entity.getDate())
                 .withNote(entity.getNote())
                 .withUserId(entity.getUserId())

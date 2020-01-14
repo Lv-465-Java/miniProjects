@@ -145,34 +145,33 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         return dtoList;
     }
 
-//    public Double calculateTotalBalance(List<RecordDTO> recordDTOList) {
-//        List<Long> listOfRecordsIds = new ArrayList<>();
-//        for (RecordDTO recordDTO : recordDTOList) {
-//            listOfRecordsIds.add(recordDTO.getId());
-//        }
-//        List<Record> recordList = getRecordsById(listOfRecordsIds);
-//
-//    }
-//
-//    public List<Record> getRecordsById(List<Long> listOfRecordsIds) {
-//        List<Record> recordList = new ArrayList<>();
-//        for (Long id : listOfRecordsIds) {
-//            Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(id));
-//            recordList.add(record);
-//        }
-//        return recordList;
-//    }
-//
-//    public Double calculateTotalAmount(List<Record> recordList) {
-//        Double sum = 0.00;
-//        for (Record record : recordList) {
-//            if (record.getFinancialTypeId().equals(FinancialType.INCOME.getId())) {
-//                sum+=record.getSum();
-//            } else if (record.getFinancialTypeId().equals(FinancialType.OUTCOME.getId())) {
-//                sum-=record.getSum();
-//            }
-//        }
-//    }
+    public Double calculateTotalBalance(List<RecordDTO> recordDTOList) {
+        List<Long> listOfRecordsIds = new ArrayList<>();
+        for (RecordDTO recordDTO : recordDTOList) {
+            listOfRecordsIds.add(recordDTO.getId());
+        }
+        return getRecordsById(listOfRecordsIds);
+    }
 
+    private Double getRecordsById(List<Long> listOfRecordsIds) {
+        List<Record> recordList = new ArrayList<>();
+        for (Long id : listOfRecordsIds) {
+            Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(id));
+            recordList.add(record);
+        }
+        return calculateTotalAmount(recordList);
+    }
 
+    private
+    Double calculateTotalAmount(List<Record> recordList) {
+        Double sum = 0.00;
+        for (Record record : recordList) {
+            if (record.getFinancialTypeId().equals(FinancialType.INCOME.getId())) {
+                sum += record.getSum();
+            } else if (record.getFinancialTypeId().equals(FinancialType.OUTCOME.getId())) {
+                sum -= record.getSum();
+            }
+        }
+        return sum;
+    }
 }

@@ -2,6 +2,7 @@ package com.softserve.servlet.record;
 
 import com.softserve.constant.ServletResponseParameter;
 import com.softserve.constant.View;
+import com.softserve.dto.RecordDTO;
 import com.softserve.dto.UserDTO;
 import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.implementation.CategoryServiceImpl;
@@ -44,10 +45,15 @@ public class RecordDashboardServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDTO currentSessionUser = userSession.retrieveUserIdFromSession(req);
 
-        req.setAttribute("records", recordService.getAllByUserId(currentSessionUser.getId()));
+        List<RecordDTO> recordDTOList = recordService.getAllByUserId(currentSessionUser.getId());
+        req.setAttribute("records", recordDTOList);
         req.setAttribute("financialTypes", recordService.getTypes());
         req.setAttribute("categories", categoryService.getAllByUserId(currentSessionUser.getId()));
         req.setAttribute("plannedOutcomes", planedOutcomeService.getAllByUserId(currentSessionUser.getId()));
+        req.setAttribute("totalBalance", recordService.calculateTotalBalance(recordDTOList));
+        LOG.info("ROUND TEST " + planedOutcomeService.getAllByUserId(currentSessionUser.getId()));
+
+        LOG.info("balance sum " + recordService.calculateTotalBalance(recordDTOList));
         req.getRequestDispatcher(View.RECORD_DASHBOARD_PAGE.getViewUrl()).include(req, resp);
         LOG.info("'Record Dashboard' Page is loaded");
     }
@@ -56,12 +62,14 @@ public class RecordDashboardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDTO currentSessionUser = userSession.retrieveUserIdFromSession(req);
 
-        List<Object> list = filterUtil.filterParser(req);
+        List<Object> parameterList = filterUtil.filterParser(req);
+        List<RecordDTO> filteredRecordDTOList = recordService.filter(currentSessionUser.getId(), parameterList);
 
-        req.setAttribute("records", recordService.filter(currentSessionUser.getId(), list));
+        req.setAttribute("records", filteredRecordDTOList);
         req.setAttribute("financialTypes", recordService.getTypes());
         req.setAttribute("categories", categoryService.getAllByUserId(currentSessionUser.getId()));
         req.setAttribute("plannedOutcomes", planedOutcomeService.getAllByUserId(currentSessionUser.getId()));
+        req.setAttribute("totalBalance", recordService.calculateTotalBalance(filteredRecordDTOList));
         LOG.info("Records are filtered. User is redirected to 'Record Dashboard' Page");
         getServletConfig()
                 .getServletContext()

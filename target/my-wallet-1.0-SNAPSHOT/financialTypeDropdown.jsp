@@ -4,11 +4,9 @@
 
 <div class="button dropdown">
     <select required id="colorselector" class="form-select" name="financial_type_id">
-
         <c:if test="${empty category || empty record}">
             <option disabled selected value>None</option>
         </c:if>
-
         <c:forEach var="financialType" items="${financialTypes}">
             <c:choose>
                 <c:when test="${financialType.id == category.financialTypeId}">

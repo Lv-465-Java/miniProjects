@@ -79,9 +79,17 @@ public class AddRecordServlet extends HttpServlet {
             recordService.create(recordDTO);
             resp.sendRedirect(req.getContextPath() + "/record-dashboard");
             LOG.info("New Record is created. User is redirected to 'Record Dashboard' Page");
-        } catch (NotCompletedActionException | NumberFormatException e) {
+        } catch (NotCompletedActionException e) {
             doGet(req, resp);
             LOG.info("Error: " + e.getMessage());
+            req.setAttribute("error", e.getMessage());
+            getServletConfig()
+                    .getServletContext()
+                    .getRequestDispatcher(View.RECORD_ADD_PAGE.getViewUrl())
+                    .forward(req, resp);
+        } catch (NumberFormatException y) {
+            doGet(req, resp);
+            LOG.info("Error: " + y.getMessage());
             req.setAttribute("error", ErrorMessage.WRONG_INPUT_FORMAT.getErrorMessage());
             getServletConfig()
                     .getServletContext()
