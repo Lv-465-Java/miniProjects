@@ -30,7 +30,7 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public boolean updateById(ModelDto modelDto, Long id) {
         return modelDao.updateById(getModel(getById(id), modelDto));
-    }
+}
 
     private Model getModel(Model model, ModelDto modelDto) {
         if (model == null) {

@@ -56,7 +56,7 @@
                         </p>
                         <p>Year</p>
                         <div>
-                            <p class="lead">${phoneDto.year}$</p>
+                            <p class="lead">${phoneDto.year}</p>
                         </div>
                         <p>Color</p>
                         <div>

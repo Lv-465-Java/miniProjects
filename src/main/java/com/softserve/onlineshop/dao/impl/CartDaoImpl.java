@@ -9,6 +9,7 @@ import com.softserve.onlineshop.entity.SqlQueries;
 import com.softserve.onlineshop.util.JdbcUtil;
 
 import java.sql.Connection;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class CartDaoImpl extends CrudDaoImpl<Cart> {
@@ -28,7 +29,7 @@ public class CartDaoImpl extends CrudDaoImpl<Cart> {
 
     @Override
     protected String[] getUpdatedFields(Cart cart) {
-        String[] fields = new String[1];
+        String[] fields = new String[2];
         fields[0] = cart.getDateOfBuying().toString();
         fields[1] = cart.getPhoneId().toString();
         return fields;
@@ -46,10 +47,13 @@ public class CartDaoImpl extends CrudDaoImpl<Cart> {
         return JdbcUtil.getEntityList(connection, sqlQueries.get(SqlQueries.GET_BY_USER_ID).toString(), mapper, userId);
     }
 
-    public boolean updateStateByPhoneId(Object... args) {
-        Connection connection = ConnectionManager.getInstance().getConnection();
-        int executeQuery = JdbcUtil.update(connection, sqlQueries.get(SqlQueries.UPDATE_BY_ID).toString(), args);
-        return executeQuery > 0;
+    public static void main(String[] args) {
+        CartDaoImpl cartDao = new CartDaoImpl();
+        Cart cart = new Cart(3L, 1L);
+        cart.setDateOfBuying(LocalDateTime.now());
+//    System.out.println(cartDao.updateById(cart))
+
+//    System.out.println(cartDao.insert(cart));
     }
 
 }
