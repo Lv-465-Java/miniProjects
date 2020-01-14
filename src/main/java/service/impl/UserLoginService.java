@@ -4,6 +4,7 @@ package service.impl;
 import db.ConnectionManager;
 import dto.UserDto;
 import dto.UserLoginDto;
+import entity.Role;
 import entity.User;
 import exception.Message;
 import exception.NotFoundException;
@@ -52,12 +53,4 @@ public class UserLoginService implements Message {
         return userService.getByField(userLoginDto.getUsername());
     }
 
-    public boolean isUsernameUnique(String username){
-        List<String> list= userService.getAll().stream().map(UserDto::getUsername).filter(u->(u.equals(username))).collect(Collectors.toList());
-        if(list.isEmpty()){
-            throw new NotFoundException(String.format(USERNAME_NOT_FOUND_EXCEPTION_MESSAGE,username));
-        } else {
-            return true;
-        }
-    }
 }

@@ -20,6 +20,7 @@ public class UserDto {
     private String email;
     private Role userRole;
 
+
      public static void main(String[] args) {
         // User user=new  User("name4","last4","username4","email5","password6");
          UserDaoImpl userDao=new UserDaoImpl();
@@ -35,9 +36,9 @@ public class UserDto {
          System.out.println();
 
          CommentDaoImpl commentDao=new CommentDaoImpl();
-       // Comment comment=Comment.builder().textOfComment("yesyes").placeId(2L).userId(1L).build();
+        Comment comment=Comment.builder().textOfComment("yesyes").placeId(2L).userId(1L).build();
        // Comment comment=new Comment(4L,"yesyes",2L,1L);
-        // System.out.println(commentDao.insert(comment));
+         System.out.println(commentDao.insert(comment));
         // System.out.println(commentDao.getByField("2020-01-03 19:29:36"));
         // System.out.println(commentDao.updateByEntity(comment));
 //         System.out.println();

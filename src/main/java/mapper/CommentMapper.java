@@ -8,6 +8,7 @@ public class CommentMapper {
     public static CommentDto getCommentDto(Comment comment) {
         CommentDto commentDto=new CommentDto();
 
+        commentDto.setId(comment.getId());
         commentDto.setTextOfComment(comment.getTextOfComment());
         commentDto.setDateOfComment(comment.getDateOfComment());
         commentDto.setUserId(comment.getUserId());

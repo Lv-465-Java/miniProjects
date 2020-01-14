@@ -18,39 +18,30 @@
 <div class="wrapper container">
     <jsp:include page="/fragments/header.jsp"/>
 
-    <nav class="navbar navbar-default">
-
-        <ul class="nav navbar-nav">
-            <div class="row">
-                <div class="col-md-4">
-                    <li><!-- class="nav-item">-->
-                        <a class="nav-link" href="#">${userDto.username}</a>
-                    </li>
-                </div>
-                <div class="col-md-4">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Personal cabinet</a>
-                    </li>
-                </div>
-                <div class="col-md-4">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/login">Log out</a>
-                    </li>
-                </div>
+    <div class="nav navbar-nav">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class= col-3>
+                <a class="nav-link" href="#">${userDto.username}</a>
             </div>
-        </ul>
-    </nav>
+            <div class="col-5">
+                <a class="nav-link" href="${pageContext.request.contextPath}/personalCabinet">Personal cabinet</a>
+            </div>
+            <div class="col-3">
+                <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+            </div>
+        </div>
+    </div>
 
 
     <div class="heading"></div>
-
     <form action="${pageContext.request.contextPath}/uploadPoster" method="post" enctype="multipart/form-data" name="poster">
     <div class="row">
         <div class="col-4">
             <input type="file" name="file"/>
             <input type="submit" value="Upload">
         </div>
-        <img src="${pageContext.request.contextPath}/posters/${fileName}">
+        <img src="${pageContext.request.contextPath}/posters/${fileName}" alt="poster" height="100" width="250">
     </div>
     </form>
 
@@ -94,12 +85,12 @@
 
         <section class="col-md-9">
             <div class="jumbotron">
-                <!-- <blockquote>
-                  <p>
-                    Quet
-                  </p>
-                  <small> Author</small>
-                </blockquote> -->
+                <blockquote>
+                    <p>
+                        The world is a book and those who do not travel read only a page
+                    </p>
+                    <small>Saint Augustine</small>
+                </blockquote>
             </div>
             <div class="container features">
                 <div class="row">

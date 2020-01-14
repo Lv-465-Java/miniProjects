@@ -1,9 +1,7 @@
 package service.impl;
 
-import dao.DaoCRUD;
 import dao.impl.TripDaoImpl;
 import dto.TripDto;
-import entity.Place;
 import entity.Trip;
 import exception.Message;
 import exception.NotFoundException;
@@ -11,24 +9,23 @@ import mapper.TripMapper;
 import service.TransportService;
 import service.TripService;
 
-import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
 public class TripServiceImpl implements TripService, Message {
 
-    private  DaoCRUD<Trip> daoCRUD;
+    private TripDaoImpl tripDao;
     private  TransportService transportService;
 
     public TripServiceImpl() {
-        daoCRUD=new TripDaoImpl();
+        tripDao=new TripDaoImpl();
         transportService=  new TransportServiceImpl();
     }
 
     @Override
     public TripDto getById(Long id) {
-        Trip trip=daoCRUD.getById(id)
+        Trip trip=tripDao.getById(id)
                 .orElseThrow(()->new NotFoundException(String.format(TRIP_NOT_FOUND_EXCEPTION_MESSAGE,id)));
 
         return TripMapper.getTripDto(trip);
@@ -36,7 +33,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public TripDto getByField(String text) {
-        Trip trip = daoCRUD.getByField(text)
+        Trip trip = tripDao.getByField(text)
                 .orElseThrow(()-> new NotFoundException(String.format(TRIP_DATE_NOT_FOUND_EXCEPTION_MESSAGE,text)));
 
         return TripMapper.getTripDto(trip);
@@ -44,7 +41,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public List<TripDto> getAll() {
-        List<Trip> list=daoCRUD.getAll();
+        List<Trip> list=tripDao.getAll();
 
         List<TripDto> tripDtoList= list.stream()
                 .map(TripMapper::getTripDto)
@@ -57,7 +54,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public List<TripDto> getAllLimit() {
-        List<Trip> list=daoCRUD.getAllLimit();
+        List<Trip> list=tripDao.getAllLimit();
 
         List<TripDto> tripDtoList= list.stream()
                 .map(TripMapper::getTripDto)
@@ -70,7 +67,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public List<TripDto> getByUserId(Long userId) {
-        List<Trip> list=daoCRUD.getByUserId(userId);
+        List<Trip> list=tripDao.getByUserId(userId);
 
         List<TripDto> tripDtoList= list.stream()
                 .map(TripMapper::getTripDto)
@@ -83,7 +80,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public boolean insert(Trip trip) {
-        if(daoCRUD.insert(trip)){
+        if(tripDao.insert(trip)){
             return true;
         } else {
             throw new NotFoundException(CREATE_TRIP_EXCEPTION_MESSAGE);
@@ -92,7 +89,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public boolean updateByEntity(Trip trip) {
-        if(daoCRUD.updateByEntity(trip)){
+        if(tripDao.updateByEntity(trip)){
             return true;
         } else {
             throw new NotFoundException(UPDATE_TRIP_EXCEPTION_MESSAGE);
@@ -101,7 +98,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public boolean updateByField(String text, String textCondition) {
-        if(daoCRUD.updateByField(text, textCondition)){
+        if(tripDao.updateByField(text, textCondition)){
             return  true;
         }  else {
             throw new NotFoundException(UPDATE_TRIP_EXCEPTION_MESSAGE);
@@ -110,7 +107,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public boolean deleteById(Long id) {
-        if(daoCRUD.deleteById(id)){
+        if(tripDao.deleteById(id)){
             return true;
         } else {
             throw new NotFoundException(DELETE_TRIP_EXCEPTION_MESSAGE);
@@ -119,7 +116,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public boolean deleteByFieldName(String textCondition) {
-        if(daoCRUD.deleteByFieldName(textCondition)){
+        if(tripDao.deleteByFieldName(textCondition)){
             return true;
         } else {
             throw new NotFoundException(DELETE_TRIP_EXCEPTION_MESSAGE);
@@ -128,7 +125,7 @@ public class TripServiceImpl implements TripService, Message {
 
     @Override
     public boolean delete(Trip trip) {
-        if(daoCRUD.delete(trip)){
+        if(tripDao.delete(trip)){
             return true;
         } else {
             throw new NotFoundException(DELETE_TRIP_EXCEPTION_MESSAGE);

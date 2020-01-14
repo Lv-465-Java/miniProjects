@@ -6,7 +6,7 @@ import entity.Comment.CommentQueries;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public final class CommentDaoImpl extends DaoCRUDAbsImpl<Comment> {
+public class CommentDaoImpl extends DaoCRUDAbsImpl<Comment> {
 
     DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 

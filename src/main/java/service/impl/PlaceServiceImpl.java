@@ -1,6 +1,5 @@
 package service.impl;
 
-import dao.DaoCRUD;
 import dao.impl.PlaceDaoImpl;
 import dto.PlaceDto;
 import entity.Place;
@@ -16,15 +15,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PlaceServiceImpl implements PlaceService, Message {
 
-    private final DaoCRUD<Place> daoCRUD;
+    private final PlaceDaoImpl placeDao;
 
     public PlaceServiceImpl() {
-        daoCRUD= new PlaceDaoImpl();
+        placeDao= new PlaceDaoImpl();
     }
 
     @Override
     public PlaceDto getById(Long id) {
-        Place place= daoCRUD.getById(id)
+        Place place= placeDao.getById(id)
                 .orElseThrow(()->new NotFoundException(String.format(PLACE_NOT_FOUND_EXCEPTION_MESSAGE,id)));
 
         return PlaceMapper.getPlaceDto(place);
@@ -32,7 +31,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public PlaceDto getByField(String text) {
-        Place place = daoCRUD.getByField(text)
+        Place place = placeDao.getByField(text)
                 .orElseThrow(()-> new NotFoundException(String.format(PLACENAME_NOT_FOUND_EXCEPTION_MESSAGE,text)));
 
         return PlaceMapper.getPlaceDto(place);
@@ -40,7 +39,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public List<PlaceDto> getAll() {
-        List<Place> list = daoCRUD.getAll();
+        List<Place> list = placeDao.getAll();
 
         List<PlaceDto>placeDtoList= list.stream()
                 .map(PlaceMapper::getPlaceDto)
@@ -52,7 +51,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public List<PlaceDto> getAllLimit() {
-        List<Place> list=daoCRUD.getAllLimit();
+        List<Place> list=placeDao.getAllLimit();
 
         List<PlaceDto>placeDtoList= list.stream()
                 .map(PlaceMapper::getPlaceDto)
@@ -65,7 +64,6 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public List<PlaceDto> getByTemplate(String template) {
-        PlaceDaoImpl placeDao=new PlaceDaoImpl();
         List<Place> list=placeDao.getByTemplate(template);
 
         List<PlaceDto>placeDtoList= list.stream()
@@ -79,7 +77,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public boolean insert(Place place) {
-        if (daoCRUD.insert(place)){
+        if (placeDao.insert(place)){
             return true;
         } else {
             throw new NotFoundException(CREATE_PLACE_EXCEPTION_MESSAGE);
@@ -88,7 +86,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public boolean updateByEntity(Place place) {
-        if (daoCRUD.updateByEntity(place)){
+        if (placeDao.updateByEntity(place)){
             return true;
         } else {
             throw new NotFoundException(UPDATE_PLACE_EXCEPTION_MESSAGE);
@@ -97,7 +95,7 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public boolean updateByField(String text, String textCondition) {
-        if (daoCRUD.updateByField(text, textCondition)){
+        if (placeDao.updateByField(text, textCondition)){
             return true;
         } else {
             throw new NotFoundException(UPDATE_PLACE_EXCEPTION_MESSAGE);
@@ -106,21 +104,16 @@ public class PlaceServiceImpl implements PlaceService, Message {
 
     @Override
     public boolean deleteById(Long id) {
-        if(daoCRUD.deleteById(id)){
+        if(placeDao.deleteById(id)){
             return true;
         } else {
             throw new NotFoundException(DELETE_PLACE_EXCEPTION_MESSAGE);
         }
     }
-//
-//    @Override
-//    public boolean deleteByFieldName(String textCondition) {
-//        return daoCRUD.deleteByFieldName(textCondition);
-//    }
 
     @Override
     public boolean delete(Place place) {
-        if (daoCRUD.delete(place)){
+        if (placeDao.delete(place)){
             return true;
         } else {
             throw new NotFoundException(DELETE_PLACE_EXCEPTION_MESSAGE);

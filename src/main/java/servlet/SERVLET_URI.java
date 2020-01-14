@@ -4,7 +4,8 @@ public enum SERVLET_URI {
 
     LOGIN_SERVLET("/login"),
     REGISTRATION_SERVLET("/registration"),
-    INITIALIZER_SERVLET("/initDB");
+    INITIALIZER_SERVLET("/initDB"),
+    EDIT_COMMENT_SERVLET("/editComment");
 
 
     private String uri;

@@ -1,6 +1,5 @@
 package service.impl;
 
-import dao.DaoCRUD;
 import dao.impl.UserDaoImpl;
 import dto.UserDto;
 import entity.Role;
@@ -16,15 +15,15 @@ import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService, Message {
 
-    private  DaoCRUD<User> daoCRUD;
+    private  UserDaoImpl userDao;
 
     public UserServiceImpl() {
-        this.daoCRUD = new UserDaoImpl();
+        userDao = new UserDaoImpl();
     }
 
     @Override
     public UserDto getById(Long id) {
-        User user = daoCRUD.getById(id)
+        User user = userDao.getById(id)
                 .orElseThrow(() -> new NotFoundException(String.format(USER_NOT_FOUND_EXCEPTION_MESSAGE, id)));
         return UserMapper.getUserDto(user);
     }
@@ -32,7 +31,7 @@ public class UserServiceImpl implements UserService, Message {
     @Override
     public UserDto getByField(String text) {
 
-        User user = daoCRUD.getByField(text)
+        User user = userDao.getByField(text)
                 .orElseThrow(()-> new NotFoundException(String.format(USERNAME_NOT_FOUND_EXCEPTION_MESSAGE,text)));
 
         return UserMapper.getUserDto(user);
@@ -41,7 +40,7 @@ public class UserServiceImpl implements UserService, Message {
     @Override
     public List<UserDto> getAll() {
 
-        List<User> list = daoCRUD.getAll();
+        List<User> list = userDao.getAll();
 
         List<UserDto>dtoList= list.stream()
                 .map(UserMapper::getUserDto)
@@ -55,7 +54,7 @@ public class UserServiceImpl implements UserService, Message {
     @Override
     public List<UserDto> getAllLimit() {
 
-        List<User> list = daoCRUD.getAllLimit();
+        List<User> list = userDao.getAllLimit();
 
         List<UserDto>dtoList=  list.stream()
                 .map(UserMapper::getUserDto)
@@ -69,7 +68,7 @@ public class UserServiceImpl implements UserService, Message {
     @Override
     public boolean insert(User user) {
 
-        if(daoCRUD.insert(user)){
+        if(userDao.insert(user)){
             return true;
         } else {
             throw new NotFoundException(CREATE_USER_EXCEPTION_MESSAGE);
@@ -79,7 +78,7 @@ public class UserServiceImpl implements UserService, Message {
     @Override
     public boolean updateByEntity(User user) {
 
-        if(daoCRUD.updateByEntity(user)){
+        if(userDao.updateByEntity(user)){
             return true;
         } throw new NotFoundException(UPDATE_USER_EXCEPTION_MESSAGE);
     }
@@ -87,7 +86,7 @@ public class UserServiceImpl implements UserService, Message {
     @Override
     public boolean updateByField(String text, String textCondition) {
 
-        if(daoCRUD.updateByField(text, textCondition)){
+        if(userDao.updateByField(text, textCondition)){
             return true;
         } throw new NotFoundException(UPDATE_USER_EXCEPTION_MESSAGE);
     }
@@ -95,7 +94,7 @@ public class UserServiceImpl implements UserService, Message {
     @Override
     public boolean deleteById(Long id) {
 
-        if(daoCRUD.deleteById(id)){
+        if(userDao.deleteById(id)){
             return true;
         } throw new NotFoundException(DELETE_USER_EXCEPTION_MESSAGE);
     }
@@ -108,23 +107,22 @@ public class UserServiceImpl implements UserService, Message {
     @Override
     public boolean delete(User user) {
 
-        if(daoCRUD.delete(user)){
+        if(userDao.delete(user)){
             return true;
         } throw new NotFoundException(DELETE_USER_EXCEPTION_MESSAGE);
     }
-
 
     public boolean isRoleAdmin(User user){
         return user.getUserRole().equals(Role.ADMIN) & user.getPassword().equals("admin");
     }
 
-//    public boolean isUsernameUnique(String username){
-//       List<String> list= daoCRUD.getAll().stream().map(User::getUsername).filter(u->(u.equals(username))).collect(Collectors.toList());
-//        if(list.isEmpty()){
-//            throw new NotFoundException(String.format(USERNAME_NOT_FOUND_EXCEPTION_MESSAGE,username));
-//        } else {
-//            return true;
-//        }
-//    }
+    public boolean isUsernameUnique(String username){
+        List<String> list= userDao.getAll().stream().map(User::getUsername).filter(u->(u.equals(username))).collect(Collectors.toList());
+        if(list.isEmpty()){
+            return true;
+        } else {
+            throw new NotFoundException(String.format(USERNAME_NOT_FOUND_EXCEPTION_MESSAGE,username));
+        }
+    }
 
 }

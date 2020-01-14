@@ -23,6 +23,7 @@ public class PlaceMapper {
     public static Place getPlaceEntity(PlaceDto placeDto) {
         Place place=new Place();
         place.setId(placeDto.getId());
+        place.setCountry(placeDto.getCountry());
         place.setTown(placeDto.getTown());
         place.setName(placeDto.getName());
         //place.setDescription(d);

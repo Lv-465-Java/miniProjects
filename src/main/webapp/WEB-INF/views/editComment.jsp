@@ -14,6 +14,11 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css"/>
 </head>
 <body>
+<c:if test="${error ne null}">
+    <p class="text-center">
+        <font color="red">${error}</font>
+    </p>
+</c:if>
 <c:if test="${not empty comment}">
     <form method="POST" action="${pageContext.request.contextPath}/editComment">
     <input type="hidden" name="id" value="${comment.id}" />

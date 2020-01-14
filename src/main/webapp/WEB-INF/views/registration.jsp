@@ -14,6 +14,11 @@
     <script src="<c:url value="/javascript/checkPassword.js"/>"></script>
 </head>
 <body>
+<c:if test="${error ne null}">
+    <p class="text-center">
+        <font color="red">${error}</font>
+    </p>
+</c:if>
 <div class="login-wrap">
     <div class="login-html">
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>

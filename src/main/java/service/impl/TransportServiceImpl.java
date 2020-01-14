@@ -15,24 +15,24 @@ import java.util.stream.Collectors;
 
 public class TransportServiceImpl implements TransportService, Message {
 
-    private DaoCRUD<Transport> daoCRUD;
+    private TransportDaoImpl transportDao;
 
     public TransportServiceImpl() {
-        daoCRUD=new TransportDaoImpl();
+        transportDao=new TransportDaoImpl();
     }
 
 
     @Override
     public Transport getById(Long id) {
 
-        return daoCRUD.getById(id)
+        return transportDao.getById(id)
                 .orElseThrow(()->new NotFoundException(String.format(TRANSPORT_NOT_FOUND_EXCEPTION_MESSAGE,id)));
     }
 
 
     @Override
     public List<Transport> getAll() {
-        List<Transport> list=daoCRUD.getAll();
+        List<Transport> list=transportDao.getAll();
 
         if(list.isEmpty()){
             throw new NotFoundException(EMPTY_TRANSPORT_LIST_EXCEPTION_MESSAGE);
@@ -41,7 +41,7 @@ public class TransportServiceImpl implements TransportService, Message {
 
     @Override
     public boolean insert(Transport transport) {
-        if(daoCRUD.insert(transport)){
+        if(transportDao.insert(transport)){
             return true;
         } else {
             throw  new NotFoundException(CREATE_TRANSPORT_EXCEPTION_MESSAGE);
@@ -50,7 +50,7 @@ public class TransportServiceImpl implements TransportService, Message {
 
     @Override
     public boolean updateByEntity(Transport transport) {
-        if (daoCRUD.updateByEntity(transport)){
+        if (transportDao.updateByEntity(transport)){
             return true;
         } else {
             throw new NotFoundException(UPDATE_TRANSPORT_EXCEPTION_MESSAGE);
@@ -60,7 +60,7 @@ public class TransportServiceImpl implements TransportService, Message {
 
     @Override
     public boolean deleteById(Long id) {
-        if(daoCRUD.deleteById(id)){
+        if(transportDao.deleteById(id)){
             return true;
         } else {
             throw new NotFoundException(DELETE_TRANSPORT_EXCEPTION_MESSAGE);
@@ -69,7 +69,7 @@ public class TransportServiceImpl implements TransportService, Message {
 
     @Override
     public boolean deleteByName(String transportName) {
-        if(daoCRUD.deleteByFieldName(transportName)){
+        if(transportDao.deleteByFieldName(transportName)){
             return true;
         } else {
             throw new NotFoundException(DELETE_TRANSPORT_EXCEPTION_MESSAGE);

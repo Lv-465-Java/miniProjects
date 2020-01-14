@@ -1,29 +1,25 @@
 package service.impl;
 
-import dao.DaoCRUD;
 import dao.impl.RateDaoImpl;
 import entity.Rate;
 import exception.Message;
 import exception.NotFoundException;
-import service.PlaceService;
 import service.RateService;
 
 import java.util.List;
 
 public class RateServiceImpl implements RateService, Message {
 
-    private DaoCRUD<Rate> daoCRUD;
-    private RateService rateService;
+    private RateDaoImpl rateDao;
 
     public RateServiceImpl() {
-        daoCRUD=new RateDaoImpl();
-        rateService=new RateServiceImpl();
+        rateDao=new RateDaoImpl();
     }
 
 
     @Override
     public List<Rate> getByFieldName(Long id) {
-        List<Rate> list=daoCRUD.getByFieldName(id);
+        List<Rate> list=rateDao.getByFieldName(id);
 
         if(list.isEmpty()){
             throw new NotFoundException(EMPTY_RATE_LIST_EXCEPTION_MESSAGE);
@@ -32,7 +28,7 @@ public class RateServiceImpl implements RateService, Message {
 
     @Override
     public List<Rate> getAll() {
-        List<Rate> list=daoCRUD.getAll();
+        List<Rate> list=rateDao.getAll();
 
         if(list.isEmpty()){
             throw new NotFoundException(EMPTY_RATE_LIST_EXCEPTION_MESSAGE);
@@ -41,7 +37,7 @@ public class RateServiceImpl implements RateService, Message {
 
     @Override
     public boolean insert(Rate rate) {
-        if(daoCRUD.insert(rate)){
+        if(rateDao.insert(rate)){
             return true;
         } else {
             throw new NotFoundException(CREATE_RATE_EXCEPTION_MESSAGE);
@@ -50,7 +46,7 @@ public class RateServiceImpl implements RateService, Message {
 
     @Override
     public boolean updateByEntity(Rate rate) {
-        if (daoCRUD.updateByEntity(rate)){
+        if (rateDao.updateByEntity(rate)){
             return true;
         } else {
             throw new NotFoundException(UPDATE_RATE_EXCEPTION_MESSAGE);
@@ -59,7 +55,7 @@ public class RateServiceImpl implements RateService, Message {
 
     @Override
     public boolean deleteById(Long id) {
-        if(daoCRUD.deleteById(id)){
+        if(rateDao.deleteById(id)){
             return true;
         } else {
             throw new NotFoundException(DELETE_RATE_EXCEPTION_MESSAGE);
@@ -67,7 +63,7 @@ public class RateServiceImpl implements RateService, Message {
     }
 
     public Long getRateValue(Long placeId){
-        List<Rate> list=rateService.getByFieldName(placeId);
+        List<Rate> list=rateDao.getByFieldName(placeId);
         long count=list.stream().map(Rate::getValue).count();
 
         return (list.stream().map(Rate::getValue).mapToInt(Integer::intValue).sum())/count;

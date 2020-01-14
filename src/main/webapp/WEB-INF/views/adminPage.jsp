@@ -18,27 +18,17 @@
 <div class="wrapper container">
     <jsp:include page="/fragments/header.jsp"/>
 
-    <nav class="navbar navbar-default">
-        <ul class="nav navbar-nav">
-            <div class="row">
-                <div class="col-md-10">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Admin Page</a>
-                    </li>
-                </div>
-<%--                <div class="col-md-4">--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="#">Personal cabinet</a>--%>
-<%--                    </li>--%>
-<%--                </div>--%>
-                <div class="col-md-10">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
-                    </li>
-                </div>
+    <div class="nav navbar-nav">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class= col-3>
+                <a class="nav-link" href="#">${userDto.username}</a>
             </div>
-        </ul>
-    </nav>
+            <div class="col-3">
+                <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+            </div>
+        </div>
+    </div>
 
 
     <div class="heading"></div>

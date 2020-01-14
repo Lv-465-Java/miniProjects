@@ -56,7 +56,7 @@ public class LoginServlet  extends HttpServlet {
             String password = request.getParameter("password");
             UserLoginDto userLoginDto = new UserLoginDto(username, MD5HashPassword.hashPassword(password));
 
-            if (userService.isValid(userLoginDto) & userService.isUsernameUnique(username)) {
+            if (userService.isValid(userLoginDto)) {
 
                 HttpSession session = request.getSession();
 
@@ -64,7 +64,7 @@ public class LoginServlet  extends HttpServlet {
                 SessionCookieManager.storeLoginedUser(session, userDto);
                 SessionCookieManager.storeUserCookie(response,userDto);
 
-                if(userDto.getUserRole().toString().equalsIgnoreCase((Role.ADMIN).toString())){
+                if(userDto.getUserRole().toString().equalsIgnoreCase((Role.ADMIN).toString())){///////////////////
                     response.sendRedirect(request.getContextPath() + "/adminPage");
                 } else {
                     response.sendRedirect(request.getContextPath() + "/mainPage");

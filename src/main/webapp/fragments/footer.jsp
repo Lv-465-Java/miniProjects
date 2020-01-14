@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<body>
 <footer class="page-footer">
     <div class="container">
         <div class="row">
@@ -19,10 +20,10 @@
                 <h6 class="text-uppercase font-weight-bold">Contact</h6>
                 <p>1640 Fedkovycha str., Lviv
                     <br/>info@mywebsite.com
-                    <!--  <br/>+ 01 234 567 88 -->
                     <br/>+ 01 234 567 89</p>
             </div>
         </div>
         <div class="footer-copyright text-center">© 2020 Copyright: MyWebsite.com</div>
 </footer>
+</body>
 </html>

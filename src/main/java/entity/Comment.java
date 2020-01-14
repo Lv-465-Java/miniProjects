@@ -48,6 +48,12 @@ public final class Comment implements IEntity {
     private Long placeId;
     private Long userId;
 
+    public Comment(String textOfComment, Long placeId, Long userId) {
+        this.textOfComment = textOfComment;
+        this.placeId = placeId;
+        this.userId = userId;
+    }
+
     public Comment(String textOfComment, LocalDateTime dateOfComment, Long placeId, Long userId) {
         this.textOfComment = textOfComment;
         this.dateOfComment = dateOfComment;

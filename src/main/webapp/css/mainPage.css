@@ -13,26 +13,15 @@ h1{
     text-transform: uppercase;
 }
 
-.navbar{
+.navbar-nav{
     text-transform: uppercase;
     background: #4b0082;
 }
 
-/*navbar-link, */
 .navbar-brand{
     color: #fff;
     cursor: pointer;
 }
-
-/*.nav-link {
-  margin-right: 1em !important;
-}
-.nav-link:hover {
-  color: #000;
-}*/
-/*.navbar-collapse {
-  justify-content: flex-end;
-}*/
 
 .form-inline{
     text-align: right;
@@ -69,10 +58,10 @@ header{
     text-transform: uppercase;
     font-size: 20px;
     font-weight: bold;
-    /*color:*/
 }
 
 p{
+    font-size: large;
     margin: 20px 0;
 }
 
@@ -82,9 +71,6 @@ p{
 
 .btn{
     font-family: Arial, serif;
-}
-.jumbotron{
-
 }
 
 .blockquote, p{

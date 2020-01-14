@@ -16,16 +16,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService, Message {
 
-    private final DaoCRUD<Comment> daoCRUD;
+    private final CommentDaoImpl commentDao;
 
     public CommentServiceImpl() {
-        daoCRUD=new CommentDaoImpl();
+        commentDao=new CommentDaoImpl();
     }
 
     @Override
     public CommentDto getById(Long id) {
 
-        Comment comment=daoCRUD.getById(id)
+        Comment comment=commentDao.getById(id)
                 .orElseThrow(()->new NotFoundException(String.format(COMMENT_NOT_FOUND_EXCEPTION_MESSAGE,id)));
 
         return CommentMapper.getCommentDto(comment);
@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService, Message {
     @Override
     public CommentDto getByField(String text) {
 
-         Comment comment = daoCRUD.getByField(text)
+         Comment comment = commentDao.getByField(text)
                 .orElseThrow(()-> new NotFoundException(String.format(EMPTY_LIST_BY_FIELD_EXCEPTION_MESSAGE,text)));
 
         return CommentMapper.getCommentDto(comment);
@@ -42,7 +42,7 @@ public class CommentServiceImpl implements CommentService, Message {
 
     @Override
     public List<CommentDto> getAll() {
-        List<Comment> list=daoCRUD.getAll();
+        List<Comment> list=commentDao.getAll();
 
         List<CommentDto>dtoList= list.stream()
                 .map(CommentMapper::getCommentDto)
@@ -56,7 +56,7 @@ public class CommentServiceImpl implements CommentService, Message {
 
     @Override
     public List<CommentDto> getAllLimit() {
-        List<Comment> list=daoCRUD.getAllLimit();
+        List<Comment> list=commentDao.getAllLimit();
 
         List<CommentDto>dtoList= list.stream()
                 .map(CommentMapper::getCommentDto)
@@ -69,7 +69,7 @@ public class CommentServiceImpl implements CommentService, Message {
 
     @Override
     public List<CommentDto> getByUserId(Long userId) {
-        List<Comment> list=daoCRUD.getByUserId(userId);
+        List<Comment> list=commentDao.getByUserId(userId);
 
         List<CommentDto>dtoList= list.stream()
                 .map(CommentMapper::getCommentDto)
@@ -82,7 +82,7 @@ public class CommentServiceImpl implements CommentService, Message {
 
     @Override
     public boolean insert(Comment comment) {
-        if(daoCRUD.insert(comment)){
+        if(commentDao.insert(comment)){
             return true;
         } else {
             throw new NotFoundException(CREATE_COMMENT_EXCEPTION_MESSAGE);
@@ -91,7 +91,7 @@ public class CommentServiceImpl implements CommentService, Message {
 
     @Override
     public boolean updateByEntity(Comment comment) {
-        if (daoCRUD.updateByEntity(comment)){
+        if (commentDao.updateByEntity(comment)){
             return true;
         } else {
             throw new NotFoundException(UPDATE_COMMENT_EXCEPTION_MESSAGE);
@@ -100,7 +100,7 @@ public class CommentServiceImpl implements CommentService, Message {
 
     @Override
     public boolean updateByField(String text, String textCondition) {
-        if(daoCRUD.updateByField(text, textCondition)){
+        if(commentDao.updateByField(text, textCondition)){
             return true;
         }  else {
             throw new NotFoundException(UPDATE_COMMENT_EXCEPTION_MESSAGE);
@@ -109,7 +109,7 @@ public class CommentServiceImpl implements CommentService, Message {
 
     @Override
     public boolean deleteById(Long id) {
-        if(daoCRUD.deleteById(id)){
+        if(commentDao.deleteById(id)){
             return true;
         } else {
             throw new NotFoundException(DELETE_COMMENT_EXCEPTION_MESSAGE);
@@ -123,7 +123,7 @@ public class CommentServiceImpl implements CommentService, Message {
 
     @Override
     public boolean delete(Comment comment) {
-        if(daoCRUD.delete(comment)){
+        if(commentDao.delete(comment)){
     return true;
         } else {
             throw new NotFoundException(DELETE_COMMENT_EXCEPTION_MESSAGE);
