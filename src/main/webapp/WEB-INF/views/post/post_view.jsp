@@ -22,9 +22,8 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <h1><a href="">${post.title}</a></h1>
-            <p class="lead"><i class="fa fa-user"></i> by <a href="">${post.author}</a>
-            </p>
+            <h1>${post.title}</h1>
+            <p class="lead"><i class="fa fa-user"></i> by <strong>${post.author}</strong</p>
             <hr>
             <div class="d-flex justify-content-between">
                 <p id="datetime"><i class="fas fa-calendar"></i> Posted on ${post.createdDate}</p>
@@ -34,15 +33,6 @@
             <img src="${pageContext.request.contextPath}/resources/images/posts/${post.imgPath}" class="img-responsive">
             <hr>
             <p class="lead">${post.content}</p>
-            <div class="well">
-                <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
-                <form role="form">
-                    <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-reply"></i> Submit</button>
-                </form>
-            </div>
         </div>
         <div class="col-md-2"></div>
     </div>

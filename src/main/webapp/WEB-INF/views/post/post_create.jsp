@@ -28,6 +28,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8 col-md-offset-4">
             <section id="inner-wrapper">
+                <h3 class="text-center">Create new post:</h3>
                 <article>
                     <form action="${pageContext.request.contextPath}/post/create" method="post" enctype="multipart/form-data">
 

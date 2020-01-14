@@ -28,6 +28,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8 col-md-offset-4">
             <section id="inner-wrapper">
+                <h3 class="text-center">Update post</h3>
                 <article>
                     <form action="${pageContext.request.contextPath}/post/update/${post.id}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="post_id" value="${post.id}">

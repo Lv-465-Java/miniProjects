@@ -135,19 +135,18 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<PostDto> findByTitle(String text) {
         List<PostDto> result =  new ArrayList<>();
+            try {
+                for (Post post: postDao.getByFieldNameLike("title", "%" +text +"%")) {
+                    PostDto postDto = new PostDto();
+                    postDto.setId(post.getId());
+                    postDto.setTitle(post.getTitle());
+                    postDto.setImgPath(post.getImgPath());
 
-            for (Post post: postDao.getByFieldNameLike("title", "%" +text +"%")) {
-                PostDto postDto = new PostDto();
-                postDto.setId(post.getId());
-                postDto.setTitle(post.getTitle());
-                postDto.setImgPath(post.getImgPath());
-
-                result.add(postDto);
+                    result.add(postDto);
+                }
+            }catch (RuntimeException e){
+                //ignore
             }
-
-            //ignore
-
-        System.out.println(result);
         return result;
     }
 

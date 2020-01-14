@@ -145,6 +145,10 @@ header{
 		color: #59c93a;
 		border-bottom: solid 3px #59c93a;
 	}
+	.search-by{
+		margin-top: 20px;
+		font-size: 20px;
+	}
 .content{
 	border-right: 1px solid #e1e0e0;
 	border-left: 1px solid #e1e0e0;
@@ -152,10 +156,10 @@ header{
 main{
 	float: left;
 	width: 63%;
-	margin-top: 70px;
+	margin-top: 20px;
 }
 	article{
-		margin-bottom: 70px;
+		margin-bottom: 50px;
 	}
 	article>header{
 		background: none;

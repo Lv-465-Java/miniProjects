@@ -29,4 +29,15 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return categoryDtoList;
     }
+
+    @Override
+    public CategoryDto getById(Long id) {
+        Category category = categoryDao.getById(id);
+        CategoryDto categoryDto = new CategoryDto(
+                category.getId(),
+                category.getName()
+        );
+        return categoryDto;
+    }
+
 }

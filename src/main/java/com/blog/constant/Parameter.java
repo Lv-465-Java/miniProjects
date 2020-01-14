@@ -12,7 +12,10 @@ public class Parameter {
 
     public static final String TITLE = "title";
     public static final String CONTENT = "content";
+    public static final String FILE = "file";
+
+    public static final String TEXT = "text";
 
     public static final int SESSION_TIME = 200_000;
-    public static final String IMAGE_PATH = "/C:/Users/Marian/Desktop/blog/target/blog/resources/images/posts/";
+    public static final String IMAGE_PATH = "/C:/Users/Marian/Desktop/blog/miniProjects/target/blog/resources/images/posts/";
 }

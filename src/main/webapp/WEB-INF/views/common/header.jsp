@@ -12,7 +12,6 @@
         <a href="${pageContext.request.contextPath}"><img class="logo" alt="Logo" src="${pageContext.request.contextPath}/resources/images/logo.jpg"/></a>
         <nav class="menu-top">
             <ul>
-                <li><a href="#">About</a></li>
                 <c:if test="${!session}">
                 <li><a href="${pageContext.request.contextPath}/login">Log in</a></li>
                 <li><a href="${pageContext.request.contextPath}/registration">Sign up</a></li>

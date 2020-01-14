@@ -33,7 +33,7 @@ public class UserPostsServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         LoginDto loginDto = (LoginDto) session.getAttribute("loginDto");
         req.setAttribute("posts", postService.findByUser(loginDto.getUsername()));
-        req.setAttribute("username", postService.findByUser(loginDto.getUsername()));
+        req.setAttribute("username", loginDto.getUsername());
         getServletConfig()
                 .getServletContext()
                 .getRequestDispatcher(ViewUrls.USER_POSTS.toString())

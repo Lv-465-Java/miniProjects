@@ -39,14 +39,13 @@ public class PostCreateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Part filePart = req.getPart("file");
+        Part filePart = req.getPart(Parameter.FILE);
         String fileName = UUID.randomUUID().toString() + "_" + Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 
         InputStream fileStream = filePart.getInputStream();
         byte[] bytes = new byte[fileStream.available()];
         fileStream.read(bytes);
 
-        String PathToImages = "/C:/Users/Marian/Desktop/blog/target/blog/resources/images/posts/";
         BufferedOutputStream bos = new BufferedOutputStream(
                 new FileOutputStream(
                         new File(Parameter.IMAGE_PATH + fileName)));

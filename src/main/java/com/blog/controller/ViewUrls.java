@@ -9,6 +9,8 @@ public enum ViewUrls {
     USER_POSTS("/WEB-INF/views/post/user_posts.jsp"),
     ADMIN_PAGE("/WEB-INF/views/user/admin_page.jsp"),
 
+    CATEGORY_CREATE("/WEB-INF/views/category/category_create.jsp"),
+
 
     POST_CREATE("/WEB-INF/views/post/post_create.jsp"),
     POST_VIEW("/WEB-INF/views/post/post_view.jsp"),

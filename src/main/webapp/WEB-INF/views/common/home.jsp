@@ -49,10 +49,6 @@
         </div>
     </aside>
     <div class="clear"></div>
-    <div class="pager clearfix">
-        <p class="previous-link"><a href="#">&larr; Previous</a></p>
-        <p class="next-link"><a href="#">Next &rarr;</a></p>
-    </div>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>
