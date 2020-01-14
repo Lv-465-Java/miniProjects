@@ -13,6 +13,7 @@ import com.itacademy.softserve.dto.TaskDto;
 import com.itacademy.softserve.dto.UserDto;
 import com.itacademy.softserve.dto.mapper.TaskDtoMapper;
 import com.itacademy.softserve.entity.Task;
+import com.itacademy.softserve.entity.User;
 import com.itacademy.softserve.exception.NotSaveException;
 import com.itacademy.softserve.service.HistoryService;
 import com.itacademy.softserve.service.TaskService;
@@ -129,9 +130,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public boolean edit(HttpServletRequest request, String description) {
+        boolean  result = false;
         if (SessionManager.isActiveSession(request)) {
             HttpSession session = request.getSession(false);
-            Long userId = determineAssignee(request);
+            Long assigneeId = determineAssignee(request);
+            Long ownerId = determineOwner(session);
             Long taskId = Long.parseLong(request.getParameter("confirm"));
             String newDescription = request.getParameter("newDescription");
             if (newDescription.equals("")) {
@@ -140,17 +143,17 @@ public class TaskServiceImpl implements TaskService {
             tasks = (List<Task>) session.getAttribute("tasks");
             for (Task edited : tasks) {
                 if (edited.getDescription().equals(description)) {
-                    if(!edited.getOwnerID().equals(userId)) {
+                    if(!edited.getOwnerID().equals(ownerId)) {
                         throw new RuntimeException(ErrorMessage.NO_PERMISSION.toString());
                     }
-                    edited.setAssigneeID(userId);
+                    edited.setAssigneeID(assigneeId);
                     edited.setDescription(newDescription);
                 }
             }
-            return taskDao.updateByField(userId, newDescription, taskId);
-        } else {
-            return false;
+            result = taskDao.updateByField(assigneeId, newDescription, taskId);
         }
+        return result;
+
     }
 
     @Override
@@ -180,35 +183,9 @@ public class TaskServiceImpl implements TaskService {
         }
     }
 
-//    private List<Task> getFilteredTasks(HttpServletRequest request, String filter) {
-//        HttpSession session = request.getSession(false);
-//        UserDao userDao = new UserDao();
-//        UserDto userDto = (UserDto) session.getAttribute("userDto");
-//        UserBuilder userBuilder = new UserBuilder();
-//        Long userId = userDao.getByFields(userBuilder, userDto.getName()).get(0).getId();
-//        TaskFilter taskFilter = new TaskFilter();
-//        TaskDao taskDao = new TaskDao();
-//        TaskBuilder taskBuilder = new TaskBuilder();
-//        List<Task> filteredTasks;
-//        String reset = request.getParameter("reset");
-//        if (filter == null || reset != null) {
-//            filteredTasks = taskDao.getAll(new TaskBuilder(), userId, userId);
-//        } else if (filter.equals(FilterTypes.BY_OWNER)) {
-//            String owner = request.getParameter("users");
-//            Long ownerId = userDao.getByFields(userBuilder, owner).get(0).getId();
-//            filteredTasks = taskFilter.filterByOwner(taskBuilder, userId, ownerId);
-//        } else if (filter.equals(FilterTypes.BY_DATE)) {
-//            String beginDate = request.getParameter("from");
-//            String endDate = request.getParameter("to");
-//            filteredTasks = taskFilter.filterByDate(taskBuilder, userId, Date.valueOf(beginDate), Date.valueOf(endDate));
-//        } else if (filter.equals(FilterTypes.BY_STATUS)) {
-//            String status = request.getParameter("statuses");
-//            Integer statusId = new StatusDao().getByFields(new StatusBuilder(), status).get(0).getId().intValue();
-//            filteredTasks = taskFilter.filterByStatus(taskBuilder, userId, statusId);
-//        } else {
-//            filteredTasks = new ArrayList<>();
-//        }
-//        Collections.reverse(filteredTasks);
-//        return filteredTasks;
-//    }
+    private Long determineOwner(HttpSession session) {
+        UserDao userDao = new UserDao();
+        String name = ((UserDto)session.getAttribute("userDto")).getName();
+        return userDao.getByFields(new UserBuilder(), name).get(0).getId();
+    }
 }
