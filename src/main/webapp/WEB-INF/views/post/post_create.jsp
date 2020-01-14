@@ -47,7 +47,8 @@
                                 <option value="1">Travel</option>
                                 <option value="2">Food</option>
                                 <option value="3">Sports</option>
-                                <option value="4">Music</option>
+                                <option value="4">Cars</option>
+                                <option value="5">Other</option>
                             </select>
                         </div>
                         <div class="form-group">

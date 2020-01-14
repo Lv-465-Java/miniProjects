@@ -23,16 +23,19 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <h1>${post.title}</h1>
-            <p class="lead"><i class="fa fa-user"></i> by <strong>${post.author}</strong</p>
-            <hr>
             <div class="d-flex justify-content-between">
-                <p id="datetime"><i class="fas fa-calendar"></i> Posted on ${post.createdDate}</p>
-                <p><i class="fas fa-calendar"></i> Updated on ${post.updatedDate}</p>
+            <p class="lead"><i class="fa fa-user"></i> by <strong>${post.author}</strong</p>
+            <p class="lead">Category: <strong>${post.category}</strong</p>
             </div>
             <hr>
             <img src="${pageContext.request.contextPath}/resources/images/posts/${post.imgPath}" class="img-responsive">
             <hr>
             <p class="lead">${post.content}</p>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <p><i class="fas fa-calendar"></i> Posted on ${post.createdDate}</p>
+                <p><i class="fas fa-calendar"></i> Updated on ${post.updatedDate}</p>
+            </div>
         </div>
         <div class="col-md-2"></div>
     </div>
