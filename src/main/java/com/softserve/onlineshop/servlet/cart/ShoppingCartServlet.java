@@ -35,7 +35,6 @@ public class ShoppingCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         userId = SessionUtil.getUserFromSession(request, userService).getId();
-//        request.getSession(false).setAttribute("userId", );
         request.setAttribute("cartElements", cartService.getByUserId(userId));
         request.setAttribute("phones", phoneService.getAll());
         request.setAttribute("models", modelService.getAll());
