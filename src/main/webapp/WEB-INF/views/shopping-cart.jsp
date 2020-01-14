@@ -80,11 +80,20 @@
                                                             <strong>${phone.price}$</strong></td>
                                                         <td class="border-0 align-middle">
                                                             <strong>${cartElement.dateOfBuying}</strong></td>
-                                                        <td class="border-0 align-middle"><a href="#" class="text-dark"><i
-                                                                class=" fa fa-shopping-cart"></i></a></td>
-                                                        <form action="${pageContext.request.contextPath}/delete-cart" method="post">
+                                                        <form action="${pageContext.request.contextPath}/update-cart"
+                                                              method="post">
                                                             <td class="border-0 align-middle">
-                                                                <button name="phoneId" value="${cartElement.phoneId}" class="btn blue-gradient btn-md">DELETE</button>
+                                                                <button name="update" value="${cartElement.phoneId}"
+                                                                        class="btn blue-gradient btn-md">UPDATE
+                                                                </button>
+                                                            </td>
+                                                        </form>
+                                                        <form action="${pageContext.request.contextPath}/delete-cart"
+                                                              method="post">
+                                                            <td class="border-0 align-middle">
+                                                                <button name="phoneId" value="${cartElement.phoneId}"
+                                                                        class="btn blue-gradient btn-md">DELETE
+                                                                </button>
                                                             </td>
                                                         </form>
                                                     </tr>
