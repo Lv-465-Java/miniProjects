@@ -16,6 +16,7 @@ public class ConnectionManager {
 
     private DataSource dataSource;
     private final Map<Long, Connection> connections;
+    private static boolean flagExistDB = true;
 
     private ConnectionManager() {
         this.connections = new HashMap<Long, Connection>();
@@ -85,6 +86,14 @@ public class ConnectionManager {
         Connection connection = getAllConnections().get(Thread.currentThread().getId());
         if (connection == null) {
             try {
+                if (flagExistDB){
+                   if (DataSourceRepository.checkDBExist()){
+                       flagExistDB = false;
+                   }else {
+                       DataSourceRepository.createTables();
+                       flagExistDB = false;
+                   }
+                }
                 connection = DriverManager.getConnection(getDataSource().getConnectionUrl(),
                         getDataSource().getUsername(), getDataSource().getPassword());
             } catch (SQLException e) {
@@ -93,33 +102,6 @@ public class ConnectionManager {
             addConnection(connection);
         }
         return connection;
-    }
-
-    public void beginTransaction() {
-        try {
-            getConnection().setAutoCommit(false);
-        } catch (SQLException e) {
-            // TODO Develop Custom Exceptions
-            throw new RuntimeException(FAILED_CONNECTION, e);
-        }
-    }
-
-    public void commitTransaction() {
-        try {
-            getConnection().commit();
-        } catch (SQLException e) {
-            // TODO Develop Custom Exceptions
-            throw new RuntimeException(FAILED_CONNECTION, e);
-        }
-    }
-
-    public void rollbackTransaction() {
-        try {
-            getConnection().rollback();
-        } catch (SQLException e) {
-            // TODO Develop Custom Exceptions
-            throw new RuntimeException(FAILED_CONNECTION, e);
-        }
     }
 
     public static void closeAllConnections() {
