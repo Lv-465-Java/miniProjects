@@ -1,6 +1,8 @@
 package com.softserve.onlineshop.service;
 
+
 import com.softserve.onlineshop.dto.CartDto;
+import com.softserve.onlineshop.dto.PhoneDto;
 import com.softserve.onlineshop.entity.Cart;
 
 import java.util.List;
@@ -10,6 +12,8 @@ public interface CartService {
     boolean addToCart(CartDto cartDto);
 
     Cart getByPhoneId(Long phoneId);
+
+//    List<PhoneDto> getPhonesById(Long phoneId);
 
     CartDto getByPhoneIdDto(Long phoneId);
 

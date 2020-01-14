@@ -3,6 +3,7 @@ package com.softserve.onlineshop.service.impl;
 import com.softserve.onlineshop.dao.impl.CartDaoImpl;
 import com.softserve.onlineshop.dao.mapper.CartRowMapper;
 import com.softserve.onlineshop.dto.CartDto;
+import com.softserve.onlineshop.dto.PhoneDto;
 import com.softserve.onlineshop.dto.mapper.CartDtoMapper;
 import com.softserve.onlineshop.entity.Cart;
 import com.softserve.onlineshop.exception.NotFoundException;
@@ -36,8 +37,14 @@ public class CartServiceImpl implements CartService {
     @Override
     public Cart getByPhoneId(Long phoneId) {
         return cartDao.getById(new CartRowMapper(), phoneId)
-                .orElseThrow(() -> new NotFoundException("Phone not found"));
+                .orElseThrow(() -> new NotFoundException("Cart not found"));
     }
+
+//    @Override
+//    public List<PhoneDto> getPhonesById(Long phoneId) {
+//        return phoneService.getById(phoneId);
+//    }
+
 
     @Override
     public CartDto getByPhoneIdDto(Long phoneId) {

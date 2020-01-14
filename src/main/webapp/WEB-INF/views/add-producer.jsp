@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<form class="border-light" action="${pageContext.request.contextPath}/add-producer" method="get">
+<form class="border-light">
     <table class="table table-dark">
         <thead class="thead-dark">
         <tr>

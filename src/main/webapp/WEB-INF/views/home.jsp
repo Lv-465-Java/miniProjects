@@ -97,44 +97,53 @@
         <form action="${pageContext.request.contextPath}/home" method="get">
             <section class="text-center mb-4">
                 <div class="row wow fadeIn">
+                    <c:forEach var="producer" items="${producers}">
+                        <c:forEach var="model" items="${models}">
+                            <c:forEach var="phone" items="${phones}">
+                                <c:choose>
+                                    <c:when test="${model.producerId == producer.id
+                                  && phone.modelId == model.id}">
+                                        <div class="col-lg-3 col-md-6 mb-4">
+                                            <div class="card">
 
-                    <c:forEach var="phone" items="${phones}">
-                        <div class="col-lg-3 col-md-6 mb-4">
-                            <div class="card">
+                                                <div class="view overlay">
+                                                    <img class="card-img-top"
+                                                         src="${pageContext.request.contextPath}/static/images/${phone.photo}"
+                                                         alt="adidas">
+                                                    <a href="">
+                                                        <div class="mask rgba-white-slight"></div>
+                                                    </a>
+                                                </div>
 
-                                <div class="view overlay">
-                                    <img class="card-img-top"
-                                         src="${pageContext.request.contextPath}/static/images/${phone.photo}"
-                                         alt="adidas">
-                                    <a href="">
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-
-                                <div class="card-body text-center">
-                                    <a  href="" class="gray-text">
-                                        <h5>${phone.year}</h5>
-                                        <h5></h5>
-                                    </a>
-                                    <h5>
-                                        <strong>
-                                            <a href="" class="dark-grey-text">
-                                                <span class="badge badge-pill danger-color">New</span></a>
-                                        </strong>
-                                    </h5>
-                                    <h4 class="font-weight-bold blue-text">
-                                        <strong>${phone.price}$</strong>
-                                    </h4>
-                                </div>
-                                <form action="${pageContext.request.contextPath}/product-page">
-                                    <a href="/product-page?phoneId=${phone.id}">
-                                        <button name="phoneId" value="${phone.id}" class="btn blue-gradient btn-md">
-                                            Details
-                                        </button>
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
+                                                <div class="card-body text-center">
+                                                    <a href="" class="gray-text">
+                                                        <h5>${producer.name}</h5>
+                                                        <h5></h5>
+                                                    </a>
+                                                    <h5>
+                                                        <strong>
+                                                            <a href="" class="dark-grey-text">${model.name}
+                                                                <span class="badge badge-pill danger-color">New</span></a>
+                                                        </strong>
+                                                    </h5>
+                                                    <h4 class="font-weight-bold blue-text">
+                                                        <strong>${phone.price}$</strong>
+                                                    </h4>
+                                                </div>
+                                                <form action="${pageContext.request.contextPath}/product-page">
+                                                    <a href="/product-page?phoneId=${phone.id}">
+                                                        <button name="phoneId" value="${phone.id}"
+                                                                class="btn blue-gradient btn-md">
+                                                            Details
+                                                        </button>
+                                                    </a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                        </c:forEach>
                     </c:forEach>
                 </div>
             </section>

@@ -29,14 +29,12 @@
                 <div class="col-md-6 mb-4">
                     <img src="${pageContext.request.contextPath}/static/images/${phoneDto.photo}"
                          class="img-fluid">
-<%--                    <img src="https://worldwide.com.ua/wp-content/uploads/2017/11/supreme-the-north-face-by-any-means-necessary-7-1500x1000-925x896.jpg"--%>
-<%--                         alt="tnf jacket" class="img-fluid">--%>
                 </div>
                 <div class="col-md-6 mb-4">
                     <div class="p-4">
                         <div class="mb-3">
                             <a id="modelId" href="">
-                                <span class="badge purple mr-1">Category ${phoneDto.modelId}</span>
+                                <span class="badge purple mr-1">Category</span>
                             </a>
                             <a href="">
                                 <span class="badge blue mr-1">New</span>
@@ -45,7 +43,11 @@
                                 <span class="badge red mr-1">Bestseller</span>
                             </a>
                         </div>
-                        <p>Price</p>
+                        <h4>
+                            <span class="badge purple mr-1">${producerDto.name}</span>
+                            <span class="badge purple mr-1">${modelDto.name}</span>
+                        </h4>
+                        <p class="lead font-weight-bold">Price</p>
                         <p class="lead">
                         <span class="mr-1">
                             <del>1500</del>
@@ -54,20 +56,20 @@
                             <span>${phoneDto.price}$</span>
                         </span>
                         </p>
-                        <p>Year</p>
+                        <p class="lead font-weight-bold">Year</p>
                         <div>
                             <p class="lead">${phoneDto.year}</p>
                         </div>
-                        <p>Color</p>
+                        <p class="lead font-weight-bold">Color</p>
                         <div>
                             <p id="color" class="lead">${phoneDto.color}</p>
                         </div>
-                        <p>Screen Diagonal</p>
+                        <p class="lead font-weight-bold">Screen Diagonal</p>
                         <div>
                             <p></p>
                             <p id="screenDiagonal" class="lead">${phoneDto.screenDiagonal} Gb</p>
                         </div>
-                        <p>Internal Memory</p>
+                        <p class="lead font-weight-bold">Internal Memory</p>
                         <div>
                             <p id="internalMemory" class="lead">${phoneDto.internalMemory} Gb</p>
                         </div>
@@ -118,18 +120,11 @@
 </main>
 <jsp:include page="/fragments/footer.jsp"/>
 
-<!-- jQuery -->
+
 <script type="text/javascript" src="static/js/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
 <script type="text/javascript" src="static/js/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
 <script type="text/javascript" src="static/js/mdb.min.js"></script>
-<!-- Your custom scripts (optional) -->
 <script type="text/javascript"></script>
-<%--<script>--%>
-<%--    new WOW().init();--%>
-<%--</script>--%>
 </body>
 </html>

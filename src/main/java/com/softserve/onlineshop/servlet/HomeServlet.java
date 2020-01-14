@@ -21,19 +21,22 @@ import java.util.List;
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
     private PhoneService phoneService;
+    private ModelService modelService;
+    private ProducerService producerService;
 
     @Override
     public void init() {
         phoneService = new PhoneServiceImpl();
+        modelService = new ModelServiceImpl();
+        producerService = new ProducerServiceImpl();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.getRequestDispatcher("/WEB-INF/views/home.jsp").include(request, response);
         try {
-            List<PhoneDto> phones = phoneService.getAll();
-            request.setAttribute("phones", phones);
-//            request.setAttribute("models", models);
+            request.setAttribute("phones", phoneService.getAll());
+            request.setAttribute("models", modelService.getAll());
+            request.setAttribute("producers", producerService.getAll());
 //            request.setAttribute("producers", producers);
             request.getRequestDispatcher("/WEB-INF/views/home.jsp").include(request, response);
         } catch (RuntimeException e) {
