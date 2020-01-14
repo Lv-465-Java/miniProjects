@@ -1,8 +1,10 @@
 package com.blog.controller;
 
 public enum ControllerUrls {
+
     HOME_PAGE(""),
-    USER_POSTS("/user/posts");
+    USER_POSTS("/user/posts"),
+    PROFILE("/profile");
 
     private String url;
 

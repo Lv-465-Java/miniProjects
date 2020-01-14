@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    boolean save(UserDto userDto);
+    void save(UserDto userDto);
     UserDto getById(Long id);
     void update(UserDto userDto);
     UserDto findUserByUsername(String username);

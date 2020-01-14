@@ -27,38 +27,30 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4" id="login">
             <section id="inner-wrapper" class="login">
+                <h3 class="text-center">Registration:</h3>
                 <article>
                     <form action="${pageContext.request.contextPath}/registration" method="post">
-
                             <div class="form-group">
                                 <c:if test="${not empty error}">
                                     <div class="alert alert-danger">
                                         <strong>${error}</strong>
                                     </div>
                                 </c:if>
-                                <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user"> </i></span>
-                                <input type="text" name="username" class="form-control" placeholder="Username">
-                            </div>
+                                <label for="usr">Username:</label>
+                                <input type="text" name="username" class="form-control" id="usr">
                         </div>
 
                         <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-key"> </i></span>
-                                <input type="password" name="password" class="form-control" placeholder="Password">
-                            </div>
+                            <label for="pass">Password:</label>
+                            <input type="password" name="password" class="form-control" id="pass">
                         </div>
                         <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user"> </i></span>
-                                <input type="text" name="firstName" class="form-control" placeholder="First Name">
-                            </div>
+                            <label for="firstN">Username:</label>
+                            <input type="text" name="firstName" class="form-control" id="firstN">
                         </div>
                         <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user"> </i></span>
-                                <input type="text" name="lastName" class="form-control" placeholder="Last Name">
-                            </div>
+                            <label for="lastN">Username:</label>
+                            <input type="text" name="lastName" class="form-control" id="lastN">
                         </div>
                         <button type="submit" class="btn btn-success btn-block">Submit</button>
                     </form>

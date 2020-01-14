@@ -1,7 +1,10 @@
 package com.blog.controller.user;
 
+import com.blog.constant.Message;
 import com.blog.constant.Parameter;
+import com.blog.controller.ControllerUrls;
 import com.blog.controller.ViewUrls;
+import com.blog.controller.common.Security;
 import com.blog.dto.LoginDto;
 import com.blog.dto.UserDto;
 import com.blog.service.UserService;
@@ -26,6 +29,7 @@ public class UserProfileUpdateServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("session", Security.checkSession(req, resp));
         HttpSession session = req.getSession(false);
         LoginDto loginDto = (LoginDto) session.getAttribute("loginDto");
         req.setAttribute("user", userService.findUserByUsername(loginDto.getUsername()));
@@ -37,21 +41,16 @@ public class UserProfileUpdateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        if (userService.isAlreadyExists(req.getParameter(Parameter.USERNAME))){
-            System.out.println(req.getParameter(Parameter.USERNAME));
-            req.setAttribute("error", "User already exist");
-            req.getRequestDispatcher(ViewUrls.USER_PROFILE.toString()).forward(req, resp);
-        }else {
             UserDto userDto = new UserDto(
+                    Long.parseLong(req.getParameter(Parameter.USER_ID)),
                     req.getParameter(Parameter.USERNAME),
                     req.getParameter(Parameter.PASSWORD),
                     req.getParameter(Parameter.FIRST_NAME),
-                    req.getParameter(Parameter.LAST_NAME)
+                    req.getParameter(Parameter.LAST_NAME),
+                    req.getParameter(Parameter.ROLE_ID)
             );
             userService.update(userDto);
+            resp.sendRedirect(req.getContextPath() + ControllerUrls.PROFILE.toString());
 
-            resp.sendRedirect(req.getContextPath() + "");
-        }
     }
 }

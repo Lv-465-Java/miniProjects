@@ -21,15 +21,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean save(UserDto userDto) {
-
+    public void save(UserDto userDto) {
         User user = new User(userDto.getUsername(),
                 userDto.getPassword(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
                 ROLE_USER);
 
-        return  userDao.insert(user);
+        userDao.insert(user);
     }
 
     @Override
@@ -48,8 +47,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(UserDto userDto) {
-        findUserByUsername(userDto.getUsername());
-
         User user = new User(
                 userDto.getId(),
                 userDto.getUsername(),

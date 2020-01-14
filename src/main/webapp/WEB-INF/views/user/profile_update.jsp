@@ -27,15 +27,11 @@
             <section id="inner-wrapper" class="login">
                 <h2>Update profile:</h2>
                 <article>
-                    <form action="${pageContext.request.contextPath}/registration" method="post">
+                    <form action="${pageContext.request.contextPath}/profile/update" method="post">
                         <div class="form-group">
-                            <c:if test="${not empty error}">
-                                <div class="alert alert-danger">
-                                    <strong>${error}</strong>
-                                </div>
-                            </c:if>
-                                <label for="usr">Username:</label>
-                                <input type="text" name="username" class="form-control" id="usr" value="${user.username}">
+                                <input type="hidden" name="user_id" value="${user.id}">
+                                <input type="hidden" name="username" value="${user.username}">
+                                <input type="hidden" name="role_id" value="${user.roleId}">
                         </div>
 
                         <div class="form-group">

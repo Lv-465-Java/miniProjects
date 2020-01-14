@@ -33,7 +33,6 @@
                 <tr>
                     <th>Username</th>
                     <th>User Posts</th>
-                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,7 +40,6 @@
                     <tr>
                         <td>${user.username}</td>
                         <td><a href="${pageContext.request.contextPath}/admin/user/posts/${user.username}">Posts</a></td>
-                        <td><a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/post/delete/${post.id}">Delete</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

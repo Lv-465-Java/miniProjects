@@ -37,7 +37,6 @@ public abstract class ADaoCRUD<TEntity extends IEntity> extends ADaoRead<TEntity
 
     public boolean insert(TEntity entity) {
         String query = String.format(sqlQueries.get(SqlQueries.INSERT).toString());
-        System.out.println("query = " + query);
         String[] fields = getFields(entity);
         return executeQuery(query, fields, SqlQueries.INSERT);
     }

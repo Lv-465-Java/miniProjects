@@ -9,6 +9,7 @@ public class Parameter {
     public static final String USER_ID = "user_id";
     public static final String POST_ID = "post_id";
     public static final String CATEGORY_ID = "category_id";
+    public static final String ROLE_ID = "role_id";
 
     public static final String TITLE = "title";
     public static final String CONTENT = "content";
