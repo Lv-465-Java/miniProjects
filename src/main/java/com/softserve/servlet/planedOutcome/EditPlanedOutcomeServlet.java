@@ -1,15 +1,12 @@
 package com.softserve.servlet.planedOutcome;
 
-import com.softserve.constant.ErrorMessage;
 import com.softserve.constant.ServletResponseParameter;
 import com.softserve.constant.View;
 import com.softserve.dto.PlanedOutcomeDTO;
-import com.softserve.dto.RecordDTO;
 import com.softserve.dto.UserDTO;
 import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.implementation.CategoryServiceImpl;
 import com.softserve.service.implementation.PlanedOutcomeServiceImpl;
-import com.softserve.service.implementation.RecordServiceImpl;
 import com.softserve.servlet.record.EditRecordServlet;
 import com.softserve.util.UserSession;
 import org.slf4j.Logger;
@@ -43,9 +40,9 @@ public class EditPlanedOutcomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         currentSessionUser = userSession.retrieveUserIdFromSession(req);
         plannedOutcomeId = Long.parseLong(req.getParameter("id"));
-//        LOG.info("DFHZH " + plannedOutcomeId);
         req.setAttribute("plannedOutcome", planedOutcomeService.getById(plannedOutcomeId));
         req.setAttribute("categories", categoryService.getAllByUserIdAndFinancialTypeId(currentSessionUser.getId()));
+        req.setAttribute("date", planedOutcomeService.getById(plannedOutcomeId).getDate());
         req.getRequestDispatcher(View.PLANNED_OUTCOME_EDIT_PAGE.getViewUrl()).include(req, resp);
 
         LOG.info("'Edit Planned Outcome' Page is loaded");

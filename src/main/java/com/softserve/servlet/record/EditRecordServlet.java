@@ -47,6 +47,7 @@ public class EditRecordServlet extends HttpServlet {
         req.setAttribute("categories", categoryService.getAllByUserId(currentSessionUser.getId()));
         req.setAttribute("financialTypes", recordService.getTypes());
         req.setAttribute("plannedOutcomes", planedOutcomeService.getAllByUserId(currentSessionUser.getId()));
+        req.setAttribute("date", recordService.getById(recordId).getDate());
         req.getRequestDispatcher(View.RECORD_EDIT_PAGE.getViewUrl()).include(req, resp);
 
         LOG.info("'Edit Record' Page is loaded");

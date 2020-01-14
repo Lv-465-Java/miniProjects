@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -17,9 +18,20 @@
     <div class='col-sm-3'>
         <div class="form-group">
             <div id="filterDate2">
-
                 <div class="input-group date" data-date-format="dd.mm.yyyy">
-                    <input type="text" readonly id="datePickerDate" name="date" class="form-control" placeholder="yyyy-mm-dd" required>
+                    <c:choose>
+                        <c:when test="${not empty date}">
+                            <input type="text" readonly id="datePickerDate" name="date" class="form-control" required
+                                   value="${date}">
+                        </c:when>
+                        <c:otherwise>
+                            <input type="text" readonly id="datePickerDate" name="date" class="form-control"
+                                   placeholder="yyyy-mm-dd" required>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <%--                    <input type="text" readonly id="datePickerDate" name="date" class="form-control"--%>
+                    <%--                           placeholder="yyyy-mm-dd" required>--%>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
                     </div>
