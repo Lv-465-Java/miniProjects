@@ -11,9 +11,6 @@
         <a href="/home" class="navbar-brand waves-effect">
             <strong class="blue-text">OnlineShop</strong>
         </a>
-        <a href="/admin-page" class="navbar-brand waves-effect">
-            <strong class="black-text">Admin Page</strong>
-        </a>
         <button class="navbar-toggler" type="button"
                 data-toggle="collapse" data-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +25,7 @@
                     <a href="/add-model" class="nav-link waves-effect">Model</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link waves-effect">Phone</a>
+                    <a href="/add-phone" class="nav-link waves-effect">Phone</a>
                 </li>
             </ul>
             <ul class="navbar-nav nav-flex-icons">

@@ -12,9 +12,6 @@
         <a href="/home" class="navbar-brand waves-effect">
             <strong class="blue-text">OnlineShop</strong>
         </a>
-        <a href="/admin-page" class="navbar-brand waves-effect">
-            <strong class="black-text">Admin Page</strong>
-        </a>
         <button class="navbar-toggler" type="button"
                 data-toggle="collapse" data-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +23,7 @@
                     <a href="/home" class="nav-link waves-effect">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin-page" class="nav-link waves-effect">Admin Page</a>
+                    <a href="/add-producer" class="nav-link waves-effect">Admin Page</a>
                 </li>
             </ul>
             <ul class="navbar-nav nav-flex-icons">
@@ -40,8 +37,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link waves-effect">
-                        <span class="badge red z-depth-1 mr-1">13</span>
+                    <a href="/shopping-cart" class="nav-link waves-effect">
+                        <span class="badge red z-depth-1 mr-1">1</span>
                         <i class="fa fa-shopping-cart"></i>
                         <span class="clearfix d-none d-sm-inline-block">Cart</span>
                     </a>

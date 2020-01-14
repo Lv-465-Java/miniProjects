@@ -6,7 +6,8 @@
 .register-photo .image-holder {
     display: table-cell;
     width: auto;
-    background: url(https://image.ibb.co/ciMdh8/640x426.png);
+    background: url(https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiV76Lb6oHnAhUtzMQBHSjGADcQjRx6BAgBEAQ&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fphone&psig=AOvVaw3O9cJ7At0rIbwY6o7iwfbz&ust=1579048099714721);
+    /*background: url(https://image.ibb.co/ciMdh8/640x426.png);*/
     background-size: cover;
 }
 

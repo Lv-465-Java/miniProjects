@@ -23,8 +23,8 @@ public class UpdateModelServlet extends HttpServlet {
 
     @Override
     public void init() {
-        producerService = new ProducerServiceImpl();
         modelService = new ModelServiceImpl();
+        producerService = new ProducerServiceImpl();
     }
 
     @Override

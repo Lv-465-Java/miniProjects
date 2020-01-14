@@ -80,6 +80,9 @@
         </form>
     </div>
 </div>
+<div>
+<%--<input type="file" onchange="encodeImageFileAsURL(this)" />--%>
+</div>
 
 <form class="border-light" action="${pageContext.request.contextPath}/add-phone" method="get">
     <table class="table table-dark">
@@ -102,7 +105,7 @@
                 <td>${phone.id}</td>
                 <td>${phone.year}</td>
                 <td>${phone.price}</td>
-                <td><img width="100" height="100" src="${'http://localhost:8080'}/phones_images/${phone.photo}"></td>
+                <td><img width="100" height="100" src="${pageContext.request.contextPath}/phones_images/${phone.photo}"></td>
                     <%--                <td>${phone.photo}</td>--%>
                 <td>${phone.color}</td>
                 <td>${phone.screenDiagonal}</td>

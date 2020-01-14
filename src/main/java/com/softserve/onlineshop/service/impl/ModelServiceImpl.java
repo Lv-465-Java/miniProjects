@@ -56,6 +56,7 @@ public class ModelServiceImpl implements ModelService {
     public List<ModelDto> getAll() {
         List<ModelDto> models = modelDao.getAll(new ModelRowMapper()).stream()
                 .map(new ModelDtoMapper()::mapToDto).collect(Collectors.toList());
+
         if (models.isEmpty()) {
             throw new NotFoundException("Models not found");
         }

@@ -17,10 +17,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @WebServlet("/add-phone")
-@MultipartConfig
+@MultipartConfig(location = "/Users/admin/SoftServe_Java/miniProjects/src/main/webapp/static/img/")
 public class AddPhoneServlet extends HttpServlet {
     private PhoneService phoneService;
     private ModelService modelService;
@@ -28,9 +29,9 @@ public class AddPhoneServlet extends HttpServlet {
 
     @Override
     public void init() {
-        producerService = new ProducerServiceImpl();
         phoneService = new PhoneServiceImpl();
         modelService = new ModelServiceImpl();
+        producerService = new ProducerServiceImpl();
     }
 
     @Override

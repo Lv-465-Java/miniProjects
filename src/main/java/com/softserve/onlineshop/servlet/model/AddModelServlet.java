@@ -17,13 +17,13 @@ import java.util.List;
 
 @WebServlet("/add-model")
 public class AddModelServlet extends HttpServlet {
-    private ProducerService producerService;
     private ModelService modelService;
+    private ProducerService producerService;
 
     @Override
     public void init() {
-        producerService = new ProducerServiceImpl();
         modelService = new ModelServiceImpl();
+        producerService = new ProducerServiceImpl();
     }
 
     @Override

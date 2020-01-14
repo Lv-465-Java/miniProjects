@@ -46,6 +46,7 @@ public class PhoneServiceImpl implements PhoneService {
         phone.setYear(phoneDto.getYear());
         phone.setPrice(phoneDto.getPrice());
         phone.setPhoto(phoneDto.getPhoto());
+        phone.setPhoto(phoneDto.getPhoto());
 //        phone.setPhoto(fileService.saveFile(phoneDto.getPhoto()));
         phone.setColor(phoneDto.getColor());
         phone.setScreenDiagonal(phoneDto.getScreenDiagonal());
@@ -73,14 +74,5 @@ public class PhoneServiceImpl implements PhoneService {
     @Override
     public boolean deleteById(Long id) {
         return phoneDao.deleteById(getById(id).getId());
-    }
-
-    public static void main(String[] args) {
-        PhoneService phoneService = new PhoneServiceImpl();
-        PhoneDto phoneDto = new PhoneDto(2019, 25000, "dsadsa",
-                "blue", 4.6, 64, 3L);
-        System.out.println(phoneDto);
-        System.out.println(phoneService.save(phoneDto));
-
     }
 }
