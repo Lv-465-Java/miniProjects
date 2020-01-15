@@ -19,14 +19,28 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
+    /**
+     * Default constructor.
+     */
     public UserServiceImpl() {
         userDao = new UserDao();
     }
 
+    /**
+     * Constructor with one parameter.
+     *
+     * @param userDao UserDao object
+     */
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
+    /**
+     * Method for user validation.
+     *
+     * @param userDto UserDto object
+     * @return true if name and password are correct
+     */
     @Override
     public boolean login(UserDto userDto) {
         User user = userDao.getByFields(new UserBuilder(), userDto.getName()).get(0);
@@ -38,6 +52,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Method for saving new users.
+     *
+     * @param userDto UserDto object
+     * @return true if such user don`t exist
+     */
     @Override
     public boolean save(UserDto userDto) {
         if (userDao.getByFields(new UserBuilder(), userDto.getName()).isEmpty()) {
@@ -47,6 +67,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Method for changing password.
+     *
+     * @param request HTTP request object
+     * @return true if password is changed
+     */
     @Override
     public boolean changePassword(HttpServletRequest request) {
         String oldPassword = request.getParameter("oldPassword");
@@ -60,17 +86,28 @@ public class UserServiceImpl implements UserService {
         return userDao.updateByField(UpdateUserParam.PASSWORD, newPassword, userDto.getName());
     }
 
+    /**
+     * Method for changing username.
+     *
+     * @param request HTTP request object
+     * @return true if name is changed
+     */
     @Override
     public boolean changeUsername(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         String name = ((UserDto) session.getAttribute("userDto")).getName();
         String newName = request.getParameter("newUsername");
         if (newName.isEmpty()) {
-            throw  new NotSaveException(ErrorMessage.EMPTY_NAME.toString());
+            throw new NotSaveException(ErrorMessage.EMPTY_NAME.toString());
         }
         return userDao.updateByField(UpdateUserParam.USERNAME, newName, name);
     }
 
+    /**
+     * Method for getting all users.
+     *
+     * @return list of all users
+     */
     @Override
     public List<UserDto> getAll() {
         List<UserDto> users = new ArrayList<>();

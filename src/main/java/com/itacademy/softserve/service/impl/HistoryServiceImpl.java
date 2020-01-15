@@ -25,11 +25,22 @@ public class HistoryServiceImpl implements HistoryService {
     private List<History> historyList;
     private HistoryDao historyDao;
 
+    /**
+     * Default constructor.
+     */
     public HistoryServiceImpl() {
         historyList = new ArrayList<>();
         historyDao = new HistoryDao();
     }
 
+    /**
+     * Method for getting list of records
+     * for one page.
+     *
+     * @param request HTTP request object
+     * @param begin   index of task in general list
+     * @return list of tasks
+     */
     @Override
     public List<HistoryDto> getHistorySet(HttpServletRequest request, int begin) {
         historyList = (List<History>) request.getSession(false).getAttribute(HistoryPeriod.PERIOD.toString());
@@ -47,6 +58,11 @@ public class HistoryServiceImpl implements HistoryService {
         return historyGroup;
     }
 
+    /**
+     * Method for calculating number of pages.
+     *
+     * @return number of pages
+     */
     @Override
     public int getNumberOfPages() {
         if (historyList == null) {
@@ -55,6 +71,13 @@ public class HistoryServiceImpl implements HistoryService {
         return (int) Math.ceil((double) historyList.size() / NumberOfRecordsPerPage.HISTORY_RECORD_PER_PAGE);
     }
 
+    /**
+     * Method clear all history or
+     * delete only one record.
+     *
+     * @param request HTTP request object
+     * @return true if history is deleted
+     */
     @Override
     public boolean clear(HttpServletRequest request) {
         String action = request.getParameter(ControlTaskButton.DELETE);
@@ -74,6 +97,12 @@ public class HistoryServiceImpl implements HistoryService {
         }
     }
 
+    /**
+     * Method adds history record.
+     *
+     * @param taskDto TaskDto object
+     * @return true if record is added
+     */
     @Override
     public boolean addRecord(TaskDto taskDto) {
         History historyRecord = new History();
