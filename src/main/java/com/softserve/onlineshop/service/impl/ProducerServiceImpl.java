@@ -67,11 +67,4 @@ public class ProducerServiceImpl implements ProducerService {
         return producerDao.deleteById(getById(id).getId());
     }
 
-//    public static void main(String[] args) {
-//        ProducerService producerService = new ProducerServiceImpl();
-////        System.out.println(producerService.getAll());
-//        ProducerDto producerDto = new ProducerDto("LG");
-//        System.out.println(producerService.updateById(producerDto, 8L));
-////        System.out.println(producerService.updateById(new ProducerDto("NewProducer"), 1L));
-//    }
 }

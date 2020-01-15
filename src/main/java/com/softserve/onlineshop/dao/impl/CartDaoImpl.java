@@ -9,7 +9,6 @@ import com.softserve.onlineshop.entity.SqlQueries;
 import com.softserve.onlineshop.util.JdbcUtil;
 
 import java.sql.Connection;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class CartDaoImpl extends CrudDaoImpl<Cart> {
@@ -46,14 +45,4 @@ public class CartDaoImpl extends CrudDaoImpl<Cart> {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntityList(connection, sqlQueries.get(SqlQueries.GET_BY_USER_ID).toString(), mapper, userId);
     }
-
-    public static void main(String[] args) {
-        CartDaoImpl cartDao = new CartDaoImpl();
-        Cart cart = new Cart(3L, 1L);
-        cart.setDateOfBuying(LocalDateTime.now());
-//    System.out.println(cartDao.updateById(cart))
-
-//    System.out.println(cartDao.insert(cart));
-    }
-
 }

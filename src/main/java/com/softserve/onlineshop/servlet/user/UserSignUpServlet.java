@@ -33,7 +33,7 @@ public class UserSignUpServlet extends HttpServlet {
         try {
             userService.save(userDto);
             SessionUtil.createSession(userDto, request, response);
-            request.setAttribute("user-nickname", userDto.getNickname());
+//            request.setAttribute("user-nickname", userDto.getNickname());
             response.sendRedirect(request.getContextPath() + "/home");
 
         } catch (RuntimeException ex) {

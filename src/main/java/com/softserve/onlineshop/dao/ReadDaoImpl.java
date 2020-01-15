@@ -11,10 +11,6 @@ import java.util.*;
 
 public abstract class ReadDaoImpl<T> implements ReadDao<T> {
 
-    protected final static String QUERY_NOT_FOUND = "Query not found %s";
-    private final static String EMPTY_RESULTSET = "Empty ResultSet by Query %s";
-    private final static String DATABASE_READING_ERROR = "Database Reading Error";
-
     protected final Map<Enum<?>, Enum<?>> sqlQueries;
 
     ReadDaoImpl() {

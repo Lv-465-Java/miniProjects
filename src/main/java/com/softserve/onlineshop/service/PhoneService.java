@@ -1,12 +1,14 @@
 package com.softserve.onlineshop.service;
 
-import com.softserve.onlineshop.dao.mapper.PhoneRowMapper;
-import com.softserve.onlineshop.dto.ModelDto;
+
 import com.softserve.onlineshop.dto.PhoneDto;
 import com.softserve.onlineshop.entity.Phone;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
+
 
 public interface PhoneService {
 
@@ -18,7 +20,7 @@ public interface PhoneService {
 
     List<PhoneDto> getAll();
 
-//    List<ModelDto> getAllModelId(Long modelId);
+    String savePhoto(HttpServletRequest request) throws IOException, ServletException;
 
     boolean updateById(PhoneDto phoneDto, Long id);
 

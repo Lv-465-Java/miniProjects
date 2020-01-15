@@ -2,7 +2,6 @@ package com.softserve.onlineshop.entity;
 
 import lombok.*;
 
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +13,6 @@ public class Producer {
 
     private Long id;
     private String name;
-//    private List<Model> models;
 
 
     public Producer(String name) {

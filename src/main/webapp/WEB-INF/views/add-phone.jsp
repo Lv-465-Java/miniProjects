@@ -84,7 +84,7 @@
 <%--<input type="file" onchange="encodeImageFileAsURL(this)" />--%>
 </div>
 
-<form class="border-light" action="${pageContext.request.contextPath}/add-phone" method="get">
+<%--<form class="border-light" action="${pageContext.request.contextPath}/add-phone" method="get">--%>
     <table class="table table-dark">
         <thead class="thead-dark">
         <tr>
@@ -127,7 +127,8 @@
         </c:forEach>
         </tbody>
     </table>
-</form>
+
+<%--</form>--%>
 <%--    <jsp:include page="/fragments/drop-producers.jsp"/>--%>
 <jsp:include page="/fragments/footer.jsp"/>
 </body>

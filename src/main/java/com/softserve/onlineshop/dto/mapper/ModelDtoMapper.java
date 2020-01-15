@@ -1,7 +1,6 @@
 package com.softserve.onlineshop.dto.mapper;
 
 import com.softserve.onlineshop.dto.ModelDto;
-import com.softserve.onlineshop.dto.ProducerDto;
 import com.softserve.onlineshop.entity.Model;
 
 public class ModelDtoMapper {
@@ -10,7 +9,6 @@ public class ModelDtoMapper {
         modelDto.setId(model.getId());
         modelDto.setName(model.getName());
         modelDto.setProducerId(model.getProducerId());
-//        modelDto.setProducerDto(new ProducerDtoMapper().mapToDto(model.getProducer()));
         return modelDto;
     }
 }

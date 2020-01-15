@@ -10,20 +10,12 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Model{
+public class Model {
 
     private Long id;
     private String name;
     private Long producerId;
-//    private Producer producer;
-//    private List<Phone> phones;
 
-
-//    public Model(Long id, String name, Long producerId) {
-//        this.id = id;
-//        this.name = name;
-//        this.producerId = producerId;
-//    }
 
     public enum ModelEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO models (name, producerId) VALUES (?, ?);"),

@@ -13,6 +13,6 @@ public enum SqlQueries {
     DELETE_BY_ID,
     DELETE_BY_FIELD;
 
-    private SqlQueries() {
+    SqlQueries() {
     }
 }

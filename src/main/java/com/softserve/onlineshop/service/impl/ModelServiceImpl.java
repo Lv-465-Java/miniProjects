@@ -30,7 +30,7 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public boolean updateById(ModelDto modelDto, Long id) {
         return modelDao.updateById(getModel(getById(id), modelDto));
-}
+    }
 
     private Model getModel(Model model, ModelDto modelDto) {
         if (model == null) {
@@ -78,16 +78,5 @@ public class ModelServiceImpl implements ModelService {
         return modelDao.deleteById(getById(id).getId());
     }
 
-    public static void main(String[] args) {
-        ModelService modelService = new ModelServiceImpl();
-
-    }
-//    public static void main(String[] args) {
-//        ModelService modelService = new ModelServiceImpl();
-//        System.out.println(modelService.getAllByProducerId(1L));
-////        ModelDto modelDto = new ModelDto("6+", 1L);
-////        modelDto.setName("6");
-////        modelService.updateById(modelDto, 8L);
-//    }
 }
 

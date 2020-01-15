@@ -10,7 +10,6 @@ public interface ReadDao<T> {
     Optional<T> getById(RowMapper<T> mapper, Long id);
 
     List<T> getByFieldName(RowMapper<T> mapper, String... parameters);
-//    List<TEntity> getByFieldName(String fieldName, String fieldValue);
 
     List<T> getAll(RowMapper<T> mapper);
 }

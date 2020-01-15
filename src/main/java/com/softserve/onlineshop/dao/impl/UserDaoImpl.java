@@ -1,14 +1,8 @@
 package com.softserve.onlineshop.dao.impl;
 
 import com.softserve.onlineshop.dao.CrudDaoImpl;
-import com.softserve.onlineshop.dao.mapper.UserRowMapper;
-import com.softserve.onlineshop.database.ConnectionManager;
-import com.softserve.onlineshop.entity.SqlQueries;
 import com.softserve.onlineshop.entity.User;
 import com.softserve.onlineshop.entity.User.UserEntityQueries;
-import com.softserve.onlineshop.util.JdbcUtil;
-
-import java.sql.Connection;
 
 public class UserDaoImpl extends CrudDaoImpl<User> {
 
@@ -20,7 +14,7 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
     @Override
     protected String[] getFields(User user) {
         String[] fields = new String[4];
-        fields[0] = user.getId().toString();
+//        fields[0] = user.getId().toString();
         fields[0] = user.getNickname();
         fields[1] = user.getPassword();
         fields[2] = user.getEmail();
@@ -44,11 +38,5 @@ public class UserDaoImpl extends CrudDaoImpl<User> {
         for (UserEntityQueries userEntityQueries : UserEntityQueries.values()) {
             sqlQueries.put(userEntityQueries.getSqlQuery(), userEntityQueries);
         }
-    }
-
-    public boolean existsByNickname(UserRowMapper mapper, String nickname) {
-        Connection connection = ConnectionManager.getInstance().getConnection();
-        return JdbcUtil.getEntity(connection, String.format(sqlQueries.get(SqlQueries.GET_BY_FIELD).toString(),
-                nickname), mapper).isPresent();
     }
 }

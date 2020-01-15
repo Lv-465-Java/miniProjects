@@ -1,11 +1,15 @@
 package com.softserve.onlineshop.database;
 
 
+import com.softserve.onlineshop.constant.Parameters;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.softserve.onlineshop.constant.Parameters.*;
 
 public final class ConnectionManager {
 
@@ -37,55 +41,13 @@ public final class ConnectionManager {
         Connection connection = getAllConnections().get(Thread.currentThread().getId());
         if (connection == null) {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/phoneshop", "lv465", "andrii5");
+                Class.forName(Parameters.MYSQL_DRIVER);
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
             } catch (SQLException | ClassNotFoundException ex) {
                 throw new RuntimeException("Failed to create the database connection.");
             }
             addConnection(connection);
         }
         return connection;
-    }
-
-    public void beginTransaction() {
-        try {
-            getConnection().setAutoCommit(false);
-        } catch (SQLException e) {
-            // TODO Develop Custom Exceptions
-            throw new RuntimeException("Connection Failed", e);
-        }
-    }
-
-    public void commitTransaction() {
-        try {
-            getConnection().commit();
-        } catch (SQLException e) {
-            // TODO Develop Custom Exceptions
-            throw new RuntimeException("Connection Failed", e);
-        }
-    }
-
-    public void rollbackTransaction() {
-        try {
-            getConnection().rollback();
-        } catch (SQLException e) {
-            // TODO Develop Custom Exceptions
-            throw new RuntimeException("Connection Failed", e);
-        }
-    }
-
-    public static void closeAllConnections() {
-        if (instance != null) {
-            for (Long key : instance.getAllConnections().keySet()) {
-                if (instance.getAllConnections().get(key) != null) {
-                    try {
-                        instance.getAllConnections().get(key).close();
-                    } catch (SQLException e) {
-                        throw new RuntimeException("Failed to Close Connection", e);
-                    }
-                    instance.getAllConnections().put(key, null);
-                }
-            }
-        }
     }
 }

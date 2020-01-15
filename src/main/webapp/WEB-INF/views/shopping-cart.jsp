@@ -105,11 +105,20 @@
                             </c:forEach>
                             </tbody>
                         </table>
+                        <a href="/home">
+                            <button class="btn blue-gradient btn-md">
+                                Continue shopping
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+</div>
+<div>
+
 </div>
 </body>
 </html>

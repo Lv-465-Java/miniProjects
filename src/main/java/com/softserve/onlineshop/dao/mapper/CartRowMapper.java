@@ -1,14 +1,9 @@
 package com.softserve.onlineshop.dao.mapper;
 
 import com.softserve.onlineshop.entity.Cart;
-import com.softserve.onlineshop.exception.NotFoundException;
 
-
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class CartRowMapper implements RowMapper<Cart> {
     @Override

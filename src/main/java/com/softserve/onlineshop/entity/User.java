@@ -24,10 +24,19 @@ public class User {
         this.phone = phone;
     }
 
+    public User(String nickname, String password, String email) {
+        this.nickname = nickname;
+        this.password = password;
+        this.email = email;
+    }
+
+    public User(String nickname, String password) {
+        this.nickname = nickname;
+        this.password = password;
+    }
 
     public enum UserEntityQueries {
         INSERT(SqlQueries.INSERT, "INSERT INTO users (nickname, password, email, phone) VALUES (?, ?, ?, ?);"),
-//        INSERT(SqlQueries.INSERT, "INSERT INTO users (nickname, password, email, phone, cartId) VALUES (?, ?, ?, ?, ?);"),
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, nickname, password, email, phone, role FROM users WHERE id = ?;"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, nickname, password, email, phone, role FROM users;"),
         GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, nickname, password, email, phone, role FROM users WHERE nickname = '%s';"),
@@ -41,7 +50,6 @@ public class User {
             this.sqlQuery = sqlQuery;
             this.query = query;
         }
-
 
         public SqlQueries getSqlQuery() {
             return this.sqlQuery;

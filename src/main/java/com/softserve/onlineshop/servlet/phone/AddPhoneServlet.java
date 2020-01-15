@@ -58,24 +58,13 @@ public class AddPhoneServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Part filePart = request.getPart("photo");
-        String fileName = UUID.randomUUID().toString() + "_" + Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 
-        InputStream fileStream = filePart.getInputStream();
-        byte[] bytes = new byte[fileStream.available()];
-        fileStream.read(bytes);
-        BufferedOutputStream bos = new BufferedOutputStream(
-                new FileOutputStream(
-                        new File(IMG_PATH + fileName)));
-        bos.write(bytes);
-        bos.close();
-
+        String photo = phoneService.savePhoto(request);
 
         PhoneDto phoneDto = new PhoneDto();
         phoneDto.setYear(Integer.parseInt(request.getParameter("year")));
         phoneDto.setPrice(Integer.parseInt(request.getParameter("price")));
-        phoneDto.setPhoto(fileName);
-//        phoneDto.setPhoto(request.getParameter("photo"));
+        phoneDto.setPhoto(photo);
         phoneDto.setColor(request.getParameter("color"));
         phoneDto.setScreenDiagonal(Double.parseDouble(request.getParameter("screen-diagonal")));
         phoneDto.setInternalMemory(Integer.parseInt(request.getParameter("internal-memory")));

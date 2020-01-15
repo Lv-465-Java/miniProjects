@@ -3,7 +3,6 @@ package com.softserve.onlineshop.dao.impl;
 import com.softserve.onlineshop.dao.CrudDaoImpl;
 import com.softserve.onlineshop.dao.mapper.ModelRowMapper;
 import com.softserve.onlineshop.database.ConnectionManager;
-import com.softserve.onlineshop.dto.UserDto;
 import com.softserve.onlineshop.entity.Model;
 import com.softserve.onlineshop.entity.Model.ModelEntityQueries;
 import com.softserve.onlineshop.entity.SqlQueries;
@@ -47,12 +46,5 @@ public class ModelDaoImpl extends CrudDaoImpl<Model> {
         Connection connection = ConnectionManager.getInstance().getConnection();
         return JdbcUtil.getEntityList(connection, sqlQueries.get(SqlQueries.GET_BY_PRODUCER_ID).toString(),
                 mapper, producerId);
-    }
-
-    public static void main(String[] args) {
-        ModelDaoImpl modelDao = new ModelDaoImpl();
-//        modelDao.insert(new Model())
-//        System.out.println(modelDao.updateById(model));
-//        System.out.println(modelDao.getAllByProducerId(new ModelRowMapper(), 1L));
     }
 }

@@ -16,12 +16,10 @@ public class UserDto {
     private String phone;
     private String role;
 
-    public UserDto(Long id, String nickname, String password, String email, String phone) {
-        this.id = id;
+    public UserDto(String nickname, String password, String email) {
         this.nickname = nickname;
         this.password = password;
         this.email = email;
-        this.phone = phone;
     }
 
     public UserDto(String nickname, String password, String email, String phone) {

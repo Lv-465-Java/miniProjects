@@ -16,8 +16,6 @@ public interface ProducerService {
     List<ProducerDto> getAll();
 
     boolean updateById(ProducerDto producerDto, Long id);
-//    boolean updateById(String name, Long id);
-//    boolean updateById(Long id);
 
     boolean deleteById(Long id);
 

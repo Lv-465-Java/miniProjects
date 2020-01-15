@@ -5,7 +5,6 @@ import com.softserve.onlineshop.dto.CartDto;
 import com.softserve.onlineshop.service.CartService;
 import com.softserve.onlineshop.service.UserService;
 import com.softserve.onlineshop.service.impl.CartServiceImpl;
-import com.softserve.onlineshop.service.impl.ProducerServiceImpl;
 import com.softserve.onlineshop.service.impl.UserServiceImpl;
 import com.softserve.onlineshop.util.SessionUtil;
 

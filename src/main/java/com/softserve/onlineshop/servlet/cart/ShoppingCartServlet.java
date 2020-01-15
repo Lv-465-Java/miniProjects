@@ -1,6 +1,5 @@
 package com.softserve.onlineshop.servlet.cart;
 
-import com.softserve.onlineshop.dto.CartDto;
 import com.softserve.onlineshop.service.*;
 import com.softserve.onlineshop.service.impl.*;
 import com.softserve.onlineshop.util.SessionUtil;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/shopping-cart")
 public class ShoppingCartServlet extends HttpServlet {

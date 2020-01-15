@@ -5,7 +5,7 @@ import com.softserve.onlineshop.entity.User;
 
 public class UserDtoMapper {
     public UserDto mapToDto(User user) {
-        return new UserDto(user.getId(), user.getNickname(),user.getPassword(),
-                user.getEmail(),user.getPhone(), user.getRole());
+        return new UserDto(user.getId(), user.getNickname(), user.getPassword(),
+                user.getEmail(), user.getPhone(), user.getRole());
     }
 }
