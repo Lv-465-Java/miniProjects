@@ -46,7 +46,6 @@
 <table class="table">
     <thead class="thead-dark">
     <tr>
-        <th>ID</th>
         <th>Task</th>
         <th>Modified Date</th>
         <th>Status</th>
@@ -55,7 +54,6 @@
     </thead>
     <c:forEach var="history_record" items="${historyList}">
         <tr>
-            <td>${history_record.id}</td>
             <td>${history_record.task}</td>
             <td>${history_record.modifiedDate}</td>
             <td>${history_record.status}</td>

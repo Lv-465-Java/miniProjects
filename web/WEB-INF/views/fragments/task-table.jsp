@@ -15,7 +15,6 @@
 <table class="table">
     <thead class="thead-dark">
     <tr>
-        <th>Task ID</th>
         <th>Description</th>
         <th>Creation date</th>
         <th>Status</th>
@@ -29,7 +28,6 @@
     </thead>
     <c:forEach var="task" items="${taskList}">
         <tr>
-            <td>${task.taskID}</td>
             <td>${task.description}</td>
             <td>${task.creationDate}</td>
             <td>${task.status}</td>
