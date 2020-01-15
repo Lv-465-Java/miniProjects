@@ -3,6 +3,7 @@ package com.blog.controller.post;
 import com.blog.constant.Parameter;
 import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
+import com.blog.exeption.NotFoundExeption;
 import com.blog.service.CategoryService;
 import com.blog.service.PostService;
 import com.blog.service.impl.CategoryServiceImpl;
@@ -32,9 +33,13 @@ public class PostSearchServlet extends HttpServlet {
         String pathInfo = req.getPathInfo();
         String[] pathParts = pathInfo.split("/");
         Long categoryId = Long.parseLong(pathParts[1]);
-        req.setAttribute("field", categoryService.getById(categoryId).getName());
-        req.setAttribute("posts", postService.findByCategory(categoryId));
-        req.setAttribute("categories", categoryService.getAll());
+        try {
+            req.setAttribute("field", "Category - " + categoryService.getById(categoryId).getName());
+            req.setAttribute("categories", categoryService.getAll());
+            req.setAttribute("posts", postService.findByCategory(categoryId));
+        }catch (NotFoundExeption e){
+            req.setAttribute(Parameter.MESSAGE, e.getMessage());
+        }
         getServletConfig()
                 .getServletContext()
                 .getRequestDispatcher(ViewUrls.SEARCH_RESULT.toString())
@@ -45,8 +50,12 @@ public class PostSearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String text = req.getParameter(Parameter.TEXT);
         req.setAttribute("field", text);
-        req.setAttribute("posts", postService.findByTitle(text));
-        req.setAttribute("categories", categoryService.getAll());
+        try {
+            req.setAttribute("categories", categoryService.getAll());
+            req.setAttribute("posts", postService.findByTitle(text));
+        }catch (NotFoundExeption e){
+            req.setAttribute(Parameter.MESSAGE, e.getMessage());
+        }
         getServletConfig()
                 .getServletContext()
                 .getRequestDispatcher(ViewUrls.SEARCH_RESULT.toString())

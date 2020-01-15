@@ -4,7 +4,8 @@ public enum ControllerUrls {
 
     HOME_PAGE(""),
     USER_POSTS("/user/posts"),
-    PROFILE("/profile");
+    PROFILE("/profile"),
+    ADMIN_PAGE("/admin");
 
     private String url;
 

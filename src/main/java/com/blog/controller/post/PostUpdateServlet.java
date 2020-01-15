@@ -6,6 +6,7 @@ import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
 import com.blog.dto.LoginDto;
 import com.blog.dto.PostDto;
+import com.blog.exeption.NotUpdateExeption;
 import com.blog.service.PostService;
 import com.blog.service.impl.PostServiceImpl;
 
@@ -68,8 +69,11 @@ public class PostUpdateServlet extends HttpServlet {
         postDto.setContent(req.getParameter(Parameter.CONTENT));
         postDto.setImgPath(fileName);
         postDto.setCategoryId(Long.parseLong(req.getParameter(Parameter.CATEGORY_ID)));
-
+        try {
         postService.update(postDto);
         resp.sendRedirect(req.getContextPath() + ControllerUrls.USER_POSTS.toString());
+        }catch (NotUpdateExeption e){
+            resp.sendRedirect(req.getContextPath() + ControllerUrls.USER_POSTS.toString());
+        }
     }
 }

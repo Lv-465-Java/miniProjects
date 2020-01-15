@@ -1,10 +1,14 @@
 package com.blog.service.impl;
 
+import com.blog.constant.Message;
 import com.blog.constant.Parameter;
 import com.blog.dao.UserDao;
 import com.blog.dto.LoginDto;
 import com.blog.dto.UserDto;
 import com.blog.entity.User;
+import com.blog.exeption.NotFoundExeption;
+import com.blog.exeption.NotSavedExeption;
+import com.blog.exeption.NotUpdateExeption;
 import com.blog.service.UserService;
 
 import java.util.ArrayList;
@@ -27,22 +31,29 @@ public class UserServiceImpl implements UserService {
                 userDto.getFirstName(),
                 userDto.getLastName(),
                 ROLE_USER);
-
-        userDao.insert(user);
+        try {
+            userDao.insert(user);
+        }catch (RuntimeException e){
+            throw new NotSavedExeption(Message.USER_NOT_SAVED);
+        }
     }
 
     @Override
     public UserDto getById(Long id) {
-       User user = userDao.getById(id);
-        UserDto userDto = new UserDto(
-                user.getId(),
-                user.getUsername(),
-                user.getPassword(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getRoleId().toString()
-        );
-        return userDto;
+        try {
+            User user = userDao.getById(id);
+            UserDto userDto = new UserDto(
+                    user.getId(),
+                    user.getUsername(),
+                    user.getPassword(),
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getRoleId().toString()
+            );
+            return userDto;
+        }catch (RuntimeException e){
+            throw new NotFoundExeption(Message.USER_NOT_FOUND);
+        }
     }
 
     @Override
@@ -55,14 +66,18 @@ public class UserServiceImpl implements UserService {
                 userDto.getLastName(),
                 Long.parseLong(userDto.getRoleId())
         );
+        try {
             userDao.updateByEntity(user);
+        }catch (RuntimeException e){
+            throw new NotUpdateExeption(Message.USER_NOT_UPDATED);
+        }
 
     }
 
     @Override
     public UserDto findUserByUsername(String username) {
-        User user = userDao.getByFieldName("username", username).get(0);
-        if (user != null){
+        try {
+            User user = userDao.getByFieldName("username", username).get(0);
             UserDto userDto = new UserDto(
                     user.getId(),
                     user.getUsername(),
@@ -72,26 +87,29 @@ public class UserServiceImpl implements UserService {
                     user.getRoleId().toString()
             );
             return userDto;
-        } else {
-            throw new RuntimeException("User with" + username + " not found");
+        }catch (RuntimeException e){
+            throw new NotFoundExeption(Message.USER_NOT_FOUND);
         }
-
     }
 
     @Override
     public List<UserDto> getAll() {
         List<UserDto> userDtoList = new ArrayList<>();
-        for (User user : userDao.getAll()){
-            UserDto userDto = new UserDto(
-                    user.getId(),
-                    user.getUsername(),
-                    user.getPassword(),
-                    user.getFirstName(),
-                    user.getLastName(),
-                    user.getRoleId().toString()
-            );
+        try {
+            for (User user : userDao.getAll()) {
+                UserDto userDto = new UserDto(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getPassword(),
+                        user.getFirstName(),
+                        user.getLastName(),
+                        user.getRoleId().toString()
+                );
 
-            userDtoList.add(userDto);
+                userDtoList.add(userDto);
+            }
+        }catch (RuntimeException e){
+            throw new NotFoundExeption(Message.USER_NOT_FOUND);
         }
         return userDtoList;
     }

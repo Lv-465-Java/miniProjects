@@ -7,6 +7,8 @@ import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
 import com.blog.dto.LoginDto;
 import com.blog.dto.UserDto;
+import com.blog.exeption.NotFoundExeption;
+import com.blog.exeption.NotUpdateExeption;
 import com.blog.service.UserService;
 import com.blog.service.impl.UserServiceImpl;
 
@@ -32,7 +34,11 @@ public class UserProfileUpdateServlet extends HttpServlet {
         req.setAttribute("session", Security.checkSession(req, resp));
         HttpSession session = req.getSession(false);
         LoginDto loginDto = (LoginDto) session.getAttribute("loginDto");
-        req.setAttribute("user", userService.findUserByUsername(loginDto.getUsername()));
+        try {
+            req.setAttribute("user", userService.findUserByUsername(loginDto.getUsername()));
+        }catch (NotFoundExeption e){
+            req.setAttribute(Parameter.MESSAGE, Message.USER_NOT_FOUND);
+        }
         getServletConfig()
                 .getServletContext()
                 .getRequestDispatcher(ViewUrls.USER_UPDATE_PROFILE.toString())
@@ -49,8 +55,12 @@ public class UserProfileUpdateServlet extends HttpServlet {
                     req.getParameter(Parameter.LAST_NAME),
                     req.getParameter(Parameter.ROLE_ID)
             );
-            userService.update(userDto);
-            resp.sendRedirect(req.getContextPath() + ControllerUrls.PROFILE.toString());
+            try {
+                userService.update(userDto);
+                resp.sendRedirect(req.getContextPath() + ControllerUrls.PROFILE.toString());
+            }catch (NotUpdateExeption e){
+                req.setAttribute(Parameter.MESSAGE, Message.USER_NOT_UPDATED);
+            }
 
     }
 }

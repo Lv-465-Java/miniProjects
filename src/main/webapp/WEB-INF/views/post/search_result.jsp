@@ -21,6 +21,9 @@
         <h1>Search by: ${field}</h1>
     </div>
     <main>
+        <c:if test="${not empty message}">
+            <h1>${message}</h1>
+        </c:if>
         <c:forEach var="post" items="${posts}">
             <article>
                 <header>

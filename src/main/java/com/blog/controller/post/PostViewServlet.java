@@ -1,9 +1,11 @@
 package com.blog.controller.post;
 
 import com.blog.constant.Parameter;
+import com.blog.controller.ControllerUrls;
 import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
 import com.blog.dto.PostDto;
+import com.blog.exeption.NotFoundExeption;
 import com.blog.service.PostService;
 import com.blog.service.UserService;
 import com.blog.service.impl.PostServiceImpl;
@@ -32,12 +34,16 @@ public class PostViewServlet extends HttpServlet {
         String pathInfo = req.getPathInfo();
         String[] pathParts = pathInfo.split("/");
         String post_id = pathParts[1];
-        PostDto postDto = postService.getById(Long.parseLong(post_id));
-        req.setAttribute("post", postDto);
-        getServletConfig()
-                .getServletContext()
-                .getRequestDispatcher(ViewUrls.POST_VIEW.toString())
-                .forward(req, resp);
+        try {
+            PostDto postDto = postService.getById(Long.parseLong(post_id));
+            req.setAttribute("post", postDto);
+            getServletConfig()
+                    .getServletContext()
+                    .getRequestDispatcher(ViewUrls.POST_VIEW.toString())
+                    .forward(req, resp);
+        }catch (NotFoundExeption e){
+            resp.sendRedirect(req.getContextPath() + ControllerUrls.HOME_PAGE);
+        }
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.blog.controller.common;
 
+import com.blog.constant.Parameter;
 import com.blog.controller.ViewUrls;
 import com.blog.dto.CategoryDto;
 import com.blog.dto.PostDto;
+import com.blog.exeption.NotFoundExeption;
 import com.blog.service.CategoryService;
 import com.blog.service.PostService;
 import com.blog.service.impl.CategoryServiceImpl;
@@ -32,8 +34,12 @@ public class MainServlet extends HttpServlet {
         List<PostDto> postDtoList = postService.getAll();
         List<CategoryDto> categoryDtoList = categoryService.getAll();
         req.setAttribute("session", Security.checkSession(req, resp));
-        req.setAttribute("postList", postDtoList);
-        req.setAttribute("categories", categoryDtoList);
+        try {
+            req.setAttribute("categories", categoryDtoList);
+            req.setAttribute("postList", postDtoList);
+        }catch (NotFoundExeption e){
+            req.setAttribute(Parameter.MESSAGE, e.getMessage());
+        }
         getServletConfig()
                 .getServletContext()
                 .getRequestDispatcher(ViewUrls.HOME_PAGE.toString())

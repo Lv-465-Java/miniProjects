@@ -1,8 +1,10 @@
 package com.blog.controller.user;
 
+import com.blog.constant.Parameter;
 import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
 import com.blog.dto.LoginDto;
+import com.blog.exeption.NotFoundExeption;
 import com.blog.service.PostService;
 import com.blog.service.UserService;
 import com.blog.service.impl.PostServiceImpl;
@@ -32,8 +34,12 @@ public class UserPostsServlet extends HttpServlet {
         req.setAttribute("session", Security.checkSession(req,resp));
         HttpSession session = req.getSession(false);
         LoginDto loginDto = (LoginDto) session.getAttribute("loginDto");
-        req.setAttribute("posts", postService.findByUser(loginDto.getUsername()));
         req.setAttribute("username", loginDto.getUsername());
+        try {
+            req.setAttribute("posts", postService.findByUser(loginDto.getUsername()));
+        }catch (NotFoundExeption e){
+            req.setAttribute(Parameter.MESSAGE, e.getMessage());
+        }
         getServletConfig()
                 .getServletContext()
                 .getRequestDispatcher(ViewUrls.USER_POSTS.toString())

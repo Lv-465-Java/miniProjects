@@ -7,7 +7,6 @@ public class Category implements IEntity{
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, name FROM categories WHERE id = ?;"),
         GET_BY_CATEGORY(SqlQueries.GET_BY_FIELD, "SELECT id, text, created_date FROM categories WHERE post_id = ?;"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, name FROM categories;"),
- //       SEARCH(SqlQueries.SEARCH, "SELECT id, name FROM categories WHERE %s LIKE %?%;"),
         UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE categories SET name = %s WHERE id = %s;"),
         DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM categories WHERE id = %s;"),
         DELETE_BY_FIELD(SqlQueries.DELETE_BY_FIELD, "DELETE FROM categories WHERE %s = %s;");

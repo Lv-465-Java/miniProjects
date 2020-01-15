@@ -3,6 +3,7 @@ package com.blog.controller.post;
 import com.blog.controller.ControllerUrls;
 import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
+import com.blog.exeption.NotDeleteExeption;
 import com.blog.service.PostService;
 import com.blog.service.impl.PostServiceImpl;
 
@@ -24,14 +25,14 @@ public class PostDeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (Security.checkSession(req,resp)) {
             String pathInfo = req.getPathInfo();
             String[] pathParts = pathInfo.split("/");
-            postService.deleteById(Long.parseLong(pathParts[1]));
-            resp.sendRedirect(req.getContextPath() + ControllerUrls.USER_POSTS.toString());
-        }else {
-            resp.sendRedirect(req.getContextPath() + ControllerUrls.HOME_PAGE.toString());
-        }
+            try {
+                postService.deleteById(Long.parseLong(pathParts[1]));
+                resp.sendRedirect(req.getContextPath() + ControllerUrls.USER_POSTS.toString());
+            }catch (NotDeleteExeption e){
+                resp.sendRedirect(req.getContextPath() + ControllerUrls.HOME_PAGE.toString());
+            }
     }
 
     @Override

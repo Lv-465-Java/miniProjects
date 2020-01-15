@@ -1,9 +1,11 @@
 package com.blog.controller.user;
 
+import com.blog.controller.ControllerUrls;
 import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
 import com.blog.dto.CategoryDto;
 import com.blog.dto.PostDto;
+import com.blog.exeption.NotFoundExeption;
 import com.blog.service.PostService;
 import com.blog.service.UserService;
 import com.blog.service.impl.PostServiceImpl;
@@ -31,10 +33,14 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<PostDto> postDtoList = postService.getAll();
         req.setAttribute("session", Security.checkSession(req, resp));
-        req.setAttribute("users", userService.getAll());
-        getServletConfig()
-                .getServletContext()
-                .getRequestDispatcher(ViewUrls.ADMIN_PAGE.toString())
-                .forward(req, resp);
+        try {
+            req.setAttribute("users", userService.getAll());
+            getServletConfig()
+                    .getServletContext()
+                    .getRequestDispatcher(ViewUrls.ADMIN_PAGE.toString())
+                    .forward(req, resp);
+        }catch (NotFoundExeption e){
+            resp.sendRedirect(req.getContextPath() + ControllerUrls.ADMIN_PAGE.toString());
+        }
     }
 }

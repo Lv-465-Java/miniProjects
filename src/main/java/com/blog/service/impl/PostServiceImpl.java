@@ -1,5 +1,6 @@
 package com.blog.service.impl;
 
+import com.blog.constant.Message;
 import com.blog.constant.Parameter;
 import com.blog.dao.CategoryDao;
 import com.blog.dao.PostDao;
@@ -10,6 +11,10 @@ import com.blog.dto.UserDto;
 import com.blog.entity.Category;
 import com.blog.entity.Post;
 import com.blog.entity.User;
+import com.blog.exeption.NotDeleteExeption;
+import com.blog.exeption.NotFoundExeption;
+import com.blog.exeption.NotSavedExeption;
+import com.blog.exeption.NotUpdateExeption;
 import com.blog.service.PostService;
 import com.blog.service.UserService;
 
@@ -42,27 +47,36 @@ public class PostServiceImpl implements PostService {
                 user.getId(),
                 postDto.getCategoryId()
         );
-         postDao.insert(post);
+        try {
+            postDao.insert(post);
+        }catch (RuntimeException e){
+            throw new NotSavedExeption(Message.POST_NOT_SAVED);
+        }
     }
 
     @Override
     public PostDto getById(Long id) {
-        Post post = postDao.getById(id);
-        UserDto user = userService.getById(post.getUserId());
-        Category category = categoryDao.getById(post.getCategotyId());
-        PostDto postDto = new PostDto(
-                post.getId(),
-                post.getTitle(),
-                post.getContent(),
-                post.getImgPath(),
-                post.getCreatedDateTime().toString(),
-                post.getUpdatedDateTime().toString(),
-                post.getUserId(),
-                post.getCategotyId(),
-                user.getUsername(),
-                category.getName()
-        );
-        return postDto;
+        try {
+            Post post = postDao.getById(id);
+            UserDto user = userService.getById(post.getUserId());
+            Category category = categoryDao.getById(post.getCategotyId());
+            PostDto postDto = new PostDto(
+                    post.getId(),
+                    post.getTitle(),
+                    post.getContent(),
+                    post.getImgPath(),
+                    post.getCreatedDateTime().toString(),
+                    post.getUpdatedDateTime().toString(),
+                    post.getUserId(),
+                    post.getCategotyId(),
+                    user.getUsername(),
+                    category.getName()
+            );
+            return postDto;
+        }catch (RuntimeException e){
+            throw new NotFoundExeption(Message.POST_NOT_FOUND);
+        }
+
     }
 
     @Override
@@ -83,7 +97,7 @@ public class PostServiceImpl implements PostService {
                 postDtoList.add(postDto);
             }
         }catch (RuntimeException e){
-            //ignore
+            throw new NotFoundExeption(Message.POST_NOT_FOUND);
         }
 
         return postDtoList;
@@ -108,7 +122,7 @@ public class PostServiceImpl implements PostService {
                 postDtoList.add(postDto);
             }
         }catch (RuntimeException e){
-            //ignore
+            throw new NotFoundExeption(Message.POST_NOT_FOUND);
         }
         return postDtoList;
     }
@@ -126,7 +140,7 @@ public class PostServiceImpl implements PostService {
                 result.add(postDto);
             }
         } catch (RuntimeException e){
-            //ignore
+            throw new NotFoundExeption(Message.POST_NOT_FOUND);
         }
 
         return result;
@@ -136,7 +150,7 @@ public class PostServiceImpl implements PostService {
     public List<PostDto> findByTitle(String text) {
         List<PostDto> result =  new ArrayList<>();
             try {
-                for (Post post: postDao.getByFieldNameLike("title", "%" +text +"%")) {
+                for (Post post: postDao.getByFieldNameLike(Parameter.TITLE, "%" +text +"%")) {
                     PostDto postDto = new PostDto();
                     postDto.setId(post.getId());
                     postDto.setTitle(post.getTitle());
@@ -145,7 +159,7 @@ public class PostServiceImpl implements PostService {
                     result.add(postDto);
                 }
             }catch (RuntimeException e){
-                //ignore
+                throw new NotFoundExeption(Message.POST_NOT_FOUND);
             }
         return result;
     }
@@ -159,12 +173,19 @@ public class PostServiceImpl implements PostService {
         post.setImgPath(postDto.getImgPath());
         post.setUpdatedDateTime(LocalDateTime.now());
         post.setCategotyId(postDto.getCategoryId());
-
-        postDao.updateByEntity(post);
+        try {
+            postDao.updateByEntity(post);
+        }catch (RuntimeException e){
+            throw new NotUpdateExeption(Message.POST_NOT_UPDATED);
+        }
     }
 
     @Override
     public void deleteById(Long id) {
-        postDao.deleteById(id);
+        try {
+            postDao.deleteById(id);
+        }catch (RuntimeException e){
+            throw  new NotDeleteExeption(Message.POST_NOT_DELETED);
+        }
     }
 }

@@ -8,7 +8,6 @@ public class User implements IEntity {
         GET_BY_ID(SqlQueries.GET_BY_ID, "SELECT id, username, password, firstName, lastName, role_id FROM users WHERE id = ?;"),
         GET_BY_FIELD(SqlQueries.GET_BY_FIELD, "SELECT id, username, password, firstName, lastName, role_id FROM Users WHERE %s = ?;"),
         GET_ALL(SqlQueries.GET_ALL, "SELECT id, username, password, firstName, lastName, role_id FROM Users;"),
- //       SEARCH(SqlQueries.SEARCH, "SELECT id, username, password, firstName, lastName, role_id FROM users WHERE %s LIKE %?%;"),
         UPDATE_BY_ID(SqlQueries.UPDATE_BY_ID, "UPDATE users SET username = ?, password = ?, firstName = ?, lastName = ?, role_id = ? WHERE id = ?;"),
         UPDATE_BY_FIELD(SqlQueries.UPDATE_BY_FIELD,"UPDATE users SET %s = ? WHERE %s = ?;"),
         DELETE_BY_ID(SqlQueries.DELETE_BY_ID, "DELETE FROM Users WHERE id = ?;"),

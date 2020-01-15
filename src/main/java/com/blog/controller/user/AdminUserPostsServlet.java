@@ -1,8 +1,10 @@
 package com.blog.controller.user;
 
+import com.blog.constant.Parameter;
 import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
 import com.blog.dto.LoginDto;
+import com.blog.exeption.NotFoundExeption;
 import com.blog.service.PostService;
 import com.blog.service.impl.PostServiceImpl;
 
@@ -28,8 +30,12 @@ public class AdminUserPostsServlet extends HttpServlet {
         String pathInfo = req.getPathInfo();
         String[] pathParts = pathInfo.split("/");
         String username = pathParts[1];
-        req.setAttribute("posts", postService.findByUser(username));
         req.setAttribute("username", username);
+        try {
+            req.setAttribute("posts", postService.findByUser(username));
+        }catch (NotFoundExeption e){
+            req.setAttribute(Parameter.MESSAGE, e.getMessage());
+        }
         getServletConfig()
                 .getServletContext()
                 .getRequestDispatcher(ViewUrls.USER_POSTS.toString())

@@ -5,6 +5,7 @@ import com.blog.constant.Parameter;
 import com.blog.controller.ControllerUrls;
 import com.blog.controller.ViewUrls;
 import com.blog.dto.UserDto;
+import com.blog.exeption.NotSavedExeption;
 import com.blog.service.UserService;
 import com.blog.service.impl.UserServiceImpl;
 
@@ -34,7 +35,6 @@ public class UserRegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
         if (userService.isAlreadyExists(req.getParameter(Parameter.USERNAME))){
             System.out.println(req.getParameter(Parameter.USERNAME));
             req.setAttribute("error", Message.ALREADY_EXIST);
@@ -46,9 +46,12 @@ public class UserRegistrationServlet extends HttpServlet {
                     req.getParameter(Parameter.FIRST_NAME),
                     req.getParameter(Parameter.LAST_NAME)
             );
-            userService.save(userDto);
-
-            resp.sendRedirect(req.getContextPath() + ControllerUrls.HOME_PAGE.toString());
+            try {
+                userService.save(userDto);
+                resp.sendRedirect(req.getContextPath() + ControllerUrls.HOME_PAGE.toString());
+            }catch (NotSavedExeption e){
+                req.setAttribute("error", Message.USER_NOT_SAVED);
+            }
         }
     }
 }

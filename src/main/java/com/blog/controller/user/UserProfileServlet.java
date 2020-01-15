@@ -1,10 +1,12 @@
 package com.blog.controller.user;
 
+import com.blog.constant.Message;
 import com.blog.constant.Parameter;
 import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
 import com.blog.dto.LoginDto;
 import com.blog.dto.UserDto;
+import com.blog.exeption.NotFoundExeption;
 import com.blog.service.UserService;
 import com.blog.service.impl.UserServiceImpl;
 
@@ -30,9 +32,13 @@ public class UserProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         LoginDto loginDto = (LoginDto) session.getAttribute("loginDto");
-        req.setAttribute("user", userService.findUserByUsername(loginDto.getUsername()));
         req.setAttribute("isAdmin", security.isAdmin(loginDto));
         req.setAttribute("session", Security.checkSession(req, resp));
+        try {
+            req.setAttribute("user", userService.findUserByUsername(loginDto.getUsername()));
+        }catch (NotFoundExeption e){
+            req.setAttribute(Parameter.MESSAGE, Message.USER_NOT_FOUND);
+        }
         getServletConfig()
                 .getServletContext()
                 .getRequestDispatcher(ViewUrls.USER_PROFILE.toString())

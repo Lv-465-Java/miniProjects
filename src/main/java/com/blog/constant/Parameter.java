@@ -17,6 +17,8 @@ public class Parameter {
 
     public static final String TEXT = "text";
 
+    public static final String MESSAGE = "message";
+
     public static final int SESSION_TIME = 200_000;
     public static final String IMAGE_PATH = "/C:/Users/Marian/Desktop/blog/miniProjects/target/blog/resources/images/posts/";
 }

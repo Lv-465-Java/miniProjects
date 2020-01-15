@@ -6,6 +6,7 @@ import com.blog.controller.ViewUrls;
 import com.blog.controller.common.Security;
 import com.blog.dto.LoginDto;
 import com.blog.dto.PostDto;
+import com.blog.exeption.NotSavedExeption;
 import com.blog.service.PostService;
 import com.blog.service.impl.PostServiceImpl;
 
@@ -61,10 +62,11 @@ public class PostCreateServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         LoginDto loginDto = (LoginDto) session.getAttribute("loginDto");
         String username = loginDto.getUsername();
-
-        postService.save(postDto, username);
-
-        resp.sendRedirect(req.getContextPath() + ControllerUrls.HOME_PAGE.toString());
-
+        try {
+            postService.save(postDto, username);
+            resp.sendRedirect(req.getContextPath() + ControllerUrls.HOME_PAGE.toString());
+        }catch (NotSavedExeption e){
+            resp.sendRedirect(req.getContextPath() + ControllerUrls.USER_POSTS.toString());
+        }
     }
 }
