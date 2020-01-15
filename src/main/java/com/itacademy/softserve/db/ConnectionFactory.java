@@ -1,7 +1,9 @@
 package com.itacademy.softserve.db;
 
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,14 +15,22 @@ public class ConnectionFactory {
     private static volatile ConnectionFactory connectionFactory;
     private final Map<Long, Connection> connections;
 
+    /**
+     * Default constructor.
+     */
     private ConnectionFactory() {
         this.connections = new HashMap<>();
     }
 
+    /**
+     * Method for getting ConnectionFactory object.
+     *
+     * @return ConnectionFactory object
+     */
     public static ConnectionFactory getConnectionFactory() {
         if (connectionFactory == null) {
             synchronized (ConnectionFactory.class) {
-                if(connectionFactory == null) {
+                if (connectionFactory == null) {
                     connectionFactory = new ConnectionFactory();
                 }
             }
@@ -28,14 +38,29 @@ public class ConnectionFactory {
         return connectionFactory;
     }
 
+    /**
+     * Method add new connection.
+     *
+     * @param connection new Connection object
+     */
     private void addConnection(Connection connection) {
         connections.put(Thread.currentThread().getId(), connection);
     }
 
+    /**
+     * Method for getting all connections.
+     *
+     * @return map of connections
+     */
     private Map<Long, Connection> getAllConnections() {
         return this.connections;
     }
 
+    /**
+     * Method for getting new connection.
+     *
+     * @return Connection object
+     */
     public Connection getConnection() {
         Connection connection = connections.get(Thread.currentThread().getId());
         if (connection == null) {
@@ -50,30 +75,9 @@ public class ConnectionFactory {
         return connection;
     }
 
-    public void beginTransaction() {
-        try {
-            getConnection().setAutoCommit(false);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void commitTransaction() {
-        try {
-            getConnection().commit();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void rollbackTransaction() {
-        try {
-            getConnection().rollback();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    /**
+     * Method close all connections.
+     */
     public static void closeAllConnection() {
         if (connectionFactory != null) {
             for (Long key : connectionFactory.getAllConnections().keySet()) {
