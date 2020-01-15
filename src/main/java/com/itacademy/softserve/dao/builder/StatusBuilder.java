@@ -6,6 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StatusBuilder implements InstanceBuilder<Status> {
+
+    /**
+     * Build Status instance from resultSet.
+     *
+     * @param resultSet
+     * @return Status object
+     */
     @Override
     public Status createInstance(ResultSet resultSet) {
         Status status = new Status();

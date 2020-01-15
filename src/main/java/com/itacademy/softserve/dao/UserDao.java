@@ -8,17 +8,26 @@ import com.itacademy.softserve.util.CrudUtils;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserDao extends DaoCrudA<User> {
 
+    /**
+     * Method initializes required resources.
+     */
     @Override
     protected void init() {
-        for(User.UserEntityQueries userEntityQueries : User.UserEntityQueries.values()) {
+        for (User.UserEntityQueries userEntityQueries : User.UserEntityQueries.values()) {
             sqlQueries.put(userEntityQueries.getQuery(), userEntityQueries);
         }
     }
 
+    /**
+     * Method gets field values and put
+     * them in array.
+     *
+     * @param entity User object
+     * @return array of entity field values
+     */
     @Override
     protected Object[] getFields(User entity) {
         Object[] fields = new Object[3];
@@ -28,11 +37,23 @@ public class UserDao extends DaoCrudA<User> {
         return fields;
     }
 
-    public List<User>  getAllUsers(InstanceBuilder<User> instanceBuilder) {
+    /**
+     * Method gets all User objects from database.
+     *
+     * @param instanceBuilder map resultSet to entity
+     * @return
+     */
+    public List<User> getAllUsers(InstanceBuilder<User> instanceBuilder) {
         Connection connection = ConnectionFactory.getConnectionFactory().getConnection();
         return CrudUtils.getEntityList(connection, sqlQueries.get(SqlQueries.GET_ALL).toString(), instanceBuilder);
     }
 
+    /**
+     * Method updates object by field in database.
+     *
+     * @param fieldsValues varargs with values
+     * @return
+     */
     @Override
     public boolean updateByField(Object... fieldsValues) {
         Connection connection = ConnectionFactory.getConnectionFactory().getConnection();

@@ -6,6 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TaskBuilder implements InstanceBuilder<Task> {
+
+    /**
+     * Build Task instance from resultSet.
+     *
+     * @param resultSet
+     * @return Task object
+     */
     @Override
     public Task createInstance(ResultSet resultSet) {
         Task task = new Task();

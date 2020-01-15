@@ -2,18 +2,25 @@ package com.itacademy.softserve.dao;
 
 import com.itacademy.softserve.entity.History;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 public class HistoryDao extends DaoCrudA<History> {
 
+    /**
+     * Method initializes required resources.
+     */
     @Override
     protected void init() {
-        for(History.HistoryEntityQueries historyEntityQueries : History.HistoryEntityQueries.values()) {
+        for (History.HistoryEntityQueries historyEntityQueries : History.HistoryEntityQueries.values()) {
             sqlQueries.put(historyEntityQueries.getQuery(), historyEntityQueries);
         }
     }
 
+    /**
+     * Method gets field values and put
+     * them in array.
+     *
+     * @param object History object
+     * @return array of object field values
+     */
     @Override
     protected Object[] getFields(History object) {
         Object[] fields = new Object[5];
