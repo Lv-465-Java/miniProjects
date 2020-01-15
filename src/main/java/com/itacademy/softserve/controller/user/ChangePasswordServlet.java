@@ -14,21 +14,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class processes requests for /change-password url.
+ */
 @WebServlet(ServletUrl.CHANGE_PASSWORD)
 public class ChangePasswordServlet extends HttpServlet {
     private UserService userService;
 
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() {
         userService = new UserServiceImpl();
     }
 
+    /**
+     * Method processes GET request for /change-password url
+     * and returns change-password.jsp.
+     *
+     * @param req  HTTP request object
+     * @param resp HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.getRequestDispatcher(JspUrl.CHANGE_PASSWORD_JSP).include(req, resp);
     }
 
+    /**
+     * Method processes POST request for /change-password url
+     * changes password and updates session
+     * parameter userDto.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

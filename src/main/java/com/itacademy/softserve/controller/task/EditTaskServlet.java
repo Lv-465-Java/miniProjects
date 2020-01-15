@@ -16,20 +16,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.DataTruncation;
 import java.util.List;
 
+/**
+ * Class processes requests for /edit-task url.
+ */
 @WebServlet(ServletUrl.EDIT_TASK)
 public class EditTaskServlet extends HttpServlet {
     private TaskService taskService;
     private UserService userService;
 
+    /**
+     * Method initializes required resources.
+     */
     @Override
     public void init() {
         taskService = new TaskServiceImpl();
         userService = new UserServiceImpl();
     }
 
+    /**
+     * Method processes GET request for /edit-task url
+     * sets session attributes and returns edit-task.jsp.
+     *
+     * @param req  HTTP request object
+     * @param resp HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -41,11 +55,20 @@ public class EditTaskServlet extends HttpServlet {
         req.getRequestDispatcher(JspUrl.EDIT_TASK_JSP).include(req, resp);
     }
 
+    /**
+     * Method processes POST request for /edit-task url
+     * and confirm task editing.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        try{
+        try {
             if (request.getParameter("confirm") != null) {
                 taskService.edit(request, (String) session.getAttribute("description"));
             }
