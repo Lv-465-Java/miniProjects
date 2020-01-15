@@ -50,7 +50,7 @@
             <jsp:include page="plannedOutcomesDropdown.jsp"/>
 
             <c:if test="${not empty error}">
-                <p class="reference" id="error">${error}</p>
+                <p class="errorActionMessage" id="error">${error}</p>
             </c:if>
 
             <div class="form-footer">

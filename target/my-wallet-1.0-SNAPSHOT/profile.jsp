@@ -51,6 +51,7 @@
                     <th scope="col"></th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Financial Type</th>
 
                 </tr>
                 <c:if test="${fn:length(categories) == 0}">
@@ -71,6 +72,13 @@
                         </td>
                         <td>${category.title}</td>
                         <td>${category.description}</td>
+
+                        <c:forEach var="financialType" items="${financialTypes}">
+                            <c:if test="${financialType.id == category.financialTypeId}">
+                                <td>${financialType.typeName}</td>
+                            </c:if>
+                        </c:forEach>
+
                         <td>
                             <div class="form-group">
 

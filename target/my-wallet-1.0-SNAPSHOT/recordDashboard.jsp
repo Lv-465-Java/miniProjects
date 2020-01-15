@@ -81,7 +81,7 @@
                         <td>
                             <div class="form-group">
                                 <form action="${pageContext.request.contextPath}/edit-record" method="get">
-                                    <button type="submit" class="btn btn-warning" name="id"
+                                    <button type="submit" class="btn btn-warning" name="record_id"
                                             value="${record.id}">Edit
                                     </button>
                                 </form>

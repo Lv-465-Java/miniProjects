@@ -1,15 +1,18 @@
 package com.softserve.service.implementation;
 
 import com.softserve.constant.ErrorMessage;
+import com.softserve.dao.implementation.CategoryDAOImpl;
 import com.softserve.dao.implementation.PlanedOutcomeDAOImpl;
 import com.softserve.dao.implementation.RecordDAOImpl;
 import com.softserve.dto.RecordDTO;
+import com.softserve.entity.Category;
 import com.softserve.entity.FinancialType;
 import com.softserve.entity.PlanedOutcome;
 import com.softserve.entity.Record;
 import com.softserve.exception.NoSuchEntityException;
 import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.ReadAllService;
+import com.softserve.service.mapper.CategoryMapperObjects;
 import com.softserve.service.mapper.PlanedOutcomeMapperObjects;
 import com.softserve.service.mapper.RecordMapperObjects;
 import org.slf4j.Logger;
@@ -24,11 +27,13 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
 
     private RecordDAOImpl recordDAO;
     private PlanedOutcomeDAOImpl planedOutcomeDAO;
+    private CategoryDAOImpl categoryDAO;
     private Logger LOG = LoggerFactory.getLogger(RecordServiceImpl.class);
 
     public RecordServiceImpl() {
         this.recordDAO = new RecordDAOImpl();
         this.planedOutcomeDAO = new PlanedOutcomeDAOImpl();
+        this.categoryDAO = new CategoryDAOImpl();
     }
 
     @Override
@@ -38,6 +43,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
             checkIfPlanedOutcomeMatchesCategory(recordDTO.getCategoryId(), recordDTO.getPlanedOutcomeId());
             reducePlannedOutcomeSum(recordDTO.getPlanedOutcomeId(), recordDTO.getSum());
         }
+        checkIfCategoryMatchesFinancialType(recordDTO.getFinancialTypeId(), recordDTO.getCategoryId());
         Record record = new Record(recordDTO.getSum(), recordDTO.getDate(), recordDTO.getNote(),
                 recordDTO.getFinancialTypeId(), recordDTO.getUserId(), recordDTO.getCategoryId(),
                 recordDTO.getPlanedOutcomeId());
@@ -45,6 +51,13 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
             throw new NotCompletedActionException(ErrorMessage.FAIL_TO_SAVE_A_RECORD.getErrorMessage());
         }
         return true;
+    }
+
+    private void checkIfCategoryMatchesFinancialType(Long financialTypeId, Long categoryId) throws NotCompletedActionException {
+        Category category = CategoryMapperObjects.verifyIfCategoryIsPresent(categoryDAO.getById(categoryId));
+        if (!financialTypeId.equals(category.getFinancialTypeId())) {
+            throw new NotCompletedActionException(ErrorMessage.CATEGORY_DO_NOT_MATCH_FINANCIAL_TYPE.getErrorMessage());
+        }
     }
 
     @Override
@@ -70,6 +83,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
             checkIfPlanedOutcomeMatchesCategory(recordDTO.getCategoryId(), recordDTO.getPlanedOutcomeId());
             reducePlannedOutcomeSum(recordDTO.getPlanedOutcomeId(), recordDTO.getSum());
         }
+        checkIfCategoryMatchesFinancialType(recordDTO.getFinancialTypeId(), recordDTO.getCategoryId());
         Record record = RecordMapperObjects.verifyIfRecordIsPresent(recordDAO.getById(id));
         record.setSum(recordDTO.getSum());
         record.setDate(recordDTO.getDate());
@@ -162,8 +176,7 @@ public class RecordServiceImpl implements ReadAllService<RecordDTO> {
         return calculateTotalAmount(recordList);
     }
 
-    private
-    Double calculateTotalAmount(List<Record> recordList) {
+    private Double calculateTotalAmount(List<Record> recordList) {
         Double sum = 0.00;
         for (Record record : recordList) {
             if (record.getFinancialTypeId().equals(FinancialType.INCOME.getId())) {

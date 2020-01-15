@@ -47,7 +47,7 @@
         </form>
         <div class="form-group" id="all-forms">
             <c:if test="${not empty errors}">
-                <p class="reference" id="errorChangePassword">${errors}</p>
+                <p class="errorActionMessage" id="errorChangePassword">${errors}</p>
             </c:if>
         </div>
     </div>

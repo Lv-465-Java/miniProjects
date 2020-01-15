@@ -9,6 +9,7 @@ import com.softserve.exception.NotCompletedActionException;
 import com.softserve.service.implementation.CategoryServiceImpl;
 import com.softserve.service.implementation.PlanedOutcomeServiceImpl;
 import com.softserve.service.implementation.RecordServiceImpl;
+import com.softserve.util.IdSupplier;
 import com.softserve.util.UserSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,22 +28,32 @@ public class EditRecordServlet extends HttpServlet {
     private CategoryServiceImpl categoryService;
     private PlanedOutcomeServiceImpl planedOutcomeService;
     private UserSession userSession;
+    private IdSupplier idSupplier;
     private Logger LOG = LoggerFactory.getLogger(EditRecordServlet.class);
     private UserDTO currentSessionUser;
+    private Long savedRecordId = 0L;
     private Long recordId;
 
     @Override
     public void init() {
-        this.recordService = new RecordServiceImpl();
-        this.categoryService = new CategoryServiceImpl();
-        this.planedOutcomeService = new PlanedOutcomeServiceImpl();
-        this.userSession = new UserSession();
+        recordService = new RecordServiceImpl();
+        categoryService = new CategoryServiceImpl();
+        planedOutcomeService = new PlanedOutcomeServiceImpl();
+        userSession = new UserSession();
+        idSupplier = new IdSupplier();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         currentSessionUser = userSession.retrieveUserIdFromSession(req);
-        recordId = Long.parseLong(req.getParameter("id"));
+
+        if (req.getParameter(ServletResponseParameter.RECORD_ID.getServletParameter()) == null) {
+            recordId = savedRecordId;
+        } else {
+            recordId = Long.parseLong(req.getParameter("record_id"));
+            savedRecordId = recordId;
+        }
+
         req.setAttribute("record", recordService.getById(recordId));
         req.setAttribute("categories", categoryService.getAllByUserId(currentSessionUser.getId()));
         req.setAttribute("financialTypes", recordService.getTypes());
@@ -56,9 +67,8 @@ public class EditRecordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         currentSessionUser = userSession.retrieveUserIdFromSession(req);
-
         try {
-            recordId = Long.parseLong(req.getParameter(ServletResponseParameter.RECORD_ID.getServletParameter()));
+            recordId = Long.parseLong(req.getParameter("record_id"));
             Double sum = Double.parseDouble(req.getParameter(ServletResponseParameter.SUM.getServletParameter()));
             LocalDate date = LocalDate.parse(req.getParameter(ServletResponseParameter.DATE.getServletParameter()));
             String note = req.getParameter(ServletResponseParameter.NOTE.getServletParameter());

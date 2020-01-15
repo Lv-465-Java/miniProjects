@@ -12,8 +12,6 @@ import java.util.List;
 
 public class FilterUtil {
 
-    private Logger LOG = LoggerFactory.getLogger(FilterUtil.class);
-
     public List<Object> filterParser(HttpServletRequest req) {
         List<Object> parameters = new ArrayList<>();
         if (req.getParameter(ServletResponseParameter.FINANCIAL_TYPE_ID.getServletParameter()) != null) {

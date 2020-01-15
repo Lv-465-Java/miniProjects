@@ -37,6 +37,7 @@ public class ProfileServlet extends HttpServlet {
         Long id = userWithAllInfo.getId();
         req.setAttribute("user", userWithAllInfo);
         req.setAttribute("categories", categoryService.getAllByUserId(id));
+        req.setAttribute("financialTypes", categoryService.getTypes());
         req.getRequestDispatcher(View.USER_PROFILE_PAGE.getViewUrl()).include(req, resp);
     }
 }
