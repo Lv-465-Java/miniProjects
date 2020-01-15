@@ -17,6 +17,11 @@ public class SessionManager {
         sessionManager = new SessionManager();
     }
 
+    /**
+     * Method for getting sessionManager.
+     *
+     * @return SessionManager object
+     */
     public static SessionManager getManager() {
         if (sessionManager == null) {
             sessionManager = new SessionManager();
@@ -24,6 +29,14 @@ public class SessionManager {
         return sessionManager;
     }
 
+    /**
+     * Method creates new session and set
+     * userDto as session attribute.
+     *
+     * @param userDto  transfer object for user
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     */
     public static void createSession(UserDto userDto, HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(true);
         session.setAttribute("userDto", userDto);
@@ -31,6 +44,13 @@ public class SessionManager {
         response.addCookie(cookie);
     }
 
+    /**
+     * Method determines if session is active
+     * for certain user.
+     *
+     * @param request HTTP request object
+     * @return true if session is active
+     */
     public static boolean isActiveSession(HttpServletRequest request) {
         boolean isActive = true;
         HttpSession session = request.getSession(false);
@@ -53,6 +73,12 @@ public class SessionManager {
         return isActive;
     }
 
+    /**
+     * Method destroys session for certain user.
+     *
+     * @param request  HTTP request object
+     * @param response HTTP response object
+     */
     public static void destroySession(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -70,6 +96,11 @@ public class SessionManager {
         }
     }
 
+    /**
+     * Method change username in session attribute.
+     *
+     * @param request HTTP request object
+     */
     public static void changeSessionAttributeNewUserName(HttpServletRequest request) {
         UserDao userDao = new UserDao();
         UserBuilder userBuilder = new UserBuilder();
@@ -80,12 +111,17 @@ public class SessionManager {
         session.setAttribute("userDto", userDto);
     }
 
+    /**
+     * Method change password in session attribute.
+     *
+     * @param request HTTP request object
+     */
     public static void changeSessionAttributeNewPassword(HttpServletRequest request) {
         UserDao userDao = new UserDao();
         UserBuilder userBuilder = new UserBuilder();
         UserDtoMapper userDtoMapper = new UserDtoMapper();
         HttpSession session = request.getSession(false);
-        String name = ((UserDto)session.getAttribute("userDto")).getName();
+        String name = ((UserDto) session.getAttribute("userDto")).getName();
         UserDto userDto = userDtoMapper.mapFromEntityToDto(userDao.getByFields(userBuilder, name).get(0));
         session.setAttribute("userDto", userDto);
     }

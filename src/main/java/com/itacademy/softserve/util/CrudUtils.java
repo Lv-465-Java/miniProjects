@@ -10,6 +10,16 @@ import java.util.Optional;
 
 public class CrudUtils {
 
+    /**
+     * Method gets object of type TEntity
+     * from database.
+     *
+     * @param connection Connection object
+     * @param query      SQL query
+     * @param mapper     map from resultSet
+     * @param args       varargs with values
+     * @return optional object
+     */
     public static <TEntity> Optional<TEntity> getEntity(Connection connection, String query, InstanceBuilder<TEntity> mapper, Object... args) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             setArgsToStatement(preparedStatement, args);
@@ -24,6 +34,16 @@ public class CrudUtils {
         }
     }
 
+    /**
+     * Method gets list of TEntity objects
+     * from database.
+     *
+     * @param connection Connection object
+     * @param query      SQL query
+     * @param mapper     map from resultSet
+     * @param args       varargs with values
+     * @return list of TEntity objects
+     */
     public static <TEntity> List<TEntity> getEntityList(Connection connection, String query, InstanceBuilder<TEntity> mapper, Object... args) {
         List<TEntity> entityList = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -39,6 +59,14 @@ public class CrudUtils {
         }
     }
 
+    /**
+     * Method updates object in database.
+     *
+     * @param connection Connection object
+     * @param query      SQL query
+     * @param args       varargs with values
+     * @return true if object is updated
+     */
     public static int update(Connection connection, String query, Object... args) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             setArgsToStatement(preparedStatement, args);
@@ -49,6 +77,12 @@ public class CrudUtils {
         }
     }
 
+    /**
+     * Method sets values in preparedStatement.
+     *
+     * @param preparedStatement PreparedStatement object
+     * @param args              varargs with values
+     */
     private static void setArgsToStatement(PreparedStatement preparedStatement, Object... args) {
         try {
             for (int i = 0; i < args.length; i++) {

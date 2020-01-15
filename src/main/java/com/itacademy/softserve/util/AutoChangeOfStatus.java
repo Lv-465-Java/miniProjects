@@ -6,17 +6,22 @@ import com.itacademy.softserve.dao.TaskDao;
 import com.itacademy.softserve.dao.builder.StatusBuilder;
 import com.itacademy.softserve.dto.mapper.TaskDtoMapper;
 import com.itacademy.softserve.entity.Task;
-import com.itacademy.softserve.exception.NotSaveException;
 import com.itacademy.softserve.service.HistoryService;
 import com.itacademy.softserve.service.impl.HistoryServiceImpl;
 
-import java.time.LocalDate;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class AutoChangeOfStatus {
     private TaskDao taskDao = new TaskDao();
 
+    /**
+     * Method updates task statuses according
+     * today date.
+     *
+     * @param tasks list of task object
+     */
     public void updateStatuses(List<Task> tasks) {
         HistoryService historyService = new HistoryServiceImpl();
         TaskDtoMapper taskDtoMapper = new TaskDtoMapper();

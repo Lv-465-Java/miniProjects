@@ -24,6 +24,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Filter {
+    /**
+     * Method determines history period and
+     * set proper list of history records.
+     *
+     * @param request HTTP request object
+     */
     public void determineHistoryPeriod(HttpServletRequest request) {
         HistoryFilter historyFilter = new HistoryFilter();
         HistoryDao historyDao = new HistoryDao();
@@ -47,6 +53,12 @@ public class Filter {
         session.setAttribute(HistoryPeriod.PERIOD.toString(), historyList);
     }
 
+    /**
+     * Method determines task filter and
+     * set proper list of tasks.
+     *
+     * @param request HTTP request object
+     */
     public void determineFilter(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         UserDao userDao = new UserDao();
