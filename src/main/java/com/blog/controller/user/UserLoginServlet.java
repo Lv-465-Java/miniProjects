@@ -37,7 +37,7 @@ public class UserLoginServlet extends HttpServlet {
         if (userService.isValid(loginDto)){
             HttpSession session = req.getSession(true);
             session.setAttribute("loginDto", loginDto);
-            session.setMaxInactiveInterval(3000);
+            session.setMaxInactiveInterval(Parameter.SESSION_TIME);
             Cookie cookie = new Cookie("id_session", session.getId());
             resp.addCookie(cookie);
             resp.sendRedirect(req.getContextPath() + ControllerUrls.HOME_PAGE.toString());
