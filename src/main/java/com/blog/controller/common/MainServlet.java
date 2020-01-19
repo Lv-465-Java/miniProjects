@@ -31,12 +31,12 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<PostDto> postDtoList = postService.getAll();
-        List<CategoryDto> categoryDtoList = categoryService.getAll();
         req.setAttribute("session", Security.checkSession(req, resp));
         try {
-            req.setAttribute("categories", categoryDtoList);
+            List<PostDto> postDtoList = postService.getAll();
             req.setAttribute("postList", postDtoList);
+            List<CategoryDto> categoryDtoList = categoryService.getAll();
+            req.setAttribute("categories", categoryDtoList);
         }catch (NotFoundExeption e){
             req.setAttribute(Parameter.MESSAGE, e.getMessage());
         }

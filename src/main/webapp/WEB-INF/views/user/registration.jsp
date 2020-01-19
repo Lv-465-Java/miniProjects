@@ -45,11 +45,11 @@
                             <input type="password" name="password" class="form-control" id="pass">
                         </div>
                         <div class="form-group">
-                            <label for="firstN">Username:</label>
+                            <label for="firstN">First Name:</label>
                             <input type="text" name="firstName" class="form-control" id="firstN">
                         </div>
                         <div class="form-group">
-                            <label for="lastN">Username:</label>
+                            <label for="lastN">Last Name:</label>
                             <input type="text" name="lastName" class="form-control" id="lastN">
                         </div>
                         <button type="submit" class="btn btn-success btn-block">Submit</button>
