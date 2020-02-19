@@ -1,6 +1,6 @@
 # miniProjects
 
-My-Waller project is a personal budget web-based application whose main goal is to simplify tracking of current incomes, outcomes and plan your future spendings. 
+My-Wallet project is a personal budget web-based application whose main goal is to simplify tracking of current incomes, outcomes and plan your future spendings. 
 
 In a system, each user has his personal page, where he is able to edit some personal data, change a password and create categories for detailed money tracking. **Categories** are used while recording **incomes** or **outcomes** and are useful for various sorting options in order to make the analysis of the budget easier. 
 
