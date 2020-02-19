@@ -45,13 +45,13 @@
             <label for="plannedOutcomeDown" class="floatLabel">Planned Outcome</label>
             <jsp:include page="plannedOutcomesDropdown.jsp"/>
 
-            <div class="form-footer">
-                <button type="submit" class="btn btn-primary" id="formSaveButton">Save changes</button>
-            </div>
-
             <c:if test="${not empty error}">
                 <p class="errorActionMessage" id="error">${error}</p>
             </c:if>
+
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary" id="formSaveButton">Save changes</button>
+            </div>
 
         </form>
         <form action="${pageContext.request.contextPath}/record-dashboard" method="get">

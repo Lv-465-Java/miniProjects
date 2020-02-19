@@ -85,25 +85,4 @@ public class RecordDAOImpl implements RecordDAO<Record> {
             throw new RuntimeException();
         }
     }
-
-//    public String generateSearchQuery(Long financialTypeId, LocalDate from, LocalDate to) {
-//        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM records WHERE user_id = ?");
-//
-//        try {
-//            if (financialTypeId != null) {
-//                stringBuilder.append(" AND financial_type_id = ?");
-//            }
-//            if (from != null) {
-//                stringBuilder.append(" AND date BETWEEN ?");
-//            }
-//            if (to != null) {
-//                stringBuilder.append(" AND ?");
-//            }
-//        } catch (
-//                RuntimeException e) {
-//            e.getStackTrace();
-//            throw new RuntimeException();
-//        }
-//        return stringBuilder.append(";").toString();
-//    }
 }
