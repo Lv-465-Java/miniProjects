@@ -24,6 +24,6 @@ public class UpdateController extends HttpServlet {
         String date = req.getParameter("date");
         Check check = new Check(Integer.valueOf(id), date);
         checkService.update(check);
-        resp.sendRedirect(req.getContextPath() + "/cars");
+        resp.sendRedirect(req.getContextPath() + "/admin/cars");
     }
 }

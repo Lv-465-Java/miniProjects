@@ -68,8 +68,8 @@ public class CarDaoImpl extends CrudDaoImpl<Car> {
     }
 
     @Override
-    protected String getByFieldQuery(String field) {
-        return null;
+    public String getByFieldQuery(String field){
+        return "Select * from checks inner join cars on cars.id = checks.car_id where brand like '%"+field+"%'";
     }
 
 

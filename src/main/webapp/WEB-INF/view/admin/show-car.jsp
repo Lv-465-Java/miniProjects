@@ -6,12 +6,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2><a href="/cars">Cars</a></h2>
+            <h2><a href="admin/cars">Cars</a></h2>
             <div class="table-responsive">
-                <form action="/cars" method="post">
+                <form action="/admin/cars" method="post">
                     <input width="750px" type="text" name="field" placeholder="Search date">
                 </form>
-                    <form action="/cars" method="post">
+                    <form action="/admin/cars" method="post">
                     <div class="dropdown">
                         <button class="dropbtn">Choose brand</button>
                         <div class="dropdown-content">
@@ -31,6 +31,8 @@
                     <th>Vin-Code</th>
                     <th>Name</th>
                     <th>Tel</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                     </thead>
                     <tbody>
                     <tr>
@@ -49,7 +51,12 @@
                         <td><c:out value="${car.vinCode}"/></td>
                         <td><c:out value="${client.name}"/></td>
                         <td><c:out value="${client.tel}"/></td>
-
+                        <td>
+                            <a href="${pageContext.request.contextPath}/edit-car?id=<c:out value='${check.id}' />">Edit</a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/admin/delete?id=<c:out value='${check.id}' />">Delete</a>
+                        </td>
                     </tr>
                     </c:when>
                     </c:choose>
@@ -58,8 +65,11 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <h3><a href="/add-car">Add Car</a></h3>
+
+
                 <div class="clearfix"></div>
-                <form action="/cars" method="post">
+                <form action="/admin/cars" method="post">
                 <ul class="pagination pull-right">
 <c:forEach begin="1" end="${size}" var="i">
     <c:choose>
@@ -74,9 +84,13 @@
                 </ul>
                 </form>
             </div>
+            <form action="/admin/LogoutServlet" method="post">
+                <input type="submit" value="Logout" >
+            </form>
+        </div>
 
         </div>
     </div>
 </div>
 </div>
-</div>
+

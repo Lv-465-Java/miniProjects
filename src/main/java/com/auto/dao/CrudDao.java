@@ -1,13 +1,8 @@
 package com.auto.dao;
-
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
-public interface CrudDao<T> {
-    List<T> getAll() throws SQLException;
+public interface CrudDao<T> extends ReadDao<T>{
 
-    T findById(Integer id) throws SQLException;
 
     int create(T entity) throws SQLException;
 

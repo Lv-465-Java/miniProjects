@@ -8,7 +8,12 @@ import com.auto.dto.mapper.CheckDtoMapper;
 import com.auto.model.Check;
 import com.auto.service.CheckService;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CheckServiceImpl implements CheckService {
@@ -22,6 +27,8 @@ public class CheckServiceImpl implements CheckService {
         clientDao = new ClientDaoImpl();
         checkDtoMapper = new CheckDtoMapper();
     }
+    public List<Check> getByBrand(String field){
+        return checkDao.getByBrand(field);}
     @Override
     public List<Check> findAll()  {
         List<Check> checks = checkDao.getAll();
@@ -36,6 +43,35 @@ public class CheckServiceImpl implements CheckService {
     public List<Check> getByField(String field){
         return checkDao.getByField(field);
     }
+
+    public Integer countPages(){
+        Integer size = checkDao.getAll().size();
+        int numPages = size/5;
+        if(size%5 !=0)
+            numPages +=1;
+        return numPages;
+    }
+
+
+
+    public List<Check> getPaginationChecks(int page){
+        List<Check> checks = checkDao.getAll();
+        List<Check> result = new ArrayList<>();
+        int size = checks.size();
+        if(page >size/5){
+            for (int i = 0; i < size%5; i++) {
+                result.add(checks.get(5 * page + i - 5));
+            }
+        }
+        else {
+            for (int i = 0; i < 5; i++) {
+                result.add(checks.get(5 * page + i - 5));
+            }
+        }
+
+        return result;
+    }
+
 
     @Override
     public void create(CheckDto entity) {
@@ -54,7 +90,6 @@ public class CheckServiceImpl implements CheckService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

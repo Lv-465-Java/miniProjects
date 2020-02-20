@@ -58,5 +58,8 @@ public class CarServiceImpl implements CarService {
     public void delete(Integer id) throws SQLException {
     carDao.delete(id);
     }
+    public List<Car> getByField(String field){
+        return carDao.getByField(field);
+    }
 
 }

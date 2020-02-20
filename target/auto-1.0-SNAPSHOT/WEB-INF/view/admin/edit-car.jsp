@@ -11,7 +11,7 @@
     <h2>
         <a href="${pageContext.request.contextPath}/add-car">Add New Car</a>
         &nbsp;&nbsp;&nbsp;
-        <a href="${pageContext.request.contextPath}/cars">List All Cars</a>
+        <a href="${pageContext.request.contextPath}/admin/cars">List All Cars</a>
     </h2>
 </div>
 <div align="center">

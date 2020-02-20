@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CheckDaoImpl extends CrudDaoImpl<Check> {
+
     @Override
     protected String[] getFields(Check entity) {
         String [] fields = new String[3];
@@ -76,6 +77,7 @@ public class CheckDaoImpl extends CrudDaoImpl<Check> {
     public String getByFieldQuery(String field){
         return "Select * from checks where date_of_beginning like '%" + field + "%';";
     }
+
 
     public Integer getId(Integer id,String query) throws SQLException {
         Integer key = null;

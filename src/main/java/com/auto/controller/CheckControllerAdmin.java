@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/cars")
-public class CheckController extends HttpServlet {
+@WebServlet("/admin/cars")
+public class CheckControllerAdmin extends HttpServlet {
 
-    private final static String add = "/WEB-INF/view/show-car.jsp";
+    private final static String add = "/WEB-INF/view/admin/show-car.jsp";
     private RequestMapperService mapperService;
 
     @Override
@@ -23,7 +23,7 @@ public class CheckController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       doPost(req, resp);
+        doPost(req, resp);
 
     }
 
