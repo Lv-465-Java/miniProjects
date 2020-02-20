@@ -20,15 +20,14 @@ CREATE TABLE places(
                        PRIMARY KEY (id)
 );
 
-
 CREATE TABLE comments(
                          id BIGINT NOT NULL AUTO_INCREMENT,
                          text_of_comment VARCHAR(255) NOT NULL,
-                         date_of_comment TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
+                         date_of_comment DATETIME NOT NULL,
                          user_id BIGINT NOT NULL,
                          place_id BIGINT NOT NULL,
                          PRIMARY KEY (id),
-                         FOREIGN KEY (user_id) REFERENCES users (id) on delete cascade ,
+                         FOREIGN KEY (user_id) REFERENCES users (id),
                          FOREIGN KEY (place_id) REFERENCES places (id)
 );
 

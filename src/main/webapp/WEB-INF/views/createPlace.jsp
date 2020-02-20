@@ -42,6 +42,7 @@
                     </div>
 
                     <div class="group">
+                        <a href="${pageContext.request.contextPath}/createPlace">
                         <input type="submit" class="button" value="Create">
                     </div>
                     <div class="group">

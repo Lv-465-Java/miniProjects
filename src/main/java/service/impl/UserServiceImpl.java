@@ -99,11 +99,6 @@ public class UserServiceImpl implements UserService, Message {
         } throw new NotFoundException(DELETE_USER_EXCEPTION_MESSAGE);
     }
 
-//    @Override
-//    public boolean deleteByFieldName(String textCondition) {
-//        return daoCRUD.deleteByFieldName(textCondition);
-//    }
-
     @Override
     public boolean delete(User user) {
 

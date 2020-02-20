@@ -11,10 +11,9 @@
 <head>
     <meta charset="utf-8">
     <title>Edit place</title>
-    <link rel="stylesheet" type="text/css" href="../../css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
 </head>
 <body>
-<c:if test="${not empty place}">
 <form method="POST" action="${pageContext.request.contextPath}/editPlace">
     <input type="hidden" name="id" value="${place.id}" />
     <div class="login-wrap">
@@ -23,14 +22,10 @@
             <div class="login-form">
                 <div class="sign-up-htm">
                     <form action="${pageContext.request.contextPath}/editPlace" method="post">
+                        <input type="hidden" name="placeId" value="${placeDto.id}">
                         <div class="group">
                             <label for="country" class="label">Country</label>
-                            <select id="country" name="country">       <!----place_id -->
-                                <option value="" selected>Italy</option>
-                                <option value="">Germany</option>
-                                <option value="">Tokyo</option>
-                            </select>
-                            <!--  <input id="first" type="text" class="input" required> -->
+                            <input id="country" name="country" type="text" class="input" value="${placeDto.country}">
                         </div>
                         <div class="group">
                             <label for="town" class="label">Town</label>
@@ -42,7 +37,7 @@
                         </div>
                         <div class="group">
                             <label for="description" class="label">Description</label>
-                            <input id="description" name="description" type="text" class="input" >
+                            <textarea id="description" name="description" cols="60" rows="4" required>${placaDto.description}</textarea>
                         </div>
                         <div class="group">
                             <label for="photo" class="label">Photo</label>
@@ -64,6 +59,5 @@
             </div>
         </div>
     </div>
-    </c:if>
 </body>
 </html>

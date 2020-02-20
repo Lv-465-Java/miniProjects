@@ -3,6 +3,7 @@ package servlet.rate;
 import db.ConnectionManager;
 import service.RateService;
 import service.impl.RateServiceImpl;
+import servlet.JSPFILES;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,17 +34,14 @@ public class DeleteRateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
-
-        //String errorString = null;
 
         Long id=Long.parseLong(request.getParameter("id"));
         if(!rateService.deleteById(id)){
-            // If has an error, redirecte to the error page.
+
             request.setAttribute("errorString", "Error when delete user");
 
             RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/deleteRateError.jsp");
+                    .getRequestDispatcher(JSPFILES.MAIN_PAGE.getPath());
             dispatcher.forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/rateList");

@@ -11,41 +11,33 @@
 <head>
     <meta charset="utf-8">
     <title>Edit Comment</title>
-    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
 </head>
 <body>
-<c:if test="${error ne null}">
-    <p class="text-center">
-        <font color="red">${error}</font>
-    </p>
-</c:if>
-<c:if test="${not empty comment}">
-    <form method="POST" action="${pageContext.request.contextPath}/editComment">
-    <input type="hidden" name="id" value="${comment.id}" />
+<%--<c:if test="${error ne null}">--%>
+<%--    <p class="text-center">--%>
+<%--        <font color="red">${error}</font>--%>
+<%--    </p>--%>
+<%--</c:if>--%>
 <div class="login-wrap">
     <div class="login-html">
         <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Edit Comment</label>
         <div class="login-form">
             <div class="sign-up-htm">
                 <form action="${pageContext.request.contextPath}/editComment" method="post">
+                    <input type="hidden" name="commId" value="${commentDto.id}">
                     <div class="group">
                         <label for="place" class="label">Choose place</label>
-
-
-
-                        <select  name="place">       <!----place_id -->
-                            <option value="" selected>Italy</option>
-                            <option value="">Germany</option>
-                            <option value="">Tokyo</option>
+                        <select  name="place">
+                            <c:forEach items="${placeDto}" var="place">
+                            <option value="${place.id}">${place.country},${place.town},${place.name}</option>
+                            </c:forEach>
                         </select>
-                        <!--  <input id="first" type="text" class="input" required> -->
                     </div>
                     <div class="group">
                         <label for="text" class="label">Text of comment</label>
-                        <textarea id="text" name="text_of_comment" cols="60" rows="4">${comment.text_of_comment}</textarea>
-                        <!-- <input id="text" type="texta" class="input" required> -->
+                        <textarea id="text" name="text_of_comment" cols="60" rows="4">${commentDto.textOfComment}</textarea>
                     </div>
-
 
                     <div class="group">
                         <input type="submit" class="button" value="Edit">
@@ -61,6 +53,5 @@
         </div>
     </div>
 </div>
-        </c:if>
 </body>
 </html>

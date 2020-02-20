@@ -1,7 +1,6 @@
 package servlet.comment;
 
-import db.ConnectionManager;
-import dto.CommentDto;
+import entity.Comment;
 import exception.NotFoundException;
 import service.CommentService;
 import service.impl.CommentServiceImpl;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.List;
 
 /**
@@ -39,7 +37,7 @@ public class CommentListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            List<CommentDto> list = commentService.getAll();
+            List<Comment> list = commentService.getAll();
             request.setAttribute("commentList", list);
             RequestDispatcher dispatcher = request.getServletContext()
                     .getRequestDispatcher(JSPFILES.COMMENT_LIST.getPath());

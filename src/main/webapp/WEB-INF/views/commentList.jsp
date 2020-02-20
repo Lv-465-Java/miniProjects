@@ -20,32 +20,20 @@
     <jsp:include page="/fragments/header.jsp"/>
 
 
-    <nav class="navbar navbar-default">
-
-        <ul class="nav navbar-nav">
-            <div class="row">
-                <div class="col-md-4">
-                    <li><!-- class="nav-item">-->
-                        <a class="nav-link" href="#">${userDto.username}</a>
-                    </li>
-                </div>
-                <div class="col-md-4">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/personalCabinet">Personal cabinet</a>
-                    </li>
-                </div>
-                <div class="col-md-4">
-                    <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/login">Log out</a>
-                    </li>
-                </div>
+    <div class="nav navbar-nav">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class= col-3>
+                <a class="nav-link" href="#">${userDto.username}</a>
             </div>
-        </ul>
-    </nav>
+            <div class="col-3">
+                <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+            </div>
+        </div>
+    </div>
 
 
     <div class="heading"></div>
-
 
     <div class="row">
         <aside class="col-md-3">
@@ -53,10 +41,23 @@
                 <div class="panel-heading">MENU</div>
                 <div class="panel-body">
                     <ul class="list-group submenu">
-                        <li class="list-group-item active">Places</li>
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/commentList">Comments</a></li>
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/tripList">Trips</a></li>
-                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/transportList">Transports</a></li>
+                        <li class="list-group-item active">
+                            <a href="${pageContext.request.contextPath}/editUser">Edit profile</a></li>
+                        <li class="list-group-item">Comments
+                            <ul>
+                                <li><a href="${pageContext.request.contextPath}/getUserComment">My comments</a></li>
+                                <li><a href="${pageContext.request.contextPath}/createComment">Create comment</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="list-group-item">Trips
+                            <ul>
+                                <li><a href="${pageContext.request.contextPath}/getUserTrip">My trips</a></li>
+                                <li><a href="${pageContext.request.contextPath}/createTrip">Create trip</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="list-group-item"><a href="${pageContext.request.contextPath}/evaluatePlace">Evaluate the place</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,71 +68,39 @@
         <section class="col-md-9">
             <div class="jumbotron">
                 <blockquote>
-                    <p>
-                        Quet
-                    </p>
-                    <small> Author</small>
+                <p>
+                    The world is a book and those who do not travel read only a page
+                </p>
+                <small>Saint Augustine</small>
                 </blockquote>
             </div>
             <div class="container features">
-                <div class="row">
-                    <c:forEach items="${commentList}" var="comment">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <div class="col-sm">
-                                <fieldset>
-                                    ${comment.userId}", ${comment.dateOfComment}, ${comment.placeId}
-                                        <c:out value="${comment.textOfComment}"/>
-                                        <%--                        <c:out value="${place.country}"/>--%>
-                                        <%--                        <c:out value="${place.town}"/>--%>
-                                        <%--                        <c:out value="${place.name}"/>--%>
-                                        <%--                        <c:out value="${place.description}"/>--%>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </div>
+                <table class="table">
 
-
-
-
-                <h2>Our trip</h2>
-                <div class="trip">
-                    <div class="row">
-                        <div class="col col-md-4">
-                            <img src="" alt="John Doe" class="thumbnail">
-                            <div class="caption">
-                                <h3>John Doe</h3>
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="col col-md-4 col-md-offset-1">
-                            <img src="" alt="Saundra Pittsley" class="thumbnail">
-                            <div class="caption">
-                                <h3>Saundra Pittsley</h3>
-                                <p></p>
-                            </div>
-                        </div>
-                        …
-                    </div>
-                    <div class="row">
-                        <div class="col col-md-4">
-                            <img src="" alt="Ericka Nobriga" class="thumbnail">
-                            <div class="caption">
-                                <h3>Ericka Nobriga</h3>
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="col col-md-4 col-md-offset-1">
-                            <img src="" alt="Cody Rousselle" class="thumbnail">
-                            <div class="caption">
-                                <h3>Cody Rousselle</h3>
-                                <p></p>
-                            </div>
-                        </div>
-                        …
-                    </div>
-                </div>
-
+                <c:forEach items="${commentList}" var="comm">
+                    <tr>
+                         <td>${comm.userId}</td>
+                         <td>${comm.dateOfComment}</td>
+                         <td>${comm.placeId}</td>
+                          <td>${comm.textOfComment}</td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/deleteComment" method="post">
+                                <input type="hidden" name="commentId" value="${comm.id}">
+                                <input type="submit" name="id" class="button" value="Delete">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/editComment" method="get">
+                                <input type="hidden" name="comId" value="${comm.id}">
+                                <input type="submit" name="comment" class="button" value="Update">
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+                    <c:if test="${not empty error}">
+                        <c:out value="${error}"/>
+                    </c:if>
+                </table>
             </div>
         </section>
     </div>

@@ -40,12 +40,6 @@ public final class ConnectionManager {
         }
 
         private void checkStatus(DataSource dataSource) {
-            /*-		dataSource		this.dataSource		    Action
-             * 			null			null				create default
-             * 			null			not null			nothing
-             * 			not null		null				save dataSource
-             * 			not null		not null			if equals then nothing
-             */
             if (dataSource == null) {
                 if (getDataSource() == null) {
                     setDataSource(DataSourceRepository.getDefault());

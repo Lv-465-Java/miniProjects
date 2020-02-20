@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TripService {
 
-    TripDto getById(Long id);
+    Trip getById(Long id);
 
     TripDto getByField(String text);
 

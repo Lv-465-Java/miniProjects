@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: int
@@ -35,15 +36,15 @@
 
 
     <div class="heading"></div>
-    <form action="${pageContext.request.contextPath}/uploadPoster" method="post" enctype="multipart/form-data" name="poster">
-    <div class="row">
-        <div class="col-4">
-            <input type="file" name="file"/>
-            <input type="submit" value="Upload">
-        </div>
-        <img src="${pageContext.request.contextPath}/posters/${fileName}" alt="poster" height="100" width="250">
-    </div>
-    </form>
+<%--    <form action="${pageContext.request.contextPath}/uploadPoster" method="post" enctype="multipart/form-data" name="poster">--%>
+<%--    <div class="row">--%>
+<%--        <div class="col-4">--%>
+<%--            <input type="file" name="file"/>--%>
+<%--            <input type="submit" value="Upload">--%>
+<%--        </div>--%>
+<%--        <img src="/posters/${pageContext.request.contextPath}{fileName}" alt="poster" height="100" width="250">--%>
+<%--    </div>--%>
+<%--    </form>--%>
 
 
     <div class="row">
@@ -58,21 +59,14 @@
                             <ul>
                                 <li><a href="${pageContext.request.contextPath}/getUserComment">My comments</a></li>
                                 <li><a href="${pageContext.request.contextPath}/createComment">Create comment</a></li>
-                                <li>Get comment by date</li>
-                                <li><a href="${pageContext.request.contextPath}/editComment">Update comment</a></li>
-                                <li>Update comment by place</li>
-                                <li><a href="${pageContext.request.contextPath}/deleteComment">Delete comment</a></li>
+
                             </ul>
                         </li>
                         <li class="list-group-item">Trips
                             <ul>
                                 <li><a href="${pageContext.request.contextPath}/getUserTrip">My trips</a></li>
                                 <li><a href="${pageContext.request.contextPath}/createTrip">Create trip</a></li>
-                                <li>Get trip by departure day</li>
-                                <li><a href="${pageContext.request.contextPath}/editTrip">Update trip</a></li>
-                                <li>Update day of arrival</li>
-                                <li><a href="${pageContext.request.contextPath}/deleteTrip">Delete trip</a></li>
-                                <li>Delete trip by departure day</li>
+
                             </ul>
                         </li>
                         <li class="list-group-item"><a href="${pageContext.request.contextPath}/evaluatePlace">Evaluate the place</a></li>
@@ -94,6 +88,9 @@
             </div>
             <div class="container features">
                 <div class="row">
+                    <c:if test="${not empty error}">
+                        <c:out value="${error}"/>
+                    </c:if>
                     <!-- <div class="col-lg-4 col-md-4 col-sm-12">
                       <h3 class="feature-title">France,Paris,The Eiffel Tower</h3>
                       <img src="/home/int/Download/Foto/france-paris.jpg" class="img-fluid">

@@ -86,8 +86,6 @@ public class RegistrationServlet extends HttpServlet {
                 req.setAttribute("errors", e.getMessage());
                 req.getRequestDispatcher(JSPFILES.REGISTRATION_JSP.getPath()).forward(req, resp);
             }
-        } else {
-            req.setAttribute("error","duplicate");
         }
     }
 }

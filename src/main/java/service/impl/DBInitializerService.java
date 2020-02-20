@@ -37,8 +37,6 @@ public final class DBInitializerService {
                    .getInstance(new DataSource(sqlDr,mySqlUrl,"maryana", "Maryana1234!"))
                    .getConnection();
 
-//            Connection con = DriverManager.getConnection(mySqlUrl, "maryana", "Maryana1234!");
-
         ScriptRunner sr=new ScriptRunner(con);
         Reader reader=new BufferedReader(new FileReader("/resources/sql/create_db.sql"));
         Reader reader2=new BufferedReader(new FileReader("/resources/sql/create_tables.sql"));
@@ -49,7 +47,6 @@ public final class DBInitializerService {
        }catch (SQLException | FileNotFoundException e){
            e.printStackTrace();
        }
-
         setFirst(false);
     }
 }

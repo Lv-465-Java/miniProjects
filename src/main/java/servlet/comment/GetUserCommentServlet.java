@@ -1,7 +1,6 @@
 package servlet.comment;
 
-import db.ConnectionManager;
-import dto.CommentDto;
+import entity.Comment;
 import exception.NotFoundException;
 import service.CommentService;
 import service.impl.CommentServiceImpl;
@@ -43,7 +42,7 @@ public class GetUserCommentServlet extends HttpServlet {
         Long userId= SessionCookieManager.getLoginedUser(session).getId();
 
         try {
-            List<CommentDto> list = commentService.getByUserId(userId);
+            List<Comment> list = commentService.getByUserId(userId);
             request.setAttribute("commentList", list);
             RequestDispatcher dispatcher = request.getServletContext()
                     .getRequestDispatcher(JSPFILES.COMMENT_LIST.getPath());
@@ -51,7 +50,7 @@ public class GetUserCommentServlet extends HttpServlet {
         } catch (NotFoundException e) {
             request.setAttribute("error", e.getMessage());
             RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher(JSPFILES.LOGIN_JSP.getPath());/////////////
+                    .getRequestDispatcher(JSPFILES.PERSONAL_CABINET.getPath());
             dispatcher.forward(request, response);
         }
     }

@@ -1,8 +1,9 @@
 package servlet.user;
 
-import db.ConnectionManager;
+import exception.NotFoundException;
 import service.UserService;
 import service.impl.UserServiceImpl;
+import servlet.JSPFILES;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 
 /**
  * Class processes requests for "/deleteUser"  url
@@ -33,20 +33,18 @@ public class DeleteUserServlet extends HttpServlet {
     @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
                 throws ServletException, IOException {
-            Connection conn = ConnectionManager.getInstance().getConnection();
 
-            //String errorString = null;
 
-                Long id=Long.parseLong(request.getParameter("id"));
-                if(!userService.deleteById(id)){
-            // If has an error, redirecte to the error page.
-                request.setAttribute("errorString", "Error when delete user");
-
+                Long id=Long.parseLong(request.getParameter("userId"));
+                try {
+                    userService.deleteById(id);
+                    response.sendRedirect(request.getContextPath() + "/userList");
+                } catch (NotFoundException e){
+                request.setAttribute("errorString", e.getMessage());
                 RequestDispatcher dispatcher = request.getServletContext()
-                        .getRequestDispatcher("/WEB-INF/views/deleteUserError.jsp");
+                        .getRequestDispatcher(JSPFILES.USER_LIST.getPath());
                 dispatcher.forward(request, response);
-            } else {
-                response.sendRedirect(request.getContextPath() + "/userList");
+
             }
 
         }

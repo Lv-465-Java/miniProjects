@@ -17,9 +17,9 @@
     <div class="login-html">
         <div class="login-form">
             <div class="sign-up-htm">
-
+                <form action="${pageContext.request.contextPath}/addPlaceToTrip" method="post">
                 <div class="group">
-                    <form action="${pageContext.request.contextPath}/addPlaceToTrip" method="post">
+                        <input type="hidden" name="tripId" value="${tripId}">
                         <label for="placeDto" class="label">Place
                             <select id="placeDto" name="placesId" multiple="multiple">
                                 <c:forEach items="${placeDtoList}" var="placeDto">
@@ -30,16 +30,11 @@
                             </select>
 
                         </label>
-                    </form>
                 </div>
 
                 <div class="group">
-                    <form action="${pageContext.request.contextPath}/createTrip">
+                    <input type="hidden" name="tripId" value="${tripId}"/>
                     <input type="submit" class="button" value="Add">
-                    </form>
-                </div>
-                <div class="group">
-                    <input type="submit" class="button" value="Calculate the cost of the trip">
                 </div>
                 <div class="group">
                     <form action="${pageContext.request.contextPath}/mainPage">
@@ -47,6 +42,7 @@
                     </form>
                 </div>
                 <div class="hr"></div>
+                </form>
             </div>
         </div>
     </div>

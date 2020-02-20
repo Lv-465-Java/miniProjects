@@ -24,12 +24,10 @@ public class TripServiceImpl implements TripService, Message {
     }
 
     @Override
-    public TripDto getById(Long id) {
-        Trip trip=tripDao.getById(id)
+    public Trip getById(Long id) {
+        return tripDao.getById(id)
                 .orElseThrow(()->new NotFoundException(String.format(TRIP_NOT_FOUND_EXCEPTION_MESSAGE,id)));
-
-        return TripMapper.getTripDto(trip);
-    }
+            }
 
     @Override
     public TripDto getByField(String text) {

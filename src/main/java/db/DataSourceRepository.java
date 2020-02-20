@@ -22,7 +22,7 @@ public class DataSourceRepository {
                 throw new RuntimeException(FAILED_JDBC_DRIVER);
             }
             return new DataSource(sqlDriver,
-                    "jdbc:mysql://localhost:3306/tripDB", "maryana", "Maryana1234!");
+                    "jdbc:mysql://localhost:3306/tripPL", "maryana", "Maryana1234!");
         }
 
 }

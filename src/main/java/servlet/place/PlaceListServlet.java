@@ -2,6 +2,7 @@ package servlet.place;
 
 import db.ConnectionManager;
 import dto.PlaceDto;
+import entity.Place;
 import exception.NotFoundException;
 import service.PlaceService;
 import service.impl.PlaceServiceImpl;
@@ -37,10 +38,9 @@ public class PlaceListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
         try {
-        List<PlaceDto> list = placeService.getAll();
+        List<Place> list = placeService.getAllFullPlaces();
         request.setAttribute("placeList", list);
 
         RequestDispatcher dispatcher = request.getServletContext()

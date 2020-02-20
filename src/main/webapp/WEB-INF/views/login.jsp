@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/login.css" />
 </head>
 <body>
+
 <div class="login-wrap">
     <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -22,6 +23,9 @@
             <div class="sign-in-htm">
                 <form action="${pageContext.request.contextPath}/login" method="post">
                     <div>
+                        <c:if test="${not empty error}">
+                            <c:out value="${error}"/>
+                        </c:if>
                     </div>
                 <div class="group">
                     <label for="user" class="label">Username</label>
@@ -36,12 +40,11 @@
                 </div>
                 <div class="hr"></div>
                 <div class="foot-lnk">
-                    <a href="${pageContext.request.contextPath}/forgotPassword">Forgot Password?</a>
+<%--                    <a href="${pageContext.request.contextPath}/forgotPassword">Forgot Password?</a>--%>
                 </div>
+
                 </form>
-                <c:if test="${not empty error}">
-                    <c:out value="${error}"/>
-                </c:if>
+
             </div>
         </div>
     </div>

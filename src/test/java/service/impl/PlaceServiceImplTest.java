@@ -8,6 +8,7 @@ import entity.Place;
 import exception.NotFoundException;
 import mapper.PlaceMapper;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -23,12 +24,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlaceServiceImplTest {
-
-    @Mock
-    DaoCRUD<Place> daoCRUD;
 
     @Mock
     PlaceDaoImpl placeDao;
@@ -56,24 +55,30 @@ public class PlaceServiceImplTest {
 
     PlaceDto testPlaceDto = PlaceMapper.getPlaceDto(testPlace);
 
+    @BeforeEach
+    void init() {
+        initMocks(this);
+        placeDao=new PlaceDaoImpl();
+    }
+
 
 
     @Test
     public void getByIdTest() {
 
-        when(daoCRUD.getById(1L)).thenReturn(Optional.of(testPlace));
+        when(placeDao.getById(1L)).thenReturn(Optional.of(testPlace));
 
-        PlaceDto resultPlaceDto = placeServiceImpl.getById(1L);
+        Place resultPlaceDto = placeServiceImpl.getById(1L);
 
-        assertEquals(testPlaceDto, resultPlaceDto);
+        assertEquals(testPlace, resultPlaceDto);
 
-        verify(daoCRUD, times(1)).getById(anyLong());
+        verify(placeDao, times(1)).getById(anyLong());
     }
 
     @Test(expected = NotFoundException.class)
     public void getByIdExceptionTest() {
 
-        when(daoCRUD.getById(anyLong())).thenReturn(Optional.empty());
+        when(placeDao.getById(anyLong())).thenReturn(Optional.empty());
 
         placeServiceImpl.getById(anyLong());
     }
@@ -81,19 +86,19 @@ public class PlaceServiceImplTest {
     @Test
     public void getByFieldTest() {
 
-        when(daoCRUD.getByField("country1")).thenReturn(Optional.of(testPlace));
+        when(placeDao.getByField("country1")).thenReturn(Optional.of(testPlace));
 
         PlaceDto resultPlaceDto = placeServiceImpl.getByField("country1");
 
         assertEquals(testPlaceDto, resultPlaceDto);
 
-        verify(daoCRUD, times(1)).getByField(anyString());
+        verify(placeDao, times(1)).getByField(anyString());
     }
 
     @Test(expected = NotFoundException.class)
     public void getByFieldExceptionTest() {
 
-        when(daoCRUD.getByField(anyString())).thenReturn(Optional.empty());
+        when(placeDao.getByField(anyString())).thenReturn(Optional.empty());
 
         placeServiceImpl.getByField(anyString());
     }
@@ -101,19 +106,19 @@ public class PlaceServiceImplTest {
     @Test
     public void getAllPlacesTest() {
 
-        when(daoCRUD.getAll()).thenReturn(testPlaceList);
+        when(placeDao.getAll()).thenReturn(testPlaceList);
 
         List<PlaceDto> resultList = placeServiceImpl.getAll();
 
         assertEquals(testPlaceDtoList, resultList);
 
-        verify(daoCRUD, times(1)).getAll();
+        verify(placeDao, times(1)).getAll();
     }
 
     @Test(expected = NotFoundException.class)
     public void getAllPlacesExceptionTest() {
 
-        when(daoCRUD.getAll()).thenReturn(emptyPlaceList);
+        when(placeDao.getAll()).thenReturn(emptyPlaceList);
 
         placeServiceImpl.getAll();
     }
@@ -121,19 +126,19 @@ public class PlaceServiceImplTest {
     @Test
     public void getAllLimitTest() {
 
-        when(daoCRUD.getAllLimit()).thenReturn(testPlaceList);
+        when(placeDao.getAllLimit()).thenReturn(testPlaceList);
 
         List<PlaceDto> resultList = placeServiceImpl.getAllLimit();
 
         assertEquals(testPlaceDtoList, resultList);
 
-        verify(daoCRUD, times(1)).getAllLimit();
+        verify(placeDao, times(1)).getAllLimit();
     }
 
     @Test(expected = NotFoundException.class)
     public void getAllLimitExceptionTest() {
 
-        when(daoCRUD.getAllLimit()).thenReturn(emptyPlaceList);
+        when(placeDao.getAllLimit()).thenReturn(emptyPlaceList);
 
         placeServiceImpl.getAllLimit();
     }
@@ -161,19 +166,19 @@ public class PlaceServiceImplTest {
     @Test
     public void insertTest() {
 
-        when(daoCRUD.insert(testPlace)).thenReturn(true);
+        when(placeDao.insert(testPlace)).thenReturn(true);
 
         boolean result = placeServiceImpl.insert(testPlace);
 
         assertTrue(result);
 
-        verify(daoCRUD, times(1)).insert(testPlace);
+        verify(placeDao, times(1)).insert(testPlace);
     }
 
     @Test(expected = NotFoundException.class)
     public void insertExceptionTest() {
 
-        when(daoCRUD.insert(testPlace)).thenReturn(false);
+        when(placeDao.insert(testPlace)).thenReturn(false);
 
         placeServiceImpl.insert(testPlace);
     }
@@ -181,19 +186,19 @@ public class PlaceServiceImplTest {
     @Test
     public void updateByEntityTest() {
 
-        when(daoCRUD.updateByEntity(testPlace)).thenReturn(true);
+        when(placeDao.updateByEntity(testPlace)).thenReturn(true);
 
         boolean result = placeServiceImpl.updateByEntity(testPlace);
 
         assertTrue(result);
 
-        verify(daoCRUD, times(1)).updateByEntity(testPlace);
+        verify(placeDao, times(1)).updateByEntity(testPlace);
     }
 
     @Test(expected = NotFoundException.class)
     public void updateByEntityExceptionTest() {
 
-        when(daoCRUD.updateByEntity(testPlace)).thenReturn(false);
+        when(placeDao.updateByEntity(testPlace)).thenReturn(false);
 
         placeServiceImpl.updateByEntity(testPlace);
     }
@@ -201,19 +206,19 @@ public class PlaceServiceImplTest {
     @Test
     public void updateByFieldTest() {
 
-        when(daoCRUD.updateByField(anyString(), anyString())).thenReturn(true);
+        when(placeDao.updateByField(anyString(), anyString())).thenReturn(true);
 
         boolean result = placeServiceImpl.updateByField(anyString(), anyString());
 
         assertTrue(result);
 
-        verify(daoCRUD, times(1)).updateByField(anyString(), anyString());
+        verify(placeDao, times(1)).updateByField(anyString(), anyString());
     }
 
     @Test(expected = NotFoundException.class)
     public void updateByFieldExceptionTest() {
 
-        when(daoCRUD.updateByField(anyString(), anyString())).thenReturn(false);
+        when(placeDao.updateByField(anyString(), anyString())).thenReturn(false);
 
         placeServiceImpl.updateByField(anyString(), anyString());
     }
@@ -221,19 +226,19 @@ public class PlaceServiceImplTest {
     @Test
     public void deleteByIdTest() {
 
-        when(daoCRUD.deleteById(anyLong())).thenReturn(true);
+        when(placeDao.deleteById(anyLong())).thenReturn(true);
 
         boolean result = placeServiceImpl.deleteById(anyLong());
 
         assertTrue(result);
 
-        verify(daoCRUD, times(1)).deleteById(anyLong());
+        verify(placeDao, times(1)).deleteById(anyLong());
     }
 
     @Test(expected = NotFoundException.class)
     public void deleteByIdExceptionTest() {
 
-        when(daoCRUD.deleteById(anyLong())).thenReturn(false);
+        when(placeDao.deleteById(anyLong())).thenReturn(false);
 
         placeServiceImpl.deleteById(anyLong());
     }
@@ -241,19 +246,19 @@ public class PlaceServiceImplTest {
     @Test
     public void deleteTest() {
 
-        when(daoCRUD.delete(testPlace)).thenReturn(true);
+        when(placeDao.delete(testPlace)).thenReturn(true);
 
         boolean result = placeServiceImpl.delete(testPlace);
 
         assertTrue(result);
 
-        verify(daoCRUD, times(1)).delete(testPlace);
+        verify(placeDao, times(1)).delete(testPlace);
     }
 
     @Test(expected = NotFoundException.class)
     public void deleteExceptionTest() {
 
-        when(daoCRUD.delete(testPlace)).thenReturn(false);
+        when(placeDao.delete(testPlace)).thenReturn(false);
 
         placeServiceImpl.delete(testPlace);
     }

@@ -4,6 +4,7 @@ import db.ConnectionManager;
 import exception.NotFoundException;
 import service.PlaceService;
 import service.impl.PlaceServiceImpl;
+import servlet.JSPFILES;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,21 +35,18 @@ public class DeletePlaceServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
-        //String errorString = null;
-
-        Long id=Long.parseLong(request.getParameter("id"));
+        Long id=Long.parseLong(request.getParameter("placeId"));
         try {
             placeService.deleteById(id);
-            response.sendRedirect(request.getContextPath() + "/PlaceList");
+            response.sendRedirect(request.getContextPath() + "/placeList");
 
         }catch (NotFoundException e){
-            // If has an error, redirecte to the error page.
+
             request.setAttribute("error", e.getMessage());
 
             RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/deletePlaceError.jsp");
+                    .getRequestDispatcher(JSPFILES.PLACE_LIST.getPath());
             dispatcher.forward(request, response);
         }
 

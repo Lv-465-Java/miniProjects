@@ -47,9 +47,13 @@ public abstract class DaoReadAbsImpl<TEntity> implements DaoRead<TEntity> {
         } catch (SQLException e) {
             throw new RuntimeException(DATABASE_READING_ERROR, e);
         }
-        if (all.isEmpty()) {
-            throw new RuntimeException(String.format(EMPTY_RESULTSET, query));
-        }
+        try {///////////////
+            if (all.isEmpty()) {
+                throw new RuntimeException(String.format(EMPTY_RESULTSET, query));
+            }
+        }catch (RuntimeException e){ /////////////
+            System.out.println("Empty result set");//////////////
+        }//////////////
         return all;
     }
 

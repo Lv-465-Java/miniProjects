@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import service.PlaceService;
 import service.impl.PlaceServiceImpl;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,9 +38,10 @@ public class UserDto {
          System.out.println();
 
          CommentDaoImpl commentDao=new CommentDaoImpl();
-        Comment comment=Comment.builder().textOfComment("yesyes").placeId(2L).userId(1L).build();
+         System.out.println(commentDao.getAll());
+       // Comment comment=Comment.builder().textOfComment("yesyes").placeId(2L).userId(1L).build();
        // Comment comment=new Comment(4L,"yesyes",2L,1L);
-         System.out.println(commentDao.insert(comment));
+       //  System.out.println(commentDao.insert(comment));
         // System.out.println(commentDao.getByField("2020-01-03 19:29:36"));
         // System.out.println(commentDao.updateByEntity(comment));
 //         System.out.println();
@@ -56,10 +59,8 @@ public class UserDto {
          //System.out.println(placeService.getByTemplate("ff"));
 
          TripDaoImpl tripDao=new TripDaoImpl();
-//         Trip trip=Trip.builder().id(5L).departureDay(LocalDate.of(2020,7,1))
-//                .dayOfArrival(LocalDate.of(2020,7,30))
-//                .access(true).countOfPeople(1).transportId(2L).userId(1L).build();
-         //System.out.println(tripDao.insert(trip));
+//        Trip trip=new Trip(LocalDate.of(2020,7,1) ,LocalDate.of(2020,7,30),1,true,2L,1L);
+//         System.out.println(tripDao.insert(trip));
         // System.out.println(tripDao.getByField("2020-07-01"));
         // System.out.println(tripDao.updateByEntity(trip));
         // System.out.println(tripDao.deleteById(2L));
@@ -78,7 +79,7 @@ public class UserDto {
          //System.out.println(rateDao.insert(rate));
         // System.out.println(rateDao.updateByEntity(rate));
          //System.out.println(rateDao.deleteById(2L));
-         System.out.println(rateDao.getByFieldName(7L));
+        // System.out.println(rateDao.getByFieldName(7L));
 
 //
     }

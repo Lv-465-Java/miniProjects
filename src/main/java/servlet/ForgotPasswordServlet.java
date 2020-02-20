@@ -1,18 +1,14 @@
 package servlet;
 
-import service.impl.MailService;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.*;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -23,26 +19,6 @@ import java.util.Properties;
 public class ForgotPasswordServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private MailService mailService;
-
-    //    private String host;
-//    private String port;
-//    private String email;
-//    private String name;
-//    private String pass;
-//
-//    public void init() {
-//        mailService = new MailService();
-//
-//    }
-//        // reads SMTP server setting from web.xml file
-//        ServletContext context = getServletContext();
-//        host = context.getInitParameter("host");
-//        port = context.getInitParameter("port");
-//        email = context.getInitParameter("email");
-//        name = context.getInitParameter("name");
-//        pass = context.getInitParameter("pass");
-//    }
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -67,24 +43,17 @@ public class ForgotPasswordServlet extends HttpServlet {
         String message = "";
 
 
-        final String fromEmail = "maryankakravets@gmail.com"; //requires valid gmail id
-        final String password = "18081989mar"; // correct password for gmail id
+        final String fromEmail = "maryankakravets@gmail.com";
+        final String password = "18081989mar";
 
         System.out.println("TLSEmail Start");
         String host="smtp.gmail.com";
         Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
-        props.put("mail.smtp.port", "587"); //TLS Port
-        props.put("mail.smtp.auth", "true"); //enable authentication
-        props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
 
-        //create Authenticator object to pass in Session.getInstance argument
-//        Authenticator auth = new Authenticator() {
-//            //override the getPasswordAuthentication method
-//            protected PasswordAuthentication getPasswordAuthentication() {
-//                return new PasswordAuthentication(fromEmail, password);
-//            }
-//        };
         Session session = Session.getInstance(props, null);
 
 
@@ -102,14 +71,8 @@ public class ForgotPasswordServlet extends HttpServlet {
             transport.connect(host, fromEmail,password);
             Transport.send(msg, msg.getAllRecipients());
             transport.close();
-            //JOptionPane.showMessageDialog(null,"fvgggg");
-            // MailService.sendEmail(session, recipient,subject, content);
-//
-//
-//
-//        try {
-//            MailService.sendEmail(host, port, email, name, pass,
-//                    recipient, subject, content);
+
+
             message = "The e-mail was sent successfully. Please check your e-mail.";
             request.getRequestDispatcher(JSPFILES.LOGIN_JSP.getPath()).forward(request, response);
         } catch (Exception ex) {
@@ -117,7 +80,7 @@ public class ForgotPasswordServlet extends HttpServlet {
             message = "There were an error: " + ex.getMessage();
         } finally {
             request.setAttribute("message", message);
-//            request.getRequestDispatcher(JSPFILES.LOGIN_JSP.getPath()).forward(request, response);
+
         }
     }
 }

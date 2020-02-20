@@ -69,12 +69,11 @@ public class CreateCommentServlet extends HttpServlet {
             Long placeId = Long.parseLong(request.getParameter("placeId"));
             Long userId= SessionCookieManager.getLoginedUser(session).getId();
 
-            Comment comment=Comment.builder().textOfComment(text).placeId(placeId).userId(userId).build();
-
+            Comment comment=new Comment(text,placeId,userId);
 
             try {
                 commentService.insert(comment);
-                request.setAttribute("comment", comment);
+                request.setAttribute("commentList", comment);
                 response.sendRedirect(request.getContextPath() + "/commentList");
             } catch (NotFoundException e){
                 request.setAttribute("error", e.getMessage());

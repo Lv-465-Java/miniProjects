@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Class processes requests for "/createComment"  url
+ * Class processes requests for "/evaluatePlace"  url
  */
 @WebServlet("/evaluatePlace")
 public class SetRateOfPlaceServlet extends HttpServlet {

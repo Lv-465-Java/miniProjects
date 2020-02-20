@@ -1,8 +1,8 @@
 package servlet.trip;
 
-import db.ConnectionManager;
 import service.TripService;
 import service.impl.TripServiceImpl;
+import servlet.JSPFILES;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 
 /**
  * Class processes requests for "/deleteTrip"  url
@@ -34,15 +33,13 @@ public class DeleteTripServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //String errorString = null;
-
-        Long id=Long.parseLong(request.getParameter("id"));
+        Long id=Long.parseLong(request.getParameter("tripId"));
         if(!tripService.deleteById(id)){
-            // If has an error, redirecte to the error page.
-            request.setAttribute("errorString", "Error when delete user");
+
+            request.setAttribute("errorString", "Error when delete trip");
 
             RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/deleteTripError.jsp");
+                    .getRequestDispatcher(JSPFILES.TRIP_LIST.getPath());
             dispatcher.forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/tripList");

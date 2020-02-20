@@ -33,18 +33,21 @@
                     <textarea id="text" name="comment" cols="60" rows="4">Enter your comment...</textarea>
                 </div>
 
-
                 <div class="group">
-                    <a href="${pageContext.request.contextPath}/mainPage">
+                    <a href="${pageContext.request.contextPath}/commentList">
                     <input type="submit" class="button" value="Create">
                     </a>
                 </div>
                 <div class="group">
-                    <a href="${pageContext.request.contextPath}/mainPage">
+                    <a href="${pageContext.request.contextPath}/personalCabinet">
                         <input type="submit" class="button" value="Cancel">
                     </a>
                 </div>
                 <div class="hr"></div>
+                <c:if test="${not empty error}">
+                    <%--                        <c:out value="${error}"/>--%>
+                    <div class="alert alert-info"> ${error}</div>
+                </c:if>
             </form>
         </div>
     </div>

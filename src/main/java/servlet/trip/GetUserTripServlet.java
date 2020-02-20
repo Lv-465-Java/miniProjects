@@ -52,7 +52,7 @@ public class GetUserTripServlet extends HttpServlet {
         } catch (NotFoundException e) {
             request.setAttribute("error", e.getMessage());
             RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher(JSPFILES.LOGIN_JSP.getPath());
+                    .getRequestDispatcher(JSPFILES.PERSONAL_CABINET.getPath());
             dispatcher.forward(request, response);
         }
     }

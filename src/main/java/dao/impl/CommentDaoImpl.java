@@ -26,18 +26,17 @@ public class CommentDaoImpl extends DaoCRUDAbsImpl<Comment> {
                     Long.parseLong(args[0] == null ? "0" : args[0]),
                     args[1] == null ? "" : args[1],
                     LocalDateTime.parse(args[2] == null ? LocalDateTime.now().toString() : args[2], formatter),
-                    Long.parseLong(args[3]==null ? "0" : args[3]),
-                    Long.parseLong(args[4]==null ? "0" : args[4])
+                    Long.parseLong(args[3]==null ? "0" : args[3])
+                   // Long.parseLong(args[4]==null ? "0" : args[4])
             );
         }
 
         protected String[] getUpdateFields(Comment comment) {
             String[] result = new String[3];
             String[] allFields = getFields(comment);
-            result[0] = allFields[0]; // text_of_comment
-            result[1] = allFields[1]; // place_id
-            //result[2] = allFields[2];
-            result[2] = comment.getId().toString(); // id
+            result[0] = allFields[0];
+            result[1] = allFields[1];
+            result[2] = comment.getId().toString();
             return result;
         }
 

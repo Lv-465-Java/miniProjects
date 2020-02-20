@@ -1,31 +1,28 @@
 package service;
 
-import dto.CommentDto;
 import entity.Comment;
 
 import java.util.List;
 
 public interface CommentService {
 
-    CommentDto getById(Long id);
+    Comment getById(Long id);
 
-    CommentDto getByField(String text);
+    Comment getByField(String text);
 
-    List<CommentDto> getAll();
+    List<Comment> getAll();
 
-    List<CommentDto> getAllLimit();
+    List<Comment> getAllLimit();
 
-    List<CommentDto> getByUserId(Long userId);
+    List<Comment> getByUserId(Long userId);
 
-    boolean insert(Comment entity);
+    boolean insert(Comment comment);
 
-    boolean updateByEntity(Comment entity);
+    boolean updateByEntity(Comment comment);
 
     boolean updateByField(String text, String textCondition);
 
     boolean deleteById(Long id);
-
-   // boolean deleteByFieldName(String textCondition);
 
     boolean delete(Comment entity);
 }

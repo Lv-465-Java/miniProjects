@@ -34,13 +34,12 @@ public class EditUserServlet extends HttpServlet {
         userService=new UserServiceImpl();
     }
 
-    // Show product edit page.
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
-        Long id = Long.parseLong(request.getParameter("id"));
+        Long id = Long.parseLong(request.getParameter("userid"));
 
         UserDto user = null;
 
@@ -57,12 +56,10 @@ public class EditUserServlet extends HttpServlet {
           }
     }
 
-    // After the user modifies the product information, and click Submit.
-    // This method will be executed.
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
         String firstName =  request.getParameter("first_name");
         String lastName = request.getParameter("last_name");

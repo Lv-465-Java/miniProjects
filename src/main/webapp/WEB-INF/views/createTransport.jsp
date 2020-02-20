@@ -26,13 +26,14 @@
                     <div class="group">
                         <input type="submit" class="button" value="Create">
                     </div>
+                </form>
                     <div class="group">
-                        <a href="<c:out value="/adminPage"/>">
+                        <a href="${pageContext.request.contextPath}/adminPage">
                             <input type="submit" class="button" value="Cancel">
                         </a>
                     </div>
                     <div class="hr"></div>
-                </form>
+
             </div>
         </div>
     </div>

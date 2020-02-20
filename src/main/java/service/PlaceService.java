@@ -1,18 +1,19 @@
 package service;
 
 import dto.PlaceDto;
-import dto.PlaceWithPhotoDto;
 import entity.Place;
 
 import java.util.List;
 
 public interface PlaceService {
 
-    PlaceDto getById(Long id);
+    Place getById(Long id);
 
     PlaceDto getByField(String text);
 
     List<PlaceDto> getAll();
+
+    List<Place> getAllFullPlaces();
 
     List<PlaceDto> getAllLimit();
 

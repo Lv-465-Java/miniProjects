@@ -18,35 +18,20 @@
 <body>
 <div class="wrapper container">
     <jsp:include page="/fragments/header.jsp"/>
-    <jsp:include page="/fragments/navbar-nav.jsp"/>
-
-<%--    <nav class="navbar navbar-default">--%>
-
-<%--        <ul class="nav navbar-nav">--%>
-<%--            <div class="row">--%>
-<%--                <div class="col-md-4">--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="#">${userDto.username}</a>--%>
-<%--                    </li>--%>
-<%--                </div>--%>
-<%--                <div class="col-md-4">--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="${pageContext.request.contextPath}/personalCabinet">Personal cabinet</a>--%>
-<%--                    </li>--%>
-<%--                </div>--%>
-<%--                <div class="col-md-4">--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="${pageContext.request.contextPath}/login">Log out</a>--%>
-<%--                    </li>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </ul>--%>
-<%--    </nav>--%>
+    <div class="nav navbar-nav">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class= col-3>
+                <a class="nav-link" href="#">${userDto.username}</a>
+            </div>
+            <div class="col-3">
+                <a class="nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+            </div>
+        </div>
+    </div>
 
 
     <div class="heading"></div>
-
-
     <div class="row">
         <aside class="col-md-3">
             <div class="panel panel-primary">
@@ -68,70 +53,42 @@
             <div class="jumbotron">
                 <blockquote>
                     <p>
-                        Quet
+                        The world is a book and those who do not travel read only a page
                     </p>
-                    <small> Author</small>
                 </blockquote>
             </div>
             <div class="container features">
+                <table>
                 <c:forEach items="${userList}" var="user">
-                    <div class="row">
-
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <div class="col-sm">
-                                <fieldset>
-
-                                    <label>User ${user.firstName}</label>
-                                    <label>User ${user.lastName}</label>
-                                    <label>User ${user.username}</label>
-                                    <label>User ${user.email}</label>
-
-                                </fieldset>
-                            </div>
-                        </div>
-                    </div>
+                        <tr>
+                            <td>
+                                    ${user.firstName}
+                            </td>
+                            <td>
+                                    ${user.lastName}
+                            </td>
+                            <td>
+                                    ${user.username}
+                            </td>
+                            <td>
+                                    ${user.email}
+                            </td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/deleteUser" method="post">
+                                    <input type="hidden"  name="userId" value="${user.id}">
+                                    <input type="submit" name="id" class="button" value="Delete">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="${pageContext.request.contextPath}/editUser" method="post">
+                                    <input type="hidden" name="userid" value="${user.id}">
+                                        <input type="submit" name="id" class="button" value="Update">
+                                </form>
+                            </td>
+                        </tr>
                 </c:forEach>
+                </table>
 
-
-
-
-<%--                <h2>Our trip</h2>--%>
-<%--                <div class="trip">--%>
-<%--                    <div class="row">--%>
-<%--                        <div class="col col-md-4">--%>
-<%--                            <img src="" alt="John Doe" class="thumbnail">--%>
-<%--                            <div class="caption">--%>
-<%--                                <h3>John Doe</h3>--%>
-<%--                                <p></p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="col col-md-4 col-md-offset-1">--%>
-<%--                            <img src="" alt="Saundra Pittsley" class="thumbnail">--%>
-<%--                            <div class="caption">--%>
-<%--                                <h3>Saundra Pittsley</h3>--%>
-<%--                                <p></p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="row">--%>
-<%--                        <div class="col col-md-4">--%>
-<%--                            <img src="" alt="Ericka Nobriga" class="thumbnail">--%>
-<%--                            <div class="caption">--%>
-<%--                                <h3>Ericka Nobriga</h3>--%>
-<%--                                <p></p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="col col-md-4 col-md-offset-1">--%>
-<%--                            <img src="" alt="Cody Rousselle" class="thumbnail">--%>
-<%--                            <div class="caption">--%>
-<%--                                <h3>Cody Rousselle</h3>--%>
-<%--                                <p></p>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-                </div>
-
-<%--            </div>--%>
         </section>
     </div>
 </div>

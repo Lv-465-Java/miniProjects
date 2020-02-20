@@ -1,7 +1,5 @@
 package servlet;
 
-import com.mysql.cj.protocol.Security;
-import com.sun.corba.se.spi.activation.TCPPortHelper;
 import entity.Poster;
 import service.PosterService;
 import service.impl.PosterServiceImpl;
@@ -62,8 +60,6 @@ public class UploadFileServer extends HttpServlet {
 
             posterService.save(poster);
             req.setAttribute("fileName", fileName);
-
             resp.sendRedirect(req.getContextPath() + "/personalCabinet");
-
         }
     }

@@ -43,7 +43,7 @@ public class EditPlaceDescriptionServlet extends HttpServlet {
 
         Long id = Long.parseLong(request.getParameter("id"));
 
-        PlaceDto placeDto = null;
+        Place placeDto = null;
 
         try {
             placeDto = placeService.getById(id);
@@ -63,7 +63,6 @@ public class EditPlaceDescriptionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
         String description =  request.getParameter("description");
 

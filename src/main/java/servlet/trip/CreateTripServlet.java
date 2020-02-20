@@ -31,7 +31,6 @@ public class CreateTripServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private TripService tripService;
-    // private PlaceService placeService;
     private TransportService transportService;
     private TripPlaceService tripPlaceService;
 
@@ -42,19 +41,18 @@ public class CreateTripServlet extends HttpServlet {
     public void init() {
         tripService = new TripServiceImpl();
         transportService = new TransportServiceImpl();
-        // placeService=new PlaceServiceImpl();
         tripPlaceService = new TripPlaceServiceImpl();
     }
 
-    // Show trip creation page.
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
-            //List<PlaceDto> placeDtoList = placeService.getAll();
+
             List<Transport> transportList = transportService.getAll();
-            //request.setAttribute("placeDtoList", placeDtoList);
+
             request.setAttribute("transportList", transportList);
             RequestDispatcher dispatcher = request.getServletContext()
                     .getRequestDispatcher(JSPFILES.CREATE_TRIP.getPath());
@@ -68,40 +66,36 @@ public class CreateTripServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
 
-        LocalDate departureDay = LocalDate.parse(request.getParameter("departure_day"));
-        LocalDate dayOfArrival = LocalDate.parse(request.getParameter("day_of_arrival"));
-        int countOfPeople = Integer.parseInt(request.getParameter("count_of_people"));
+        LocalDate departureDay = LocalDate.parse(request.getParameter("dep_day"));
+        LocalDate dayOfArrival = LocalDate.parse(request.getParameter("arr_day"));
+        int countOfPeople = Integer.parseInt(request.getParameter("count"));
         boolean access = Boolean.parseBoolean(request.getParameter("access"));
         Long userId = SessionCookieManager.getLoginedUser(session).getId();
-        Long transportId = Long.parseLong(request.getParameter("transport_id"));
+        Long transportId = Long.parseLong(request.getParameter("transport"));
 
-        Trip trip = Trip.builder().departureDay(departureDay).dayOfArrival(dayOfArrival)
-                .countOfPeople(countOfPeople).access(access).transportId(transportId).userId(userId).build();
+        Trip trip = new Trip(departureDay, dayOfArrival, countOfPeople, access, transportId, userId);
 
         try {
             tripService.insert(trip);
 
+//            TripDto tripDto = tripService.getByField(departureDay.toString());
+//
+//            if (tripPlaceService.isEmptyPlaceList(tripDto.getId())) {
+//
+//                request.setAttribute("trip", tripDto);
+//                RequestDispatcher dispatcher = request.getServletContext()
+//                        .getRequestDispatcher(JSPFILES.ADD_PLACE_TO_TRIP.getPath());
+//                dispatcher.include(request, response);
+//            }
+            request.setAttribute("trip", trip);
+            response.sendRedirect(request.getContextPath() + "/tripList");
         } catch (NotFoundException e) {
             request.setAttribute("error", e.getMessage());
             RequestDispatcher dispatcher = request.getServletContext()
                     .getRequestDispatcher(JSPFILES.CREATE_TRIP.getPath());
             dispatcher.forward(request, response);
         }
-
-        TripDto tripDto = tripService.getByField(departureDay.toString());
-
-        if (tripPlaceService.isEmptyPlaceList(tripDto.getId())) {
-
-//                response.sendRedirect(request.getContextPath()
-//                        + "/addPlaceToTrip");
-            request.setAttribute("triId", tripDto.getId());
-            RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher(JSPFILES.ADD_PLACE_TO_TRIP.getPath());
-            dispatcher.include(request, response);
-        }
-            request.setAttribute("trip", trip);
-            response.sendRedirect(request.getContextPath() + "/TripList");
-        }
+    }
 }

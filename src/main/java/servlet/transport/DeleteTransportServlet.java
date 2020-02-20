@@ -34,9 +34,7 @@ public class DeleteTransportServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
-       // Long id=Long.parseLong(request.getParameter("id"));
-        String name=request.getParameter("name");
+        String name=request.getParameter("transpId");
         try {
             transportService.deleteByName(name);
             response.sendRedirect(request.getContextPath() + "/transportList");

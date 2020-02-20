@@ -52,10 +52,12 @@ public class AddPlaceToTripServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        Long tripId=Long.parseLong(request.getParameter("trid"));
         try {
             List<PlaceDto> placeDtoList=placeService.getAll();
 
             request.setAttribute("placeDtoList", placeDtoList);
+            request.setAttribute("tripId",tripId);
             RequestDispatcher dispatcher = request.getServletContext()
                     .getRequestDispatcher(JSPFILES.ADD_PLACE_TO_TRIP.getPath());
             dispatcher.forward(request, response);
@@ -73,7 +75,7 @@ public class AddPlaceToTripServlet extends HttpServlet {
         String [] placeList= request.getParameterValues("placesId");
        List<Long> longList=Arrays.stream(placeList).map(Long::parseLong).collect(Collectors.toList());
 
-       Long tripId= Long.parseLong((String) request.getAttribute("tripId"));
+       Long tripId= Long.parseLong(request.getParameter("tripId"));
 
 
         try{
@@ -83,13 +85,13 @@ public class AddPlaceToTripServlet extends HttpServlet {
              TripPlace tripPlace = new TripPlace(tripId, placeId);
              tripPlaceService.insert(tripPlace);
              request.setAttribute("message", "place added");
-             response.sendRedirect(request.getContextPath() + "/createTrip");
+             response.sendRedirect(request.getContextPath() + "/mainPage");
          }
 
         } catch (NotFoundException e){
             request.setAttribute("error",e.getMessage());
             RequestDispatcher dispatcher = request.getServletContext()
-                    .getRequestDispatcher(JSPFILES.CREATE_TRIP.getPath());
+                    .getRequestDispatcher(JSPFILES.ADD_PLACE_TO_TRIP.getPath());
             dispatcher.forward(request, response);
         }
     }

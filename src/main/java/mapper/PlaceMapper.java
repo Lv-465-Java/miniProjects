@@ -26,7 +26,6 @@ public class PlaceMapper {
         place.setCountry(placeDto.getCountry());
         place.setTown(placeDto.getTown());
         place.setName(placeDto.getName());
-        //place.setDescription(d);
 
         return place;
     }

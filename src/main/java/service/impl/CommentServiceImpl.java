@@ -1,13 +1,10 @@
 package service.impl;
 
 import dao.impl.CommentDaoImpl;
-import dao.DaoCRUD;
-import dto.CommentDto;
 import entity.Comment;
 import exception.Message;
 import exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import mapper.CommentMapper;
 import service.CommentService;
 
 import java.util.List;
@@ -23,61 +20,45 @@ public class CommentServiceImpl implements CommentService, Message {
     }
 
     @Override
-    public CommentDto getById(Long id) {
+    public Comment getById(Long id) {
 
-        Comment comment=commentDao.getById(id)
+        return commentDao.getById(id)
                 .orElseThrow(()->new NotFoundException(String.format(COMMENT_NOT_FOUND_EXCEPTION_MESSAGE,id)));
-
-        return CommentMapper.getCommentDto(comment);
     }
 
     @Override
-    public CommentDto getByField(String text) {
+    public Comment getByField(String text) {
 
-         Comment comment = commentDao.getByField(text)
+         return commentDao.getByField(text)
                 .orElseThrow(()-> new NotFoundException(String.format(EMPTY_LIST_BY_FIELD_EXCEPTION_MESSAGE,text)));
 
-        return CommentMapper.getCommentDto(comment);
     }
 
     @Override
-    public List<CommentDto> getAll() {
+    public List<Comment> getAll() {
         List<Comment> list=commentDao.getAll();
 
-        List<CommentDto>dtoList= list.stream()
-                .map(CommentMapper::getCommentDto)
-                .collect(Collectors.toList());
-
-
-        if (dtoList.isEmpty()){
+        if (list.isEmpty()){
             throw  new NotFoundException(EMPTY_COMMENT_LIST_EXCEPTION_MESSAGE);
-        } return dtoList;
+        } return list;
     }
 
     @Override
-    public List<CommentDto> getAllLimit() {
+    public List<Comment> getAllLimit() {
         List<Comment> list=commentDao.getAllLimit();
 
-        List<CommentDto>dtoList= list.stream()
-                .map(CommentMapper::getCommentDto)
-                .collect(Collectors.toList());
-
-        if (dtoList.isEmpty()){
+        if (list.isEmpty()){
             throw  new NotFoundException(EMPTY_COMMENT_LIST_EXCEPTION_MESSAGE);
-        } return dtoList;
+        } return list;
     }
 
     @Override
-    public List<CommentDto> getByUserId(Long userId) {
+    public List<Comment> getByUserId(Long userId) {
         List<Comment> list=commentDao.getByUserId(userId);
 
-        List<CommentDto>dtoList= list.stream()
-                .map(CommentMapper::getCommentDto)
-                .collect(Collectors.toList());
-
-        if (dtoList.isEmpty()){
+        if (list.isEmpty()){
             throw  new NotFoundException(EMPTY_COMMENT_LIST_EXCEPTION_MESSAGE);
-        } return dtoList;
+        } return list;
     }
 
     @Override
@@ -115,11 +96,6 @@ public class CommentServiceImpl implements CommentService, Message {
             throw new NotFoundException(DELETE_COMMENT_EXCEPTION_MESSAGE);
         }
     }
-
-//    @Override
-//    public boolean deleteByFieldName(String textCondition) {
-//        return iDaoCRUD.deleteByFieldName(textCondition);
-//    }
 
     @Override
     public boolean delete(Comment comment) {

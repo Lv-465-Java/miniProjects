@@ -8,46 +8,7 @@
 --%>
 
 
-<%--    <form id="resetForm" action="reset_password" method="post">--%>
-<%--        <table>--%>
-<%--            <tr>--%>
-<%--                <td>Email:</td>--%>
-<%--                <td><input type="text" name="email" id="email" size="20"></td>--%>
-<%--            </tr>--%>
-<%--            <tr>--%>
-<%--                <td colspan="2" align="center">--%>
-<%--                    <button type="submit">Send me new password</button>--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-<%--        </table>--%>
-<%--    </form>--%>
-<%--</div>--%>
 
-<%--<jsp:directive.include file="footer.jsp" />--%>
-
-<%--<script type="text/javascript">--%>
-
-<%--    $(document).ready(function() {--%>
-<%--        $("#resetForm").validate({--%>
-<%--            rules: {--%>
-<%--                email: {--%>
-<%--                    required: true,--%>
-<%--                    email: true--%>
-<%--                }--%>
-<%--            },--%>
-
-<%--            messages: {--%>
-<%--                email: {--%>
-<%--                    required: "Please enter email",--%>
-<%--                    email: "Please enter a valid email address"--%>
-<%--                }--%>
-<%--            }--%>
-<%--        });--%>
-
-<%--    });--%>
-<%--</script>--%>
-<%--</body>--%>
-<%--</html>--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

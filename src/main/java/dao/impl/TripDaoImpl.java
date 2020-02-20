@@ -1,17 +1,11 @@
 package dao.impl;
 
-import db.ConnectionManager;
 import entity.*;
 import entity.Trip.TripQueries;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public final class TripDaoImpl extends DaoCRUDAbsImpl<Trip> {
+public class TripDaoImpl extends DaoCRUDAbsImpl<Trip> {
 
         public TripDaoImpl() {
             super();
@@ -30,7 +24,6 @@ public final class TripDaoImpl extends DaoCRUDAbsImpl<Trip> {
                     LocalDate.parse(args[1] == null ? LocalDate.now().toString() : args[1]),
                     LocalDate.parse(args[2] == null ? LocalDate.now().toString() : args[2]),
                     Integer.parseInt(args[3] == null ? "0" : args[3]),
-                   // Boolean.parseBoolean(args[4] == null ? "true" : args[4]),
                     Long.parseLong(args[4] == null ? "0" : args[4]),
                     Long.parseLong(args[5] == null ? "0" : args[5])
             );
@@ -40,12 +33,12 @@ public final class TripDaoImpl extends DaoCRUDAbsImpl<Trip> {
             String[] result = new String[6];
             String[] allFields = getFields(trip);
 
-            result[0] = allFields[0]; // departure_day
-            result[1] = allFields[1]; // day_of_arrival
-            result[2] = allFields[2]; // count_of_people
-            result[3] = allFields[2]; // access
-            result[4] = allFields[4]; // transport_id
-            result[5] = trip.getId().toString(); // id
+            result[0] = allFields[0];
+            result[1] = allFields[1];
+            result[2] = allFields[2];
+            result[3] = allFields[3];
+            result[4] = allFields[4];
+            result[5] = trip.getId().toString();
             return result;
         }
 

@@ -34,11 +34,10 @@ public class DeleteCommentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection conn = ConnectionManager.getInstance().getConnection();
 
-        //String errorString = null;
 
-        Long id=Long.parseLong(request.getParameter("id"));
+
+        Long id=Long.parseLong(request.getParameter("commentId"));
         try {
             commentService.deleteById(id);
             response.sendRedirect(request.getContextPath() + "/commentList");

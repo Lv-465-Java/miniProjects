@@ -22,11 +22,9 @@ public class PlaceServiceImpl implements PlaceService, Message {
     }
 
     @Override
-    public PlaceDto getById(Long id) {
-        Place place= placeDao.getById(id)
+    public Place getById(Long id) {
+        return placeDao.getById(id)
                 .orElseThrow(()->new NotFoundException(String.format(PLACE_NOT_FOUND_EXCEPTION_MESSAGE,id)));
-
-        return PlaceMapper.getPlaceDto(place);
     }
 
     @Override
@@ -47,6 +45,15 @@ public class PlaceServiceImpl implements PlaceService, Message {
         if (placeDtoList.isEmpty()){
             throw new NotFoundException(EMPTY_PLACE_LIST_EXCEPTION_MESSAGE);
         } return placeDtoList;
+    }
+
+    @Override
+    public List<Place> getAllFullPlaces() {
+        List<Place> list = placeDao.getAll();
+
+        if (list.isEmpty()){
+            throw new NotFoundException(EMPTY_PLACE_LIST_EXCEPTION_MESSAGE);
+        } return list;
     }
 
     @Override
